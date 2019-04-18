@@ -871,7 +871,7 @@ ShallowWrapper {
                                         main={
                                                 <SelectableText>
                                                         <NumericText
-                                                                value="0.2"
+                                                                value="0.1"
                                                         />
                                                          
                                                         ETH
@@ -880,7 +880,7 @@ ShallowWrapper {
                                         subtitle={
                                                 <NumericText
                                                         type="currency"
-                                                        value="82.4"
+                                                        value="41.2"
                                                 />
                                         }
                                 />
@@ -903,7 +903,7 @@ ShallowWrapper {
                                         main={
                                                 <SelectableText>
                                                         <NumericText
-                                                                value="0.2"
+                                                                value="0.1"
                                                         />
                                                          
                                                         ETH
@@ -912,7 +912,7 @@ ShallowWrapper {
                                         subtitle={
                                                 <NumericText
                                                         type="currency"
-                                                        value="82.4"
+                                                        value="41.2"
                                                 />
                                         }
                                 />
@@ -1225,7 +1225,7 @@ ShallowWrapper {
                                                 main={
                                                             <SelectableText>
                                                                         <NumericText
-                                                                                    value="0.2"
+                                                                                    value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -1234,7 +1234,7 @@ ShallowWrapper {
                                                 subtitle={
                                                             <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                             />
                                                 }
                                     />
@@ -1257,7 +1257,7 @@ ShallowWrapper {
                                                 main={
                                                             <SelectableText>
                                                                         <NumericText
-                                                                                    value="0.2"
+                                                                                    value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -1266,7 +1266,7 @@ ShallowWrapper {
                                                 subtitle={
                                                             <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                             />
                                                 }
                                     />
@@ -1866,7 +1866,7 @@ ShallowWrapper {
                                                 main={
                                                                 <SelectableText>
                                                                                 <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -1875,7 +1875,7 @@ ShallowWrapper {
                                                 subtitle={
                                                                 <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                                 />
                                                 }
                                 />
@@ -1898,7 +1898,7 @@ ShallowWrapper {
                                                 main={
                                                                 <SelectableText>
                                                                                 <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -1907,7 +1907,7 @@ ShallowWrapper {
                                                 subtitle={
                                                                 <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                                 />
                                                 }
                                 />
@@ -2325,7 +2325,7 @@ ShallowWrapper {
                                         main={
                                                             <SelectableText>
                                                                                 <NumericText
-                                                                                                    value="0.2"
+                                                                                                    value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -2334,7 +2334,7 @@ ShallowWrapper {
                                         subtitle={
                                                             <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                             />
                                         }
                     />
@@ -2357,7 +2357,7 @@ ShallowWrapper {
                                         main={
                                                             <SelectableText>
                                                                                 <NumericText
-                                                                                                    value="0.2"
+                                                                                                    value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -2366,7 +2366,7 @@ ShallowWrapper {
                                         subtitle={
                                                             <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                             />
                                         }
                     />
@@ -2421,7 +2421,7 @@ ShallowWrapper {
                       main={
                                             <SelectableText>
                                                                   <NumericText
-                                                                                        value="0.2"
+                                                                                        value="0.1"
                                                                   />
                                                                    
                                                                   ETH
@@ -2430,7 +2430,7 @@ ShallowWrapper {
                       subtitle={
                                             <NumericText
                                                                   type="currency"
-                                                                  value="82.4"
+                                                                  value="41.2"
                                             />
                       }
 />,
@@ -2444,14 +2444,14 @@ ShallowWrapper {
                     "props": Object {
                       "main": <SelectableText>
                         <NumericText
-                                                value="0.2"
+                                                value="0.1"
                         />
                          
                         ETH
 </SelectableText>,
                       "subtitle": <NumericText
                         type="currency"
-                        value="82.4"
+                        value="41.2"
 />,
                     },
                     "ref": null,
@@ -2506,7 +2506,7 @@ ShallowWrapper {
                       main={
                                             <SelectableText>
                                                                   <NumericText
-                                                                                        value="0.2"
+                                                                                        value="0.1"
                                                                   />
                                                                    
                                                                   ETH
@@ -2515,7 +2515,7 @@ ShallowWrapper {
                       subtitle={
                                             <NumericText
                                                                   type="currency"
-                                                                  value="82.4"
+                                                                  value="41.2"
                                             />
                       }
 />,
@@ -2529,14 +2529,14 @@ ShallowWrapper {
                     "props": Object {
                       "main": <SelectableText>
                         <NumericText
-                                                value="0.2"
+                                                value="0.1"
                         />
                          
                         ETH
 </SelectableText>,
                       "subtitle": <NumericText
                         type="currency"
-                        value="82.4"
+                        value="41.2"
 />,
                     },
                     "ref": null,
@@ -3062,7 +3062,7 @@ ShallowWrapper {
                                                   main={
                                                             <SelectableText>
                                                                       <NumericText
-                                                                                value="0.2"
+                                                                                value="0.1"
                                                                       />
                                                                        
                                                                       ETH
@@ -3071,7 +3071,7 @@ ShallowWrapper {
                                                   subtitle={
                                                             <NumericText
                                                                       type="currency"
-                                                                      value="82.4"
+                                                                      value="41.2"
                                                             />
                                                   }
                                         />
@@ -3094,7 +3094,7 @@ ShallowWrapper {
                                                   main={
                                                             <SelectableText>
                                                                       <NumericText
-                                                                                value="0.2"
+                                                                                value="0.1"
                                                                       />
                                                                        
                                                                       ETH
@@ -3103,7 +3103,7 @@ ShallowWrapper {
                                                   subtitle={
                                                             <NumericText
                                                                       type="currency"
-                                                                      value="82.4"
+                                                                      value="41.2"
                                                             />
                                                   }
                                         />
@@ -3416,7 +3416,7 @@ ShallowWrapper {
                                                         main={
                                                                       <SelectableText>
                                                                                     <NumericText
-                                                                                                  value="0.2"
+                                                                                                  value="0.1"
                                                                                     />
                                                                                      
                                                                                     ETH
@@ -3425,7 +3425,7 @@ ShallowWrapper {
                                                         subtitle={
                                                                       <NumericText
                                                                                     type="currency"
-                                                                                    value="82.4"
+                                                                                    value="41.2"
                                                                       />
                                                         }
                                           />
@@ -3448,7 +3448,7 @@ ShallowWrapper {
                                                         main={
                                                                       <SelectableText>
                                                                                     <NumericText
-                                                                                                  value="0.2"
+                                                                                                  value="0.1"
                                                                                     />
                                                                                      
                                                                                     ETH
@@ -3457,7 +3457,7 @@ ShallowWrapper {
                                                         subtitle={
                                                                       <NumericText
                                                                                     type="currency"
-                                                                                    value="82.4"
+                                                                                    value="41.2"
                                                                       />
                                                         }
                                           />
@@ -4057,7 +4057,7 @@ ShallowWrapper {
                                                       main={
                                                                         <SelectableText>
                                                                                           <NumericText
-                                                                                                            value="0.2"
+                                                                                                            value="0.1"
                                                                                           />
                                                                                            
                                                                                           ETH
@@ -4066,7 +4066,7 @@ ShallowWrapper {
                                                       subtitle={
                                                                         <NumericText
                                                                                           type="currency"
-                                                                                          value="82.4"
+                                                                                          value="41.2"
                                                                         />
                                                       }
                                     />
@@ -4089,7 +4089,7 @@ ShallowWrapper {
                                                       main={
                                                                         <SelectableText>
                                                                                           <NumericText
-                                                                                                            value="0.2"
+                                                                                                            value="0.1"
                                                                                           />
                                                                                            
                                                                                           ETH
@@ -4098,7 +4098,7 @@ ShallowWrapper {
                                                       subtitle={
                                                                         <NumericText
                                                                                           type="currency"
-                                                                                          value="82.4"
+                                                                                          value="41.2"
                                                                         />
                                                       }
                                     />
@@ -4516,7 +4516,7 @@ ShallowWrapper {
                                             main={
                                                                   <SelectableText>
                                                                                         <NumericText
-                                                                                                              value="0.2"
+                                                                                                              value="0.1"
                                                                                         />
                                                                                          
                                                                                         ETH
@@ -4525,7 +4525,7 @@ ShallowWrapper {
                                             subtitle={
                                                                   <NumericText
                                                                                         type="currency"
-                                                                                        value="82.4"
+                                                                                        value="41.2"
                                                                   />
                                             }
                       />
@@ -4548,7 +4548,7 @@ ShallowWrapper {
                                             main={
                                                                   <SelectableText>
                                                                                         <NumericText
-                                                                                                              value="0.2"
+                                                                                                              value="0.1"
                                                                                         />
                                                                                          
                                                                                         ETH
@@ -4557,7 +4557,7 @@ ShallowWrapper {
                                             subtitle={
                                                                   <NumericText
                                                                                         type="currency"
-                                                                                        value="82.4"
+                                                                                        value="41.2"
                                                                   />
                                             }
                       />
@@ -4612,7 +4612,7 @@ ShallowWrapper {
                         main={
                                                 <SelectableText>
                                                                         <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -4621,7 +4621,7 @@ ShallowWrapper {
                         subtitle={
                                                 <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                 />
                         }
 />,
@@ -4635,14 +4635,14 @@ ShallowWrapper {
                       "props": Object {
                         "main": <SelectableText>
                           <NumericText
-                                                    value="0.2"
+                                                    value="0.1"
                           />
                            
                           ETH
 </SelectableText>,
                         "subtitle": <NumericText
                           type="currency"
-                          value="82.4"
+                          value="41.2"
 />,
                       },
                       "ref": null,
@@ -4697,7 +4697,7 @@ ShallowWrapper {
                         main={
                                                 <SelectableText>
                                                                         <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -4706,7 +4706,7 @@ ShallowWrapper {
                         subtitle={
                                                 <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                 />
                         }
 />,
@@ -4720,14 +4720,14 @@ ShallowWrapper {
                       "props": Object {
                         "main": <SelectableText>
                           <NumericText
-                                                    value="0.2"
+                                                    value="0.1"
                           />
                            
                           ETH
 </SelectableText>,
                         "subtitle": <NumericText
                           type="currency"
-                          value="82.4"
+                          value="41.2"
 />,
                       },
                       "ref": null,
@@ -5882,7 +5882,7 @@ ShallowWrapper {
                                         main={
                                                 <SelectableText>
                                                         <NumericText
-                                                                value="0.2"
+                                                                value="0.1"
                                                         />
                                                          
                                                         ETH
@@ -5891,7 +5891,7 @@ ShallowWrapper {
                                         subtitle={
                                                 <NumericText
                                                         type="currency"
-                                                        value="82.4"
+                                                        value="41.2"
                                                 />
                                         }
                                 />
@@ -5914,7 +5914,7 @@ ShallowWrapper {
                                         main={
                                                 <SelectableText>
                                                         <NumericText
-                                                                value="0.2"
+                                                                value="0.1"
                                                         />
                                                          
                                                         ETH
@@ -5923,7 +5923,7 @@ ShallowWrapper {
                                         subtitle={
                                                 <NumericText
                                                         type="currency"
-                                                        value="82.4"
+                                                        value="41.2"
                                                 />
                                         }
                                 />
@@ -6236,7 +6236,7 @@ ShallowWrapper {
                                                 main={
                                                             <SelectableText>
                                                                         <NumericText
-                                                                                    value="0.2"
+                                                                                    value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -6245,7 +6245,7 @@ ShallowWrapper {
                                                 subtitle={
                                                             <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                             />
                                                 }
                                     />
@@ -6268,7 +6268,7 @@ ShallowWrapper {
                                                 main={
                                                             <SelectableText>
                                                                         <NumericText
-                                                                                    value="0.2"
+                                                                                    value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -6277,7 +6277,7 @@ ShallowWrapper {
                                                 subtitle={
                                                             <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                             />
                                                 }
                                     />
@@ -6877,7 +6877,7 @@ ShallowWrapper {
                                                 main={
                                                                 <SelectableText>
                                                                                 <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -6886,7 +6886,7 @@ ShallowWrapper {
                                                 subtitle={
                                                                 <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                                 />
                                                 }
                                 />
@@ -6909,7 +6909,7 @@ ShallowWrapper {
                                                 main={
                                                                 <SelectableText>
                                                                                 <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -6918,7 +6918,7 @@ ShallowWrapper {
                                                 subtitle={
                                                                 <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                                 />
                                                 }
                                 />
@@ -7336,7 +7336,7 @@ ShallowWrapper {
                                         main={
                                                             <SelectableText>
                                                                                 <NumericText
-                                                                                                    value="0.2"
+                                                                                                    value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -7345,7 +7345,7 @@ ShallowWrapper {
                                         subtitle={
                                                             <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                             />
                                         }
                     />
@@ -7368,7 +7368,7 @@ ShallowWrapper {
                                         main={
                                                             <SelectableText>
                                                                                 <NumericText
-                                                                                                    value="0.2"
+                                                                                                    value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -7377,7 +7377,7 @@ ShallowWrapper {
                                         subtitle={
                                                             <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                             />
                                         }
                     />
@@ -7432,7 +7432,7 @@ ShallowWrapper {
                       main={
                                             <SelectableText>
                                                                   <NumericText
-                                                                                        value="0.2"
+                                                                                        value="0.1"
                                                                   />
                                                                    
                                                                   ETH
@@ -7441,7 +7441,7 @@ ShallowWrapper {
                       subtitle={
                                             <NumericText
                                                                   type="currency"
-                                                                  value="82.4"
+                                                                  value="41.2"
                                             />
                       }
 />,
@@ -7455,14 +7455,14 @@ ShallowWrapper {
                     "props": Object {
                       "main": <SelectableText>
                         <NumericText
-                                                value="0.2"
+                                                value="0.1"
                         />
                          
                         ETH
 </SelectableText>,
                       "subtitle": <NumericText
                         type="currency"
-                        value="82.4"
+                        value="41.2"
 />,
                     },
                     "ref": null,
@@ -7517,7 +7517,7 @@ ShallowWrapper {
                       main={
                                             <SelectableText>
                                                                   <NumericText
-                                                                                        value="0.2"
+                                                                                        value="0.1"
                                                                   />
                                                                    
                                                                   ETH
@@ -7526,7 +7526,7 @@ ShallowWrapper {
                       subtitle={
                                             <NumericText
                                                                   type="currency"
-                                                                  value="82.4"
+                                                                  value="41.2"
                                             />
                       }
 />,
@@ -7540,14 +7540,14 @@ ShallowWrapper {
                     "props": Object {
                       "main": <SelectableText>
                         <NumericText
-                                                value="0.2"
+                                                value="0.1"
                         />
                          
                         ETH
 </SelectableText>,
                       "subtitle": <NumericText
                         type="currency"
-                        value="82.4"
+                        value="41.2"
 />,
                     },
                     "ref": null,
@@ -8073,7 +8073,7 @@ ShallowWrapper {
                                                   main={
                                                             <SelectableText>
                                                                       <NumericText
-                                                                                value="0.2"
+                                                                                value="0.1"
                                                                       />
                                                                        
                                                                       ETH
@@ -8082,7 +8082,7 @@ ShallowWrapper {
                                                   subtitle={
                                                             <NumericText
                                                                       type="currency"
-                                                                      value="82.4"
+                                                                      value="41.2"
                                                             />
                                                   }
                                         />
@@ -8105,7 +8105,7 @@ ShallowWrapper {
                                                   main={
                                                             <SelectableText>
                                                                       <NumericText
-                                                                                value="0.2"
+                                                                                value="0.1"
                                                                       />
                                                                        
                                                                       ETH
@@ -8114,7 +8114,7 @@ ShallowWrapper {
                                                   subtitle={
                                                             <NumericText
                                                                       type="currency"
-                                                                      value="82.4"
+                                                                      value="41.2"
                                                             />
                                                   }
                                         />
@@ -8427,7 +8427,7 @@ ShallowWrapper {
                                                         main={
                                                                       <SelectableText>
                                                                                     <NumericText
-                                                                                                  value="0.2"
+                                                                                                  value="0.1"
                                                                                     />
                                                                                      
                                                                                     ETH
@@ -8436,7 +8436,7 @@ ShallowWrapper {
                                                         subtitle={
                                                                       <NumericText
                                                                                     type="currency"
-                                                                                    value="82.4"
+                                                                                    value="41.2"
                                                                       />
                                                         }
                                           />
@@ -8459,7 +8459,7 @@ ShallowWrapper {
                                                         main={
                                                                       <SelectableText>
                                                                                     <NumericText
-                                                                                                  value="0.2"
+                                                                                                  value="0.1"
                                                                                     />
                                                                                      
                                                                                     ETH
@@ -8468,7 +8468,7 @@ ShallowWrapper {
                                                         subtitle={
                                                                       <NumericText
                                                                                     type="currency"
-                                                                                    value="82.4"
+                                                                                    value="41.2"
                                                                       />
                                                         }
                                           />
@@ -9068,7 +9068,7 @@ ShallowWrapper {
                                                       main={
                                                                         <SelectableText>
                                                                                           <NumericText
-                                                                                                            value="0.2"
+                                                                                                            value="0.1"
                                                                                           />
                                                                                            
                                                                                           ETH
@@ -9077,7 +9077,7 @@ ShallowWrapper {
                                                       subtitle={
                                                                         <NumericText
                                                                                           type="currency"
-                                                                                          value="82.4"
+                                                                                          value="41.2"
                                                                         />
                                                       }
                                     />
@@ -9100,7 +9100,7 @@ ShallowWrapper {
                                                       main={
                                                                         <SelectableText>
                                                                                           <NumericText
-                                                                                                            value="0.2"
+                                                                                                            value="0.1"
                                                                                           />
                                                                                            
                                                                                           ETH
@@ -9109,7 +9109,7 @@ ShallowWrapper {
                                                       subtitle={
                                                                         <NumericText
                                                                                           type="currency"
-                                                                                          value="82.4"
+                                                                                          value="41.2"
                                                                         />
                                                       }
                                     />
@@ -9527,7 +9527,7 @@ ShallowWrapper {
                                             main={
                                                                   <SelectableText>
                                                                                         <NumericText
-                                                                                                              value="0.2"
+                                                                                                              value="0.1"
                                                                                         />
                                                                                          
                                                                                         ETH
@@ -9536,7 +9536,7 @@ ShallowWrapper {
                                             subtitle={
                                                                   <NumericText
                                                                                         type="currency"
-                                                                                        value="82.4"
+                                                                                        value="41.2"
                                                                   />
                                             }
                       />
@@ -9559,7 +9559,7 @@ ShallowWrapper {
                                             main={
                                                                   <SelectableText>
                                                                                         <NumericText
-                                                                                                              value="0.2"
+                                                                                                              value="0.1"
                                                                                         />
                                                                                          
                                                                                         ETH
@@ -9568,7 +9568,7 @@ ShallowWrapper {
                                             subtitle={
                                                                   <NumericText
                                                                                         type="currency"
-                                                                                        value="82.4"
+                                                                                        value="41.2"
                                                                   />
                                             }
                       />
@@ -9623,7 +9623,7 @@ ShallowWrapper {
                         main={
                                                 <SelectableText>
                                                                         <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -9632,7 +9632,7 @@ ShallowWrapper {
                         subtitle={
                                                 <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                 />
                         }
 />,
@@ -9646,14 +9646,14 @@ ShallowWrapper {
                       "props": Object {
                         "main": <SelectableText>
                           <NumericText
-                                                    value="0.2"
+                                                    value="0.1"
                           />
                            
                           ETH
 </SelectableText>,
                         "subtitle": <NumericText
                           type="currency"
-                          value="82.4"
+                          value="41.2"
 />,
                       },
                       "ref": null,
@@ -9708,7 +9708,7 @@ ShallowWrapper {
                         main={
                                                 <SelectableText>
                                                                         <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -9717,7 +9717,7 @@ ShallowWrapper {
                         subtitle={
                                                 <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                 />
                         }
 />,
@@ -9731,14 +9731,14 @@ ShallowWrapper {
                       "props": Object {
                         "main": <SelectableText>
                           <NumericText
-                                                    value="0.2"
+                                                    value="0.1"
                           />
                            
                           ETH
 </SelectableText>,
                         "subtitle": <NumericText
                           type="currency"
-                          value="82.4"
+                          value="41.2"
 />,
                       },
                       "ref": null,
@@ -10893,7 +10893,7 @@ ShallowWrapper {
                                         main={
                                                 <SelectableText>
                                                         <NumericText
-                                                                value="0.2"
+                                                                value="0.1"
                                                         />
                                                          
                                                         ETH
@@ -10902,7 +10902,7 @@ ShallowWrapper {
                                         subtitle={
                                                 <NumericText
                                                         type="currency"
-                                                        value="82.4"
+                                                        value="41.2"
                                                 />
                                         }
                                 />
@@ -10925,7 +10925,7 @@ ShallowWrapper {
                                         main={
                                                 <SelectableText>
                                                         <NumericText
-                                                                value="0.2"
+                                                                value="0.1"
                                                         />
                                                          
                                                         ETH
@@ -10934,7 +10934,7 @@ ShallowWrapper {
                                         subtitle={
                                                 <NumericText
                                                         type="currency"
-                                                        value="82.4"
+                                                        value="41.2"
                                                 />
                                         }
                                 />
@@ -11247,7 +11247,7 @@ ShallowWrapper {
                                                 main={
                                                             <SelectableText>
                                                                         <NumericText
-                                                                                    value="0.2"
+                                                                                    value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -11256,7 +11256,7 @@ ShallowWrapper {
                                                 subtitle={
                                                             <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                             />
                                                 }
                                     />
@@ -11279,7 +11279,7 @@ ShallowWrapper {
                                                 main={
                                                             <SelectableText>
                                                                         <NumericText
-                                                                                    value="0.2"
+                                                                                    value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -11288,7 +11288,7 @@ ShallowWrapper {
                                                 subtitle={
                                                             <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                             />
                                                 }
                                     />
@@ -11888,7 +11888,7 @@ ShallowWrapper {
                                                 main={
                                                                 <SelectableText>
                                                                                 <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -11897,7 +11897,7 @@ ShallowWrapper {
                                                 subtitle={
                                                                 <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                                 />
                                                 }
                                 />
@@ -11920,7 +11920,7 @@ ShallowWrapper {
                                                 main={
                                                                 <SelectableText>
                                                                                 <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -11929,7 +11929,7 @@ ShallowWrapper {
                                                 subtitle={
                                                                 <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                                 />
                                                 }
                                 />
@@ -12347,7 +12347,7 @@ ShallowWrapper {
                                         main={
                                                             <SelectableText>
                                                                                 <NumericText
-                                                                                                    value="0.2"
+                                                                                                    value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -12356,7 +12356,7 @@ ShallowWrapper {
                                         subtitle={
                                                             <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                             />
                                         }
                     />
@@ -12379,7 +12379,7 @@ ShallowWrapper {
                                         main={
                                                             <SelectableText>
                                                                                 <NumericText
-                                                                                                    value="0.2"
+                                                                                                    value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -12388,7 +12388,7 @@ ShallowWrapper {
                                         subtitle={
                                                             <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                             />
                                         }
                     />
@@ -12443,7 +12443,7 @@ ShallowWrapper {
                       main={
                                             <SelectableText>
                                                                   <NumericText
-                                                                                        value="0.2"
+                                                                                        value="0.1"
                                                                   />
                                                                    
                                                                   ETH
@@ -12452,7 +12452,7 @@ ShallowWrapper {
                       subtitle={
                                             <NumericText
                                                                   type="currency"
-                                                                  value="82.4"
+                                                                  value="41.2"
                                             />
                       }
 />,
@@ -12466,14 +12466,14 @@ ShallowWrapper {
                     "props": Object {
                       "main": <SelectableText>
                         <NumericText
-                                                value="0.2"
+                                                value="0.1"
                         />
                          
                         ETH
 </SelectableText>,
                       "subtitle": <NumericText
                         type="currency"
-                        value="82.4"
+                        value="41.2"
 />,
                     },
                     "ref": null,
@@ -12528,7 +12528,7 @@ ShallowWrapper {
                       main={
                                             <SelectableText>
                                                                   <NumericText
-                                                                                        value="0.2"
+                                                                                        value="0.1"
                                                                   />
                                                                    
                                                                   ETH
@@ -12537,7 +12537,7 @@ ShallowWrapper {
                       subtitle={
                                             <NumericText
                                                                   type="currency"
-                                                                  value="82.4"
+                                                                  value="41.2"
                                             />
                       }
 />,
@@ -12551,14 +12551,14 @@ ShallowWrapper {
                     "props": Object {
                       "main": <SelectableText>
                         <NumericText
-                                                value="0.2"
+                                                value="0.1"
                         />
                          
                         ETH
 </SelectableText>,
                       "subtitle": <NumericText
                         type="currency"
-                        value="82.4"
+                        value="41.2"
 />,
                     },
                     "ref": null,
@@ -13084,7 +13084,7 @@ ShallowWrapper {
                                                   main={
                                                             <SelectableText>
                                                                       <NumericText
-                                                                                value="0.2"
+                                                                                value="0.1"
                                                                       />
                                                                        
                                                                       ETH
@@ -13093,7 +13093,7 @@ ShallowWrapper {
                                                   subtitle={
                                                             <NumericText
                                                                       type="currency"
-                                                                      value="82.4"
+                                                                      value="41.2"
                                                             />
                                                   }
                                         />
@@ -13116,7 +13116,7 @@ ShallowWrapper {
                                                   main={
                                                             <SelectableText>
                                                                       <NumericText
-                                                                                value="0.2"
+                                                                                value="0.1"
                                                                       />
                                                                        
                                                                       ETH
@@ -13125,7 +13125,7 @@ ShallowWrapper {
                                                   subtitle={
                                                             <NumericText
                                                                       type="currency"
-                                                                      value="82.4"
+                                                                      value="41.2"
                                                             />
                                                   }
                                         />
@@ -13438,7 +13438,7 @@ ShallowWrapper {
                                                         main={
                                                                       <SelectableText>
                                                                                     <NumericText
-                                                                                                  value="0.2"
+                                                                                                  value="0.1"
                                                                                     />
                                                                                      
                                                                                     ETH
@@ -13447,7 +13447,7 @@ ShallowWrapper {
                                                         subtitle={
                                                                       <NumericText
                                                                                     type="currency"
-                                                                                    value="82.4"
+                                                                                    value="41.2"
                                                                       />
                                                         }
                                           />
@@ -13470,7 +13470,7 @@ ShallowWrapper {
                                                         main={
                                                                       <SelectableText>
                                                                                     <NumericText
-                                                                                                  value="0.2"
+                                                                                                  value="0.1"
                                                                                     />
                                                                                      
                                                                                     ETH
@@ -13479,7 +13479,7 @@ ShallowWrapper {
                                                         subtitle={
                                                                       <NumericText
                                                                                     type="currency"
-                                                                                    value="82.4"
+                                                                                    value="41.2"
                                                                       />
                                                         }
                                           />
@@ -14079,7 +14079,7 @@ ShallowWrapper {
                                                       main={
                                                                         <SelectableText>
                                                                                           <NumericText
-                                                                                                            value="0.2"
+                                                                                                            value="0.1"
                                                                                           />
                                                                                            
                                                                                           ETH
@@ -14088,7 +14088,7 @@ ShallowWrapper {
                                                       subtitle={
                                                                         <NumericText
                                                                                           type="currency"
-                                                                                          value="82.4"
+                                                                                          value="41.2"
                                                                         />
                                                       }
                                     />
@@ -14111,7 +14111,7 @@ ShallowWrapper {
                                                       main={
                                                                         <SelectableText>
                                                                                           <NumericText
-                                                                                                            value="0.2"
+                                                                                                            value="0.1"
                                                                                           />
                                                                                            
                                                                                           ETH
@@ -14120,7 +14120,7 @@ ShallowWrapper {
                                                       subtitle={
                                                                         <NumericText
                                                                                           type="currency"
-                                                                                          value="82.4"
+                                                                                          value="41.2"
                                                                         />
                                                       }
                                     />
@@ -14538,7 +14538,7 @@ ShallowWrapper {
                                             main={
                                                                   <SelectableText>
                                                                                         <NumericText
-                                                                                                              value="0.2"
+                                                                                                              value="0.1"
                                                                                         />
                                                                                          
                                                                                         ETH
@@ -14547,7 +14547,7 @@ ShallowWrapper {
                                             subtitle={
                                                                   <NumericText
                                                                                         type="currency"
-                                                                                        value="82.4"
+                                                                                        value="41.2"
                                                                   />
                                             }
                       />
@@ -14570,7 +14570,7 @@ ShallowWrapper {
                                             main={
                                                                   <SelectableText>
                                                                                         <NumericText
-                                                                                                              value="0.2"
+                                                                                                              value="0.1"
                                                                                         />
                                                                                          
                                                                                         ETH
@@ -14579,7 +14579,7 @@ ShallowWrapper {
                                             subtitle={
                                                                   <NumericText
                                                                                         type="currency"
-                                                                                        value="82.4"
+                                                                                        value="41.2"
                                                                   />
                                             }
                       />
@@ -14634,7 +14634,7 @@ ShallowWrapper {
                         main={
                                                 <SelectableText>
                                                                         <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -14643,7 +14643,7 @@ ShallowWrapper {
                         subtitle={
                                                 <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                 />
                         }
 />,
@@ -14657,14 +14657,14 @@ ShallowWrapper {
                       "props": Object {
                         "main": <SelectableText>
                           <NumericText
-                                                    value="0.2"
+                                                    value="0.1"
                           />
                            
                           ETH
 </SelectableText>,
                         "subtitle": <NumericText
                           type="currency"
-                          value="82.4"
+                          value="41.2"
 />,
                       },
                       "ref": null,
@@ -14719,7 +14719,7 @@ ShallowWrapper {
                         main={
                                                 <SelectableText>
                                                                         <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -14728,7 +14728,7 @@ ShallowWrapper {
                         subtitle={
                                                 <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                 />
                         }
 />,
@@ -14742,14 +14742,14 @@ ShallowWrapper {
                       "props": Object {
                         "main": <SelectableText>
                           <NumericText
-                                                    value="0.2"
+                                                    value="0.1"
                           />
                            
                           ETH
 </SelectableText>,
                         "subtitle": <NumericText
                           type="currency"
-                          value="82.4"
+                          value="41.2"
 />,
                       },
                       "ref": null,
@@ -15904,7 +15904,7 @@ ShallowWrapper {
                                         main={
                                                 <SelectableText>
                                                         <NumericText
-                                                                value="0.2"
+                                                                value="0.1"
                                                         />
                                                          
                                                         ETH
@@ -15913,7 +15913,7 @@ ShallowWrapper {
                                         subtitle={
                                                 <NumericText
                                                         type="currency"
-                                                        value="82.4"
+                                                        value="41.2"
                                                 />
                                         }
                                 />
@@ -15936,7 +15936,7 @@ ShallowWrapper {
                                         main={
                                                 <SelectableText>
                                                         <NumericText
-                                                                value="0.2"
+                                                                value="0.1"
                                                         />
                                                          
                                                         ETH
@@ -15945,7 +15945,7 @@ ShallowWrapper {
                                         subtitle={
                                                 <NumericText
                                                         type="currency"
-                                                        value="82.4"
+                                                        value="41.2"
                                                 />
                                         }
                                 />
@@ -16232,7 +16232,7 @@ ShallowWrapper {
                                                 main={
                                                             <SelectableText>
                                                                         <NumericText
-                                                                                    value="0.2"
+                                                                                    value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -16241,7 +16241,7 @@ ShallowWrapper {
                                                 subtitle={
                                                             <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                             />
                                                 }
                                     />
@@ -16264,7 +16264,7 @@ ShallowWrapper {
                                                 main={
                                                             <SelectableText>
                                                                         <NumericText
-                                                                                    value="0.2"
+                                                                                    value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -16273,7 +16273,7 @@ ShallowWrapper {
                                                 subtitle={
                                                             <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                             />
                                                 }
                                     />
@@ -16847,7 +16847,7 @@ ShallowWrapper {
                                                 main={
                                                                 <SelectableText>
                                                                                 <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -16856,7 +16856,7 @@ ShallowWrapper {
                                                 subtitle={
                                                                 <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                                 />
                                                 }
                                 />
@@ -16879,7 +16879,7 @@ ShallowWrapper {
                                                 main={
                                                                 <SelectableText>
                                                                                 <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -16888,7 +16888,7 @@ ShallowWrapper {
                                                 subtitle={
                                                                 <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                                 />
                                                 }
                                 />
@@ -17280,7 +17280,7 @@ ShallowWrapper {
                                         main={
                                                             <SelectableText>
                                                                                 <NumericText
-                                                                                                    value="0.2"
+                                                                                                    value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -17289,7 +17289,7 @@ ShallowWrapper {
                                         subtitle={
                                                             <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                             />
                                         }
                     />
@@ -17312,7 +17312,7 @@ ShallowWrapper {
                                         main={
                                                             <SelectableText>
                                                                                 <NumericText
-                                                                                                    value="0.2"
+                                                                                                    value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -17321,7 +17321,7 @@ ShallowWrapper {
                                         subtitle={
                                                             <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                             />
                                         }
                     />
@@ -17376,7 +17376,7 @@ ShallowWrapper {
                       main={
                                             <SelectableText>
                                                                   <NumericText
-                                                                                        value="0.2"
+                                                                                        value="0.1"
                                                                   />
                                                                    
                                                                   ETH
@@ -17385,7 +17385,7 @@ ShallowWrapper {
                       subtitle={
                                             <NumericText
                                                                   type="currency"
-                                                                  value="82.4"
+                                                                  value="41.2"
                                             />
                       }
 />,
@@ -17399,14 +17399,14 @@ ShallowWrapper {
                     "props": Object {
                       "main": <SelectableText>
                         <NumericText
-                                                value="0.2"
+                                                value="0.1"
                         />
                          
                         ETH
 </SelectableText>,
                       "subtitle": <NumericText
                         type="currency"
-                        value="82.4"
+                        value="41.2"
 />,
                     },
                     "ref": null,
@@ -17461,7 +17461,7 @@ ShallowWrapper {
                       main={
                                             <SelectableText>
                                                                   <NumericText
-                                                                                        value="0.2"
+                                                                                        value="0.1"
                                                                   />
                                                                    
                                                                   ETH
@@ -17470,7 +17470,7 @@ ShallowWrapper {
                       subtitle={
                                             <NumericText
                                                                   type="currency"
-                                                                  value="82.4"
+                                                                  value="41.2"
                                             />
                       }
 />,
@@ -17484,14 +17484,14 @@ ShallowWrapper {
                     "props": Object {
                       "main": <SelectableText>
                         <NumericText
-                                                value="0.2"
+                                                value="0.1"
                         />
                          
                         ETH
 </SelectableText>,
                       "subtitle": <NumericText
                         type="currency"
-                        value="82.4"
+                        value="41.2"
 />,
                     },
                     "ref": null,
@@ -17880,7 +17880,7 @@ ShallowWrapper {
                                                   main={
                                                             <SelectableText>
                                                                       <NumericText
-                                                                                value="0.2"
+                                                                                value="0.1"
                                                                       />
                                                                        
                                                                       ETH
@@ -17889,7 +17889,7 @@ ShallowWrapper {
                                                   subtitle={
                                                             <NumericText
                                                                       type="currency"
-                                                                      value="82.4"
+                                                                      value="41.2"
                                                             />
                                                   }
                                         />
@@ -17912,7 +17912,7 @@ ShallowWrapper {
                                                   main={
                                                             <SelectableText>
                                                                       <NumericText
-                                                                                value="0.2"
+                                                                                value="0.1"
                                                                       />
                                                                        
                                                                       ETH
@@ -17921,7 +17921,7 @@ ShallowWrapper {
                                                   subtitle={
                                                             <NumericText
                                                                       type="currency"
-                                                                      value="82.4"
+                                                                      value="41.2"
                                                             />
                                                   }
                                         />
@@ -18208,7 +18208,7 @@ ShallowWrapper {
                                                         main={
                                                                       <SelectableText>
                                                                                     <NumericText
-                                                                                                  value="0.2"
+                                                                                                  value="0.1"
                                                                                     />
                                                                                      
                                                                                     ETH
@@ -18217,7 +18217,7 @@ ShallowWrapper {
                                                         subtitle={
                                                                       <NumericText
                                                                                     type="currency"
-                                                                                    value="82.4"
+                                                                                    value="41.2"
                                                                       />
                                                         }
                                           />
@@ -18240,7 +18240,7 @@ ShallowWrapper {
                                                         main={
                                                                       <SelectableText>
                                                                                     <NumericText
-                                                                                                  value="0.2"
+                                                                                                  value="0.1"
                                                                                     />
                                                                                      
                                                                                     ETH
@@ -18249,7 +18249,7 @@ ShallowWrapper {
                                                         subtitle={
                                                                       <NumericText
                                                                                     type="currency"
-                                                                                    value="82.4"
+                                                                                    value="41.2"
                                                                       />
                                                         }
                                           />
@@ -18823,7 +18823,7 @@ ShallowWrapper {
                                                       main={
                                                                         <SelectableText>
                                                                                           <NumericText
-                                                                                                            value="0.2"
+                                                                                                            value="0.1"
                                                                                           />
                                                                                            
                                                                                           ETH
@@ -18832,7 +18832,7 @@ ShallowWrapper {
                                                       subtitle={
                                                                         <NumericText
                                                                                           type="currency"
-                                                                                          value="82.4"
+                                                                                          value="41.2"
                                                                         />
                                                       }
                                     />
@@ -18855,7 +18855,7 @@ ShallowWrapper {
                                                       main={
                                                                         <SelectableText>
                                                                                           <NumericText
-                                                                                                            value="0.2"
+                                                                                                            value="0.1"
                                                                                           />
                                                                                            
                                                                                           ETH
@@ -18864,7 +18864,7 @@ ShallowWrapper {
                                                       subtitle={
                                                                         <NumericText
                                                                                           type="currency"
-                                                                                          value="82.4"
+                                                                                          value="41.2"
                                                                         />
                                                       }
                                     />
@@ -19256,7 +19256,7 @@ ShallowWrapper {
                                             main={
                                                                   <SelectableText>
                                                                                         <NumericText
-                                                                                                              value="0.2"
+                                                                                                              value="0.1"
                                                                                         />
                                                                                          
                                                                                         ETH
@@ -19265,7 +19265,7 @@ ShallowWrapper {
                                             subtitle={
                                                                   <NumericText
                                                                                         type="currency"
-                                                                                        value="82.4"
+                                                                                        value="41.2"
                                                                   />
                                             }
                       />
@@ -19288,7 +19288,7 @@ ShallowWrapper {
                                             main={
                                                                   <SelectableText>
                                                                                         <NumericText
-                                                                                                              value="0.2"
+                                                                                                              value="0.1"
                                                                                         />
                                                                                          
                                                                                         ETH
@@ -19297,7 +19297,7 @@ ShallowWrapper {
                                             subtitle={
                                                                   <NumericText
                                                                                         type="currency"
-                                                                                        value="82.4"
+                                                                                        value="41.2"
                                                                   />
                                             }
                       />
@@ -19352,7 +19352,7 @@ ShallowWrapper {
                         main={
                                                 <SelectableText>
                                                                         <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -19361,7 +19361,7 @@ ShallowWrapper {
                         subtitle={
                                                 <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                 />
                         }
 />,
@@ -19375,14 +19375,14 @@ ShallowWrapper {
                       "props": Object {
                         "main": <SelectableText>
                           <NumericText
-                                                    value="0.2"
+                                                    value="0.1"
                           />
                            
                           ETH
 </SelectableText>,
                         "subtitle": <NumericText
                           type="currency"
-                          value="82.4"
+                          value="41.2"
 />,
                       },
                       "ref": null,
@@ -19437,7 +19437,7 @@ ShallowWrapper {
                         main={
                                                 <SelectableText>
                                                                         <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -19446,7 +19446,7 @@ ShallowWrapper {
                         subtitle={
                                                 <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                 />
                         }
 />,
@@ -19460,14 +19460,14 @@ ShallowWrapper {
                       "props": Object {
                         "main": <SelectableText>
                           <NumericText
-                                                    value="0.2"
+                                                    value="0.1"
                           />
                            
                           ETH
 </SelectableText>,
                         "subtitle": <NumericText
                           type="currency"
-                          value="82.4"
+                          value="41.2"
 />,
                       },
                       "ref": null,
@@ -20485,7 +20485,7 @@ ShallowWrapper {
                                         main={
                                                 <SelectableText>
                                                         <NumericText
-                                                                value="0.2"
+                                                                value="0.1"
                                                         />
                                                          
                                                         ETH
@@ -20494,7 +20494,7 @@ ShallowWrapper {
                                         subtitle={
                                                 <NumericText
                                                         type="currency"
-                                                        value="82.4"
+                                                        value="41.2"
                                                 />
                                         }
                                 />
@@ -20517,7 +20517,7 @@ ShallowWrapper {
                                         main={
                                                 <SelectableText>
                                                         <NumericText
-                                                                value="0.2"
+                                                                value="0.1"
                                                         />
                                                          
                                                         ETH
@@ -20526,7 +20526,7 @@ ShallowWrapper {
                                         subtitle={
                                                 <NumericText
                                                         type="currency"
-                                                        value="82.4"
+                                                        value="41.2"
                                                 />
                                         }
                                 />
@@ -20813,7 +20813,7 @@ ShallowWrapper {
                                                 main={
                                                             <SelectableText>
                                                                         <NumericText
-                                                                                    value="0.2"
+                                                                                    value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -20822,7 +20822,7 @@ ShallowWrapper {
                                                 subtitle={
                                                             <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                             />
                                                 }
                                     />
@@ -20845,7 +20845,7 @@ ShallowWrapper {
                                                 main={
                                                             <SelectableText>
                                                                         <NumericText
-                                                                                    value="0.2"
+                                                                                    value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -20854,7 +20854,7 @@ ShallowWrapper {
                                                 subtitle={
                                                             <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                             />
                                                 }
                                     />
@@ -21428,7 +21428,7 @@ ShallowWrapper {
                                                 main={
                                                                 <SelectableText>
                                                                                 <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -21437,7 +21437,7 @@ ShallowWrapper {
                                                 subtitle={
                                                                 <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                                 />
                                                 }
                                 />
@@ -21460,7 +21460,7 @@ ShallowWrapper {
                                                 main={
                                                                 <SelectableText>
                                                                                 <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -21469,7 +21469,7 @@ ShallowWrapper {
                                                 subtitle={
                                                                 <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                                 />
                                                 }
                                 />
@@ -21861,7 +21861,7 @@ ShallowWrapper {
                                         main={
                                                             <SelectableText>
                                                                                 <NumericText
-                                                                                                    value="0.2"
+                                                                                                    value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -21870,7 +21870,7 @@ ShallowWrapper {
                                         subtitle={
                                                             <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                             />
                                         }
                     />
@@ -21893,7 +21893,7 @@ ShallowWrapper {
                                         main={
                                                             <SelectableText>
                                                                                 <NumericText
-                                                                                                    value="0.2"
+                                                                                                    value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -21902,7 +21902,7 @@ ShallowWrapper {
                                         subtitle={
                                                             <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                             />
                                         }
                     />
@@ -21957,7 +21957,7 @@ ShallowWrapper {
                       main={
                                             <SelectableText>
                                                                   <NumericText
-                                                                                        value="0.2"
+                                                                                        value="0.1"
                                                                   />
                                                                    
                                                                   ETH
@@ -21966,7 +21966,7 @@ ShallowWrapper {
                       subtitle={
                                             <NumericText
                                                                   type="currency"
-                                                                  value="82.4"
+                                                                  value="41.2"
                                             />
                       }
 />,
@@ -21980,14 +21980,14 @@ ShallowWrapper {
                     "props": Object {
                       "main": <SelectableText>
                         <NumericText
-                                                value="0.2"
+                                                value="0.1"
                         />
                          
                         ETH
 </SelectableText>,
                       "subtitle": <NumericText
                         type="currency"
-                        value="82.4"
+                        value="41.2"
 />,
                     },
                     "ref": null,
@@ -22042,7 +22042,7 @@ ShallowWrapper {
                       main={
                                             <SelectableText>
                                                                   <NumericText
-                                                                                        value="0.2"
+                                                                                        value="0.1"
                                                                   />
                                                                    
                                                                   ETH
@@ -22051,7 +22051,7 @@ ShallowWrapper {
                       subtitle={
                                             <NumericText
                                                                   type="currency"
-                                                                  value="82.4"
+                                                                  value="41.2"
                                             />
                       }
 />,
@@ -22065,14 +22065,14 @@ ShallowWrapper {
                     "props": Object {
                       "main": <SelectableText>
                         <NumericText
-                                                value="0.2"
+                                                value="0.1"
                         />
                          
                         ETH
 </SelectableText>,
                       "subtitle": <NumericText
                         type="currency"
-                        value="82.4"
+                        value="41.2"
 />,
                     },
                     "ref": null,
@@ -22461,7 +22461,7 @@ ShallowWrapper {
                                                   main={
                                                             <SelectableText>
                                                                       <NumericText
-                                                                                value="0.2"
+                                                                                value="0.1"
                                                                       />
                                                                        
                                                                       ETH
@@ -22470,7 +22470,7 @@ ShallowWrapper {
                                                   subtitle={
                                                             <NumericText
                                                                       type="currency"
-                                                                      value="82.4"
+                                                                      value="41.2"
                                                             />
                                                   }
                                         />
@@ -22493,7 +22493,7 @@ ShallowWrapper {
                                                   main={
                                                             <SelectableText>
                                                                       <NumericText
-                                                                                value="0.2"
+                                                                                value="0.1"
                                                                       />
                                                                        
                                                                       ETH
@@ -22502,7 +22502,7 @@ ShallowWrapper {
                                                   subtitle={
                                                             <NumericText
                                                                       type="currency"
-                                                                      value="82.4"
+                                                                      value="41.2"
                                                             />
                                                   }
                                         />
@@ -22789,7 +22789,7 @@ ShallowWrapper {
                                                         main={
                                                                       <SelectableText>
                                                                                     <NumericText
-                                                                                                  value="0.2"
+                                                                                                  value="0.1"
                                                                                     />
                                                                                      
                                                                                     ETH
@@ -22798,7 +22798,7 @@ ShallowWrapper {
                                                         subtitle={
                                                                       <NumericText
                                                                                     type="currency"
-                                                                                    value="82.4"
+                                                                                    value="41.2"
                                                                       />
                                                         }
                                           />
@@ -22821,7 +22821,7 @@ ShallowWrapper {
                                                         main={
                                                                       <SelectableText>
                                                                                     <NumericText
-                                                                                                  value="0.2"
+                                                                                                  value="0.1"
                                                                                     />
                                                                                      
                                                                                     ETH
@@ -22830,7 +22830,7 @@ ShallowWrapper {
                                                         subtitle={
                                                                       <NumericText
                                                                                     type="currency"
-                                                                                    value="82.4"
+                                                                                    value="41.2"
                                                                       />
                                                         }
                                           />
@@ -23404,7 +23404,7 @@ ShallowWrapper {
                                                       main={
                                                                         <SelectableText>
                                                                                           <NumericText
-                                                                                                            value="0.2"
+                                                                                                            value="0.1"
                                                                                           />
                                                                                            
                                                                                           ETH
@@ -23413,7 +23413,7 @@ ShallowWrapper {
                                                       subtitle={
                                                                         <NumericText
                                                                                           type="currency"
-                                                                                          value="82.4"
+                                                                                          value="41.2"
                                                                         />
                                                       }
                                     />
@@ -23436,7 +23436,7 @@ ShallowWrapper {
                                                       main={
                                                                         <SelectableText>
                                                                                           <NumericText
-                                                                                                            value="0.2"
+                                                                                                            value="0.1"
                                                                                           />
                                                                                            
                                                                                           ETH
@@ -23445,7 +23445,7 @@ ShallowWrapper {
                                                       subtitle={
                                                                         <NumericText
                                                                                           type="currency"
-                                                                                          value="82.4"
+                                                                                          value="41.2"
                                                                         />
                                                       }
                                     />
@@ -23837,7 +23837,7 @@ ShallowWrapper {
                                             main={
                                                                   <SelectableText>
                                                                                         <NumericText
-                                                                                                              value="0.2"
+                                                                                                              value="0.1"
                                                                                         />
                                                                                          
                                                                                         ETH
@@ -23846,7 +23846,7 @@ ShallowWrapper {
                                             subtitle={
                                                                   <NumericText
                                                                                         type="currency"
-                                                                                        value="82.4"
+                                                                                        value="41.2"
                                                                   />
                                             }
                       />
@@ -23869,7 +23869,7 @@ ShallowWrapper {
                                             main={
                                                                   <SelectableText>
                                                                                         <NumericText
-                                                                                                              value="0.2"
+                                                                                                              value="0.1"
                                                                                         />
                                                                                          
                                                                                         ETH
@@ -23878,7 +23878,7 @@ ShallowWrapper {
                                             subtitle={
                                                                   <NumericText
                                                                                         type="currency"
-                                                                                        value="82.4"
+                                                                                        value="41.2"
                                                                   />
                                             }
                       />
@@ -23933,7 +23933,7 @@ ShallowWrapper {
                         main={
                                                 <SelectableText>
                                                                         <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -23942,7 +23942,7 @@ ShallowWrapper {
                         subtitle={
                                                 <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                 />
                         }
 />,
@@ -23956,14 +23956,14 @@ ShallowWrapper {
                       "props": Object {
                         "main": <SelectableText>
                           <NumericText
-                                                    value="0.2"
+                                                    value="0.1"
                           />
                            
                           ETH
 </SelectableText>,
                         "subtitle": <NumericText
                           type="currency"
-                          value="82.4"
+                          value="41.2"
 />,
                       },
                       "ref": null,
@@ -24018,7 +24018,7 @@ ShallowWrapper {
                         main={
                                                 <SelectableText>
                                                                         <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -24027,7 +24027,7 @@ ShallowWrapper {
                         subtitle={
                                                 <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                 />
                         }
 />,
@@ -24041,14 +24041,14 @@ ShallowWrapper {
                       "props": Object {
                         "main": <SelectableText>
                           <NumericText
-                                                    value="0.2"
+                                                    value="0.1"
                           />
                            
                           ETH
 </SelectableText>,
                         "subtitle": <NumericText
                           type="currency"
-                          value="82.4"
+                          value="41.2"
 />,
                       },
                       "ref": null,
@@ -25067,7 +25067,7 @@ ShallowWrapper {
                                         main={
                                                 <SelectableText>
                                                         <NumericText
-                                                                value="0.2"
+                                                                value="0.1"
                                                         />
                                                          
                                                         ETH
@@ -25076,7 +25076,7 @@ ShallowWrapper {
                                         subtitle={
                                                 <NumericText
                                                         type="currency"
-                                                        value="82.4"
+                                                        value="41.2"
                                                 />
                                         }
                                 />
@@ -25099,7 +25099,7 @@ ShallowWrapper {
                                         main={
                                                 <SelectableText>
                                                         <NumericText
-                                                                value="0.2"
+                                                                value="0.1"
                                                         />
                                                          
                                                         ETH
@@ -25108,7 +25108,7 @@ ShallowWrapper {
                                         subtitle={
                                                 <NumericText
                                                         type="currency"
-                                                        value="82.4"
+                                                        value="41.2"
                                                 />
                                         }
                                 />
@@ -25395,7 +25395,7 @@ ShallowWrapper {
                                                 main={
                                                             <SelectableText>
                                                                         <NumericText
-                                                                                    value="0.2"
+                                                                                    value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -25404,7 +25404,7 @@ ShallowWrapper {
                                                 subtitle={
                                                             <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                             />
                                                 }
                                     />
@@ -25427,7 +25427,7 @@ ShallowWrapper {
                                                 main={
                                                             <SelectableText>
                                                                         <NumericText
-                                                                                    value="0.2"
+                                                                                    value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -25436,7 +25436,7 @@ ShallowWrapper {
                                                 subtitle={
                                                             <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                             />
                                                 }
                                     />
@@ -26010,7 +26010,7 @@ ShallowWrapper {
                                                 main={
                                                                 <SelectableText>
                                                                                 <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -26019,7 +26019,7 @@ ShallowWrapper {
                                                 subtitle={
                                                                 <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                                 />
                                                 }
                                 />
@@ -26042,7 +26042,7 @@ ShallowWrapper {
                                                 main={
                                                                 <SelectableText>
                                                                                 <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -26051,7 +26051,7 @@ ShallowWrapper {
                                                 subtitle={
                                                                 <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                                 />
                                                 }
                                 />
@@ -26443,7 +26443,7 @@ ShallowWrapper {
                                         main={
                                                             <SelectableText>
                                                                                 <NumericText
-                                                                                                    value="0.2"
+                                                                                                    value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -26452,7 +26452,7 @@ ShallowWrapper {
                                         subtitle={
                                                             <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                             />
                                         }
                     />
@@ -26475,7 +26475,7 @@ ShallowWrapper {
                                         main={
                                                             <SelectableText>
                                                                                 <NumericText
-                                                                                                    value="0.2"
+                                                                                                    value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -26484,7 +26484,7 @@ ShallowWrapper {
                                         subtitle={
                                                             <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                             />
                                         }
                     />
@@ -26539,7 +26539,7 @@ ShallowWrapper {
                       main={
                                             <SelectableText>
                                                                   <NumericText
-                                                                                        value="0.2"
+                                                                                        value="0.1"
                                                                   />
                                                                    
                                                                   ETH
@@ -26548,7 +26548,7 @@ ShallowWrapper {
                       subtitle={
                                             <NumericText
                                                                   type="currency"
-                                                                  value="82.4"
+                                                                  value="41.2"
                                             />
                       }
 />,
@@ -26562,14 +26562,14 @@ ShallowWrapper {
                     "props": Object {
                       "main": <SelectableText>
                         <NumericText
-                                                value="0.2"
+                                                value="0.1"
                         />
                          
                         ETH
 </SelectableText>,
                       "subtitle": <NumericText
                         type="currency"
-                        value="82.4"
+                        value="41.2"
 />,
                     },
                     "ref": null,
@@ -26624,7 +26624,7 @@ ShallowWrapper {
                       main={
                                             <SelectableText>
                                                                   <NumericText
-                                                                                        value="0.2"
+                                                                                        value="0.1"
                                                                   />
                                                                    
                                                                   ETH
@@ -26633,7 +26633,7 @@ ShallowWrapper {
                       subtitle={
                                             <NumericText
                                                                   type="currency"
-                                                                  value="82.4"
+                                                                  value="41.2"
                                             />
                       }
 />,
@@ -26647,14 +26647,14 @@ ShallowWrapper {
                     "props": Object {
                       "main": <SelectableText>
                         <NumericText
-                                                value="0.2"
+                                                value="0.1"
                         />
                          
                         ETH
 </SelectableText>,
                       "subtitle": <NumericText
                         type="currency"
-                        value="82.4"
+                        value="41.2"
 />,
                     },
                     "ref": null,
@@ -27043,7 +27043,7 @@ ShallowWrapper {
                                                   main={
                                                             <SelectableText>
                                                                       <NumericText
-                                                                                value="0.2"
+                                                                                value="0.1"
                                                                       />
                                                                        
                                                                       ETH
@@ -27052,7 +27052,7 @@ ShallowWrapper {
                                                   subtitle={
                                                             <NumericText
                                                                       type="currency"
-                                                                      value="82.4"
+                                                                      value="41.2"
                                                             />
                                                   }
                                         />
@@ -27075,7 +27075,7 @@ ShallowWrapper {
                                                   main={
                                                             <SelectableText>
                                                                       <NumericText
-                                                                                value="0.2"
+                                                                                value="0.1"
                                                                       />
                                                                        
                                                                       ETH
@@ -27084,7 +27084,7 @@ ShallowWrapper {
                                                   subtitle={
                                                             <NumericText
                                                                       type="currency"
-                                                                      value="82.4"
+                                                                      value="41.2"
                                                             />
                                                   }
                                         />
@@ -27371,7 +27371,7 @@ ShallowWrapper {
                                                         main={
                                                                       <SelectableText>
                                                                                     <NumericText
-                                                                                                  value="0.2"
+                                                                                                  value="0.1"
                                                                                     />
                                                                                      
                                                                                     ETH
@@ -27380,7 +27380,7 @@ ShallowWrapper {
                                                         subtitle={
                                                                       <NumericText
                                                                                     type="currency"
-                                                                                    value="82.4"
+                                                                                    value="41.2"
                                                                       />
                                                         }
                                           />
@@ -27403,7 +27403,7 @@ ShallowWrapper {
                                                         main={
                                                                       <SelectableText>
                                                                                     <NumericText
-                                                                                                  value="0.2"
+                                                                                                  value="0.1"
                                                                                     />
                                                                                      
                                                                                     ETH
@@ -27412,7 +27412,7 @@ ShallowWrapper {
                                                         subtitle={
                                                                       <NumericText
                                                                                     type="currency"
-                                                                                    value="82.4"
+                                                                                    value="41.2"
                                                                       />
                                                         }
                                           />
@@ -27986,7 +27986,7 @@ ShallowWrapper {
                                                       main={
                                                                         <SelectableText>
                                                                                           <NumericText
-                                                                                                            value="0.2"
+                                                                                                            value="0.1"
                                                                                           />
                                                                                            
                                                                                           ETH
@@ -27995,7 +27995,7 @@ ShallowWrapper {
                                                       subtitle={
                                                                         <NumericText
                                                                                           type="currency"
-                                                                                          value="82.4"
+                                                                                          value="41.2"
                                                                         />
                                                       }
                                     />
@@ -28018,7 +28018,7 @@ ShallowWrapper {
                                                       main={
                                                                         <SelectableText>
                                                                                           <NumericText
-                                                                                                            value="0.2"
+                                                                                                            value="0.1"
                                                                                           />
                                                                                            
                                                                                           ETH
@@ -28027,7 +28027,7 @@ ShallowWrapper {
                                                       subtitle={
                                                                         <NumericText
                                                                                           type="currency"
-                                                                                          value="82.4"
+                                                                                          value="41.2"
                                                                         />
                                                       }
                                     />
@@ -28419,7 +28419,7 @@ ShallowWrapper {
                                             main={
                                                                   <SelectableText>
                                                                                         <NumericText
-                                                                                                              value="0.2"
+                                                                                                              value="0.1"
                                                                                         />
                                                                                          
                                                                                         ETH
@@ -28428,7 +28428,7 @@ ShallowWrapper {
                                             subtitle={
                                                                   <NumericText
                                                                                         type="currency"
-                                                                                        value="82.4"
+                                                                                        value="41.2"
                                                                   />
                                             }
                       />
@@ -28451,7 +28451,7 @@ ShallowWrapper {
                                             main={
                                                                   <SelectableText>
                                                                                         <NumericText
-                                                                                                              value="0.2"
+                                                                                                              value="0.1"
                                                                                         />
                                                                                          
                                                                                         ETH
@@ -28460,7 +28460,7 @@ ShallowWrapper {
                                             subtitle={
                                                                   <NumericText
                                                                                         type="currency"
-                                                                                        value="82.4"
+                                                                                        value="41.2"
                                                                   />
                                             }
                       />
@@ -28515,7 +28515,7 @@ ShallowWrapper {
                         main={
                                                 <SelectableText>
                                                                         <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -28524,7 +28524,7 @@ ShallowWrapper {
                         subtitle={
                                                 <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                 />
                         }
 />,
@@ -28538,14 +28538,14 @@ ShallowWrapper {
                       "props": Object {
                         "main": <SelectableText>
                           <NumericText
-                                                    value="0.2"
+                                                    value="0.1"
                           />
                            
                           ETH
 </SelectableText>,
                         "subtitle": <NumericText
                           type="currency"
-                          value="82.4"
+                          value="41.2"
 />,
                       },
                       "ref": null,
@@ -28600,7 +28600,7 @@ ShallowWrapper {
                         main={
                                                 <SelectableText>
                                                                         <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -28609,7 +28609,7 @@ ShallowWrapper {
                         subtitle={
                                                 <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                 />
                         }
 />,
@@ -28623,14 +28623,14 @@ ShallowWrapper {
                       "props": Object {
                         "main": <SelectableText>
                           <NumericText
-                                                    value="0.2"
+                                                    value="0.1"
                           />
                            
                           ETH
 </SelectableText>,
                         "subtitle": <NumericText
                           type="currency"
-                          value="82.4"
+                          value="41.2"
 />,
                       },
                       "ref": null,
@@ -32162,7 +32162,7 @@ ShallowWrapper {
                                         main={
                                                 <SelectableText>
                                                         <NumericText
-                                                                value="0.2"
+                                                                value="0.1"
                                                         />
                                                          
                                                         ETH
@@ -32171,7 +32171,7 @@ ShallowWrapper {
                                         subtitle={
                                                 <NumericText
                                                         type="currency"
-                                                        value="82.4"
+                                                        value="41.2"
                                                 />
                                         }
                                 />
@@ -32194,7 +32194,7 @@ ShallowWrapper {
                                         main={
                                                 <SelectableText>
                                                         <NumericText
-                                                                value="0.2"
+                                                                value="0.1"
                                                         />
                                                          
                                                         ETH
@@ -32203,7 +32203,7 @@ ShallowWrapper {
                                         subtitle={
                                                 <NumericText
                                                         type="currency"
-                                                        value="82.4"
+                                                        value="41.2"
                                                 />
                                         }
                                 />
@@ -32490,7 +32490,7 @@ ShallowWrapper {
                                                 main={
                                                             <SelectableText>
                                                                         <NumericText
-                                                                                    value="0.2"
+                                                                                    value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -32499,7 +32499,7 @@ ShallowWrapper {
                                                 subtitle={
                                                             <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                             />
                                                 }
                                     />
@@ -32522,7 +32522,7 @@ ShallowWrapper {
                                                 main={
                                                             <SelectableText>
                                                                         <NumericText
-                                                                                    value="0.2"
+                                                                                    value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -32531,7 +32531,7 @@ ShallowWrapper {
                                                 subtitle={
                                                             <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                             />
                                                 }
                                     />
@@ -33105,7 +33105,7 @@ ShallowWrapper {
                                                 main={
                                                                 <SelectableText>
                                                                                 <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -33114,7 +33114,7 @@ ShallowWrapper {
                                                 subtitle={
                                                                 <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                                 />
                                                 }
                                 />
@@ -33137,7 +33137,7 @@ ShallowWrapper {
                                                 main={
                                                                 <SelectableText>
                                                                                 <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -33146,7 +33146,7 @@ ShallowWrapper {
                                                 subtitle={
                                                                 <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                                 />
                                                 }
                                 />
@@ -33538,7 +33538,7 @@ ShallowWrapper {
                                         main={
                                                             <SelectableText>
                                                                                 <NumericText
-                                                                                                    value="0.2"
+                                                                                                    value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -33547,7 +33547,7 @@ ShallowWrapper {
                                         subtitle={
                                                             <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                             />
                                         }
                     />
@@ -33570,7 +33570,7 @@ ShallowWrapper {
                                         main={
                                                             <SelectableText>
                                                                                 <NumericText
-                                                                                                    value="0.2"
+                                                                                                    value="0.1"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -33579,7 +33579,7 @@ ShallowWrapper {
                                         subtitle={
                                                             <NumericText
                                                                                 type="currency"
-                                                                                value="82.4"
+                                                                                value="41.2"
                                                             />
                                         }
                     />
@@ -33634,7 +33634,7 @@ ShallowWrapper {
                       main={
                                             <SelectableText>
                                                                   <NumericText
-                                                                                        value="0.2"
+                                                                                        value="0.1"
                                                                   />
                                                                    
                                                                   ETH
@@ -33643,7 +33643,7 @@ ShallowWrapper {
                       subtitle={
                                             <NumericText
                                                                   type="currency"
-                                                                  value="82.4"
+                                                                  value="41.2"
                                             />
                       }
 />,
@@ -33657,14 +33657,14 @@ ShallowWrapper {
                     "props": Object {
                       "main": <SelectableText>
                         <NumericText
-                                                value="0.2"
+                                                value="0.1"
                         />
                          
                         ETH
 </SelectableText>,
                       "subtitle": <NumericText
                         type="currency"
-                        value="82.4"
+                        value="41.2"
 />,
                     },
                     "ref": null,
@@ -33719,7 +33719,7 @@ ShallowWrapper {
                       main={
                                             <SelectableText>
                                                                   <NumericText
-                                                                                        value="0.2"
+                                                                                        value="0.1"
                                                                   />
                                                                    
                                                                   ETH
@@ -33728,7 +33728,7 @@ ShallowWrapper {
                       subtitle={
                                             <NumericText
                                                                   type="currency"
-                                                                  value="82.4"
+                                                                  value="41.2"
                                             />
                       }
 />,
@@ -33742,14 +33742,14 @@ ShallowWrapper {
                     "props": Object {
                       "main": <SelectableText>
                         <NumericText
-                                                value="0.2"
+                                                value="0.1"
                         />
                          
                         ETH
 </SelectableText>,
                       "subtitle": <NumericText
                         type="currency"
-                        value="82.4"
+                        value="41.2"
 />,
                     },
                     "ref": null,
@@ -34138,7 +34138,7 @@ ShallowWrapper {
                                                   main={
                                                             <SelectableText>
                                                                       <NumericText
-                                                                                value="0.2"
+                                                                                value="0.1"
                                                                       />
                                                                        
                                                                       ETH
@@ -34147,7 +34147,7 @@ ShallowWrapper {
                                                   subtitle={
                                                             <NumericText
                                                                       type="currency"
-                                                                      value="82.4"
+                                                                      value="41.2"
                                                             />
                                                   }
                                         />
@@ -34170,7 +34170,7 @@ ShallowWrapper {
                                                   main={
                                                             <SelectableText>
                                                                       <NumericText
-                                                                                value="0.2"
+                                                                                value="0.1"
                                                                       />
                                                                        
                                                                       ETH
@@ -34179,7 +34179,7 @@ ShallowWrapper {
                                                   subtitle={
                                                             <NumericText
                                                                       type="currency"
-                                                                      value="82.4"
+                                                                      value="41.2"
                                                             />
                                                   }
                                         />
@@ -34466,7 +34466,7 @@ ShallowWrapper {
                                                         main={
                                                                       <SelectableText>
                                                                                     <NumericText
-                                                                                                  value="0.2"
+                                                                                                  value="0.1"
                                                                                     />
                                                                                      
                                                                                     ETH
@@ -34475,7 +34475,7 @@ ShallowWrapper {
                                                         subtitle={
                                                                       <NumericText
                                                                                     type="currency"
-                                                                                    value="82.4"
+                                                                                    value="41.2"
                                                                       />
                                                         }
                                           />
@@ -34498,7 +34498,7 @@ ShallowWrapper {
                                                         main={
                                                                       <SelectableText>
                                                                                     <NumericText
-                                                                                                  value="0.2"
+                                                                                                  value="0.1"
                                                                                     />
                                                                                      
                                                                                     ETH
@@ -34507,7 +34507,7 @@ ShallowWrapper {
                                                         subtitle={
                                                                       <NumericText
                                                                                     type="currency"
-                                                                                    value="82.4"
+                                                                                    value="41.2"
                                                                       />
                                                         }
                                           />
@@ -35081,7 +35081,7 @@ ShallowWrapper {
                                                       main={
                                                                         <SelectableText>
                                                                                           <NumericText
-                                                                                                            value="0.2"
+                                                                                                            value="0.1"
                                                                                           />
                                                                                            
                                                                                           ETH
@@ -35090,7 +35090,7 @@ ShallowWrapper {
                                                       subtitle={
                                                                         <NumericText
                                                                                           type="currency"
-                                                                                          value="82.4"
+                                                                                          value="41.2"
                                                                         />
                                                       }
                                     />
@@ -35113,7 +35113,7 @@ ShallowWrapper {
                                                       main={
                                                                         <SelectableText>
                                                                                           <NumericText
-                                                                                                            value="0.2"
+                                                                                                            value="0.1"
                                                                                           />
                                                                                            
                                                                                           ETH
@@ -35122,7 +35122,7 @@ ShallowWrapper {
                                                       subtitle={
                                                                         <NumericText
                                                                                           type="currency"
-                                                                                          value="82.4"
+                                                                                          value="41.2"
                                                                         />
                                                       }
                                     />
@@ -35514,7 +35514,7 @@ ShallowWrapper {
                                             main={
                                                                   <SelectableText>
                                                                                         <NumericText
-                                                                                                              value="0.2"
+                                                                                                              value="0.1"
                                                                                         />
                                                                                          
                                                                                         ETH
@@ -35523,7 +35523,7 @@ ShallowWrapper {
                                             subtitle={
                                                                   <NumericText
                                                                                         type="currency"
-                                                                                        value="82.4"
+                                                                                        value="41.2"
                                                                   />
                                             }
                       />
@@ -35546,7 +35546,7 @@ ShallowWrapper {
                                             main={
                                                                   <SelectableText>
                                                                                         <NumericText
-                                                                                                              value="0.2"
+                                                                                                              value="0.1"
                                                                                         />
                                                                                          
                                                                                         ETH
@@ -35555,7 +35555,7 @@ ShallowWrapper {
                                             subtitle={
                                                                   <NumericText
                                                                                         type="currency"
-                                                                                        value="82.4"
+                                                                                        value="41.2"
                                                                   />
                                             }
                       />
@@ -35610,7 +35610,7 @@ ShallowWrapper {
                         main={
                                                 <SelectableText>
                                                                         <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -35619,7 +35619,7 @@ ShallowWrapper {
                         subtitle={
                                                 <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                 />
                         }
 />,
@@ -35633,14 +35633,14 @@ ShallowWrapper {
                       "props": Object {
                         "main": <SelectableText>
                           <NumericText
-                                                    value="0.2"
+                                                    value="0.1"
                           />
                            
                           ETH
 </SelectableText>,
                         "subtitle": <NumericText
                           type="currency"
-                          value="82.4"
+                          value="41.2"
 />,
                       },
                       "ref": null,
@@ -35695,7 +35695,7 @@ ShallowWrapper {
                         main={
                                                 <SelectableText>
                                                                         <NumericText
-                                                                                                value="0.2"
+                                                                                                value="0.1"
                                                                         />
                                                                          
                                                                         ETH
@@ -35704,7 +35704,7 @@ ShallowWrapper {
                         subtitle={
                                                 <NumericText
                                                                         type="currency"
-                                                                        value="82.4"
+                                                                        value="41.2"
                                                 />
                         }
 />,
@@ -35718,14 +35718,14 @@ ShallowWrapper {
                       "props": Object {
                         "main": <SelectableText>
                           <NumericText
-                                                    value="0.2"
+                                                    value="0.1"
                           />
                            
                           ETH
 </SelectableText>,
                         "subtitle": <NumericText
                           type="currency"
-                          value="82.4"
+                          value="41.2"
 />,
                       },
                       "ref": null,

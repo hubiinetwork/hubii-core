@@ -254,7 +254,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
     }
 
     const baseLayerAssets = currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
-    const nahmiiAssets = currentWalletWithInfo.getIn(['balances', 'nahmiiCombined', 'assets']).toJS();
+    const nahmiiAssets = currentWalletWithInfo.getIn(['balances', 'nahmiiAvailable', 'assets']).toJS();
     const assetToDepositUsdValue = prices.toJS().assets
       .find((a) => a.currency === assetToDeposit.currency).usd;
     const usdValueToDeposit = amountToDeposit
