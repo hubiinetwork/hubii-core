@@ -403,10 +403,10 @@ export function* loadStagingBalances({ address }, network) {
 
 // https://stackoverflow.com/questions/48228662/get-token-balance-with-ethereum-rpc
 export function* loadStagedBalances({ address }, network, noPoll) {
-  if (network.provider._network.chainId === 1) {
-    yield put(actions.loadStagedBalancesSuccess(address, []));
-    return;
-  }
+  // if (network.provider._network.chainId === 1) {
+  //   yield put(actions.loadStagedBalancesSuccess(address, []));
+  //   return;
+  // }
   let supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
   if (supportedAssets.loading) {
     yield take(LOAD_SUPPORTED_TOKENS_SUCCESS);
