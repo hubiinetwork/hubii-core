@@ -62,6 +62,7 @@ import {
   BottomWrapper,
   Image,
   DollarPrice,
+  StyledText,
   StyledCol,
   StyledSpin,
   StyledButton,
@@ -727,7 +728,9 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                   ) : (
                     <div className="withdraw-review">
                       <Row>
-                        <StyledCol span={12}>{formatMessage({ id: 'withdraw' })}</StyledCol>
+                        <StyledCol span={12}>
+                          <StyledText capitalize>{formatMessage({ id: 'withdraw' })}</StyledText>
+                        </StyledCol>
                       </Row>
                       <Row>
                         <TransferDescriptionItem
@@ -854,7 +857,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                               onClick={() => this.withdraw(amountToWithdraw, assetToWithdraw)}
                               disabled={disableWithdrawButton}
                             >
-                              <span>{formatMessage({ id: 'withdraw' })}</span>
+                              <StyledText capitalize>{formatMessage({ id: 'withdraw' })}</StyledText>
                             </StyledButton>
                             )
                           }
