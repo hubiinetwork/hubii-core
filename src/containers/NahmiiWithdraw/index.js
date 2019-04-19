@@ -688,7 +688,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                         />
                       </Row>
                       <Row>
-                        <StyledCol span={12}>{formatMessage({ id: 'nahmii' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
+                        <StyledCol span={12}>{formatMessage({ id: 'nahmii_available' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
                       </Row>
                       <Row>
                         <TransferDescriptionItem
@@ -699,7 +699,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                       </Row>
                       <Row>
                         <StyledCol span={12}>
-                          {formatMessage({ id: 'nahmii' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_after' })}
+                          {formatMessage({ id: 'nahmii_available' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_after' })}
                         </StyledCol>
                       </Row>
                       <Row>

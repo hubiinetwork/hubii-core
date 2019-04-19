@@ -412,7 +412,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
             {assetToDeposit.symbol === 'ETH' &&
             <div>
               <Row>
-                <StyledCol span={12}>{formatMessage({ id: 'nahmii' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
+                <StyledCol span={12}>{formatMessage({ id: 'nahmii_available' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
               </Row>
               <Row>
                 <TransferDescriptionItem
@@ -422,7 +422,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
               </Row>
               <Row>
                 <StyledCol span={12}>
-                  {formatMessage({ id: 'nahmii' })} ETH {formatMessage({ id: 'balance_after' })}
+                  {formatMessage({ id: 'nahmii_available' })} ETH {formatMessage({ id: 'balance_after' })}
                 </StyledCol>
               </Row>
               <Row>

@@ -859,7 +859,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                                 </style__StyledCol>
@@ -891,7 +891,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                                 </style__StyledCol>
@@ -1213,7 +1213,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                     </style__StyledCol>
@@ -1245,7 +1245,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                     </style__StyledCol>
@@ -1854,7 +1854,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                 </style__StyledCol>
@@ -1886,7 +1886,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                 </style__StyledCol>
@@ -2313,7 +2313,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                     </style__StyledCol>
@@ -2345,7 +2345,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                     </style__StyledCol>
@@ -2383,7 +2383,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_before
 </style__StyledCol>,
@@ -2396,7 +2396,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -2404,7 +2404,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_before",
                     ],
@@ -2468,7 +2468,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_after
 </style__StyledCol>,
@@ -2481,7 +2481,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -2489,7 +2489,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_after",
                     ],
@@ -3050,7 +3050,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_before
                                         </style__StyledCol>
@@ -3082,7 +3082,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_after
                                         </style__StyledCol>
@@ -3404,7 +3404,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_before
                                           </style__StyledCol>
@@ -3436,7 +3436,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_after
                                           </style__StyledCol>
@@ -4045,7 +4045,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_before
                                     </style__StyledCol>
@@ -4077,7 +4077,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_after
                                     </style__StyledCol>
@@ -4504,7 +4504,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_before
                       </style__StyledCol>
@@ -4536,7 +4536,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_after
                       </style__StyledCol>
@@ -4574,7 +4574,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_before
 </style__StyledCol>,
@@ -4587,7 +4587,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_before",
                         ],
@@ -4595,7 +4595,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -4659,7 +4659,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_after
 </style__StyledCol>,
@@ -4672,7 +4672,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_after",
                         ],
@@ -4680,7 +4680,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -5870,7 +5870,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                                 </style__StyledCol>
@@ -5902,7 +5902,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                                 </style__StyledCol>
@@ -6224,7 +6224,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                     </style__StyledCol>
@@ -6256,7 +6256,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                     </style__StyledCol>
@@ -6865,7 +6865,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                 </style__StyledCol>
@@ -6897,7 +6897,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                 </style__StyledCol>
@@ -7324,7 +7324,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                     </style__StyledCol>
@@ -7356,7 +7356,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                     </style__StyledCol>
@@ -7394,7 +7394,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_before
 </style__StyledCol>,
@@ -7407,7 +7407,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -7415,7 +7415,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_before",
                     ],
@@ -7479,7 +7479,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_after
 </style__StyledCol>,
@@ -7492,7 +7492,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -7500,7 +7500,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_after",
                     ],
@@ -8061,7 +8061,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_before
                                         </style__StyledCol>
@@ -8093,7 +8093,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_after
                                         </style__StyledCol>
@@ -8415,7 +8415,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_before
                                           </style__StyledCol>
@@ -8447,7 +8447,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_after
                                           </style__StyledCol>
@@ -9056,7 +9056,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_before
                                     </style__StyledCol>
@@ -9088,7 +9088,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_after
                                     </style__StyledCol>
@@ -9515,7 +9515,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_before
                       </style__StyledCol>
@@ -9547,7 +9547,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_after
                       </style__StyledCol>
@@ -9585,7 +9585,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_before
 </style__StyledCol>,
@@ -9598,7 +9598,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_before",
                         ],
@@ -9606,7 +9606,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -9670,7 +9670,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_after
 </style__StyledCol>,
@@ -9683,7 +9683,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_after",
                         ],
@@ -9691,7 +9691,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -10881,7 +10881,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                                 </style__StyledCol>
@@ -10913,7 +10913,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                                 </style__StyledCol>
@@ -11235,7 +11235,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                     </style__StyledCol>
@@ -11267,7 +11267,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                     </style__StyledCol>
@@ -11876,7 +11876,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                 </style__StyledCol>
@@ -11908,7 +11908,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                 </style__StyledCol>
@@ -12335,7 +12335,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                     </style__StyledCol>
@@ -12367,7 +12367,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                     </style__StyledCol>
@@ -12405,7 +12405,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_before
 </style__StyledCol>,
@@ -12418,7 +12418,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -12426,7 +12426,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_before",
                     ],
@@ -12490,7 +12490,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_after
 </style__StyledCol>,
@@ -12503,7 +12503,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -12511,7 +12511,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_after",
                     ],
@@ -13072,7 +13072,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_before
                                         </style__StyledCol>
@@ -13104,7 +13104,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_after
                                         </style__StyledCol>
@@ -13426,7 +13426,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_before
                                           </style__StyledCol>
@@ -13458,7 +13458,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_after
                                           </style__StyledCol>
@@ -14067,7 +14067,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_before
                                     </style__StyledCol>
@@ -14099,7 +14099,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_after
                                     </style__StyledCol>
@@ -14526,7 +14526,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_before
                       </style__StyledCol>
@@ -14558,7 +14558,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_after
                       </style__StyledCol>
@@ -14596,7 +14596,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_before
 </style__StyledCol>,
@@ -14609,7 +14609,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_before",
                         ],
@@ -14617,7 +14617,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -14681,7 +14681,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_after
 </style__StyledCol>,
@@ -14694,7 +14694,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_after",
                         ],
@@ -14702,7 +14702,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -15892,7 +15892,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                                 </style__StyledCol>
@@ -15924,7 +15924,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                                 </style__StyledCol>
@@ -16220,7 +16220,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                     </style__StyledCol>
@@ -16252,7 +16252,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                     </style__StyledCol>
@@ -16835,7 +16835,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                 </style__StyledCol>
@@ -16867,7 +16867,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                 </style__StyledCol>
@@ -17268,7 +17268,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                     </style__StyledCol>
@@ -17300,7 +17300,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                     </style__StyledCol>
@@ -17338,7 +17338,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_before
 </style__StyledCol>,
@@ -17351,7 +17351,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -17359,7 +17359,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_before",
                     ],
@@ -17423,7 +17423,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_after
 </style__StyledCol>,
@@ -17436,7 +17436,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -17444,7 +17444,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_after",
                     ],
@@ -17868,7 +17868,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_before
                                         </style__StyledCol>
@@ -17900,7 +17900,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_after
                                         </style__StyledCol>
@@ -18196,7 +18196,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_before
                                           </style__StyledCol>
@@ -18228,7 +18228,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_after
                                           </style__StyledCol>
@@ -18811,7 +18811,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_before
                                     </style__StyledCol>
@@ -18843,7 +18843,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_after
                                     </style__StyledCol>
@@ -19244,7 +19244,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_before
                       </style__StyledCol>
@@ -19276,7 +19276,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_after
                       </style__StyledCol>
@@ -19314,7 +19314,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_before
 </style__StyledCol>,
@@ -19327,7 +19327,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_before",
                         ],
@@ -19335,7 +19335,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -19399,7 +19399,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_after
 </style__StyledCol>,
@@ -19412,7 +19412,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_after",
                         ],
@@ -19420,7 +19420,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -20473,7 +20473,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                                 </style__StyledCol>
@@ -20505,7 +20505,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                                 </style__StyledCol>
@@ -20801,7 +20801,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                     </style__StyledCol>
@@ -20833,7 +20833,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                     </style__StyledCol>
@@ -21416,7 +21416,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                 </style__StyledCol>
@@ -21448,7 +21448,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                 </style__StyledCol>
@@ -21849,7 +21849,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                     </style__StyledCol>
@@ -21881,7 +21881,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                     </style__StyledCol>
@@ -21919,7 +21919,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_before
 </style__StyledCol>,
@@ -21932,7 +21932,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -21940,7 +21940,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_before",
                     ],
@@ -22004,7 +22004,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_after
 </style__StyledCol>,
@@ -22017,7 +22017,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -22025,7 +22025,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_after",
                     ],
@@ -22449,7 +22449,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_before
                                         </style__StyledCol>
@@ -22481,7 +22481,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_after
                                         </style__StyledCol>
@@ -22777,7 +22777,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_before
                                           </style__StyledCol>
@@ -22809,7 +22809,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_after
                                           </style__StyledCol>
@@ -23392,7 +23392,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_before
                                     </style__StyledCol>
@@ -23424,7 +23424,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_after
                                     </style__StyledCol>
@@ -23825,7 +23825,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_before
                       </style__StyledCol>
@@ -23857,7 +23857,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_after
                       </style__StyledCol>
@@ -23895,7 +23895,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_before
 </style__StyledCol>,
@@ -23908,7 +23908,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_before",
                         ],
@@ -23916,7 +23916,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -23980,7 +23980,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_after
 </style__StyledCol>,
@@ -23993,7 +23993,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_after",
                         ],
@@ -24001,7 +24001,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -25055,7 +25055,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                                 </style__StyledCol>
@@ -25087,7 +25087,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                                 </style__StyledCol>
@@ -25383,7 +25383,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                     </style__StyledCol>
@@ -25415,7 +25415,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                     </style__StyledCol>
@@ -25998,7 +25998,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                 </style__StyledCol>
@@ -26030,7 +26030,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                 </style__StyledCol>
@@ -26431,7 +26431,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                     </style__StyledCol>
@@ -26463,7 +26463,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                     </style__StyledCol>
@@ -26501,7 +26501,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_before
 </style__StyledCol>,
@@ -26514,7 +26514,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -26522,7 +26522,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_before",
                     ],
@@ -26586,7 +26586,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_after
 </style__StyledCol>,
@@ -26599,7 +26599,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -26607,7 +26607,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_after",
                     ],
@@ -27031,7 +27031,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_before
                                         </style__StyledCol>
@@ -27063,7 +27063,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_after
                                         </style__StyledCol>
@@ -27359,7 +27359,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_before
                                           </style__StyledCol>
@@ -27391,7 +27391,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_after
                                           </style__StyledCol>
@@ -27974,7 +27974,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_before
                                     </style__StyledCol>
@@ -28006,7 +28006,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_after
                                     </style__StyledCol>
@@ -28407,7 +28407,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_before
                       </style__StyledCol>
@@ -28439,7 +28439,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_after
                       </style__StyledCol>
@@ -28477,7 +28477,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_before
 </style__StyledCol>,
@@ -28490,7 +28490,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_before",
                         ],
@@ -28498,7 +28498,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -28562,7 +28562,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_after
 </style__StyledCol>,
@@ -28575,7 +28575,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_after",
                         ],
@@ -28583,7 +28583,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -32150,7 +32150,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                                 </style__StyledCol>
@@ -32182,7 +32182,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                                 </style__StyledCol>
@@ -32478,7 +32478,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                     </style__StyledCol>
@@ -32510,7 +32510,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                     </style__StyledCol>
@@ -33093,7 +33093,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                 </style__StyledCol>
@@ -33125,7 +33125,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                 </style__StyledCol>
@@ -33526,7 +33526,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                     </style__StyledCol>
@@ -33558,7 +33558,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                     </style__StyledCol>
@@ -33596,7 +33596,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_before
 </style__StyledCol>,
@@ -33609,7 +33609,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -33617,7 +33617,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_before",
                     ],
@@ -33681,7 +33681,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_after
 </style__StyledCol>,
@@ -33694,7 +33694,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -33702,7 +33702,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_after",
                     ],
@@ -34126,7 +34126,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_before
                                         </style__StyledCol>
@@ -34158,7 +34158,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_after
                                         </style__StyledCol>
@@ -34454,7 +34454,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_before
                                           </style__StyledCol>
@@ -34486,7 +34486,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_after
                                           </style__StyledCol>
@@ -35069,7 +35069,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_before
                                     </style__StyledCol>
@@ -35101,7 +35101,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_after
                                     </style__StyledCol>
@@ -35502,7 +35502,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_before
                       </style__StyledCol>
@@ -35534,7 +35534,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_after
                       </style__StyledCol>
@@ -35572,7 +35572,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_before
 </style__StyledCol>,
@@ -35585,7 +35585,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_before",
                         ],
@@ -35593,7 +35593,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -35657,7 +35657,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_after
 </style__StyledCol>,
@@ -35670,7 +35670,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_after",
                         ],
@@ -35678,7 +35678,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
