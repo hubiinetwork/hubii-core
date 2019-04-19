@@ -751,7 +751,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                         <TransferDescriptionItem
                           className="base-layer-eth-balance-before"
                           main={<SelectableText><NumericText value={baseLayerEthBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
-                          subtitle={<NumericText value={transactionFee.usdValue.toString()} type="currency" />}
+                          subtitle={<NumericText value={baseLayerEthBalanceBefore.usdValue.toString()} type="currency" />}
                         />
                       </Row>
                       <Row>

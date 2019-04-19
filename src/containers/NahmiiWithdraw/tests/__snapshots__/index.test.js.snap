@@ -839,7 +839,7 @@ ShallowWrapper {
                                                             subtitle={
                                                                       <NumericText
                                                                                 type="currency"
-                                                                                value="24.72"
+                                                                                value="81.962044"
                                                                       />
                                                             }
                                                   />
@@ -1179,7 +1179,7 @@ ShallowWrapper {
                                                             subtitle={
                                                                         <NumericText
                                                                                     type="currency"
-                                                                                    value="24.72"
+                                                                                    value="81.962044"
                                                                         />
                                                             }
                                                 />
@@ -1501,7 +1501,7 @@ ShallowWrapper {
                                                                 subtitle={
                                                                                 <NumericText
                                                                                                 type="currency"
-                                                                                                value="24.72"
+                                                                                                value="81.962044"
                                                                                 />
                                                                 }
                                                 />
@@ -2088,7 +2088,7 @@ ShallowWrapper {
                                                             subtitle={
                                                                                 <NumericText
                                                                                                     type="currency"
-                                                                                                    value="24.72"
+                                                                                                    value="81.962044"
                                                                                 />
                                                             }
                                         />
@@ -2315,7 +2315,7 @@ ShallowWrapper {
                                                 subtitle={
                                                                         <NumericText
                                                                                                 type="currency"
-                                                                                                value="24.72"
+                                                                                                value="81.962044"
                                                                         />
                                                 }
                         />
@@ -2647,7 +2647,7 @@ ShallowWrapper {
                           subtitle={
                                                     <NumericText
                                                                               type="currency"
-                                                                              value="24.72"
+                                                                              value="81.962044"
                                                     />
                           }
 />,
@@ -2669,7 +2669,7 @@ ShallowWrapper {
 </SelectableText>,
                           "subtitle": <NumericText
                             type="currency"
-                            value="24.72"
+                            value="81.962044"
 />,
                         },
                         "ref": null,
@@ -3338,7 +3338,7 @@ ShallowWrapper {
                                                                         subtitle={
                                                                                     <NumericText
                                                                                                 type="currency"
-                                                                                                value="24.72"
+                                                                                                value="81.962044"
                                                                                     />
                                                                         }
                                                             />
@@ -3678,7 +3678,7 @@ ShallowWrapper {
                                                                       subtitle={
                                                                                     <NumericText
                                                                                                   type="currency"
-                                                                                                  value="24.72"
+                                                                                                  value="81.962044"
                                                                                     />
                                                                       }
                                                         />
@@ -4000,7 +4000,7 @@ ShallowWrapper {
                                                                         subtitle={
                                                                                           <NumericText
                                                                                                             type="currency"
-                                                                                                            value="24.72"
+                                                                                                            value="81.962044"
                                                                                           />
                                                                         }
                                                       />
@@ -4587,7 +4587,7 @@ ShallowWrapper {
                                                                   subtitle={
                                                                                         <NumericText
                                                                                                               type="currency"
-                                                                                                              value="24.72"
+                                                                                                              value="81.962044"
                                                                                         />
                                                                   }
                                             />
@@ -4814,7 +4814,7 @@ ShallowWrapper {
                                                     subtitle={
                                                                               <NumericText
                                                                                                         type="currency"
-                                                                                                        value="24.72"
+                                                                                                        value="81.962044"
                                                                               />
                                                     }
                           />
@@ -5146,7 +5146,7 @@ ShallowWrapper {
                             subtitle={
                                                         <NumericText
                                                                                     type="currency"
-                                                                                    value="24.72"
+                                                                                    value="81.962044"
                                                         />
                             }
 />,
@@ -5168,7 +5168,7 @@ ShallowWrapper {
 </SelectableText>,
                             "subtitle": <NumericText
                               type="currency"
-                              value="24.72"
+                              value="81.962044"
 />,
                           },
                           "ref": null,
