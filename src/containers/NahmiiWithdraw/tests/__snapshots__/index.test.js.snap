@@ -757,7 +757,11 @@ ShallowWrapper {
                                                   <style__StyledCol
                                                             span={12}
                                                   >
-                                                            withdraw
+                                                            <style__StyledText
+                                                                      capitalize={true}
+                                                            >
+                                                                      withdraw
+                                                            </style__StyledText>
                                                   </style__StyledCol>
                                         </Row>
                                         <Row
@@ -954,9 +958,11 @@ ShallowWrapper {
                                                             onClick={[Function]}
                                                             type="primary"
                                                   >
-                                                            <span>
+                                                            <style__StyledText
+                                                                      capitalize={true}
+                                                            >
                                                                       withdraw
-                                                            </span>
+                                                            </style__StyledText>
                                                   </style__StyledButton>
                                         </Row>
                               </div>
@@ -1097,7 +1103,11 @@ ShallowWrapper {
                                                 <style__StyledCol
                                                             span={12}
                                                 >
-                                                            withdraw
+                                                            <style__StyledText
+                                                                        capitalize={true}
+                                                            >
+                                                                        withdraw
+                                                            </style__StyledText>
                                                 </style__StyledCol>
                                     </Row>
                                     <Row
@@ -1294,9 +1304,11 @@ ShallowWrapper {
                                                             onClick={[Function]}
                                                             type="primary"
                                                 >
-                                                            <span>
+                                                            <style__StyledText
+                                                                        capitalize={true}
+                                                            >
                                                                         withdraw
-                                                            </span>
+                                                            </style__StyledText>
                                                 </style__StyledButton>
                                     </Row>
                         </div>
@@ -1419,7 +1431,11 @@ ShallowWrapper {
                                                 <style__StyledCol
                                                                 span={12}
                                                 >
-                                                                withdraw
+                                                                <style__StyledText
+                                                                                capitalize={true}
+                                                                >
+                                                                                withdraw
+                                                                </style__StyledText>
                                                 </style__StyledCol>
                                 </Row>
                                 <Row
@@ -1616,9 +1632,11 @@ ShallowWrapper {
                                                                 onClick={[Function]}
                                                                 type="primary"
                                                 >
-                                                                <span>
+                                                                <style__StyledText
+                                                                                capitalize={true}
+                                                                >
                                                                                 withdraw
-                                                                </span>
+                                                                </style__StyledText>
                                                 </style__StyledButton>
                                 </Row>
                 </div>
@@ -2006,7 +2024,11 @@ ShallowWrapper {
                                         <style__StyledCol
                                                             span={12}
                                         >
-                                                            withdraw
+                                                            <style__StyledText
+                                                                                capitalize={true}
+                                                            >
+                                                                                withdraw
+                                                            </style__StyledText>
                                         </style__StyledCol>
                     </Row>
                     <Row
@@ -2203,9 +2225,11 @@ ShallowWrapper {
                                                             onClick={[Function]}
                                                             type="primary"
                                         >
-                                                            <span>
+                                                            <style__StyledText
+                                                                                capitalize={true}
+                                                            >
                                                                                 withdraw
-                                                            </span>
+                                                            </style__StyledText>
                                         </style__StyledButton>
                     </Row>
 </div>,
@@ -2233,7 +2257,11 @@ ShallowWrapper {
                         <style__StyledCol
                                                 span={12}
                         >
-                                                withdraw
+                                                <style__StyledText
+                                                                        capitalize={true}
+                                                >
+                                                                        withdraw
+                                                </style__StyledText>
                         </style__StyledCol>
 </Row>,
                       <Row
@@ -2431,9 +2459,11 @@ ShallowWrapper {
                                                 onClick={[Function]}
                                                 type="primary"
                         >
-                                                <span>
+                                                <style__StyledText
+                                                                        capitalize={true}
+                                                >
                                                                         withdraw
-                                                </span>
+                                                </style__StyledText>
                         </style__StyledButton>
 </Row>,
                     ],
@@ -2449,7 +2479,11 @@ ShallowWrapper {
                         "children": <style__StyledCol
                           span={12}
 >
-                          withdraw
+                          <style__StyledText
+                                                    capitalize={true}
+                          >
+                                                    withdraw
+                          </style__StyledText>
 </style__StyledCol>,
                         "gutter": 0,
                       },
@@ -2459,11 +2493,26 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "class",
                         "props": Object {
-                          "children": "withdraw",
+                          "children": <style__StyledText
+                            capitalize={true}
+>
+                            withdraw
+</style__StyledText>,
                           "span": 12,
                         },
                         "ref": null,
-                        "rendered": "withdraw",
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "class",
+                          "props": Object {
+                            "capitalize": true,
+                            "children": "withdraw",
+                          },
+                          "ref": null,
+                          "rendered": "withdraw",
+                          "type": [Function],
+                        },
                         "type": [Function],
                       },
                       "type": [Function],
@@ -3030,9 +3079,11 @@ ShallowWrapper {
                           onClick={[Function]}
                           type="primary"
 >
-                          <span>
+                          <style__StyledText
+                                                    capitalize={true}
+                          >
                                                     withdraw
-                          </span>
+                          </style__StyledText>
 </style__StyledButton>,
                         "gutter": 0,
                       },
@@ -3042,9 +3093,11 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "class",
                         "props": Object {
-                          "children": <span>
+                          "children": <style__StyledText
+                            capitalize={true}
+>
                             withdraw
-</span>,
+</style__StyledText>,
                           "className": "withdraw-btn",
                           "disabled": true,
                           "onClick": [Function],
@@ -3054,13 +3107,14 @@ ShallowWrapper {
                         "rendered": Object {
                           "instance": null,
                           "key": undefined,
-                          "nodeType": "host",
+                          "nodeType": "class",
                           "props": Object {
+                            "capitalize": true,
                             "children": "withdraw",
                           },
                           "ref": null,
                           "rendered": "withdraw",
-                          "type": "span",
+                          "type": [Function],
                         },
                         "type": [Function],
                       },
@@ -3256,7 +3310,11 @@ ShallowWrapper {
                                                             <style__StyledCol
                                                                         span={12}
                                                             >
-                                                                        withdraw
+                                                                        <style__StyledText
+                                                                                    capitalize={true}
+                                                                        >
+                                                                                    withdraw
+                                                                        </style__StyledText>
                                                             </style__StyledCol>
                                                 </Row>
                                                 <Row
@@ -3453,9 +3511,11 @@ ShallowWrapper {
                                                                         onClick={[Function]}
                                                                         type="primary"
                                                             >
-                                                                        <span>
+                                                                        <style__StyledText
+                                                                                    capitalize={true}
+                                                                        >
                                                                                     withdraw
-                                                                        </span>
+                                                                        </style__StyledText>
                                                             </style__StyledButton>
                                                 </Row>
                                     </div>
@@ -3596,7 +3656,11 @@ ShallowWrapper {
                                                         <style__StyledCol
                                                                       span={12}
                                                         >
-                                                                      withdraw
+                                                                      <style__StyledText
+                                                                                    capitalize={true}
+                                                                      >
+                                                                                    withdraw
+                                                                      </style__StyledText>
                                                         </style__StyledCol>
                                           </Row>
                                           <Row
@@ -3793,9 +3857,11 @@ ShallowWrapper {
                                                                       onClick={[Function]}
                                                                       type="primary"
                                                         >
-                                                                      <span>
+                                                                      <style__StyledText
+                                                                                    capitalize={true}
+                                                                      >
                                                                                     withdraw
-                                                                      </span>
+                                                                      </style__StyledText>
                                                         </style__StyledButton>
                                           </Row>
                             </div>
@@ -3918,7 +3984,11 @@ ShallowWrapper {
                                                       <style__StyledCol
                                                                         span={12}
                                                       >
-                                                                        withdraw
+                                                                        <style__StyledText
+                                                                                          capitalize={true}
+                                                                        >
+                                                                                          withdraw
+                                                                        </style__StyledText>
                                                       </style__StyledCol>
                                     </Row>
                                     <Row
@@ -4115,9 +4185,11 @@ ShallowWrapper {
                                                                         onClick={[Function]}
                                                                         type="primary"
                                                       >
-                                                                        <span>
+                                                                        <style__StyledText
+                                                                                          capitalize={true}
+                                                                        >
                                                                                           withdraw
-                                                                        </span>
+                                                                        </style__StyledText>
                                                       </style__StyledButton>
                                     </Row>
                   </div>
@@ -4505,7 +4577,11 @@ ShallowWrapper {
                                             <style__StyledCol
                                                                   span={12}
                                             >
-                                                                  withdraw
+                                                                  <style__StyledText
+                                                                                        capitalize={true}
+                                                                  >
+                                                                                        withdraw
+                                                                  </style__StyledText>
                                             </style__StyledCol>
                       </Row>
                       <Row
@@ -4702,9 +4778,11 @@ ShallowWrapper {
                                                                   onClick={[Function]}
                                                                   type="primary"
                                             >
-                                                                  <span>
+                                                                  <style__StyledText
+                                                                                        capitalize={true}
+                                                                  >
                                                                                         withdraw
-                                                                  </span>
+                                                                  </style__StyledText>
                                             </style__StyledButton>
                       </Row>
 </div>,
@@ -4732,7 +4810,11 @@ ShallowWrapper {
                           <style__StyledCol
                                                     span={12}
                           >
-                                                    withdraw
+                                                    <style__StyledText
+                                                                              capitalize={true}
+                                                    >
+                                                                              withdraw
+                                                    </style__StyledText>
                           </style__StyledCol>
 </Row>,
                         <Row
@@ -4930,9 +5012,11 @@ ShallowWrapper {
                                                     onClick={[Function]}
                                                     type="primary"
                           >
-                                                    <span>
+                                                    <style__StyledText
+                                                                              capitalize={true}
+                                                    >
                                                                               withdraw
-                                                    </span>
+                                                    </style__StyledText>
                           </style__StyledButton>
 </Row>,
                       ],
@@ -4948,7 +5032,11 @@ ShallowWrapper {
                           "children": <style__StyledCol
                             span={12}
 >
-                            withdraw
+                            <style__StyledText
+                                                        capitalize={true}
+                            >
+                                                        withdraw
+                            </style__StyledText>
 </style__StyledCol>,
                           "gutter": 0,
                         },
@@ -4958,11 +5046,26 @@ ShallowWrapper {
                           "key": undefined,
                           "nodeType": "class",
                           "props": Object {
-                            "children": "withdraw",
+                            "children": <style__StyledText
+                              capitalize={true}
+>
+                              withdraw
+</style__StyledText>,
                             "span": 12,
                           },
                           "ref": null,
-                          "rendered": "withdraw",
+                          "rendered": Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "class",
+                            "props": Object {
+                              "capitalize": true,
+                              "children": "withdraw",
+                            },
+                            "ref": null,
+                            "rendered": "withdraw",
+                            "type": [Function],
+                          },
                           "type": [Function],
                         },
                         "type": [Function],
@@ -5529,9 +5632,11 @@ ShallowWrapper {
                             onClick={[Function]}
                             type="primary"
 >
-                            <span>
+                            <style__StyledText
+                                                        capitalize={true}
+                            >
                                                         withdraw
-                            </span>
+                            </style__StyledText>
 </style__StyledButton>,
                           "gutter": 0,
                         },
@@ -5541,9 +5646,11 @@ ShallowWrapper {
                           "key": undefined,
                           "nodeType": "class",
                           "props": Object {
-                            "children": <span>
+                            "children": <style__StyledText
+                              capitalize={true}
+>
                               withdraw
-</span>,
+</style__StyledText>,
                             "className": "withdraw-btn",
                             "disabled": true,
                             "onClick": [Function],
@@ -5553,13 +5660,14 @@ ShallowWrapper {
                           "rendered": Object {
                             "instance": null,
                             "key": undefined,
-                            "nodeType": "host",
+                            "nodeType": "class",
                             "props": Object {
+                              "capitalize": true,
                               "children": "withdraw",
                             },
                             "ref": null,
                             "rendered": "withdraw",
-                            "type": "span",
+                            "type": [Function],
                           },
                           "type": [Function],
                         },

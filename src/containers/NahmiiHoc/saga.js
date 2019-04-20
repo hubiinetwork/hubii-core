@@ -20,7 +20,7 @@ import {
 import { notify } from 'containers/App/actions';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import { makeSelectSupportedAssets } from 'containers/HubiiApiHoc/selectors';
-import { makeSelectWalletCurrency, makeSelectOngoingChallenges } from 'containers/NahmiiHoc/selectors';
+import { makeSelectWalletCurrency, makeSelectBlockHeightByChallengeAttempted } from 'containers/NahmiiHoc/selectors';
 import { makeSelectCurrentWalletWithInfo } from 'containers/NahmiiHoc/combined-selectors';
 import { makeSelectTrezorHoc } from 'containers/TrezorHoc/selectors';
 import { makeSelectLedgerHoc } from 'containers/LedgerHoc/selectors';
@@ -59,12 +59,13 @@ import {
 function waitForTransaction(provider, ...args) { return provider.waitForTransaction(...args); }
 function getTransactionReceipt(provider, ...args) { return provider.getTransactionReceipt(...args); }
 
+// TO FIX: once balance API included the block number, deprecate the use of localstorage
+// and refactor it to check with the block number of start-challenge from the contracts
 const blockTimer = 30;
 function* hasBlockTimerExpired(address, currency) {
   const currentBlockHeight = yield select(makeSelectBlockHeight());
-  const ongoingChallenges = yield select(makeSelectOngoingChallenges());
-  const lastAttemptedAtBlockHeight = ongoingChallenges.getIn([address, currency, 'attemptedAtBlockHeight']) || -1;
-
+  const blockHeightsByChallengeAttempted = yield select(makeSelectBlockHeightByChallengeAttempted());
+  const lastAttemptedAtBlockHeight = blockHeightsByChallengeAttempted.getIn([address, currency]) || -1;
   const expired = (currentBlockHeight.get('height') - blockTimer) >= lastAttemptedAtBlockHeight;
   return expired;
 }
@@ -173,7 +174,7 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
 
     const { currency } = monetaryAmount.toJSON();
 
-    const blockTimerExpired = yield hasBlockTimerExpired(wallet.address, currency);
+    const blockTimerExpired = yield hasBlockTimerExpired(wallet.address, currency.ct);
     if (!blockTimerExpired) {
       yield put(actions.nahmiiPaymentError(new Error(`Payment is locked for ${blockTimer} block height`)));
       yield put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_transfer' }, { block_timer: blockTimer })));

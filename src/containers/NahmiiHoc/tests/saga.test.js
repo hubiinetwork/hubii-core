@@ -188,7 +188,7 @@ describe('nahmiiHocSaga', () => {
       .withState(
         storeMock
           .setIn(['ethOperationsHoc', 'blockHeight', 'height'], 5)
-          .setIn(['nahmiiHoc', 'ongoingChallenges', walletAddress, currency.ct, 'attemptedAtBlockHeight'], 1)
+          .setIn(['nahmiiHoc', 'challengeAttemptedAtBlockHeight', walletAddress, currency.ct], 1)
       )
       .put(actions.nahmiiPaymentError(error))
       .put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_transfer' })))
@@ -285,7 +285,7 @@ describe('nahmiiHocSaga', () => {
           .put(actions.updateChallengeBlockHeight(signerMock.address, currency, mockedBlockHeight))
           .run({ silenceTimeout: true })
           .then((result) => {
-            const lastattemptedAtBlockHeight = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'attemptedAtBlockHeight']);
+            const lastattemptedAtBlockHeight = result.storeState.getIn(['nahmiiHoc', 'challengeAttemptedAtBlockHeight', signerMock.address, currency]);
             expect(lastattemptedAtBlockHeight).toEqual(mockedBlockHeight);
           });
       }
@@ -298,9 +298,8 @@ describe('nahmiiHocSaga', () => {
             withReducer,
             storeMock
               .setIn(['ethOperationsHoc', 'blockHeight', 'height'], mockedBlockHeight)
-              .setIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'attemptedAtBlockHeight'], 1)
+              .setIn(['nahmiiHoc', 'challengeAttemptedAtBlockHeight', signerMock.address, currency], 1)
           )
-          // .put(actions.updateChallengeBlockHeight(signerMock.address, currency, mockedBlockHeight))
           .put(actions.startChallengeError(signerMock.address, currency))
           .put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_start_challenge' })))
           .run({ silenceTimeout: true });
