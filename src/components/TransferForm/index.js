@@ -141,7 +141,7 @@ export class TransferForm extends React.PureComponent {
 
     // set a higher gas limit for erc20 tokens
     let gasLimit = 21000;
-    if (newSymbol !== 'ETH') gasLimit = 100000;
+    if (newSymbol !== 'ETH') gasLimit = 200000;
 
     this.setState({
       assetToSend,

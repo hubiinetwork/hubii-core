@@ -49,6 +49,10 @@ export class GasOptions extends React.PureComponent { // eslint-disable-line rea
       const fee = new BigNumber(gasLimit).times(gweiToWei(new BigNumber(gasPriceGwei)));
       this.props.onChange(fee, new BigNumber(gasLimit), new BigNumber(gasPriceGwei));
     }
+    if (prevProps.defaultGasLimit !== this.props.defaultGasLimit) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ gasLimit: this.props.defaultGasLimit, gasLimitInput: this.props.defaultGasLimit.toString() });
+    }
   }
 
   onFocusNumberInput(input) {

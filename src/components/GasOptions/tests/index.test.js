@@ -111,6 +111,22 @@ describe('<GasOptions />', () => {
       });
     });
   });
+  describe('update defaultGasLimit prop', () => {
+    ['safeLow', 'average', 'fast'].forEach((mode) => {
+      it('Updates on defaultGasLimit prop should reflect on the states', () => {
+        const wrapper = shallow(<GasOptions
+          {...props}
+          defaultOption={mode}
+        />
+        );
+        wrapper.setProps({ defaultGasLimit: 123 });
+
+        const state = wrapper.state();
+        expect(state.gasLimit).toEqual(123);
+        expect(state.gasLimitInput).toEqual('123');
+      });
+    });
+  });
   describe('defaultOption set to manual ', () => {
     let wrapper;
     let gasLimitInput;
