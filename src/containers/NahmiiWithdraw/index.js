@@ -28,6 +28,7 @@ import HelperText from 'components/ui/HelperText';
 import Text from 'components/ui/Text';
 import NumericText from 'components/ui/NumericText';
 import SelectableText from 'components/ui/SelectableText';
+import TooltipText from 'components/ui/TooltipText';
 import Input from 'components/ui/Input';
 import Select, { Option } from 'components/ui/Select';
 import TransferDescriptionItem from 'components/TransferDescriptionItem';
@@ -74,7 +75,6 @@ import {
   StyledSteps,
 } from './style';
 
-// import ScrollableContentWrapper from '../../components/ui/ScrollableContentWrapper';
 const Step = Steps.Step;
 
 export class NahmiiWithdraw extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -657,7 +657,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                   (
                     <div className="start-settlement">
                       <Row>
-                        <StyledCol span={12}>{formatMessage({ id: 'base_layer_fee' })}</StyledCol>
+                        <StyledCol span={12}>{formatMessage({ id: 'max_base_layer_fee' })}</StyledCol>
                       </Row>
                       <Row>
                         <TransferDescriptionItem
@@ -747,7 +747,11 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                         />
                       </Row>
                       <Row>
-                        <StyledCol span={12}>{formatMessage({ id: 'base_layer_fee' })}</StyledCol>
+                        <StyledCol span={12}>
+                          <TooltipText details={formatMessage({ id: 'max_base_layer_fee_explain' })}>
+                            {formatMessage({ id: 'max_base_layer_fee' })}
+                          </TooltipText>
+                        </StyledCol>
                       </Row>
                       <Row>
                         <TransferDescriptionItem

@@ -203,6 +203,8 @@
     "nahmii": "nahmii",
     "nahmii_available": "nahmii available",
     "base_layer_fee": "Base layer fee",
+    "max_base_layer_fee": "Maximum base layer fee",
+    "max_base_layer_fee_explain": "In general, the transaction consume much less than the maximum amount of fee.",
     "select_asset_to_deposit": "Select an asset to deposit",
     "deposit": "Deposit",
     "deposit_success": "Deposit success",

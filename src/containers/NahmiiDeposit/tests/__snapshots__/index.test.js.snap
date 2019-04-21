@@ -764,7 +764,11 @@ ShallowWrapper {
                         <style__StyledCol
                                 span={12}
                         >
-                                base_layer_fee
+                                <TooltipText
+                                        details="max_base_layer_fee_explain"
+                                >
+                                        max_base_layer_fee
+                                </TooltipText>
                         </style__StyledCol>
                 </Row>
                 <Row
@@ -1118,7 +1122,11 @@ ShallowWrapper {
                         <style__StyledCol
                                     span={12}
                         >
-                                    base_layer_fee
+                                    <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                    >
+                                                max_base_layer_fee
+                                    </TooltipText>
                         </style__StyledCol>
             </Row>
             <Row
@@ -1759,7 +1767,11 @@ ShallowWrapper {
                 <style__StyledCol
                                 span={12}
                 >
-                                base_layer_fee
+                                <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                >
+                                                max_base_layer_fee
+                                </TooltipText>
                 </style__StyledCol>
 </Row>,
               <Row
@@ -2064,7 +2076,11 @@ ShallowWrapper {
                 "children": <style__StyledCol
                   span={12}
 >
-                  base_layer_fee
+                  <TooltipText
+                                    details="max_base_layer_fee_explain"
+                  >
+                                    max_base_layer_fee
+                  </TooltipText>
 </style__StyledCol>,
                 "gutter": 0,
               },
@@ -2074,11 +2090,26 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "base_layer_fee",
+                  "children": <TooltipText
+                    details="max_base_layer_fee_explain"
+>
+                    max_base_layer_fee
+</TooltipText>,
                   "span": 12,
                 },
                 "ref": null,
-                "rendered": "base_layer_fee",
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "max_base_layer_fee",
+                    "details": "max_base_layer_fee_explain",
+                  },
+                  "ref": null,
+                  "rendered": "max_base_layer_fee",
+                  "type": [Function],
+                },
                 "type": [Function],
               },
               "type": [Function],
@@ -2955,7 +2986,11 @@ ShallowWrapper {
                               <style__StyledCol
                                         span={12}
                               >
-                                        base_layer_fee
+                                        <TooltipText
+                                                  details="max_base_layer_fee_explain"
+                                        >
+                                                  max_base_layer_fee
+                                        </TooltipText>
                               </style__StyledCol>
                     </Row>
                     <Row
@@ -3309,7 +3344,11 @@ ShallowWrapper {
                             <style__StyledCol
                                           span={12}
                             >
-                                          base_layer_fee
+                                          <TooltipText
+                                                        details="max_base_layer_fee_explain"
+                                          >
+                                                        max_base_layer_fee
+                                          </TooltipText>
                             </style__StyledCol>
               </Row>
               <Row
@@ -3950,7 +3989,11 @@ ShallowWrapper {
                   <style__StyledCol
                                     span={12}
                   >
-                                    base_layer_fee
+                                    <TooltipText
+                                                      details="max_base_layer_fee_explain"
+                                    >
+                                                      max_base_layer_fee
+                                    </TooltipText>
                   </style__StyledCol>
 </Row>,
                 <Row
@@ -4255,7 +4298,11 @@ ShallowWrapper {
                   "children": <style__StyledCol
                     span={12}
 >
-                    base_layer_fee
+                    <TooltipText
+                                        details="max_base_layer_fee_explain"
+                    >
+                                        max_base_layer_fee
+                    </TooltipText>
 </style__StyledCol>,
                   "gutter": 0,
                 },
@@ -4265,11 +4312,26 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "base_layer_fee",
+                    "children": <TooltipText
+                      details="max_base_layer_fee_explain"
+>
+                      max_base_layer_fee
+</TooltipText>,
                     "span": 12,
                   },
                   "ref": null,
-                  "rendered": "base_layer_fee",
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "max_base_layer_fee",
+                      "details": "max_base_layer_fee_explain",
+                    },
+                    "ref": null,
+                    "rendered": "max_base_layer_fee",
+                    "type": [Function],
+                  },
                   "type": [Function],
                 },
                 "type": [Function],
@@ -5775,7 +5837,11 @@ ShallowWrapper {
                         <style__StyledCol
                                 span={12}
                         >
-                                base_layer_fee
+                                <TooltipText
+                                        details="max_base_layer_fee_explain"
+                                >
+                                        max_base_layer_fee
+                                </TooltipText>
                         </style__StyledCol>
                 </Row>
                 <Row
@@ -6129,7 +6195,11 @@ ShallowWrapper {
                         <style__StyledCol
                                     span={12}
                         >
-                                    base_layer_fee
+                                    <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                    >
+                                                max_base_layer_fee
+                                    </TooltipText>
                         </style__StyledCol>
             </Row>
             <Row
@@ -6770,7 +6840,11 @@ ShallowWrapper {
                 <style__StyledCol
                                 span={12}
                 >
-                                base_layer_fee
+                                <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                >
+                                                max_base_layer_fee
+                                </TooltipText>
                 </style__StyledCol>
 </Row>,
               <Row
@@ -7075,7 +7149,11 @@ ShallowWrapper {
                 "children": <style__StyledCol
                   span={12}
 >
-                  base_layer_fee
+                  <TooltipText
+                                    details="max_base_layer_fee_explain"
+                  >
+                                    max_base_layer_fee
+                  </TooltipText>
 </style__StyledCol>,
                 "gutter": 0,
               },
@@ -7085,11 +7163,26 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "base_layer_fee",
+                  "children": <TooltipText
+                    details="max_base_layer_fee_explain"
+>
+                    max_base_layer_fee
+</TooltipText>,
                   "span": 12,
                 },
                 "ref": null,
-                "rendered": "base_layer_fee",
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "max_base_layer_fee",
+                    "details": "max_base_layer_fee_explain",
+                  },
+                  "ref": null,
+                  "rendered": "max_base_layer_fee",
+                  "type": [Function],
+                },
                 "type": [Function],
               },
               "type": [Function],
@@ -7966,7 +8059,11 @@ ShallowWrapper {
                               <style__StyledCol
                                         span={12}
                               >
-                                        base_layer_fee
+                                        <TooltipText
+                                                  details="max_base_layer_fee_explain"
+                                        >
+                                                  max_base_layer_fee
+                                        </TooltipText>
                               </style__StyledCol>
                     </Row>
                     <Row
@@ -8320,7 +8417,11 @@ ShallowWrapper {
                             <style__StyledCol
                                           span={12}
                             >
-                                          base_layer_fee
+                                          <TooltipText
+                                                        details="max_base_layer_fee_explain"
+                                          >
+                                                        max_base_layer_fee
+                                          </TooltipText>
                             </style__StyledCol>
               </Row>
               <Row
@@ -8961,7 +9062,11 @@ ShallowWrapper {
                   <style__StyledCol
                                     span={12}
                   >
-                                    base_layer_fee
+                                    <TooltipText
+                                                      details="max_base_layer_fee_explain"
+                                    >
+                                                      max_base_layer_fee
+                                    </TooltipText>
                   </style__StyledCol>
 </Row>,
                 <Row
@@ -9266,7 +9371,11 @@ ShallowWrapper {
                   "children": <style__StyledCol
                     span={12}
 >
-                    base_layer_fee
+                    <TooltipText
+                                        details="max_base_layer_fee_explain"
+                    >
+                                        max_base_layer_fee
+                    </TooltipText>
 </style__StyledCol>,
                   "gutter": 0,
                 },
@@ -9276,11 +9385,26 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "base_layer_fee",
+                    "children": <TooltipText
+                      details="max_base_layer_fee_explain"
+>
+                      max_base_layer_fee
+</TooltipText>,
                     "span": 12,
                   },
                   "ref": null,
-                  "rendered": "base_layer_fee",
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "max_base_layer_fee",
+                      "details": "max_base_layer_fee_explain",
+                    },
+                    "ref": null,
+                    "rendered": "max_base_layer_fee",
+                    "type": [Function],
+                  },
                   "type": [Function],
                 },
                 "type": [Function],
@@ -10786,7 +10910,11 @@ ShallowWrapper {
                         <style__StyledCol
                                 span={12}
                         >
-                                base_layer_fee
+                                <TooltipText
+                                        details="max_base_layer_fee_explain"
+                                >
+                                        max_base_layer_fee
+                                </TooltipText>
                         </style__StyledCol>
                 </Row>
                 <Row
@@ -11140,7 +11268,11 @@ ShallowWrapper {
                         <style__StyledCol
                                     span={12}
                         >
-                                    base_layer_fee
+                                    <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                    >
+                                                max_base_layer_fee
+                                    </TooltipText>
                         </style__StyledCol>
             </Row>
             <Row
@@ -11781,7 +11913,11 @@ ShallowWrapper {
                 <style__StyledCol
                                 span={12}
                 >
-                                base_layer_fee
+                                <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                >
+                                                max_base_layer_fee
+                                </TooltipText>
                 </style__StyledCol>
 </Row>,
               <Row
@@ -12086,7 +12222,11 @@ ShallowWrapper {
                 "children": <style__StyledCol
                   span={12}
 >
-                  base_layer_fee
+                  <TooltipText
+                                    details="max_base_layer_fee_explain"
+                  >
+                                    max_base_layer_fee
+                  </TooltipText>
 </style__StyledCol>,
                 "gutter": 0,
               },
@@ -12096,11 +12236,26 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "base_layer_fee",
+                  "children": <TooltipText
+                    details="max_base_layer_fee_explain"
+>
+                    max_base_layer_fee
+</TooltipText>,
                   "span": 12,
                 },
                 "ref": null,
-                "rendered": "base_layer_fee",
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "max_base_layer_fee",
+                    "details": "max_base_layer_fee_explain",
+                  },
+                  "ref": null,
+                  "rendered": "max_base_layer_fee",
+                  "type": [Function],
+                },
                 "type": [Function],
               },
               "type": [Function],
@@ -12977,7 +13132,11 @@ ShallowWrapper {
                               <style__StyledCol
                                         span={12}
                               >
-                                        base_layer_fee
+                                        <TooltipText
+                                                  details="max_base_layer_fee_explain"
+                                        >
+                                                  max_base_layer_fee
+                                        </TooltipText>
                               </style__StyledCol>
                     </Row>
                     <Row
@@ -13331,7 +13490,11 @@ ShallowWrapper {
                             <style__StyledCol
                                           span={12}
                             >
-                                          base_layer_fee
+                                          <TooltipText
+                                                        details="max_base_layer_fee_explain"
+                                          >
+                                                        max_base_layer_fee
+                                          </TooltipText>
                             </style__StyledCol>
               </Row>
               <Row
@@ -13972,7 +14135,11 @@ ShallowWrapper {
                   <style__StyledCol
                                     span={12}
                   >
-                                    base_layer_fee
+                                    <TooltipText
+                                                      details="max_base_layer_fee_explain"
+                                    >
+                                                      max_base_layer_fee
+                                    </TooltipText>
                   </style__StyledCol>
 </Row>,
                 <Row
@@ -14277,7 +14444,11 @@ ShallowWrapper {
                   "children": <style__StyledCol
                     span={12}
 >
-                    base_layer_fee
+                    <TooltipText
+                                        details="max_base_layer_fee_explain"
+                    >
+                                        max_base_layer_fee
+                    </TooltipText>
 </style__StyledCol>,
                   "gutter": 0,
                 },
@@ -14287,11 +14458,26 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "base_layer_fee",
+                    "children": <TooltipText
+                      details="max_base_layer_fee_explain"
+>
+                      max_base_layer_fee
+</TooltipText>,
                     "span": 12,
                   },
                   "ref": null,
-                  "rendered": "base_layer_fee",
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "max_base_layer_fee",
+                      "details": "max_base_layer_fee_explain",
+                    },
+                    "ref": null,
+                    "rendered": "max_base_layer_fee",
+                    "type": [Function],
+                  },
                   "type": [Function],
                 },
                 "type": [Function],
@@ -15797,7 +15983,11 @@ ShallowWrapper {
                         <style__StyledCol
                                 span={12}
                         >
-                                base_layer_fee
+                                <TooltipText
+                                        details="max_base_layer_fee_explain"
+                                >
+                                        max_base_layer_fee
+                                </TooltipText>
                         </style__StyledCol>
                 </Row>
                 <Row
@@ -16125,7 +16315,11 @@ ShallowWrapper {
                         <style__StyledCol
                                     span={12}
                         >
-                                    base_layer_fee
+                                    <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                    >
+                                                max_base_layer_fee
+                                    </TooltipText>
                         </style__StyledCol>
             </Row>
             <Row
@@ -16740,7 +16934,11 @@ ShallowWrapper {
                 <style__StyledCol
                                 span={12}
                 >
-                                base_layer_fee
+                                <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                >
+                                                max_base_layer_fee
+                                </TooltipText>
                 </style__StyledCol>
 </Row>,
               <Row
@@ -17019,7 +17217,11 @@ ShallowWrapper {
                 "children": <style__StyledCol
                   span={12}
 >
-                  base_layer_fee
+                  <TooltipText
+                                    details="max_base_layer_fee_explain"
+                  >
+                                    max_base_layer_fee
+                  </TooltipText>
 </style__StyledCol>,
                 "gutter": 0,
               },
@@ -17029,11 +17231,26 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "base_layer_fee",
+                  "children": <TooltipText
+                    details="max_base_layer_fee_explain"
+>
+                    max_base_layer_fee
+</TooltipText>,
                   "span": 12,
                 },
                 "ref": null,
-                "rendered": "base_layer_fee",
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "max_base_layer_fee",
+                    "details": "max_base_layer_fee_explain",
+                  },
+                  "ref": null,
+                  "rendered": "max_base_layer_fee",
+                  "type": [Function],
+                },
                 "type": [Function],
               },
               "type": [Function],
@@ -17773,7 +17990,11 @@ ShallowWrapper {
                               <style__StyledCol
                                         span={12}
                               >
-                                        base_layer_fee
+                                        <TooltipText
+                                                  details="max_base_layer_fee_explain"
+                                        >
+                                                  max_base_layer_fee
+                                        </TooltipText>
                               </style__StyledCol>
                     </Row>
                     <Row
@@ -18101,7 +18322,11 @@ ShallowWrapper {
                             <style__StyledCol
                                           span={12}
                             >
-                                          base_layer_fee
+                                          <TooltipText
+                                                        details="max_base_layer_fee_explain"
+                                          >
+                                                        max_base_layer_fee
+                                          </TooltipText>
                             </style__StyledCol>
               </Row>
               <Row
@@ -18716,7 +18941,11 @@ ShallowWrapper {
                   <style__StyledCol
                                     span={12}
                   >
-                                    base_layer_fee
+                                    <TooltipText
+                                                      details="max_base_layer_fee_explain"
+                                    >
+                                                      max_base_layer_fee
+                                    </TooltipText>
                   </style__StyledCol>
 </Row>,
                 <Row
@@ -18995,7 +19224,11 @@ ShallowWrapper {
                   "children": <style__StyledCol
                     span={12}
 >
-                    base_layer_fee
+                    <TooltipText
+                                        details="max_base_layer_fee_explain"
+                    >
+                                        max_base_layer_fee
+                    </TooltipText>
 </style__StyledCol>,
                   "gutter": 0,
                 },
@@ -19005,11 +19238,26 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "base_layer_fee",
+                    "children": <TooltipText
+                      details="max_base_layer_fee_explain"
+>
+                      max_base_layer_fee
+</TooltipText>,
                     "span": 12,
                   },
                   "ref": null,
-                  "rendered": "base_layer_fee",
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "max_base_layer_fee",
+                      "details": "max_base_layer_fee_explain",
+                    },
+                    "ref": null,
+                    "rendered": "max_base_layer_fee",
+                    "type": [Function],
+                  },
                   "type": [Function],
                 },
                 "type": [Function],
@@ -20378,7 +20626,11 @@ ShallowWrapper {
                         <style__StyledCol
                                 span={12}
                         >
-                                base_layer_fee
+                                <TooltipText
+                                        details="max_base_layer_fee_explain"
+                                >
+                                        max_base_layer_fee
+                                </TooltipText>
                         </style__StyledCol>
                 </Row>
                 <Row
@@ -20706,7 +20958,11 @@ ShallowWrapper {
                         <style__StyledCol
                                     span={12}
                         >
-                                    base_layer_fee
+                                    <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                    >
+                                                max_base_layer_fee
+                                    </TooltipText>
                         </style__StyledCol>
             </Row>
             <Row
@@ -21321,7 +21577,11 @@ ShallowWrapper {
                 <style__StyledCol
                                 span={12}
                 >
-                                base_layer_fee
+                                <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                >
+                                                max_base_layer_fee
+                                </TooltipText>
                 </style__StyledCol>
 </Row>,
               <Row
@@ -21600,7 +21860,11 @@ ShallowWrapper {
                 "children": <style__StyledCol
                   span={12}
 >
-                  base_layer_fee
+                  <TooltipText
+                                    details="max_base_layer_fee_explain"
+                  >
+                                    max_base_layer_fee
+                  </TooltipText>
 </style__StyledCol>,
                 "gutter": 0,
               },
@@ -21610,11 +21874,26 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "base_layer_fee",
+                  "children": <TooltipText
+                    details="max_base_layer_fee_explain"
+>
+                    max_base_layer_fee
+</TooltipText>,
                   "span": 12,
                 },
                 "ref": null,
-                "rendered": "base_layer_fee",
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "max_base_layer_fee",
+                    "details": "max_base_layer_fee_explain",
+                  },
+                  "ref": null,
+                  "rendered": "max_base_layer_fee",
+                  "type": [Function],
+                },
                 "type": [Function],
               },
               "type": [Function],
@@ -22354,7 +22633,11 @@ ShallowWrapper {
                               <style__StyledCol
                                         span={12}
                               >
-                                        base_layer_fee
+                                        <TooltipText
+                                                  details="max_base_layer_fee_explain"
+                                        >
+                                                  max_base_layer_fee
+                                        </TooltipText>
                               </style__StyledCol>
                     </Row>
                     <Row
@@ -22682,7 +22965,11 @@ ShallowWrapper {
                             <style__StyledCol
                                           span={12}
                             >
-                                          base_layer_fee
+                                          <TooltipText
+                                                        details="max_base_layer_fee_explain"
+                                          >
+                                                        max_base_layer_fee
+                                          </TooltipText>
                             </style__StyledCol>
               </Row>
               <Row
@@ -23297,7 +23584,11 @@ ShallowWrapper {
                   <style__StyledCol
                                     span={12}
                   >
-                                    base_layer_fee
+                                    <TooltipText
+                                                      details="max_base_layer_fee_explain"
+                                    >
+                                                      max_base_layer_fee
+                                    </TooltipText>
                   </style__StyledCol>
 </Row>,
                 <Row
@@ -23576,7 +23867,11 @@ ShallowWrapper {
                   "children": <style__StyledCol
                     span={12}
 >
-                    base_layer_fee
+                    <TooltipText
+                                        details="max_base_layer_fee_explain"
+                    >
+                                        max_base_layer_fee
+                    </TooltipText>
 </style__StyledCol>,
                   "gutter": 0,
                 },
@@ -23586,11 +23881,26 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "base_layer_fee",
+                    "children": <TooltipText
+                      details="max_base_layer_fee_explain"
+>
+                      max_base_layer_fee
+</TooltipText>,
                     "span": 12,
                   },
                   "ref": null,
-                  "rendered": "base_layer_fee",
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "max_base_layer_fee",
+                      "details": "max_base_layer_fee_explain",
+                    },
+                    "ref": null,
+                    "rendered": "max_base_layer_fee",
+                    "type": [Function],
+                  },
                   "type": [Function],
                 },
                 "type": [Function],
@@ -24960,7 +25270,11 @@ ShallowWrapper {
                         <style__StyledCol
                                 span={12}
                         >
-                                base_layer_fee
+                                <TooltipText
+                                        details="max_base_layer_fee_explain"
+                                >
+                                        max_base_layer_fee
+                                </TooltipText>
                         </style__StyledCol>
                 </Row>
                 <Row
@@ -25288,7 +25602,11 @@ ShallowWrapper {
                         <style__StyledCol
                                     span={12}
                         >
-                                    base_layer_fee
+                                    <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                    >
+                                                max_base_layer_fee
+                                    </TooltipText>
                         </style__StyledCol>
             </Row>
             <Row
@@ -25903,7 +26221,11 @@ ShallowWrapper {
                 <style__StyledCol
                                 span={12}
                 >
-                                base_layer_fee
+                                <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                >
+                                                max_base_layer_fee
+                                </TooltipText>
                 </style__StyledCol>
 </Row>,
               <Row
@@ -26182,7 +26504,11 @@ ShallowWrapper {
                 "children": <style__StyledCol
                   span={12}
 >
-                  base_layer_fee
+                  <TooltipText
+                                    details="max_base_layer_fee_explain"
+                  >
+                                    max_base_layer_fee
+                  </TooltipText>
 </style__StyledCol>,
                 "gutter": 0,
               },
@@ -26192,11 +26518,26 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "base_layer_fee",
+                  "children": <TooltipText
+                    details="max_base_layer_fee_explain"
+>
+                    max_base_layer_fee
+</TooltipText>,
                   "span": 12,
                 },
                 "ref": null,
-                "rendered": "base_layer_fee",
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "max_base_layer_fee",
+                    "details": "max_base_layer_fee_explain",
+                  },
+                  "ref": null,
+                  "rendered": "max_base_layer_fee",
+                  "type": [Function],
+                },
                 "type": [Function],
               },
               "type": [Function],
@@ -26936,7 +27277,11 @@ ShallowWrapper {
                               <style__StyledCol
                                         span={12}
                               >
-                                        base_layer_fee
+                                        <TooltipText
+                                                  details="max_base_layer_fee_explain"
+                                        >
+                                                  max_base_layer_fee
+                                        </TooltipText>
                               </style__StyledCol>
                     </Row>
                     <Row
@@ -27264,7 +27609,11 @@ ShallowWrapper {
                             <style__StyledCol
                                           span={12}
                             >
-                                          base_layer_fee
+                                          <TooltipText
+                                                        details="max_base_layer_fee_explain"
+                                          >
+                                                        max_base_layer_fee
+                                          </TooltipText>
                             </style__StyledCol>
               </Row>
               <Row
@@ -27879,7 +28228,11 @@ ShallowWrapper {
                   <style__StyledCol
                                     span={12}
                   >
-                                    base_layer_fee
+                                    <TooltipText
+                                                      details="max_base_layer_fee_explain"
+                                    >
+                                                      max_base_layer_fee
+                                    </TooltipText>
                   </style__StyledCol>
 </Row>,
                 <Row
@@ -28158,7 +28511,11 @@ ShallowWrapper {
                   "children": <style__StyledCol
                     span={12}
 >
-                    base_layer_fee
+                    <TooltipText
+                                        details="max_base_layer_fee_explain"
+                    >
+                                        max_base_layer_fee
+                    </TooltipText>
 </style__StyledCol>,
                   "gutter": 0,
                 },
@@ -28168,11 +28525,26 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "base_layer_fee",
+                    "children": <TooltipText
+                      details="max_base_layer_fee_explain"
+>
+                      max_base_layer_fee
+</TooltipText>,
                     "span": 12,
                   },
                   "ref": null,
-                  "rendered": "base_layer_fee",
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "max_base_layer_fee",
+                      "details": "max_base_layer_fee_explain",
+                    },
+                    "ref": null,
+                    "rendered": "max_base_layer_fee",
+                    "type": [Function],
+                  },
                   "type": [Function],
                 },
                 "type": [Function],
@@ -32055,7 +32427,11 @@ ShallowWrapper {
                         <style__StyledCol
                                 span={12}
                         >
-                                base_layer_fee
+                                <TooltipText
+                                        details="max_base_layer_fee_explain"
+                                >
+                                        max_base_layer_fee
+                                </TooltipText>
                         </style__StyledCol>
                 </Row>
                 <Row
@@ -32383,7 +32759,11 @@ ShallowWrapper {
                         <style__StyledCol
                                     span={12}
                         >
-                                    base_layer_fee
+                                    <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                    >
+                                                max_base_layer_fee
+                                    </TooltipText>
                         </style__StyledCol>
             </Row>
             <Row
@@ -32998,7 +33378,11 @@ ShallowWrapper {
                 <style__StyledCol
                                 span={12}
                 >
-                                base_layer_fee
+                                <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                >
+                                                max_base_layer_fee
+                                </TooltipText>
                 </style__StyledCol>
 </Row>,
               <Row
@@ -33277,7 +33661,11 @@ ShallowWrapper {
                 "children": <style__StyledCol
                   span={12}
 >
-                  base_layer_fee
+                  <TooltipText
+                                    details="max_base_layer_fee_explain"
+                  >
+                                    max_base_layer_fee
+                  </TooltipText>
 </style__StyledCol>,
                 "gutter": 0,
               },
@@ -33287,11 +33675,26 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "base_layer_fee",
+                  "children": <TooltipText
+                    details="max_base_layer_fee_explain"
+>
+                    max_base_layer_fee
+</TooltipText>,
                   "span": 12,
                 },
                 "ref": null,
-                "rendered": "base_layer_fee",
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "max_base_layer_fee",
+                    "details": "max_base_layer_fee_explain",
+                  },
+                  "ref": null,
+                  "rendered": "max_base_layer_fee",
+                  "type": [Function],
+                },
                 "type": [Function],
               },
               "type": [Function],
@@ -34031,7 +34434,11 @@ ShallowWrapper {
                               <style__StyledCol
                                         span={12}
                               >
-                                        base_layer_fee
+                                        <TooltipText
+                                                  details="max_base_layer_fee_explain"
+                                        >
+                                                  max_base_layer_fee
+                                        </TooltipText>
                               </style__StyledCol>
                     </Row>
                     <Row
@@ -34359,7 +34766,11 @@ ShallowWrapper {
                             <style__StyledCol
                                           span={12}
                             >
-                                          base_layer_fee
+                                          <TooltipText
+                                                        details="max_base_layer_fee_explain"
+                                          >
+                                                        max_base_layer_fee
+                                          </TooltipText>
                             </style__StyledCol>
               </Row>
               <Row
@@ -34974,7 +35385,11 @@ ShallowWrapper {
                   <style__StyledCol
                                     span={12}
                   >
-                                    base_layer_fee
+                                    <TooltipText
+                                                      details="max_base_layer_fee_explain"
+                                    >
+                                                      max_base_layer_fee
+                                    </TooltipText>
                   </style__StyledCol>
 </Row>,
                 <Row
@@ -35253,7 +35668,11 @@ ShallowWrapper {
                   "children": <style__StyledCol
                     span={12}
 >
-                    base_layer_fee
+                    <TooltipText
+                                        details="max_base_layer_fee_explain"
+                    >
+                                        max_base_layer_fee
+                    </TooltipText>
 </style__StyledCol>,
                   "gutter": 0,
                 },
@@ -35263,11 +35682,26 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "base_layer_fee",
+                    "children": <TooltipText
+                      details="max_base_layer_fee_explain"
+>
+                      max_base_layer_fee
+</TooltipText>,
                     "span": 12,
                   },
                   "ref": null,
-                  "rendered": "base_layer_fee",
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "max_base_layer_fee",
+                      "details": "max_base_layer_fee_explain",
+                    },
+                    "ref": null,
+                    "rendered": "max_base_layer_fee",
+                    "type": [Function],
+                  },
                   "type": [Function],
                 },
                 "type": [Function],
