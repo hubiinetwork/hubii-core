@@ -171,7 +171,7 @@ describe('<NahmiiWithdraw />', () => {
       const stepsNode = wrapper.find('style__StyledSteps');
       expect(stepsNode.find('Step').get(1).props.description).toEqual('expiration_time {"endtime":"Thu, Jan 1, 1970 1:00 AM"}');
     });
-    it('should aggregate and display the max expiration time in the stepper', () => {
+    it('should display max withdrawable amount in the stepper even when there is an ongoing challenge', () => {
       const wrapper = shallow(
         <NahmiiWithdraw
           {...props}
@@ -186,6 +186,25 @@ describe('<NahmiiWithdraw />', () => {
       );
       const stepsNode = wrapper.find('style__StyledSteps');
       expect(stepsNode.find('Step').get(3).props.description).toEqual('withdrawable_amount {"amount":"3","symbol":"ETH"}');
+    });
+    [
+      [true, true, true],
+      [true, false, true],
+      [false, true, true],
+      [false, false, false],
+      [undefined, undefined, false],
+    ].forEach(([loadingOngoingChallenges, loadingSettleableChallenges, expectedLoadingIcon]) => {
+      it(`In stepper section, loading icon is being displayed: ${expectedLoadingIcon}; when loading ongoing challengs: ${loadingOngoingChallenges}; when loading settleable challenges: ${loadingSettleableChallenges}`, () => {
+        const wrapper = shallow(
+          <NahmiiWithdraw
+            {...props}
+            ongoingChallenges={ongoingChallengesNone.set('loading', loadingOngoingChallenges)}
+            settleableChallenges={settleableChallengesNone.set('loading', loadingSettleableChallenges)}
+          />
+        );
+        const iconNode = wrapper.find('style__BottomWrapper Icon');
+        expect(iconNode.exists()).toEqual(expectedLoadingIcon);
+      });
     });
     [
       {

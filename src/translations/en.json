@@ -270,5 +270,6 @@
     "start_challenge": "Start settlement",
     "challenge_period": "Challenge period",
     "settlement_qualified": "Settlement qualified",
-    "withdrawable": "Withdrawable"
+    "withdrawable": "Withdrawable",
+    "synchronising_settlement_status": "Synchronising settlement status..."
 }

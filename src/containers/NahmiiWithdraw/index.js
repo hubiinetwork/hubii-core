@@ -323,6 +323,14 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       intl,
     } = this.props;
     const { formatMessage } = intl;
+    if (ongoingChallenges.get('loading') === true || settleableChallenges.get('loading') === true) {
+      return (
+        <span>
+          <Text large>{formatMessage({ id: 'synchronising_settlement_status' })}</Text>
+          <Icon style={{ color: 'white', fontSize: '1.5rem', marginLeft: '1rem' }} type="loading" />
+        </span>
+      );
+    }
     const steppers = ['payment-driip', 'null'].map((type) => {
       const paymentDriipOngoingChallenge = ongoingChallenges.get('details').find((challenge) => challenge.type === type);
       const paymentDriipSettleableChallenge = settleableChallenges.get('details').find((challenge) => challenge.type === type);
@@ -876,7 +884,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
           </div>
         </ScrollableContentWrapper>
         <BottomWrapper>
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
             {this.renderSteppers()}
           </div>
         </BottomWrapper>

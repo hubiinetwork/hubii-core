@@ -20,7 +20,12 @@ import {
 import { notify } from 'containers/App/actions';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import { makeSelectSupportedAssets } from 'containers/HubiiApiHoc/selectors';
-import { makeSelectWalletCurrency, makeSelectBlockHeightByChallengeAttempted } from 'containers/NahmiiHoc/selectors';
+import {
+  makeSelectWalletCurrency,
+  makeSelectBlockHeightByChallengeAttempted,
+  makeSelectOngoingChallengesForCurrentWalletCurrency,
+  makeSelectSettleableChallengesForCurrentWalletCurrency,
+} from 'containers/NahmiiHoc/selectors';
 import { makeSelectCurrentWalletWithInfo } from 'containers/NahmiiHoc/combined-selectors';
 import { makeSelectTrezorHoc } from 'containers/TrezorHoc/selectors';
 import { makeSelectLedgerHoc } from 'containers/LedgerHoc/selectors';
@@ -54,6 +59,7 @@ import {
   SETTLE_SUCCESS,
   WITHDRAW,
   WITHDRAW_SUCCESS,
+  RELOAD_SETTLEMENT_STATES,
 } from './constants';
 
 function waitForTransaction(provider, ...args) { return provider.waitForTransaction(...args); }
@@ -411,10 +417,10 @@ export function* loadStagedBalances({ address }, network, noPoll) {
   }
 
   const { nahmiiProvider } = network;
-  const balanceTrackerContract = new BalanceTrackerContract(nahmiiProvider);
 
   while (true) { // eslint-disable-line no-constant-condition
     try {
+      const balanceTrackerContract = new BalanceTrackerContract(nahmiiProvider);
       const balanceTrackerContractAddress = balanceTrackerContract.address;
       // derive function selector
       const balanceType = yield balanceTrackerContract.stagedBalanceType();
@@ -749,14 +755,28 @@ export function* challengeStatusOrcestrator() {
   }
 }
 
-export function* hookTxSuccessOperations({ address }) {
-  const network = yield select(makeSelectCurrentNetwork());
+export function* changeNahmiiCurrency() {
+  const ongoingChallenges = yield select(makeSelectOngoingChallengesForCurrentWalletCurrency());
+  const settleableChallenges = yield select(makeSelectSettleableChallengesForCurrentWalletCurrency());
+  if (ongoingChallenges.get('loading') === undefined || settleableChallenges.get('loading') === undefined) {
+    const walletAddress = (yield select(makeSelectCurrentWallet())).get('address');
+    const currencyAddress = yield select(makeSelectWalletCurrency());
+    yield put(actions.reloadSettlementStates(walletAddress, currencyAddress));
+  }
+}
+
+export function* reloadSettlementStatesHook({ address }) {
   const walletAddress = address || (yield select(makeSelectCurrentWallet())).get('address');
   const currencyAddress = yield select(makeSelectWalletCurrency());
+  yield put(actions.reloadSettlementStates(walletAddress, currencyAddress));
+}
+
+export function* reloadSettlementStates({ address, currency }) {
+  const network = yield select(makeSelectCurrentNetwork());
   yield all([
-    fork(loadStagedBalances, { address: walletAddress }, network, true),
-    fork(loadOngoingChallenges, { address: walletAddress, currency: currencyAddress }, network, true),
-    fork(loadSettleableChallenges, { address: walletAddress, currency: currencyAddress }, network, true),
+    fork(loadStagedBalances, { address }, network, true),
+    fork(loadOngoingChallenges, { address, currency }, network, true),
+    fork(loadSettleableChallenges, { address, currency }, network, true),
   ]);
 }
 
@@ -770,8 +790,9 @@ export default function* listen() {
   yield takeEvery(START_CHALLENGE, startChallenge);
   yield takeEvery(SETTLE, settle);
   yield takeEvery(WITHDRAW, withdraw);
-  yield takeEvery(START_CHALLENGE_SUCCESS, hookTxSuccessOperations);
-  yield takeEvery(SETTLE_SUCCESS, hookTxSuccessOperations);
-  yield takeEvery(WITHDRAW_SUCCESS, hookTxSuccessOperations);
-  yield takeEvery(SET_SELECTED_WALLET_CURRENCY, hookTxSuccessOperations);
+  yield takeEvery(START_CHALLENGE_SUCCESS, reloadSettlementStatesHook);
+  yield takeEvery(SETTLE_SUCCESS, reloadSettlementStatesHook);
+  yield takeEvery(WITHDRAW_SUCCESS, reloadSettlementStatesHook);
+  yield takeEvery(SET_SELECTED_WALLET_CURRENCY, changeNahmiiCurrency);
+  yield takeEvery(RELOAD_SETTLEMENT_STATES, reloadSettlementStates);
 }

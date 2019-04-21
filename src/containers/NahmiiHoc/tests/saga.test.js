@@ -2,6 +2,7 @@ import { expectSaga } from 'redux-saga-test-plan';
 import { fromJS } from 'immutable';
 import nahmii from 'nahmii-sdk';
 import { storeMock } from 'mocks/store';
+import { currentNetworkMock } from 'containers/App/tests/mocks/selectors';
 import { getIntl } from 'utils/localisation';
 import BigNumber from 'bignumber.js';
 import { showDecryptWalletModal } from 'containers/WalletHoc/actions';
@@ -14,6 +15,10 @@ import {
   startChallenge,
   settle,
   withdraw,
+  changeNahmiiCurrency,
+  loadOngoingChallenges,
+  loadSettleableChallenges,
+  reloadSettlementStatesHook,
 } from '../saga';
 import nahmiiHocReducer from '../reducer';
 
@@ -206,6 +211,143 @@ describe('nahmiiHocSaga', () => {
       signTransaction: () => {},
       address: storeMock.getIn(['walletHoc', 'currentWallet', 'address']),
     };
+
+    describe('load settlement states', () => {
+      describe('#loadOngoingChallenges', () => {
+        const expectedOngoingChallenges = [{}, {}];
+        it('when succeeded, should dispatch loadOngoingChallengesSuccess and update store correctly', () => expectSaga(loadOngoingChallenges, { address: signerMock.address, currency }, currentNetworkMock)
+            .withReducer(withReducer, storeMock.setIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'loading'], true))
+            .provide({
+              call() {
+                return expectedOngoingChallenges;
+              },
+            })
+            .put(actions.loadOngoingChallengesSuccess(signerMock.address, currency, expectedOngoingChallenges))
+            .run({ silenceTimeout: true })
+            .then((result) => {
+              const loading = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'loading']);
+              expect(loading).toEqual(false);
+              const ongoingChallenges = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'details']);
+              expect(ongoingChallenges).toEqual(expectedOngoingChallenges);
+            })
+        );
+        it('when failed, should dispatch loadOngoingChallengesError and update store correctly', () => expectSaga(loadOngoingChallenges, { address: signerMock.address, currency }, currentNetworkMock)
+            .withReducer(withReducer, storeMock.setIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'loading'], true))
+            .provide({
+              call() {
+                throw new Error();
+              },
+            })
+            .put(actions.loadOngoingChallengesError(signerMock.address, currency))
+            .run({ silenceTimeout: true })
+            .then((result) => {
+              const loading = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'loading']);
+              expect(loading).toEqual(true);
+              const ongoingChallenges = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'details']);
+              expect(ongoingChallenges).toEqual(null);
+            })
+        );
+      });
+      describe('#loadSettleableChallenges', () => {
+        const expectedResponse = { settleableChallenges: [{}, {}], invalidReasons: [] };
+
+        it('when succeeded, should dispatch loadSettleableChallengesSuccess and update store correctly', () => expectSaga(loadSettleableChallenges, { address: signerMock.address, currency }, currentNetworkMock)
+            .withReducer(withReducer, storeMock.setIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'loading'], true))
+            .provide({
+              call() {
+                return expectedResponse;
+              },
+            })
+            .put(actions.loadSettleableChallengesSuccess(signerMock.address, currency, expectedResponse.settleableChallenges, expectedResponse.invalidReasons))
+            .run({ silenceTimeout: true })
+            .then((result) => {
+              const loading = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'loading']);
+              expect(loading).toEqual(false);
+              const settleableChallenges = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'details']);
+              const invalidReasons = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'invalidReasons']);
+              expect(settleableChallenges).toEqual(expectedResponse.settleableChallenges);
+              expect(invalidReasons).toEqual(expectedResponse.invalidReasons);
+            })
+        );
+        it('when failed, should dispatch loadSettleableChallengesError and update store correctly', () => expectSaga(loadSettleableChallenges, { address: signerMock.address, currency }, currentNetworkMock)
+            .withReducer(withReducer, storeMock.setIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'loading'], true))
+            .provide({
+              call() {
+                throw new Error();
+              },
+            })
+            .put(actions.loadSettleableChallengesError(signerMock.address, currency))
+            .run({ silenceTimeout: true })
+            .then((result) => {
+              const loading = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'loading']);
+              expect(loading).toEqual(true);
+              const settleableChallenges = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'details']);
+              expect(settleableChallenges).toEqual(null);
+            })
+        );
+      });
+      describe('#reloadSettlementStates', () => {
+        it('when succeeded, should dispatch loadSettleableChallengesSuccess and update store correctly', () => expectSaga(reloadSettlementStatesHook, {})
+            .withReducer(withReducer,
+              storeMock
+                .setIn(['nahmiiHoc', 'selectedCurrency'], currency)
+                .setIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'loading'], false)
+                .setIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'loading'], false)
+            )
+            .put(actions.reloadSettlementStates(signerMock.address, currency))
+            .run({ silenceTimeout: true })
+            .then((result) => {
+              ['settleableChallenges', 'ongoingChallenges'].forEach((type) => {
+                const loading = result.storeState.getIn(['nahmiiHoc', type, signerMock.address, currency, 'loading']);
+                expect(loading).toEqual(true);
+              });
+            })
+        );
+      });
+      describe('#changeNahmiiCurrency', () => {
+        [
+          [undefined, undefined],
+          [false, undefined],
+          [undefined, false],
+          [true, undefined],
+          [undefined, true],
+        ].forEach(([loadingOngoingChallenges, loadingSettleableChallenges]) => {
+          it(`should dispatch reloadSettlementStates when loading challenge status has not been initialised yet; loadingOngoingChallenges: ${loadingOngoingChallenges}, loadingSettleableChallenges: ${loadingSettleableChallenges}`, () => expectSaga(changeNahmiiCurrency, {})
+              .withReducer(withReducer,
+                storeMock
+                  .setIn(['nahmiiHoc', 'selectedCurrency'], currency)
+                  .setIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'loading'], loadingOngoingChallenges)
+                  .setIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'loading'], loadingSettleableChallenges)
+              )
+              .put(actions.reloadSettlementStates(signerMock.address, currency))
+              .run({ silenceTimeout: true })
+              .then((result) => {
+                ['settleableChallenges', 'ongoingChallenges'].forEach((type) => {
+                  const loading = result.storeState.getIn(['nahmiiHoc', type, signerMock.address, currency, 'loading']);
+                  expect(loading).toEqual(true);
+                });
+              })
+          );
+        });
+        [
+          [false, false],
+          [true, true],
+          [false, true],
+          [true, false],
+        ].forEach(([loadingOngoingChallenges, loadingSettleableChallenges]) => {
+          it(`should not dispatch reloadSettlementStates when loading challenge status has been initialised; loadingOngoingChallenges: ${loadingOngoingChallenges}, loadingSettleableChallenges: ${loadingSettleableChallenges}`, () => expectSaga(changeNahmiiCurrency, {})
+              .withReducer(withReducer,
+                storeMock
+                  .setIn(['nahmiiHoc', 'selectedCurrency'], currency)
+                  .setIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'loading'], loadingOngoingChallenges)
+                  .setIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'loading'], loadingSettleableChallenges)
+              )
+              .not.put(actions.reloadSettlementStates(signerMock.address, currency))
+              .run({ silenceTimeout: true })
+          );
+        });
+      });
+    });
 
     describe('#startChallenge', () => {
       it('should dispatch correct actions when wallet is encrypted', () => expectSaga(startChallenge, { stageAmount, currency, options })

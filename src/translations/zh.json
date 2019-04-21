@@ -270,5 +270,6 @@
     "start_challenge": "开始结算",
     "challenge_period": "结算验证中",
     "settlement_qualified": "结算验证成功",
-    "withdrawable": "可取款"
+    "withdrawable": "可取款",
+    "synchronising_settlement_status": "同步结算状态..."
 }
