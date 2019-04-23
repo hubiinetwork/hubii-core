@@ -657,7 +657,11 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                   (
                     <div className="start-settlement">
                       <Row>
-                        <StyledCol span={12}>{formatMessage({ id: 'max_base_layer_fee' })}</StyledCol>
+                        <StyledCol span={12}>
+                          <TooltipText details={formatMessage({ id: 'max_base_layer_fee_explain' })}>
+                            {formatMessage({ id: 'max_base_layer_fee' })}
+                          </TooltipText>
+                        </StyledCol>
                       </Row>
                       <Row>
                         <TransferDescriptionItem
