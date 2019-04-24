@@ -757,7 +757,11 @@ ShallowWrapper {
                                                   <style__StyledCol
                                                             span={12}
                                                   >
-                                                            withdraw
+                                                            <style__StyledText
+                                                                      capitalize={true}
+                                                            >
+                                                                      withdraw
+                                                            </style__StyledText>
                                                   </style__StyledCol>
                                         </Row>
                                         <Row
@@ -787,7 +791,11 @@ ShallowWrapper {
                                                   <style__StyledCol
                                                             span={12}
                                                   >
-                                                            base_layer_fee
+                                                            <TooltipText
+                                                                      details="max_base_layer_fee_explain"
+                                                            >
+                                                                      max_base_layer_fee
+                                                            </TooltipText>
                                                   </style__StyledCol>
                                         </Row>
                                         <Row
@@ -839,7 +847,7 @@ ShallowWrapper {
                                                             subtitle={
                                                                       <NumericText
                                                                                 type="currency"
-                                                                                value="24.72"
+                                                                                value="81.962044"
                                                                       />
                                                             }
                                                   />
@@ -954,9 +962,11 @@ ShallowWrapper {
                                                             onClick={[Function]}
                                                             type="primary"
                                                   >
-                                                            <span>
+                                                            <style__StyledText
+                                                                      capitalize={true}
+                                                            >
                                                                       withdraw
-                                                            </span>
+                                                            </style__StyledText>
                                                   </style__StyledButton>
                                         </Row>
                               </div>
@@ -970,7 +980,9 @@ ShallowWrapper {
           <div
                     style={
                               Object {
+                                        "display": "flex",
                                         "flex": 1,
+                                        "justifyContent": "center",
                                       }
                     }
           />
@@ -1097,7 +1109,11 @@ ShallowWrapper {
                                                 <style__StyledCol
                                                             span={12}
                                                 >
-                                                            withdraw
+                                                            <style__StyledText
+                                                                        capitalize={true}
+                                                            >
+                                                                        withdraw
+                                                            </style__StyledText>
                                                 </style__StyledCol>
                                     </Row>
                                     <Row
@@ -1127,7 +1143,11 @@ ShallowWrapper {
                                                 <style__StyledCol
                                                             span={12}
                                                 >
-                                                            base_layer_fee
+                                                            <TooltipText
+                                                                        details="max_base_layer_fee_explain"
+                                                            >
+                                                                        max_base_layer_fee
+                                                            </TooltipText>
                                                 </style__StyledCol>
                                     </Row>
                                     <Row
@@ -1179,7 +1199,7 @@ ShallowWrapper {
                                                             subtitle={
                                                                         <NumericText
                                                                                     type="currency"
-                                                                                    value="24.72"
+                                                                                    value="81.962044"
                                                                         />
                                                             }
                                                 />
@@ -1294,9 +1314,11 @@ ShallowWrapper {
                                                             onClick={[Function]}
                                                             type="primary"
                                                 >
-                                                            <span>
+                                                            <style__StyledText
+                                                                        capitalize={true}
+                                                            >
                                                                         withdraw
-                                                            </span>
+                                                            </style__StyledText>
                                                 </style__StyledButton>
                                     </Row>
                         </div>
@@ -1419,7 +1441,11 @@ ShallowWrapper {
                                                 <style__StyledCol
                                                                 span={12}
                                                 >
-                                                                withdraw
+                                                                <style__StyledText
+                                                                                capitalize={true}
+                                                                >
+                                                                                withdraw
+                                                                </style__StyledText>
                                                 </style__StyledCol>
                                 </Row>
                                 <Row
@@ -1449,7 +1475,11 @@ ShallowWrapper {
                                                 <style__StyledCol
                                                                 span={12}
                                                 >
-                                                                base_layer_fee
+                                                                <TooltipText
+                                                                                details="max_base_layer_fee_explain"
+                                                                >
+                                                                                max_base_layer_fee
+                                                                </TooltipText>
                                                 </style__StyledCol>
                                 </Row>
                                 <Row
@@ -1501,7 +1531,7 @@ ShallowWrapper {
                                                                 subtitle={
                                                                                 <NumericText
                                                                                                 type="currency"
-                                                                                                value="24.72"
+                                                                                                value="81.962044"
                                                                                 />
                                                                 }
                                                 />
@@ -1616,9 +1646,11 @@ ShallowWrapper {
                                                                 onClick={[Function]}
                                                                 type="primary"
                                                 >
-                                                                <span>
+                                                                <style__StyledText
+                                                                                capitalize={true}
+                                                                >
                                                                                 withdraw
-                                                                </span>
+                                                                </style__StyledText>
                                                 </style__StyledButton>
                                 </Row>
                 </div>
@@ -2006,7 +2038,11 @@ ShallowWrapper {
                                         <style__StyledCol
                                                             span={12}
                                         >
-                                                            withdraw
+                                                            <style__StyledText
+                                                                                capitalize={true}
+                                                            >
+                                                                                withdraw
+                                                            </style__StyledText>
                                         </style__StyledCol>
                     </Row>
                     <Row
@@ -2036,7 +2072,11 @@ ShallowWrapper {
                                         <style__StyledCol
                                                             span={12}
                                         >
-                                                            base_layer_fee
+                                                            <TooltipText
+                                                                                details="max_base_layer_fee_explain"
+                                                            >
+                                                                                max_base_layer_fee
+                                                            </TooltipText>
                                         </style__StyledCol>
                     </Row>
                     <Row
@@ -2088,7 +2128,7 @@ ShallowWrapper {
                                                             subtitle={
                                                                                 <NumericText
                                                                                                     type="currency"
-                                                                                                    value="24.72"
+                                                                                                    value="81.962044"
                                                                                 />
                                                             }
                                         />
@@ -2203,9 +2243,11 @@ ShallowWrapper {
                                                             onClick={[Function]}
                                                             type="primary"
                                         >
-                                                            <span>
+                                                            <style__StyledText
+                                                                                capitalize={true}
+                                                            >
                                                                                 withdraw
-                                                            </span>
+                                                            </style__StyledText>
                                         </style__StyledButton>
                     </Row>
 </div>,
@@ -2233,7 +2275,11 @@ ShallowWrapper {
                         <style__StyledCol
                                                 span={12}
                         >
-                                                withdraw
+                                                <style__StyledText
+                                                                        capitalize={true}
+                                                >
+                                                                        withdraw
+                                                </style__StyledText>
                         </style__StyledCol>
 </Row>,
                       <Row
@@ -2263,7 +2309,11 @@ ShallowWrapper {
                         <style__StyledCol
                                                 span={12}
                         >
-                                                base_layer_fee
+                                                <TooltipText
+                                                                        details="max_base_layer_fee_explain"
+                                                >
+                                                                        max_base_layer_fee
+                                                </TooltipText>
                         </style__StyledCol>
 </Row>,
                       <Row
@@ -2315,7 +2365,7 @@ ShallowWrapper {
                                                 subtitle={
                                                                         <NumericText
                                                                                                 type="currency"
-                                                                                                value="24.72"
+                                                                                                value="81.962044"
                                                                         />
                                                 }
                         />
@@ -2431,9 +2481,11 @@ ShallowWrapper {
                                                 onClick={[Function]}
                                                 type="primary"
                         >
-                                                <span>
+                                                <style__StyledText
+                                                                        capitalize={true}
+                                                >
                                                                         withdraw
-                                                </span>
+                                                </style__StyledText>
                         </style__StyledButton>
 </Row>,
                     ],
@@ -2449,7 +2501,11 @@ ShallowWrapper {
                         "children": <style__StyledCol
                           span={12}
 >
-                          withdraw
+                          <style__StyledText
+                                                    capitalize={true}
+                          >
+                                                    withdraw
+                          </style__StyledText>
 </style__StyledCol>,
                         "gutter": 0,
                       },
@@ -2459,11 +2515,26 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "class",
                         "props": Object {
-                          "children": "withdraw",
+                          "children": <style__StyledText
+                            capitalize={true}
+>
+                            withdraw
+</style__StyledText>,
                           "span": 12,
                         },
                         "ref": null,
-                        "rendered": "withdraw",
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "class",
+                          "props": Object {
+                            "capitalize": true,
+                            "children": "withdraw",
+                          },
+                          "ref": null,
+                          "rendered": "withdraw",
+                          "type": [Function],
+                        },
                         "type": [Function],
                       },
                       "type": [Function],
@@ -2524,7 +2595,11 @@ ShallowWrapper {
                         "children": <style__StyledCol
                           span={12}
 >
-                          base_layer_fee
+                          <TooltipText
+                                                    details="max_base_layer_fee_explain"
+                          >
+                                                    max_base_layer_fee
+                          </TooltipText>
 </style__StyledCol>,
                         "gutter": 0,
                       },
@@ -2534,11 +2609,26 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "class",
                         "props": Object {
-                          "children": "base_layer_fee",
+                          "children": <TooltipText
+                            details="max_base_layer_fee_explain"
+>
+                            max_base_layer_fee
+</TooltipText>,
                           "span": 12,
                         },
                         "ref": null,
-                        "rendered": "base_layer_fee",
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "function",
+                          "props": Object {
+                            "children": "max_base_layer_fee",
+                            "details": "max_base_layer_fee_explain",
+                          },
+                          "ref": null,
+                          "rendered": "max_base_layer_fee",
+                          "type": [Function],
+                        },
                         "type": [Function],
                       },
                       "type": [Function],
@@ -2647,7 +2737,7 @@ ShallowWrapper {
                           subtitle={
                                                     <NumericText
                                                                               type="currency"
-                                                                              value="24.72"
+                                                                              value="81.962044"
                                                     />
                           }
 />,
@@ -2669,7 +2759,7 @@ ShallowWrapper {
 </SelectableText>,
                           "subtitle": <NumericText
                             type="currency"
-                            value="24.72"
+                            value="81.962044"
 />,
                         },
                         "ref": null,
@@ -3030,9 +3120,11 @@ ShallowWrapper {
                           onClick={[Function]}
                           type="primary"
 >
-                          <span>
+                          <style__StyledText
+                                                    capitalize={true}
+                          >
                                                     withdraw
-                          </span>
+                          </style__StyledText>
 </style__StyledButton>,
                         "gutter": 0,
                       },
@@ -3042,9 +3134,11 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "class",
                         "props": Object {
-                          "children": <span>
+                          "children": <style__StyledText
+                            capitalize={true}
+>
                             withdraw
-</span>,
+</style__StyledText>,
                           "className": "withdraw-btn",
                           "disabled": true,
                           "onClick": [Function],
@@ -3054,13 +3148,14 @@ ShallowWrapper {
                         "rendered": Object {
                           "instance": null,
                           "key": undefined,
-                          "nodeType": "host",
+                          "nodeType": "class",
                           "props": Object {
+                            "capitalize": true,
                             "children": "withdraw",
                           },
                           "ref": null,
                           "rendered": "withdraw",
-                          "type": "span",
+                          "type": [Function],
                         },
                         "type": [Function],
                       },
@@ -3104,7 +3199,9 @@ ShallowWrapper {
           "children": <div
             style={
                         Object {
+                                    "display": "flex",
                                     "flex": 1,
+                                    "justifyContent": "center",
                                   }
             }
 />,
@@ -3117,7 +3214,9 @@ ShallowWrapper {
           "props": Object {
             "children": null,
             "style": Object {
+              "display": "flex",
               "flex": 1,
+              "justifyContent": "center",
             },
           },
           "ref": null,
@@ -3256,7 +3355,11 @@ ShallowWrapper {
                                                             <style__StyledCol
                                                                         span={12}
                                                             >
-                                                                        withdraw
+                                                                        <style__StyledText
+                                                                                    capitalize={true}
+                                                                        >
+                                                                                    withdraw
+                                                                        </style__StyledText>
                                                             </style__StyledCol>
                                                 </Row>
                                                 <Row
@@ -3286,7 +3389,11 @@ ShallowWrapper {
                                                             <style__StyledCol
                                                                         span={12}
                                                             >
-                                                                        base_layer_fee
+                                                                        <TooltipText
+                                                                                    details="max_base_layer_fee_explain"
+                                                                        >
+                                                                                    max_base_layer_fee
+                                                                        </TooltipText>
                                                             </style__StyledCol>
                                                 </Row>
                                                 <Row
@@ -3338,7 +3445,7 @@ ShallowWrapper {
                                                                         subtitle={
                                                                                     <NumericText
                                                                                                 type="currency"
-                                                                                                value="24.72"
+                                                                                                value="81.962044"
                                                                                     />
                                                                         }
                                                             />
@@ -3453,9 +3560,11 @@ ShallowWrapper {
                                                                         onClick={[Function]}
                                                                         type="primary"
                                                             >
-                                                                        <span>
+                                                                        <style__StyledText
+                                                                                    capitalize={true}
+                                                                        >
                                                                                     withdraw
-                                                                        </span>
+                                                                        </style__StyledText>
                                                             </style__StyledButton>
                                                 </Row>
                                     </div>
@@ -3469,7 +3578,9 @@ ShallowWrapper {
             <div
                         style={
                                     Object {
+                                                "display": "flex",
                                                 "flex": 1,
+                                                "justifyContent": "center",
                                               }
                         }
             />
@@ -3596,7 +3707,11 @@ ShallowWrapper {
                                                         <style__StyledCol
                                                                       span={12}
                                                         >
-                                                                      withdraw
+                                                                      <style__StyledText
+                                                                                    capitalize={true}
+                                                                      >
+                                                                                    withdraw
+                                                                      </style__StyledText>
                                                         </style__StyledCol>
                                           </Row>
                                           <Row
@@ -3626,7 +3741,11 @@ ShallowWrapper {
                                                         <style__StyledCol
                                                                       span={12}
                                                         >
-                                                                      base_layer_fee
+                                                                      <TooltipText
+                                                                                    details="max_base_layer_fee_explain"
+                                                                      >
+                                                                                    max_base_layer_fee
+                                                                      </TooltipText>
                                                         </style__StyledCol>
                                           </Row>
                                           <Row
@@ -3678,7 +3797,7 @@ ShallowWrapper {
                                                                       subtitle={
                                                                                     <NumericText
                                                                                                   type="currency"
-                                                                                                  value="24.72"
+                                                                                                  value="81.962044"
                                                                                     />
                                                                       }
                                                         />
@@ -3793,9 +3912,11 @@ ShallowWrapper {
                                                                       onClick={[Function]}
                                                                       type="primary"
                                                         >
-                                                                      <span>
+                                                                      <style__StyledText
+                                                                                    capitalize={true}
+                                                                      >
                                                                                     withdraw
-                                                                      </span>
+                                                                      </style__StyledText>
                                                         </style__StyledButton>
                                           </Row>
                             </div>
@@ -3918,7 +4039,11 @@ ShallowWrapper {
                                                       <style__StyledCol
                                                                         span={12}
                                                       >
-                                                                        withdraw
+                                                                        <style__StyledText
+                                                                                          capitalize={true}
+                                                                        >
+                                                                                          withdraw
+                                                                        </style__StyledText>
                                                       </style__StyledCol>
                                     </Row>
                                     <Row
@@ -3948,7 +4073,11 @@ ShallowWrapper {
                                                       <style__StyledCol
                                                                         span={12}
                                                       >
-                                                                        base_layer_fee
+                                                                        <TooltipText
+                                                                                          details="max_base_layer_fee_explain"
+                                                                        >
+                                                                                          max_base_layer_fee
+                                                                        </TooltipText>
                                                       </style__StyledCol>
                                     </Row>
                                     <Row
@@ -4000,7 +4129,7 @@ ShallowWrapper {
                                                                         subtitle={
                                                                                           <NumericText
                                                                                                             type="currency"
-                                                                                                            value="24.72"
+                                                                                                            value="81.962044"
                                                                                           />
                                                                         }
                                                       />
@@ -4115,9 +4244,11 @@ ShallowWrapper {
                                                                         onClick={[Function]}
                                                                         type="primary"
                                                       >
-                                                                        <span>
+                                                                        <style__StyledText
+                                                                                          capitalize={true}
+                                                                        >
                                                                                           withdraw
-                                                                        </span>
+                                                                        </style__StyledText>
                                                       </style__StyledButton>
                                     </Row>
                   </div>
@@ -4505,7 +4636,11 @@ ShallowWrapper {
                                             <style__StyledCol
                                                                   span={12}
                                             >
-                                                                  withdraw
+                                                                  <style__StyledText
+                                                                                        capitalize={true}
+                                                                  >
+                                                                                        withdraw
+                                                                  </style__StyledText>
                                             </style__StyledCol>
                       </Row>
                       <Row
@@ -4535,7 +4670,11 @@ ShallowWrapper {
                                             <style__StyledCol
                                                                   span={12}
                                             >
-                                                                  base_layer_fee
+                                                                  <TooltipText
+                                                                                        details="max_base_layer_fee_explain"
+                                                                  >
+                                                                                        max_base_layer_fee
+                                                                  </TooltipText>
                                             </style__StyledCol>
                       </Row>
                       <Row
@@ -4587,7 +4726,7 @@ ShallowWrapper {
                                                                   subtitle={
                                                                                         <NumericText
                                                                                                               type="currency"
-                                                                                                              value="24.72"
+                                                                                                              value="81.962044"
                                                                                         />
                                                                   }
                                             />
@@ -4702,9 +4841,11 @@ ShallowWrapper {
                                                                   onClick={[Function]}
                                                                   type="primary"
                                             >
-                                                                  <span>
+                                                                  <style__StyledText
+                                                                                        capitalize={true}
+                                                                  >
                                                                                         withdraw
-                                                                  </span>
+                                                                  </style__StyledText>
                                             </style__StyledButton>
                       </Row>
 </div>,
@@ -4732,7 +4873,11 @@ ShallowWrapper {
                           <style__StyledCol
                                                     span={12}
                           >
-                                                    withdraw
+                                                    <style__StyledText
+                                                                              capitalize={true}
+                                                    >
+                                                                              withdraw
+                                                    </style__StyledText>
                           </style__StyledCol>
 </Row>,
                         <Row
@@ -4762,7 +4907,11 @@ ShallowWrapper {
                           <style__StyledCol
                                                     span={12}
                           >
-                                                    base_layer_fee
+                                                    <TooltipText
+                                                                              details="max_base_layer_fee_explain"
+                                                    >
+                                                                              max_base_layer_fee
+                                                    </TooltipText>
                           </style__StyledCol>
 </Row>,
                         <Row
@@ -4814,7 +4963,7 @@ ShallowWrapper {
                                                     subtitle={
                                                                               <NumericText
                                                                                                         type="currency"
-                                                                                                        value="24.72"
+                                                                                                        value="81.962044"
                                                                               />
                                                     }
                           />
@@ -4930,9 +5079,11 @@ ShallowWrapper {
                                                     onClick={[Function]}
                                                     type="primary"
                           >
-                                                    <span>
+                                                    <style__StyledText
+                                                                              capitalize={true}
+                                                    >
                                                                               withdraw
-                                                    </span>
+                                                    </style__StyledText>
                           </style__StyledButton>
 </Row>,
                       ],
@@ -4948,7 +5099,11 @@ ShallowWrapper {
                           "children": <style__StyledCol
                             span={12}
 >
-                            withdraw
+                            <style__StyledText
+                                                        capitalize={true}
+                            >
+                                                        withdraw
+                            </style__StyledText>
 </style__StyledCol>,
                           "gutter": 0,
                         },
@@ -4958,11 +5113,26 @@ ShallowWrapper {
                           "key": undefined,
                           "nodeType": "class",
                           "props": Object {
-                            "children": "withdraw",
+                            "children": <style__StyledText
+                              capitalize={true}
+>
+                              withdraw
+</style__StyledText>,
                             "span": 12,
                           },
                           "ref": null,
-                          "rendered": "withdraw",
+                          "rendered": Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "class",
+                            "props": Object {
+                              "capitalize": true,
+                              "children": "withdraw",
+                            },
+                            "ref": null,
+                            "rendered": "withdraw",
+                            "type": [Function],
+                          },
                           "type": [Function],
                         },
                         "type": [Function],
@@ -5023,7 +5193,11 @@ ShallowWrapper {
                           "children": <style__StyledCol
                             span={12}
 >
-                            base_layer_fee
+                            <TooltipText
+                                                        details="max_base_layer_fee_explain"
+                            >
+                                                        max_base_layer_fee
+                            </TooltipText>
 </style__StyledCol>,
                           "gutter": 0,
                         },
@@ -5033,11 +5207,26 @@ ShallowWrapper {
                           "key": undefined,
                           "nodeType": "class",
                           "props": Object {
-                            "children": "base_layer_fee",
+                            "children": <TooltipText
+                              details="max_base_layer_fee_explain"
+>
+                              max_base_layer_fee
+</TooltipText>,
                             "span": 12,
                           },
                           "ref": null,
-                          "rendered": "base_layer_fee",
+                          "rendered": Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "function",
+                            "props": Object {
+                              "children": "max_base_layer_fee",
+                              "details": "max_base_layer_fee_explain",
+                            },
+                            "ref": null,
+                            "rendered": "max_base_layer_fee",
+                            "type": [Function],
+                          },
                           "type": [Function],
                         },
                         "type": [Function],
@@ -5146,7 +5335,7 @@ ShallowWrapper {
                             subtitle={
                                                         <NumericText
                                                                                     type="currency"
-                                                                                    value="24.72"
+                                                                                    value="81.962044"
                                                         />
                             }
 />,
@@ -5168,7 +5357,7 @@ ShallowWrapper {
 </SelectableText>,
                             "subtitle": <NumericText
                               type="currency"
-                              value="24.72"
+                              value="81.962044"
 />,
                           },
                           "ref": null,
@@ -5529,9 +5718,11 @@ ShallowWrapper {
                             onClick={[Function]}
                             type="primary"
 >
-                            <span>
+                            <style__StyledText
+                                                        capitalize={true}
+                            >
                                                         withdraw
-                            </span>
+                            </style__StyledText>
 </style__StyledButton>,
                           "gutter": 0,
                         },
@@ -5541,9 +5732,11 @@ ShallowWrapper {
                           "key": undefined,
                           "nodeType": "class",
                           "props": Object {
-                            "children": <span>
+                            "children": <style__StyledText
+                              capitalize={true}
+>
                               withdraw
-</span>,
+</style__StyledText>,
                             "className": "withdraw-btn",
                             "disabled": true,
                             "onClick": [Function],
@@ -5553,13 +5746,14 @@ ShallowWrapper {
                           "rendered": Object {
                             "instance": null,
                             "key": undefined,
-                            "nodeType": "host",
+                            "nodeType": "class",
                             "props": Object {
+                              "capitalize": true,
                               "children": "withdraw",
                             },
                             "ref": null,
                             "rendered": "withdraw",
-                            "type": "span",
+                            "type": [Function],
                           },
                           "type": [Function],
                         },
@@ -5603,7 +5797,9 @@ ShallowWrapper {
             "children": <div
               style={
                             Object {
+                                          "display": "flex",
                                           "flex": 1,
+                                          "justifyContent": "center",
                                         }
               }
 />,
@@ -5616,7 +5812,9 @@ ShallowWrapper {
             "props": Object {
               "children": null,
               "style": Object {
+                "display": "flex",
                 "flex": 1,
+                "justifyContent": "center",
               },
             },
             "ref": null,

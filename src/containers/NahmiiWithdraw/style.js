@@ -19,6 +19,10 @@ export const DollarPrice = styled(Text)`
   color: ${({ theme }) => theme.palette.secondary};
 `;
 
+export const StyledText = styled(Text)`
+  color: inherit;
+`;
+
 export const StyledCol = styled(Col)`
   margin-top: 1.43rem;
   margin-bottom: 0.43rem;

@@ -165,6 +165,11 @@ const makeSelectNahmiiSettlementTransactions = () => createSelector(
   (nahmiiHocDomain) => nahmiiHocDomain.get('transactions') || fromJS({})
 );
 
+const makeSelectBlockHeightByChallengeAttempted = () => createSelector(
+  selectNahmiiHocDomain,
+  (nahmiiHocDomain) => nahmiiHocDomain.get('challengeAttemptedAtBlockHeight') || fromJS({})
+);
+
 const makeSelectOngoingChallengesForCurrentWalletCurrency = () => createSelector(
   makeSelectOngoingChallenges(),
   makeSelectCurrentWallet(),
@@ -357,4 +362,5 @@ export {
   makeSelectOngoingChallengesForCurrentWalletCurrency,
   makeSelectSettleableChallengesForCurrentWalletCurrency,
   makeSelectWithdrawalsForCurrentWalletCurrency,
+  makeSelectBlockHeightByChallengeAttempted,
 };

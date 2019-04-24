@@ -28,6 +28,7 @@ import HelperText from 'components/ui/HelperText';
 import Text from 'components/ui/Text';
 import NumericText from 'components/ui/NumericText';
 import SelectableText from 'components/ui/SelectableText';
+import TooltipText from 'components/ui/TooltipText';
 import Input from 'components/ui/Input';
 import Select, { Option } from 'components/ui/Select';
 import TransferDescriptionItem from 'components/TransferDescriptionItem';
@@ -62,6 +63,7 @@ import {
   BottomWrapper,
   Image,
   DollarPrice,
+  StyledText,
   StyledCol,
   StyledSpin,
   StyledButton,
@@ -73,7 +75,6 @@ import {
   StyledSteps,
 } from './style';
 
-// import ScrollableContentWrapper from '../../components/ui/ScrollableContentWrapper';
 const Step = Steps.Step;
 
 export class NahmiiWithdraw extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -269,24 +270,32 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     } = this.props;
     const { formatMessage } = intl;
     const confOnDevice = ledgerNanoSInfo.get('confTxOnDevice') || trezorInfo.get('confTxOnDevice');
-    let ratio;
+    let status;
     let type;
     const activities = [withdrawals, ongoingChallenges, settleableChallenges];
     for (const activity of activities) { //eslint-disable-line
-      if (activity.get('status') === 'requesting') ratio = '1/2';
-      if (activity.get('status') === 'mining') ratio = '2/2';
-      if (activity.get('status') === 'receipt') ratio = '2/2';
+      if (activity.get('status') === 'requesting') status = 'requesting';
+      if (activity.get('status') === 'mining') status = 'mining';
+      if (activity.get('status') === 'receipt') status = 'mining';
 
-      if (ratio && activity === withdrawals) type = 'withdraw';
-      if (ratio && activity === ongoingChallenges) type = 'start_challenge';
-      if (ratio && activity === settleableChallenges) type = 'confirm_settle';
+      if (status && activity === withdrawals) type = 'withdraw';
+      if (status && activity === ongoingChallenges) type = 'start_challenge';
+      if (status && activity === settleableChallenges) type = 'confirm_settle';
 
-      if (ratio) break;
+      if (status) break;
     }
 
-    if (!ratio) return null;
-    const transferingText =
-      `${formatMessage({ id: `waiting_for_${type}_to_be` })} ${confOnDevice ? formatMessage({ id: 'signed' }) : `${formatMessage({ id: 'mined' })}...`}`;
+    if (!status) return null;
+
+    let transferingText = `${formatMessage({ id: `waiting_for_${type}_to_be` })} `;
+    if (confOnDevice) {
+      transferingText = `${transferingText} ${formatMessage({ id: 'signed' })}...`;
+    } else if (status === 'requesting') {
+      transferingText = `${transferingText} ${formatMessage({ id: 'requested' })}...`;
+    } else if (status === 'mining') {
+      transferingText = `${transferingText} ${formatMessage({ id: 'mined' })}...`;
+    }
+
     return (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <span>
@@ -322,6 +331,14 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       intl,
     } = this.props;
     const { formatMessage } = intl;
+    if (ongoingChallenges.get('loading') === true || settleableChallenges.get('loading') === true) {
+      return (
+        <span>
+          <Text large>{formatMessage({ id: 'synchronising_settlement_status' })}</Text>
+          <Icon style={{ color: 'white', fontSize: '1.5rem', marginLeft: '1rem' }} type="loading" />
+        </span>
+      );
+    }
     const steppers = ['payment-driip', 'null'].map((type) => {
       const paymentDriipOngoingChallenge = ongoingChallenges.get('details').find((challenge) => challenge.type === type);
       const paymentDriipSettleableChallenge = settleableChallenges.get('details').find((challenge) => challenge.type === type);
@@ -648,7 +665,11 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                   (
                     <div className="start-settlement">
                       <Row>
-                        <StyledCol span={12}>{formatMessage({ id: 'base_layer_fee' })}</StyledCol>
+                        <StyledCol span={12}>
+                          <TooltipText details={formatMessage({ id: 'max_base_layer_fee_explain' })}>
+                            {formatMessage({ id: 'max_base_layer_fee' })}
+                          </TooltipText>
+                        </StyledCol>
                       </Row>
                       <Row>
                         <TransferDescriptionItem
@@ -688,7 +709,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                         />
                       </Row>
                       <Row>
-                        <StyledCol span={12}>{formatMessage({ id: 'nahmii' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
+                        <StyledCol span={12}>{formatMessage({ id: 'nahmii_available' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
                       </Row>
                       <Row>
                         <TransferDescriptionItem
@@ -699,7 +720,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                       </Row>
                       <Row>
                         <StyledCol span={12}>
-                          {formatMessage({ id: 'nahmii' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_after' })}
+                          {formatMessage({ id: 'nahmii_available' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_after' })}
                         </StyledCol>
                       </Row>
                       <Row>
@@ -727,7 +748,9 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                   ) : (
                     <div className="withdraw-review">
                       <Row>
-                        <StyledCol span={12}>{formatMessage({ id: 'withdraw' })}</StyledCol>
+                        <StyledCol span={12}>
+                          <StyledText capitalize>{formatMessage({ id: 'withdraw' })}</StyledText>
+                        </StyledCol>
                       </Row>
                       <Row>
                         <TransferDescriptionItem
@@ -736,7 +759,11 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                         />
                       </Row>
                       <Row>
-                        <StyledCol span={12}>{formatMessage({ id: 'base_layer_fee' })}</StyledCol>
+                        <StyledCol span={12}>
+                          <TooltipText details={formatMessage({ id: 'max_base_layer_fee_explain' })}>
+                            {formatMessage({ id: 'max_base_layer_fee' })}
+                          </TooltipText>
+                        </StyledCol>
                       </Row>
                       <Row>
                         <TransferDescriptionItem
@@ -751,7 +778,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                         <TransferDescriptionItem
                           className="base-layer-eth-balance-before"
                           main={<SelectableText><NumericText value={baseLayerEthBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
-                          subtitle={<NumericText value={transactionFee.usdValue.toString()} type="currency" />}
+                          subtitle={<NumericText value={baseLayerEthBalanceBefore.usdValue.toString()} type="currency" />}
                         />
                       </Row>
                       <Row>
@@ -854,7 +881,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                               onClick={() => this.withdraw(amountToWithdraw, assetToWithdraw)}
                               disabled={disableWithdrawButton}
                             >
-                              <span>{formatMessage({ id: 'withdraw' })}</span>
+                              <StyledText capitalize>{formatMessage({ id: 'withdraw' })}</StyledText>
                             </StyledButton>
                             )
                           }
@@ -873,7 +900,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
           </div>
         </ScrollableContentWrapper>
         <BottomWrapper>
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
             {this.renderSteppers()}
           </div>
         </BottomWrapper>

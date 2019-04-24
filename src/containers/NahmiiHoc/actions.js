@@ -45,6 +45,7 @@ import {
   LOAD_NAHMII_RECEIPTS_SUCCESS,
   LOAD_NAHMII_RECEIPTS_ERROR,
   SETTLE_ALL_CHALLENGES_SUCCESS,
+  RELOAD_SETTLEMENT_STATES,
 } from './constants';
 
 export function setSelectedWalletCurrency(currencyAddress) {
@@ -424,5 +425,13 @@ export function loadReceiptsError(address, error) {
     type: LOAD_NAHMII_RECEIPTS_ERROR,
     address,
     error,
+  };
+}
+
+export function reloadSettlementStates(address, currency) {
+  return {
+    type: RELOAD_SETTLEMENT_STATES,
+    address,
+    currency,
   };
 }

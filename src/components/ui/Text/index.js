@@ -5,4 +5,5 @@ export default styled.span`
   color: white;
   line-height: 1.6;
   font-size: ${({ large }) => large ? '1.15' : '1'}rem;
+  text-transform: ${({ capitalize }) => capitalize ? 'capitalize' : 'none'};
 `;

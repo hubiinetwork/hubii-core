@@ -1,6 +1,6 @@
 {
   "name": "hubii-core",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0",
   "author": {
     "name": "hubii",
     "email": "info@hubii.com",
@@ -313,7 +313,7 @@
     "lodash.debounce": "^4.0.8",
     "minimist": "1.2.0",
     "moment": "2.22.2",
-    "nahmii-sdk": "1.0.0-beta.49",
+    "nahmii-sdk": "1.0.0-beta.50",
     "prop-types": "15.6.1",
     "qrcode.react": "0.8.0",
     "react": "16.6.3",

@@ -44,6 +44,7 @@ import {
   LOAD_SETTLEABLE_CHALLENGES_SUCCESS,
   LOAD_SETTLEABLE_CHALLENGES_ERROR,
   UPDATE_START_CHALLENGE_BLOCK_HEIGHT,
+  RELOAD_SETTLEMENT_STATES,
 } from './constants';
 
 export const initialState = fromJS({
@@ -61,6 +62,7 @@ export const initialState = fromJS({
   ongoingChallenges: {},
   settleableChallenges: {},
   withdrawals: {},
+  challengeAttemptedAtBlockHeight: {},
 });
 
 function nahmiiHocReducer(state = initialState, action) {
@@ -114,20 +116,23 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['balances', action.address, 'staging', 'assets'], fromJS(action.balances));
     case LOAD_ONGOING_CHALLENGES_SUCCESS:
       return state
+        .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'loading'], false)
         .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'details'], action.challenges);
     case LOAD_ONGOING_CHALLENGES_ERROR:
       return state
         .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'details'], null);
     case LOAD_SETTLEABLE_CHALLENGES_SUCCESS:
       return state
+        .setIn(['settleableChallenges', action.address, action.currencyAddress, 'loading'], false)
         .setIn(['settleableChallenges', action.address, action.currencyAddress, 'details'], action.challenges)
         .setIn(['settleableChallenges', action.address, action.currencyAddress, 'invalidReasons'], action.invalidReasons);
     case LOAD_SETTLEABLE_CHALLENGES_ERROR:
       return state
         .setIn(['settleableChallenges', action.address, action.currencyAddress, 'details'], null);
-    case UPDATE_START_CHALLENGE_BLOCK_HEIGHT:
+    case RELOAD_SETTLEMENT_STATES:
       return state
-          .setIn(['ongoingChallenges', action.address, action.currency, 'attemptedAtBlockHeight'], action.blockHeight);
+        .setIn(['ongoingChallenges', action.address, action.currency, 'loading'], true)
+        .setIn(['settleableChallenges', action.address, action.currency, 'loading'], true);
     case START_CHALLENGE:
       return state
           .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'requesting');
@@ -210,6 +215,9 @@ function nahmiiHocReducer(state = initialState, action) {
         .set('ongoingChallenges', initialState.get('ongoingChallenges'))
         .set('settleableChallenges', initialState.get('settleableChallenges'))
         .set('withdrawals', initialState.get('withdrawals'));
+    case UPDATE_START_CHALLENGE_BLOCK_HEIGHT:
+      return state
+          .setIn(['challengeAttemptedAtBlockHeight', action.address, action.currency], action.blockHeight);
     default:
       return state;
   }

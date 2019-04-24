@@ -27,6 +27,7 @@ describe('nahmiiHocReducer', () => {
       ongoingChallenges: {},
       settleableChallenges: {},
       withdrawals: {},
+      challengeAttemptedAtBlockHeight: {},
     });
   });
 

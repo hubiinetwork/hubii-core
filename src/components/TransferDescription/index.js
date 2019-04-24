@@ -11,6 +11,7 @@ import HWPromptContainer from 'containers/HWPromptContainer';
 import Text from 'components/ui/Text';
 import NumericText from 'components/ui/NumericText';
 import SelectableText from 'components/ui/SelectableText';
+import TooltipText from 'components/ui/TooltipText';
 
 import {
   StyledCol,
@@ -26,6 +27,30 @@ import TransferDescriptionItem from '../TransferDescriptionItem';
  * The TransferDescription Component
  */
 class TransferDescription extends React.PureComponent {
+  getFeeText() {
+    const {
+      assetToSend,
+      layer,
+      intl: { formatMessage },
+    } = this.props;
+    let feeText;
+
+    if (layer === 'baseLayer') {
+      if (assetToSend.symbol === 'ETH') {
+        feeText = formatMessage({ id: 'base_layer_fee' });
+      } else {
+        feeText = (
+          <TooltipText details={formatMessage({ id: 'max_base_layer_fee_explain' })}>
+            {formatMessage({ id: 'max_base_layer_fee' })}
+          </TooltipText>
+        );
+      }
+    } else {
+      feeText = formatMessage({ id: 'fee' });
+    }
+    return feeText;
+  }
+
   generateTransferingStatus() {
     const { currentWalletWithInfo, layer, currentNetwork, intl, transfering } = this.props;
     const { formatMessage } = intl;
@@ -90,7 +115,7 @@ class TransferDescription extends React.PureComponent {
         </Row>
         <Row>
           <TransferDescriptionItem
-            main={<SelectableText><NumericText value={amountToSend.toString()} /> {amountToSend.symbol}</SelectableText>}
+            main={<SelectableText><NumericText value={amountToSend.toString()} /> {assetToSend.symbol}</SelectableText>}
             subtitle={<NumericText value={usdValueToSend.toString()} type="currency" />}
           />
         </Row>
@@ -101,7 +126,7 @@ class TransferDescription extends React.PureComponent {
           <StyledRecipient span={12}>{recipient}</StyledRecipient>
         </Row>
         <Row>
-          <StyledCol span={12}>{formatMessage({ id: 'fee' })}</StyledCol>
+          <StyledCol span={12}>{this.getFeeText()}</StyledCol>
         </Row>
         <Row>
           <TransferDescriptionItem

@@ -764,7 +764,11 @@ ShallowWrapper {
                         <style__StyledCol
                                 span={12}
                         >
-                                base_layer_fee
+                                <TooltipText
+                                        details="max_base_layer_fee_explain"
+                                >
+                                        max_base_layer_fee
+                                </TooltipText>
                         </style__StyledCol>
                 </Row>
                 <Row
@@ -859,7 +863,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                                 </style__StyledCol>
@@ -891,7 +895,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                                 </style__StyledCol>
@@ -1118,7 +1122,11 @@ ShallowWrapper {
                         <style__StyledCol
                                     span={12}
                         >
-                                    base_layer_fee
+                                    <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                    >
+                                                max_base_layer_fee
+                                    </TooltipText>
                         </style__StyledCol>
             </Row>
             <Row
@@ -1213,7 +1221,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                     </style__StyledCol>
@@ -1245,7 +1253,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                     </style__StyledCol>
@@ -1759,7 +1767,11 @@ ShallowWrapper {
                 <style__StyledCol
                                 span={12}
                 >
-                                base_layer_fee
+                                <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                >
+                                                max_base_layer_fee
+                                </TooltipText>
                 </style__StyledCol>
 </Row>,
               <Row
@@ -1854,7 +1866,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                 </style__StyledCol>
@@ -1886,7 +1898,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                 </style__StyledCol>
@@ -2064,7 +2076,11 @@ ShallowWrapper {
                 "children": <style__StyledCol
                   span={12}
 >
-                  base_layer_fee
+                  <TooltipText
+                                    details="max_base_layer_fee_explain"
+                  >
+                                    max_base_layer_fee
+                  </TooltipText>
 </style__StyledCol>,
                 "gutter": 0,
               },
@@ -2074,11 +2090,26 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "base_layer_fee",
+                  "children": <TooltipText
+                    details="max_base_layer_fee_explain"
+>
+                    max_base_layer_fee
+</TooltipText>,
                   "span": 12,
                 },
                 "ref": null,
-                "rendered": "base_layer_fee",
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "max_base_layer_fee",
+                    "details": "max_base_layer_fee_explain",
+                  },
+                  "ref": null,
+                  "rendered": "max_base_layer_fee",
+                  "type": [Function],
+                },
                 "type": [Function],
               },
               "type": [Function],
@@ -2313,7 +2344,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                     </style__StyledCol>
@@ -2345,7 +2376,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                     </style__StyledCol>
@@ -2383,7 +2414,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_before
 </style__StyledCol>,
@@ -2396,7 +2427,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -2404,7 +2435,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_before",
                     ],
@@ -2468,7 +2499,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_after
 </style__StyledCol>,
@@ -2481,7 +2512,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -2489,7 +2520,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_after",
                     ],
@@ -2955,7 +2986,11 @@ ShallowWrapper {
                               <style__StyledCol
                                         span={12}
                               >
-                                        base_layer_fee
+                                        <TooltipText
+                                                  details="max_base_layer_fee_explain"
+                                        >
+                                                  max_base_layer_fee
+                                        </TooltipText>
                               </style__StyledCol>
                     </Row>
                     <Row
@@ -3050,7 +3085,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_before
                                         </style__StyledCol>
@@ -3082,7 +3117,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_after
                                         </style__StyledCol>
@@ -3309,7 +3344,11 @@ ShallowWrapper {
                             <style__StyledCol
                                           span={12}
                             >
-                                          base_layer_fee
+                                          <TooltipText
+                                                        details="max_base_layer_fee_explain"
+                                          >
+                                                        max_base_layer_fee
+                                          </TooltipText>
                             </style__StyledCol>
               </Row>
               <Row
@@ -3404,7 +3443,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_before
                                           </style__StyledCol>
@@ -3436,7 +3475,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_after
                                           </style__StyledCol>
@@ -3950,7 +3989,11 @@ ShallowWrapper {
                   <style__StyledCol
                                     span={12}
                   >
-                                    base_layer_fee
+                                    <TooltipText
+                                                      details="max_base_layer_fee_explain"
+                                    >
+                                                      max_base_layer_fee
+                                    </TooltipText>
                   </style__StyledCol>
 </Row>,
                 <Row
@@ -4045,7 +4088,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_before
                                     </style__StyledCol>
@@ -4077,7 +4120,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_after
                                     </style__StyledCol>
@@ -4255,7 +4298,11 @@ ShallowWrapper {
                   "children": <style__StyledCol
                     span={12}
 >
-                    base_layer_fee
+                    <TooltipText
+                                        details="max_base_layer_fee_explain"
+                    >
+                                        max_base_layer_fee
+                    </TooltipText>
 </style__StyledCol>,
                   "gutter": 0,
                 },
@@ -4265,11 +4312,26 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "base_layer_fee",
+                    "children": <TooltipText
+                      details="max_base_layer_fee_explain"
+>
+                      max_base_layer_fee
+</TooltipText>,
                     "span": 12,
                   },
                   "ref": null,
-                  "rendered": "base_layer_fee",
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "max_base_layer_fee",
+                      "details": "max_base_layer_fee_explain",
+                    },
+                    "ref": null,
+                    "rendered": "max_base_layer_fee",
+                    "type": [Function],
+                  },
                   "type": [Function],
                 },
                 "type": [Function],
@@ -4504,7 +4566,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_before
                       </style__StyledCol>
@@ -4536,7 +4598,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_after
                       </style__StyledCol>
@@ -4574,7 +4636,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_before
 </style__StyledCol>,
@@ -4587,7 +4649,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_before",
                         ],
@@ -4595,7 +4657,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -4659,7 +4721,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_after
 </style__StyledCol>,
@@ -4672,7 +4734,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_after",
                         ],
@@ -4680,7 +4742,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -5775,7 +5837,11 @@ ShallowWrapper {
                         <style__StyledCol
                                 span={12}
                         >
-                                base_layer_fee
+                                <TooltipText
+                                        details="max_base_layer_fee_explain"
+                                >
+                                        max_base_layer_fee
+                                </TooltipText>
                         </style__StyledCol>
                 </Row>
                 <Row
@@ -5870,7 +5936,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                                 </style__StyledCol>
@@ -5902,7 +5968,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                                 </style__StyledCol>
@@ -6129,7 +6195,11 @@ ShallowWrapper {
                         <style__StyledCol
                                     span={12}
                         >
-                                    base_layer_fee
+                                    <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                    >
+                                                max_base_layer_fee
+                                    </TooltipText>
                         </style__StyledCol>
             </Row>
             <Row
@@ -6224,7 +6294,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                     </style__StyledCol>
@@ -6256,7 +6326,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                     </style__StyledCol>
@@ -6770,7 +6840,11 @@ ShallowWrapper {
                 <style__StyledCol
                                 span={12}
                 >
-                                base_layer_fee
+                                <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                >
+                                                max_base_layer_fee
+                                </TooltipText>
                 </style__StyledCol>
 </Row>,
               <Row
@@ -6865,7 +6939,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                 </style__StyledCol>
@@ -6897,7 +6971,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                 </style__StyledCol>
@@ -7075,7 +7149,11 @@ ShallowWrapper {
                 "children": <style__StyledCol
                   span={12}
 >
-                  base_layer_fee
+                  <TooltipText
+                                    details="max_base_layer_fee_explain"
+                  >
+                                    max_base_layer_fee
+                  </TooltipText>
 </style__StyledCol>,
                 "gutter": 0,
               },
@@ -7085,11 +7163,26 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "base_layer_fee",
+                  "children": <TooltipText
+                    details="max_base_layer_fee_explain"
+>
+                    max_base_layer_fee
+</TooltipText>,
                   "span": 12,
                 },
                 "ref": null,
-                "rendered": "base_layer_fee",
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "max_base_layer_fee",
+                    "details": "max_base_layer_fee_explain",
+                  },
+                  "ref": null,
+                  "rendered": "max_base_layer_fee",
+                  "type": [Function],
+                },
                 "type": [Function],
               },
               "type": [Function],
@@ -7324,7 +7417,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                     </style__StyledCol>
@@ -7356,7 +7449,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                     </style__StyledCol>
@@ -7394,7 +7487,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_before
 </style__StyledCol>,
@@ -7407,7 +7500,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -7415,7 +7508,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_before",
                     ],
@@ -7479,7 +7572,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_after
 </style__StyledCol>,
@@ -7492,7 +7585,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -7500,7 +7593,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_after",
                     ],
@@ -7966,7 +8059,11 @@ ShallowWrapper {
                               <style__StyledCol
                                         span={12}
                               >
-                                        base_layer_fee
+                                        <TooltipText
+                                                  details="max_base_layer_fee_explain"
+                                        >
+                                                  max_base_layer_fee
+                                        </TooltipText>
                               </style__StyledCol>
                     </Row>
                     <Row
@@ -8061,7 +8158,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_before
                                         </style__StyledCol>
@@ -8093,7 +8190,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_after
                                         </style__StyledCol>
@@ -8320,7 +8417,11 @@ ShallowWrapper {
                             <style__StyledCol
                                           span={12}
                             >
-                                          base_layer_fee
+                                          <TooltipText
+                                                        details="max_base_layer_fee_explain"
+                                          >
+                                                        max_base_layer_fee
+                                          </TooltipText>
                             </style__StyledCol>
               </Row>
               <Row
@@ -8415,7 +8516,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_before
                                           </style__StyledCol>
@@ -8447,7 +8548,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_after
                                           </style__StyledCol>
@@ -8961,7 +9062,11 @@ ShallowWrapper {
                   <style__StyledCol
                                     span={12}
                   >
-                                    base_layer_fee
+                                    <TooltipText
+                                                      details="max_base_layer_fee_explain"
+                                    >
+                                                      max_base_layer_fee
+                                    </TooltipText>
                   </style__StyledCol>
 </Row>,
                 <Row
@@ -9056,7 +9161,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_before
                                     </style__StyledCol>
@@ -9088,7 +9193,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_after
                                     </style__StyledCol>
@@ -9266,7 +9371,11 @@ ShallowWrapper {
                   "children": <style__StyledCol
                     span={12}
 >
-                    base_layer_fee
+                    <TooltipText
+                                        details="max_base_layer_fee_explain"
+                    >
+                                        max_base_layer_fee
+                    </TooltipText>
 </style__StyledCol>,
                   "gutter": 0,
                 },
@@ -9276,11 +9385,26 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "base_layer_fee",
+                    "children": <TooltipText
+                      details="max_base_layer_fee_explain"
+>
+                      max_base_layer_fee
+</TooltipText>,
                     "span": 12,
                   },
                   "ref": null,
-                  "rendered": "base_layer_fee",
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "max_base_layer_fee",
+                      "details": "max_base_layer_fee_explain",
+                    },
+                    "ref": null,
+                    "rendered": "max_base_layer_fee",
+                    "type": [Function],
+                  },
                   "type": [Function],
                 },
                 "type": [Function],
@@ -9515,7 +9639,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_before
                       </style__StyledCol>
@@ -9547,7 +9671,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_after
                       </style__StyledCol>
@@ -9585,7 +9709,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_before
 </style__StyledCol>,
@@ -9598,7 +9722,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_before",
                         ],
@@ -9606,7 +9730,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -9670,7 +9794,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_after
 </style__StyledCol>,
@@ -9683,7 +9807,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_after",
                         ],
@@ -9691,7 +9815,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -10786,7 +10910,11 @@ ShallowWrapper {
                         <style__StyledCol
                                 span={12}
                         >
-                                base_layer_fee
+                                <TooltipText
+                                        details="max_base_layer_fee_explain"
+                                >
+                                        max_base_layer_fee
+                                </TooltipText>
                         </style__StyledCol>
                 </Row>
                 <Row
@@ -10881,7 +11009,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                                 </style__StyledCol>
@@ -10913,7 +11041,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                                 </style__StyledCol>
@@ -11140,7 +11268,11 @@ ShallowWrapper {
                         <style__StyledCol
                                     span={12}
                         >
-                                    base_layer_fee
+                                    <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                    >
+                                                max_base_layer_fee
+                                    </TooltipText>
                         </style__StyledCol>
             </Row>
             <Row
@@ -11235,7 +11367,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                     </style__StyledCol>
@@ -11267,7 +11399,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                     </style__StyledCol>
@@ -11781,7 +11913,11 @@ ShallowWrapper {
                 <style__StyledCol
                                 span={12}
                 >
-                                base_layer_fee
+                                <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                >
+                                                max_base_layer_fee
+                                </TooltipText>
                 </style__StyledCol>
 </Row>,
               <Row
@@ -11876,7 +12012,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                 </style__StyledCol>
@@ -11908,7 +12044,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                 </style__StyledCol>
@@ -12086,7 +12222,11 @@ ShallowWrapper {
                 "children": <style__StyledCol
                   span={12}
 >
-                  base_layer_fee
+                  <TooltipText
+                                    details="max_base_layer_fee_explain"
+                  >
+                                    max_base_layer_fee
+                  </TooltipText>
 </style__StyledCol>,
                 "gutter": 0,
               },
@@ -12096,11 +12236,26 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "base_layer_fee",
+                  "children": <TooltipText
+                    details="max_base_layer_fee_explain"
+>
+                    max_base_layer_fee
+</TooltipText>,
                   "span": 12,
                 },
                 "ref": null,
-                "rendered": "base_layer_fee",
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "max_base_layer_fee",
+                    "details": "max_base_layer_fee_explain",
+                  },
+                  "ref": null,
+                  "rendered": "max_base_layer_fee",
+                  "type": [Function],
+                },
                 "type": [Function],
               },
               "type": [Function],
@@ -12335,7 +12490,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                     </style__StyledCol>
@@ -12367,7 +12522,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                     </style__StyledCol>
@@ -12405,7 +12560,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_before
 </style__StyledCol>,
@@ -12418,7 +12573,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -12426,7 +12581,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_before",
                     ],
@@ -12490,7 +12645,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_after
 </style__StyledCol>,
@@ -12503,7 +12658,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -12511,7 +12666,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_after",
                     ],
@@ -12977,7 +13132,11 @@ ShallowWrapper {
                               <style__StyledCol
                                         span={12}
                               >
-                                        base_layer_fee
+                                        <TooltipText
+                                                  details="max_base_layer_fee_explain"
+                                        >
+                                                  max_base_layer_fee
+                                        </TooltipText>
                               </style__StyledCol>
                     </Row>
                     <Row
@@ -13072,7 +13231,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_before
                                         </style__StyledCol>
@@ -13104,7 +13263,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_after
                                         </style__StyledCol>
@@ -13331,7 +13490,11 @@ ShallowWrapper {
                             <style__StyledCol
                                           span={12}
                             >
-                                          base_layer_fee
+                                          <TooltipText
+                                                        details="max_base_layer_fee_explain"
+                                          >
+                                                        max_base_layer_fee
+                                          </TooltipText>
                             </style__StyledCol>
               </Row>
               <Row
@@ -13426,7 +13589,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_before
                                           </style__StyledCol>
@@ -13458,7 +13621,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_after
                                           </style__StyledCol>
@@ -13972,7 +14135,11 @@ ShallowWrapper {
                   <style__StyledCol
                                     span={12}
                   >
-                                    base_layer_fee
+                                    <TooltipText
+                                                      details="max_base_layer_fee_explain"
+                                    >
+                                                      max_base_layer_fee
+                                    </TooltipText>
                   </style__StyledCol>
 </Row>,
                 <Row
@@ -14067,7 +14234,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_before
                                     </style__StyledCol>
@@ -14099,7 +14266,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_after
                                     </style__StyledCol>
@@ -14277,7 +14444,11 @@ ShallowWrapper {
                   "children": <style__StyledCol
                     span={12}
 >
-                    base_layer_fee
+                    <TooltipText
+                                        details="max_base_layer_fee_explain"
+                    >
+                                        max_base_layer_fee
+                    </TooltipText>
 </style__StyledCol>,
                   "gutter": 0,
                 },
@@ -14287,11 +14458,26 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "base_layer_fee",
+                    "children": <TooltipText
+                      details="max_base_layer_fee_explain"
+>
+                      max_base_layer_fee
+</TooltipText>,
                     "span": 12,
                   },
                   "ref": null,
-                  "rendered": "base_layer_fee",
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "max_base_layer_fee",
+                      "details": "max_base_layer_fee_explain",
+                    },
+                    "ref": null,
+                    "rendered": "max_base_layer_fee",
+                    "type": [Function],
+                  },
                   "type": [Function],
                 },
                 "type": [Function],
@@ -14526,7 +14712,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_before
                       </style__StyledCol>
@@ -14558,7 +14744,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_after
                       </style__StyledCol>
@@ -14596,7 +14782,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_before
 </style__StyledCol>,
@@ -14609,7 +14795,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_before",
                         ],
@@ -14617,7 +14803,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -14681,7 +14867,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_after
 </style__StyledCol>,
@@ -14694,7 +14880,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_after",
                         ],
@@ -14702,7 +14888,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -15797,7 +15983,11 @@ ShallowWrapper {
                         <style__StyledCol
                                 span={12}
                         >
-                                base_layer_fee
+                                <TooltipText
+                                        details="max_base_layer_fee_explain"
+                                >
+                                        max_base_layer_fee
+                                </TooltipText>
                         </style__StyledCol>
                 </Row>
                 <Row
@@ -15892,7 +16082,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                                 </style__StyledCol>
@@ -15924,7 +16114,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                                 </style__StyledCol>
@@ -16125,7 +16315,11 @@ ShallowWrapper {
                         <style__StyledCol
                                     span={12}
                         >
-                                    base_layer_fee
+                                    <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                    >
+                                                max_base_layer_fee
+                                    </TooltipText>
                         </style__StyledCol>
             </Row>
             <Row
@@ -16220,7 +16414,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                     </style__StyledCol>
@@ -16252,7 +16446,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                     </style__StyledCol>
@@ -16740,7 +16934,11 @@ ShallowWrapper {
                 <style__StyledCol
                                 span={12}
                 >
-                                base_layer_fee
+                                <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                >
+                                                max_base_layer_fee
+                                </TooltipText>
                 </style__StyledCol>
 </Row>,
               <Row
@@ -16835,7 +17033,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                 </style__StyledCol>
@@ -16867,7 +17065,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                 </style__StyledCol>
@@ -17019,7 +17217,11 @@ ShallowWrapper {
                 "children": <style__StyledCol
                   span={12}
 >
-                  base_layer_fee
+                  <TooltipText
+                                    details="max_base_layer_fee_explain"
+                  >
+                                    max_base_layer_fee
+                  </TooltipText>
 </style__StyledCol>,
                 "gutter": 0,
               },
@@ -17029,11 +17231,26 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "base_layer_fee",
+                  "children": <TooltipText
+                    details="max_base_layer_fee_explain"
+>
+                    max_base_layer_fee
+</TooltipText>,
                   "span": 12,
                 },
                 "ref": null,
-                "rendered": "base_layer_fee",
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "max_base_layer_fee",
+                    "details": "max_base_layer_fee_explain",
+                  },
+                  "ref": null,
+                  "rendered": "max_base_layer_fee",
+                  "type": [Function],
+                },
                 "type": [Function],
               },
               "type": [Function],
@@ -17268,7 +17485,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                     </style__StyledCol>
@@ -17300,7 +17517,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                     </style__StyledCol>
@@ -17338,7 +17555,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_before
 </style__StyledCol>,
@@ -17351,7 +17568,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -17359,7 +17576,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_before",
                     ],
@@ -17423,7 +17640,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_after
 </style__StyledCol>,
@@ -17436,7 +17653,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -17444,7 +17661,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_after",
                     ],
@@ -17773,7 +17990,11 @@ ShallowWrapper {
                               <style__StyledCol
                                         span={12}
                               >
-                                        base_layer_fee
+                                        <TooltipText
+                                                  details="max_base_layer_fee_explain"
+                                        >
+                                                  max_base_layer_fee
+                                        </TooltipText>
                               </style__StyledCol>
                     </Row>
                     <Row
@@ -17868,7 +18089,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_before
                                         </style__StyledCol>
@@ -17900,7 +18121,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_after
                                         </style__StyledCol>
@@ -18101,7 +18322,11 @@ ShallowWrapper {
                             <style__StyledCol
                                           span={12}
                             >
-                                          base_layer_fee
+                                          <TooltipText
+                                                        details="max_base_layer_fee_explain"
+                                          >
+                                                        max_base_layer_fee
+                                          </TooltipText>
                             </style__StyledCol>
               </Row>
               <Row
@@ -18196,7 +18421,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_before
                                           </style__StyledCol>
@@ -18228,7 +18453,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_after
                                           </style__StyledCol>
@@ -18716,7 +18941,11 @@ ShallowWrapper {
                   <style__StyledCol
                                     span={12}
                   >
-                                    base_layer_fee
+                                    <TooltipText
+                                                      details="max_base_layer_fee_explain"
+                                    >
+                                                      max_base_layer_fee
+                                    </TooltipText>
                   </style__StyledCol>
 </Row>,
                 <Row
@@ -18811,7 +19040,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_before
                                     </style__StyledCol>
@@ -18843,7 +19072,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_after
                                     </style__StyledCol>
@@ -18995,7 +19224,11 @@ ShallowWrapper {
                   "children": <style__StyledCol
                     span={12}
 >
-                    base_layer_fee
+                    <TooltipText
+                                        details="max_base_layer_fee_explain"
+                    >
+                                        max_base_layer_fee
+                    </TooltipText>
 </style__StyledCol>,
                   "gutter": 0,
                 },
@@ -19005,11 +19238,26 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "base_layer_fee",
+                    "children": <TooltipText
+                      details="max_base_layer_fee_explain"
+>
+                      max_base_layer_fee
+</TooltipText>,
                     "span": 12,
                   },
                   "ref": null,
-                  "rendered": "base_layer_fee",
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "max_base_layer_fee",
+                      "details": "max_base_layer_fee_explain",
+                    },
+                    "ref": null,
+                    "rendered": "max_base_layer_fee",
+                    "type": [Function],
+                  },
                   "type": [Function],
                 },
                 "type": [Function],
@@ -19244,7 +19492,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_before
                       </style__StyledCol>
@@ -19276,7 +19524,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_after
                       </style__StyledCol>
@@ -19314,7 +19562,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_before
 </style__StyledCol>,
@@ -19327,7 +19575,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_before",
                         ],
@@ -19335,7 +19583,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -19399,7 +19647,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_after
 </style__StyledCol>,
@@ -19412,7 +19660,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_after",
                         ],
@@ -19420,7 +19668,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -20378,7 +20626,11 @@ ShallowWrapper {
                         <style__StyledCol
                                 span={12}
                         >
-                                base_layer_fee
+                                <TooltipText
+                                        details="max_base_layer_fee_explain"
+                                >
+                                        max_base_layer_fee
+                                </TooltipText>
                         </style__StyledCol>
                 </Row>
                 <Row
@@ -20473,7 +20725,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                                 </style__StyledCol>
@@ -20505,7 +20757,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                                 </style__StyledCol>
@@ -20706,7 +20958,11 @@ ShallowWrapper {
                         <style__StyledCol
                                     span={12}
                         >
-                                    base_layer_fee
+                                    <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                    >
+                                                max_base_layer_fee
+                                    </TooltipText>
                         </style__StyledCol>
             </Row>
             <Row
@@ -20801,7 +21057,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                     </style__StyledCol>
@@ -20833,7 +21089,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                     </style__StyledCol>
@@ -21321,7 +21577,11 @@ ShallowWrapper {
                 <style__StyledCol
                                 span={12}
                 >
-                                base_layer_fee
+                                <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                >
+                                                max_base_layer_fee
+                                </TooltipText>
                 </style__StyledCol>
 </Row>,
               <Row
@@ -21416,7 +21676,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                 </style__StyledCol>
@@ -21448,7 +21708,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                 </style__StyledCol>
@@ -21600,7 +21860,11 @@ ShallowWrapper {
                 "children": <style__StyledCol
                   span={12}
 >
-                  base_layer_fee
+                  <TooltipText
+                                    details="max_base_layer_fee_explain"
+                  >
+                                    max_base_layer_fee
+                  </TooltipText>
 </style__StyledCol>,
                 "gutter": 0,
               },
@@ -21610,11 +21874,26 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "base_layer_fee",
+                  "children": <TooltipText
+                    details="max_base_layer_fee_explain"
+>
+                    max_base_layer_fee
+</TooltipText>,
                   "span": 12,
                 },
                 "ref": null,
-                "rendered": "base_layer_fee",
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "max_base_layer_fee",
+                    "details": "max_base_layer_fee_explain",
+                  },
+                  "ref": null,
+                  "rendered": "max_base_layer_fee",
+                  "type": [Function],
+                },
                 "type": [Function],
               },
               "type": [Function],
@@ -21849,7 +22128,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                     </style__StyledCol>
@@ -21881,7 +22160,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                     </style__StyledCol>
@@ -21919,7 +22198,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_before
 </style__StyledCol>,
@@ -21932,7 +22211,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -21940,7 +22219,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_before",
                     ],
@@ -22004,7 +22283,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_after
 </style__StyledCol>,
@@ -22017,7 +22296,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -22025,7 +22304,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_after",
                     ],
@@ -22354,7 +22633,11 @@ ShallowWrapper {
                               <style__StyledCol
                                         span={12}
                               >
-                                        base_layer_fee
+                                        <TooltipText
+                                                  details="max_base_layer_fee_explain"
+                                        >
+                                                  max_base_layer_fee
+                                        </TooltipText>
                               </style__StyledCol>
                     </Row>
                     <Row
@@ -22449,7 +22732,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_before
                                         </style__StyledCol>
@@ -22481,7 +22764,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_after
                                         </style__StyledCol>
@@ -22682,7 +22965,11 @@ ShallowWrapper {
                             <style__StyledCol
                                           span={12}
                             >
-                                          base_layer_fee
+                                          <TooltipText
+                                                        details="max_base_layer_fee_explain"
+                                          >
+                                                        max_base_layer_fee
+                                          </TooltipText>
                             </style__StyledCol>
               </Row>
               <Row
@@ -22777,7 +23064,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_before
                                           </style__StyledCol>
@@ -22809,7 +23096,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_after
                                           </style__StyledCol>
@@ -23297,7 +23584,11 @@ ShallowWrapper {
                   <style__StyledCol
                                     span={12}
                   >
-                                    base_layer_fee
+                                    <TooltipText
+                                                      details="max_base_layer_fee_explain"
+                                    >
+                                                      max_base_layer_fee
+                                    </TooltipText>
                   </style__StyledCol>
 </Row>,
                 <Row
@@ -23392,7 +23683,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_before
                                     </style__StyledCol>
@@ -23424,7 +23715,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_after
                                     </style__StyledCol>
@@ -23576,7 +23867,11 @@ ShallowWrapper {
                   "children": <style__StyledCol
                     span={12}
 >
-                    base_layer_fee
+                    <TooltipText
+                                        details="max_base_layer_fee_explain"
+                    >
+                                        max_base_layer_fee
+                    </TooltipText>
 </style__StyledCol>,
                   "gutter": 0,
                 },
@@ -23586,11 +23881,26 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "base_layer_fee",
+                    "children": <TooltipText
+                      details="max_base_layer_fee_explain"
+>
+                      max_base_layer_fee
+</TooltipText>,
                     "span": 12,
                   },
                   "ref": null,
-                  "rendered": "base_layer_fee",
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "max_base_layer_fee",
+                      "details": "max_base_layer_fee_explain",
+                    },
+                    "ref": null,
+                    "rendered": "max_base_layer_fee",
+                    "type": [Function],
+                  },
                   "type": [Function],
                 },
                 "type": [Function],
@@ -23825,7 +24135,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_before
                       </style__StyledCol>
@@ -23857,7 +24167,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_after
                       </style__StyledCol>
@@ -23895,7 +24205,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_before
 </style__StyledCol>,
@@ -23908,7 +24218,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_before",
                         ],
@@ -23916,7 +24226,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -23980,7 +24290,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_after
 </style__StyledCol>,
@@ -23993,7 +24303,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_after",
                         ],
@@ -24001,7 +24311,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -24960,7 +25270,11 @@ ShallowWrapper {
                         <style__StyledCol
                                 span={12}
                         >
-                                base_layer_fee
+                                <TooltipText
+                                        details="max_base_layer_fee_explain"
+                                >
+                                        max_base_layer_fee
+                                </TooltipText>
                         </style__StyledCol>
                 </Row>
                 <Row
@@ -25055,7 +25369,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                                 </style__StyledCol>
@@ -25087,7 +25401,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                                 </style__StyledCol>
@@ -25288,7 +25602,11 @@ ShallowWrapper {
                         <style__StyledCol
                                     span={12}
                         >
-                                    base_layer_fee
+                                    <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                    >
+                                                max_base_layer_fee
+                                    </TooltipText>
                         </style__StyledCol>
             </Row>
             <Row
@@ -25383,7 +25701,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                     </style__StyledCol>
@@ -25415,7 +25733,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                     </style__StyledCol>
@@ -25903,7 +26221,11 @@ ShallowWrapper {
                 <style__StyledCol
                                 span={12}
                 >
-                                base_layer_fee
+                                <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                >
+                                                max_base_layer_fee
+                                </TooltipText>
                 </style__StyledCol>
 </Row>,
               <Row
@@ -25998,7 +26320,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                 </style__StyledCol>
@@ -26030,7 +26352,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                 </style__StyledCol>
@@ -26182,7 +26504,11 @@ ShallowWrapper {
                 "children": <style__StyledCol
                   span={12}
 >
-                  base_layer_fee
+                  <TooltipText
+                                    details="max_base_layer_fee_explain"
+                  >
+                                    max_base_layer_fee
+                  </TooltipText>
 </style__StyledCol>,
                 "gutter": 0,
               },
@@ -26192,11 +26518,26 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "base_layer_fee",
+                  "children": <TooltipText
+                    details="max_base_layer_fee_explain"
+>
+                    max_base_layer_fee
+</TooltipText>,
                   "span": 12,
                 },
                 "ref": null,
-                "rendered": "base_layer_fee",
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "max_base_layer_fee",
+                    "details": "max_base_layer_fee_explain",
+                  },
+                  "ref": null,
+                  "rendered": "max_base_layer_fee",
+                  "type": [Function],
+                },
                 "type": [Function],
               },
               "type": [Function],
@@ -26431,7 +26772,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                     </style__StyledCol>
@@ -26463,7 +26804,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                     </style__StyledCol>
@@ -26501,7 +26842,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_before
 </style__StyledCol>,
@@ -26514,7 +26855,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -26522,7 +26863,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_before",
                     ],
@@ -26586,7 +26927,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_after
 </style__StyledCol>,
@@ -26599,7 +26940,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -26607,7 +26948,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_after",
                     ],
@@ -26936,7 +27277,11 @@ ShallowWrapper {
                               <style__StyledCol
                                         span={12}
                               >
-                                        base_layer_fee
+                                        <TooltipText
+                                                  details="max_base_layer_fee_explain"
+                                        >
+                                                  max_base_layer_fee
+                                        </TooltipText>
                               </style__StyledCol>
                     </Row>
                     <Row
@@ -27031,7 +27376,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_before
                                         </style__StyledCol>
@@ -27063,7 +27408,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_after
                                         </style__StyledCol>
@@ -27264,7 +27609,11 @@ ShallowWrapper {
                             <style__StyledCol
                                           span={12}
                             >
-                                          base_layer_fee
+                                          <TooltipText
+                                                        details="max_base_layer_fee_explain"
+                                          >
+                                                        max_base_layer_fee
+                                          </TooltipText>
                             </style__StyledCol>
               </Row>
               <Row
@@ -27359,7 +27708,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_before
                                           </style__StyledCol>
@@ -27391,7 +27740,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_after
                                           </style__StyledCol>
@@ -27879,7 +28228,11 @@ ShallowWrapper {
                   <style__StyledCol
                                     span={12}
                   >
-                                    base_layer_fee
+                                    <TooltipText
+                                                      details="max_base_layer_fee_explain"
+                                    >
+                                                      max_base_layer_fee
+                                    </TooltipText>
                   </style__StyledCol>
 </Row>,
                 <Row
@@ -27974,7 +28327,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_before
                                     </style__StyledCol>
@@ -28006,7 +28359,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_after
                                     </style__StyledCol>
@@ -28158,7 +28511,11 @@ ShallowWrapper {
                   "children": <style__StyledCol
                     span={12}
 >
-                    base_layer_fee
+                    <TooltipText
+                                        details="max_base_layer_fee_explain"
+                    >
+                                        max_base_layer_fee
+                    </TooltipText>
 </style__StyledCol>,
                   "gutter": 0,
                 },
@@ -28168,11 +28525,26 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "base_layer_fee",
+                    "children": <TooltipText
+                      details="max_base_layer_fee_explain"
+>
+                      max_base_layer_fee
+</TooltipText>,
                     "span": 12,
                   },
                   "ref": null,
-                  "rendered": "base_layer_fee",
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "max_base_layer_fee",
+                      "details": "max_base_layer_fee_explain",
+                    },
+                    "ref": null,
+                    "rendered": "max_base_layer_fee",
+                    "type": [Function],
+                  },
                   "type": [Function],
                 },
                 "type": [Function],
@@ -28407,7 +28779,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_before
                       </style__StyledCol>
@@ -28439,7 +28811,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_after
                       </style__StyledCol>
@@ -28477,7 +28849,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_before
 </style__StyledCol>,
@@ -28490,7 +28862,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_before",
                         ],
@@ -28498,7 +28870,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -28562,7 +28934,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_after
 </style__StyledCol>,
@@ -28575,7 +28947,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_after",
                         ],
@@ -28583,7 +28955,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -32055,7 +32427,11 @@ ShallowWrapper {
                         <style__StyledCol
                                 span={12}
                         >
-                                base_layer_fee
+                                <TooltipText
+                                        details="max_base_layer_fee_explain"
+                                >
+                                        max_base_layer_fee
+                                </TooltipText>
                         </style__StyledCol>
                 </Row>
                 <Row
@@ -32150,7 +32526,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                                 </style__StyledCol>
@@ -32182,7 +32558,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                         span={12}
                                 >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                                 </style__StyledCol>
@@ -32383,7 +32759,11 @@ ShallowWrapper {
                         <style__StyledCol
                                     span={12}
                         >
-                                    base_layer_fee
+                                    <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                    >
+                                                max_base_layer_fee
+                                    </TooltipText>
                         </style__StyledCol>
             </Row>
             <Row
@@ -32478,7 +32858,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                     </style__StyledCol>
@@ -32510,7 +32890,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                 span={12}
                                     >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                     </style__StyledCol>
@@ -32998,7 +33378,11 @@ ShallowWrapper {
                 <style__StyledCol
                                 span={12}
                 >
-                                base_layer_fee
+                                <TooltipText
+                                                details="max_base_layer_fee_explain"
+                                >
+                                                max_base_layer_fee
+                                </TooltipText>
                 </style__StyledCol>
 </Row>,
               <Row
@@ -33093,7 +33477,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_before
                                 </style__StyledCol>
@@ -33125,7 +33509,7 @@ ShallowWrapper {
                                 <style__StyledCol
                                                 span={12}
                                 >
-                                                nahmii
+                                                nahmii_available
                                                  ETH 
                                                 balance_after
                                 </style__StyledCol>
@@ -33277,7 +33661,11 @@ ShallowWrapper {
                 "children": <style__StyledCol
                   span={12}
 >
-                  base_layer_fee
+                  <TooltipText
+                                    details="max_base_layer_fee_explain"
+                  >
+                                    max_base_layer_fee
+                  </TooltipText>
 </style__StyledCol>,
                 "gutter": 0,
               },
@@ -33287,11 +33675,26 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "base_layer_fee",
+                  "children": <TooltipText
+                    details="max_base_layer_fee_explain"
+>
+                    max_base_layer_fee
+</TooltipText>,
                   "span": 12,
                 },
                 "ref": null,
-                "rendered": "base_layer_fee",
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "max_base_layer_fee",
+                    "details": "max_base_layer_fee_explain",
+                  },
+                  "ref": null,
+                  "rendered": "max_base_layer_fee",
+                  "type": [Function],
+                },
                 "type": [Function],
               },
               "type": [Function],
@@ -33526,7 +33929,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_before
                     </style__StyledCol>
@@ -33558,7 +33961,7 @@ ShallowWrapper {
                     <style__StyledCol
                                         span={12}
                     >
-                                        nahmii
+                                        nahmii_available
                                          ETH 
                                         balance_after
                     </style__StyledCol>
@@ -33596,7 +33999,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_before
 </style__StyledCol>,
@@ -33609,7 +34012,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -33617,7 +34020,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_before",
                     ],
@@ -33681,7 +34084,7 @@ ShallowWrapper {
                     "children": <style__StyledCol
                       span={12}
 >
-                      nahmii
+                      nahmii_available
                        ETH 
                       balance_after
 </style__StyledCol>,
@@ -33694,7 +34097,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],
@@ -33702,7 +34105,7 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "nahmii",
+                      "nahmii_available",
                       " ETH ",
                       "balance_after",
                     ],
@@ -34031,7 +34434,11 @@ ShallowWrapper {
                               <style__StyledCol
                                         span={12}
                               >
-                                        base_layer_fee
+                                        <TooltipText
+                                                  details="max_base_layer_fee_explain"
+                                        >
+                                                  max_base_layer_fee
+                                        </TooltipText>
                               </style__StyledCol>
                     </Row>
                     <Row
@@ -34126,7 +34533,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_before
                                         </style__StyledCol>
@@ -34158,7 +34565,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_available
                                                    ETH 
                                                   balance_after
                                         </style__StyledCol>
@@ -34359,7 +34766,11 @@ ShallowWrapper {
                             <style__StyledCol
                                           span={12}
                             >
-                                          base_layer_fee
+                                          <TooltipText
+                                                        details="max_base_layer_fee_explain"
+                                          >
+                                                        max_base_layer_fee
+                                          </TooltipText>
                             </style__StyledCol>
               </Row>
               <Row
@@ -34454,7 +34865,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_before
                                           </style__StyledCol>
@@ -34486,7 +34897,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_available
                                                          ETH 
                                                         balance_after
                                           </style__StyledCol>
@@ -34974,7 +35385,11 @@ ShallowWrapper {
                   <style__StyledCol
                                     span={12}
                   >
-                                    base_layer_fee
+                                    <TooltipText
+                                                      details="max_base_layer_fee_explain"
+                                    >
+                                                      max_base_layer_fee
+                                    </TooltipText>
                   </style__StyledCol>
 </Row>,
                 <Row
@@ -35069,7 +35484,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_before
                                     </style__StyledCol>
@@ -35101,7 +35516,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_available
                                                        ETH 
                                                       balance_after
                                     </style__StyledCol>
@@ -35253,7 +35668,11 @@ ShallowWrapper {
                   "children": <style__StyledCol
                     span={12}
 >
-                    base_layer_fee
+                    <TooltipText
+                                        details="max_base_layer_fee_explain"
+                    >
+                                        max_base_layer_fee
+                    </TooltipText>
 </style__StyledCol>,
                   "gutter": 0,
                 },
@@ -35263,11 +35682,26 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "base_layer_fee",
+                    "children": <TooltipText
+                      details="max_base_layer_fee_explain"
+>
+                      max_base_layer_fee
+</TooltipText>,
                     "span": 12,
                   },
                   "ref": null,
-                  "rendered": "base_layer_fee",
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "max_base_layer_fee",
+                      "details": "max_base_layer_fee_explain",
+                    },
+                    "ref": null,
+                    "rendered": "max_base_layer_fee",
+                    "type": [Function],
+                  },
                   "type": [Function],
                 },
                 "type": [Function],
@@ -35502,7 +35936,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_before
                       </style__StyledCol>
@@ -35534,7 +35968,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_available
                                              ETH 
                                             balance_after
                       </style__StyledCol>
@@ -35572,7 +36006,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_before
 </style__StyledCol>,
@@ -35585,7 +36019,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_before",
                         ],
@@ -35593,7 +36027,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_before",
                       ],
@@ -35657,7 +36091,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_available
                          ETH 
                         balance_after
 </style__StyledCol>,
@@ -35670,7 +36104,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_available",
                           " ETH ",
                           "balance_after",
                         ],
@@ -35678,7 +36112,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_available",
                         " ETH ",
                         "balance_after",
                       ],

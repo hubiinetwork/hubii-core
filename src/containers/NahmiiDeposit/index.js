@@ -27,6 +27,7 @@ import HelperText from 'components/ui/HelperText';
 import Text from 'components/ui/Text';
 import NumericText from 'components/ui/NumericText';
 import SelectableText from 'components/ui/SelectableText';
+import TooltipText from 'components/ui/TooltipText';
 import SectionHeading from 'components/ui/SectionHeading';
 import Input from 'components/ui/Input';
 import Select, { Option } from 'components/ui/Select';
@@ -381,7 +382,11 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
               />
             </Row>
             <Row>
-              <StyledCol span={12}>{formatMessage({ id: 'base_layer_fee' })}</StyledCol>
+              <StyledCol span={12}>
+                <TooltipText details={formatMessage({ id: 'max_base_layer_fee_explain' })}>
+                  {formatMessage({ id: 'max_base_layer_fee' })}
+                </TooltipText>
+              </StyledCol>
             </Row>
             <Row>
               <TransferDescriptionItem
@@ -412,7 +417,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
             {assetToDeposit.symbol === 'ETH' &&
             <div>
               <Row>
-                <StyledCol span={12}>{formatMessage({ id: 'nahmii' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
+                <StyledCol span={12}>{formatMessage({ id: 'nahmii_available' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
               </Row>
               <Row>
                 <TransferDescriptionItem
@@ -422,7 +427,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
               </Row>
               <Row>
                 <StyledCol span={12}>
-                  {formatMessage({ id: 'nahmii' })} ETH {formatMessage({ id: 'balance_after' })}
+                  {formatMessage({ id: 'nahmii_available' })} ETH {formatMessage({ id: 'balance_after' })}
                 </StyledCol>
               </Row>
               <Row>

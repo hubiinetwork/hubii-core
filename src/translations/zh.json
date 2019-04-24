@@ -197,11 +197,15 @@
     "second_layer": "二级链",
     "waiting_for_deposit_to_be": "等待交易",
     "waiting_for_transfer_to_be_mined": "等待交易被确认",
+    "requested": "请求",
     "signed": "签名",
     "mined": "确定",
     "base_layer": "基础链",
     "nahmii": "nahmii",
+    "nahmii_available": "可用 nahmii",
     "base_layer_fee": "基础链的费率",
+    "max_base_layer_fee": "基础链的最高费率",
+    "max_base_layer_fee_explain": "正常情况下，所消耗的交易费率远低于这个最大值",
     "select_asset_to_deposit": "选择充值的资产类别",
     "deposit": "充值",
     "deposit_success": "充值成功",
@@ -269,5 +273,6 @@
     "start_challenge": "开始结算",
     "challenge_period": "结算验证中",
     "settlement_qualified": "结算验证成功",
-    "withdrawable": "可取款"
+    "withdrawable": "可取款",
+    "synchronising_settlement_status": "同步结算状态..."
 }
