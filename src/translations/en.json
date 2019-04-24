@@ -34,7 +34,7 @@
     "fetch_transactions_error": "There was a problem fetching this wallet's transaction history. Please try again later.",
     "no_transaction_history": "There is no transaction history for this wallet",
     "where_my_transaction": "Where's my transaction?",
-    "my_transaction_notes_1": "In this alpha build of hubii core, only confirmed transactions are displayed. This means recently sent transactions may take some time to appear, while they are pending.",
+    "my_transaction_notes_1": "In hubii core, only confirmed transactions are displayed. This means recently sent transactions may take some time to appear, while they are pending.",
     "my_transaction_notes_2": "Until support for pending transactions is added into hubii core, you can ",
     "view_them_etherscan": "view them on Etherscan",
     "view_etherscan": "View on Etherscan",
