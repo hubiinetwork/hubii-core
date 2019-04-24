@@ -270,24 +270,32 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     } = this.props;
     const { formatMessage } = intl;
     const confOnDevice = ledgerNanoSInfo.get('confTxOnDevice') || trezorInfo.get('confTxOnDevice');
-    let ratio;
+    let status;
     let type;
     const activities = [withdrawals, ongoingChallenges, settleableChallenges];
     for (const activity of activities) { //eslint-disable-line
-      if (activity.get('status') === 'requesting') ratio = '1/2';
-      if (activity.get('status') === 'mining') ratio = '2/2';
-      if (activity.get('status') === 'receipt') ratio = '2/2';
+      if (activity.get('status') === 'requesting') status = 'requesting';
+      if (activity.get('status') === 'mining') status = 'mining';
+      if (activity.get('status') === 'receipt') status = 'mining';
 
-      if (ratio && activity === withdrawals) type = 'withdraw';
-      if (ratio && activity === ongoingChallenges) type = 'start_challenge';
-      if (ratio && activity === settleableChallenges) type = 'confirm_settle';
+      if (status && activity === withdrawals) type = 'withdraw';
+      if (status && activity === ongoingChallenges) type = 'start_challenge';
+      if (status && activity === settleableChallenges) type = 'confirm_settle';
 
-      if (ratio) break;
+      if (status) break;
     }
 
-    if (!ratio) return null;
-    const transferingText =
-      `${formatMessage({ id: `waiting_for_${type}_to_be` })} ${confOnDevice ? formatMessage({ id: 'signed' }) : `${formatMessage({ id: 'mined' })}...`}`;
+    if (!status) return null;
+
+    let transferingText = `${formatMessage({ id: `waiting_for_${type}_to_be` })} `;
+    if (confOnDevice) {
+      transferingText = `${transferingText} ${formatMessage({ id: 'signed' })}...`;
+    } else if (status === 'requesting') {
+      transferingText = `${transferingText} ${formatMessage({ id: 'requested' })}...`;
+    } else if (status === 'mining') {
+      transferingText = `${transferingText} ${formatMessage({ id: 'mined' })}...`;
+    }
+
     return (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <span>

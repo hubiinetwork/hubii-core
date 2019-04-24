@@ -197,6 +197,7 @@
     "second_layer": "second layer",
     "waiting_for_deposit_to_be": "Waiting for transaction {ratio} to be",
     "waiting_for_transfer_to_be_mined": "Waiting for transaction to be mined",
+    "requested": "requested",
     "signed": "signed",
     "mined": "mined",
     "base_layer": "Base layer",

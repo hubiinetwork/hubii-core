@@ -369,15 +369,19 @@ describe('<NahmiiWithdraw />', () => {
       });
       describe('should hide the settle button', () => {
         [
-          { status: 'requesting', text: /waiting_for_start_challenge_to_be/i },
-          { status: 'mining', text: /waiting_for_start_challenge_to_be/i },
-          { status: 'receipt', text: /waiting_for_start_challenge_to_be/i },
+          { status: 'requesting', confOnDevice: true, text: /waiting_for_start_challenge_to_be.*signed/i },
+          { status: 'mining', confOnDevice: true, text: /waiting_for_start_challenge_to_be.*signed/i },
+          { status: 'receipt', confOnDevice: true, text: /waiting_for_start_challenge_to_be.*signed/i },
+          { status: 'requesting', text: /waiting_for_start_challenge_to_be.*requested/i },
+          { status: 'mining', text: /waiting_for_start_challenge_to_be.*mined/i },
+          { status: 'receipt', text: /waiting_for_start_challenge_to_be.*mined/i },
         ].forEach((t) => {
-          it(`should show the transaction status when status is ${t.status}`, () => {
+          it(`should show the transaction status ${t.text} when status is ${t.status} and confOnDevice is ${t.confOnDevice}`, () => {
             const wrapper = shallow(
               <NahmiiWithdraw
                 {...props}
                 {...getProps(t.status)}
+                ledgerNanoSInfo={ledgerHocDisconnectedMock.set('confTxOnDevice', t.confOnDevice)}
               />
             );
             wrapper.setState({ amountToWithdraw: new BigNumber(3) });
@@ -507,11 +511,14 @@ describe('<NahmiiWithdraw />', () => {
     });
     describe('confirm settling', () => {
       [
-        { status: 'requesting', text: /waiting_for_confirm_settle_to_be/i },
-        { status: 'mining', text: /waiting_for_confirm_settle_to_be/i },
-        { status: 'receipt', text: /waiting_for_confirm_settle_to_be/i },
+        { status: 'requesting', confOnDevice: true, text: /waiting_for_confirm_settle_to_be.*signed/i },
+        { status: 'mining', confOnDevice: true, text: /waiting_for_confirm_settle_to_be.*signed/i },
+        { status: 'receipt', confOnDevice: true, text: /waiting_for_confirm_settle_to_be.*signed/i },
+        { status: 'requesting', text: /waiting_for_confirm_settle_to_be.*requested/i },
+        { status: 'mining', text: /waiting_for_confirm_settle_to_be.*mined/i },
+        { status: 'receipt', text: /waiting_for_confirm_settle_to_be.*mined/i },
       ].forEach((t) => {
-        it(`should hide the confirm button and show the transaction status when status is ${t.status}`, () => {
+        it(`should hide the confirm button and show the transaction status ${t.text} when status is ${t.status} and confOnDevice is ${t.confOnDevice}`, () => {
           const wrapper = shallow(
             <NahmiiWithdraw
               {...props}
@@ -519,6 +526,7 @@ describe('<NahmiiWithdraw />', () => {
                 { intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
                 { intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
               ]).set('status', t.status)}
+              ledgerNanoSInfo={ledgerHocDisconnectedMock.set('confTxOnDevice', t.confOnDevice)}
             />
           );
           const noticeNode = wrapper.find('style__SettlementWarning');
@@ -574,15 +582,19 @@ describe('<NahmiiWithdraw />', () => {
     });
     describe('withdrawal', () => {
       [
-        { status: 'requesting', text: /waiting_for_withdraw_to_be/i },
-        { status: 'mining', text: /waiting_for_withdraw_to_be/i },
-        { status: 'receipt', text: /waiting_for_withdraw_to_be/i },
+        { status: 'requesting', confOnDevice: true, text: /waiting_for_withdraw_to_be.*signed/i },
+        { status: 'mining', confOnDevice: true, text: /waiting_for_withdraw_to_be.*signed/i },
+        { status: 'receipt', confOnDevice: true, text: /waiting_for_withdraw_to_be.*signed/i },
+        { status: 'requesting', text: /waiting_for_withdraw_to_be.*requested/i },
+        { status: 'mining', text: /waiting_for_withdraw_to_be.*mined/i },
+        { status: 'receipt', text: /waiting_for_withdraw_to_be.*mined/i },
       ].forEach((t) => {
-        it(`should hide the withdraw button and show the transaction status when status is ${t.status}`, () => {
+        it(`should hide the withdraw button and show the transaction status ${t.text} when status is ${t.status} and confOnDevice is ${t.confOnDevice}`, () => {
           const wrapper = shallow(
             <NahmiiWithdraw
               {...props}
               withdrawals={fromJS({ status: t.status })}
+              ledgerNanoSInfo={ledgerHocDisconnectedMock.set('confTxOnDevice', t.confOnDevice)}
             />
           );
           expect(wrapper.find('.withdraw-btn')).toHaveLength(0);
