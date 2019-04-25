@@ -128,7 +128,7 @@
     "ledger_connect_unlock": "Connect and unlock your Ledger Device",
     "ledger_open_eth_app": "Open the Ethereum app on your device",
     "ledger_transaction_cancelled_error": "Transaction Cancelled",
-    "ledger_contract_transaction_data_error": "Failed to transfer token. Please make sure 'Contract data' is set to yes on your Ledger device.",
+    "ledger_contract_transaction_data_error": "Failed to sign transaction for contracts. Please make sure 'Contract data' is set to yes on your Ledger device.",
     "trezor_not_connected_error": "Trezor is not connected.",
     "trezor_invalid_pin_error": "Trezor PIN code is invalid.",
     "trezor_invalid_passphrase_error": "Please reconnect your Trezor device, and make sure you provided the correct passphrase for this wallet.",
