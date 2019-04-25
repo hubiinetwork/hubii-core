@@ -47,7 +47,7 @@ function ledgerErrorMsg(error) {
 }
 
 function hwErrorMsg(msg) {
-  const error = {message: msg};
+  const error = { message: msg };
   return ledgerErrorMsg(error) || trezorErrorMsg(error);
 }
 
