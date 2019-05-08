@@ -27,6 +27,7 @@ describe('WalletsOverview', () => {
     wallets: walletsMock,
     showDecryptWalletModal: () => {},
     deleteWallet: () => {},
+    editWallet: () => {},
     lockWallet: () => {},
     dragWallet: () => {},
     toggleFoldWallet: () => {},

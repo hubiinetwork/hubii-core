@@ -14,6 +14,9 @@ export const CREATE_WALLET_FROM_ADDRESS = 'src/WalletHoc/CREATE_WALLET_FROM_ADDR
 export const CREATE_WALLET_SUCCESS = 'src/WalletHoc/CREATE_WALLET_SUCCESS';
 export const CREATE_WALLET_FAILURE = 'src/WalletHoc/CREATE_WALLET_FAILURE';
 
+export const UPDATE_WALLET_NAME = 'src/WalletHoc/UPDATE_WALLET_NAME';
+export const UPDATE_WALLET_NAME_SUCCESS = 'src/WalletHoc/UPDATE_WALLET_NAME_SUCCESS';
+
 export const ADD_NEW_WALLET = 'src/WalletHoc/ADD_NEW_WALLET';
 
 export const DELETE_WALLET = 'src/WalletHoc/DELETE_WALLET';

@@ -552,7 +552,6 @@ export function* settle({ address, currency, options }) {
     for (let i = 0; i < settleableChallenges.length; i += 1) {
       if (confOnDevice) yield put(confOnDevice);
       const settleableChallenge = settleableChallenges[i];
-      console.log(settleableChallenge);
       const tx = yield call(settlement.settleBySettleableChallenge.bind(settlement), settleableChallenge, nahmiiWallet, { gasLimit, gasPrice });
       if (confOnDeviceDone) yield put(confOnDeviceDone);
       yield processTx('settle-payment', nahmiiProvider, tx, walletDetails.address, currency);

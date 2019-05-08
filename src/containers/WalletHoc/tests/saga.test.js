@@ -68,6 +68,7 @@ import walletHoc, {
   createWalletFromPrivateKey,
   createWalletFromKeystore,
   createWalletFromAddress,
+  updateWalletName,
   decryptWallet,
   transfer,
   transferERC20,
@@ -103,6 +104,7 @@ import {
 import {
   createWalletSuccess,
   createWalletFailed,
+  updateWalletNameSuccess,
   decryptWalletSuccess,
   decryptWalletFailed,
   showDecryptWalletModal,
@@ -314,6 +316,57 @@ describe('CREATE_WALLET_SUCCESS', () => {
         expect(wallets.count()).toEqual(1);
         expect(wallets.get(0).get('address')).toEqual(existWallet.address);
       });
+  });
+});
+
+describe('update wallet properties', () => {
+  const existWallets = [
+    { name: 'name1', address: '0x01', encrypted: '{"address":"0x01"}', decrypted: {} },
+    { name: 'name2', address: '0x02', encrypted: '{"address":"0x02"}', decrypted: {} },
+  ];
+  const storeState = {
+    walletHoc: {
+      wallets: existWallets,
+    },
+  };
+  describe('wallet name', () => {
+    it('should update wallet name', () => {
+      const newWalletName = 'new name';
+      return expectSaga(updateWalletName, { newWalletName, address: existWallets[0].address })
+        .withReducer(withReducer, fromJS(storeState))
+        .put(updateWalletNameSuccess(existWallets[0].address, newWalletName))
+        .put(notify('success', 'wallet_name_updated'))
+        .run({ silenceTimeout: true })
+        .then((result) => {
+          const wallets = result.storeState.getIn(['walletHoc', 'wallets']);
+          expect(wallets.count()).toEqual(2);
+          expect(wallets.get(0).toJS()).toEqual(Object.assign({}, existWallets[0], { name: newWalletName }));
+        });
+    });
+    it('should not update wallet name to be same as any existing wallets', () => {
+      const newWalletName = 'Name2';
+      return expectSaga(updateWalletName, { newWalletName, address: existWallets[0].address })
+        .withReducer(withReducer, fromJS(storeState))
+        .put(notify('error', 'update_wallet_name_error'))
+        .run({ silenceTimeout: true })
+        .then((result) => {
+          const wallets = result.storeState.getIn(['walletHoc', 'wallets']);
+          expect(wallets.count()).toEqual(2);
+          expect(wallets.toJS()).toEqual(existWallets);
+        });
+    });
+    it('should not update wallet name when address not exists', () => {
+      const newWalletName = 'new name';
+      return expectSaga(updateWalletName, { newWalletName, address: '0x03' })
+        .withReducer(withReducer, fromJS(storeState))
+        .put(notify('error', 'update_wallet_name_error'))
+        .run({ silenceTimeout: true })
+        .then((result) => {
+          const wallets = result.storeState.getIn(['walletHoc', 'wallets']);
+          expect(wallets.count()).toEqual(2);
+          expect(wallets.toJS()).toEqual(existWallets);
+        });
+    });
   });
 });
 

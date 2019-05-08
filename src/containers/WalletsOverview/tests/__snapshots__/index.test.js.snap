@@ -7,6 +7,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <WalletsOverview
     deleteWallet={[Function]}
     dragWallet={[Function]}
+    editWallet={[Function]}
     history={
         Object {
             "push": [Function],
@@ -886,6 +887,7 @@ ShallowWrapper {
                         axis="xy"
                         deleteWallet={[Function]}
                         distance={5}
+                        editWallet={[Function]}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
                         handleToggleFold={[Function]}
@@ -1582,6 +1584,7 @@ ShallowWrapper {
                         axis="xy"
                         deleteWallet={[Function]}
                         distance={5}
+                        editWallet={[Function]}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
                         handleToggleFold={[Function]}
@@ -2278,6 +2281,7 @@ ShallowWrapper {
                 axis="xy"
                 deleteWallet={[Function]}
                 distance={5}
+                editWallet={[Function]}
                 getHelperDimensions={[Function]}
                 handleCardClick={[Function]}
                 handleToggleFold={[Function]}
@@ -2973,6 +2977,7 @@ ShallowWrapper {
                 "axis": "xy",
                 "deleteWallet": [Function],
                 "distance": 5,
+                "editWallet": [Function],
                 "getHelperDimensions": [Function],
                 "handleCardClick": [Function],
                 "handleToggleFold": [Function],
@@ -3686,6 +3691,7 @@ ShallowWrapper {
                               axis="xy"
                               deleteWallet={[Function]}
                               distance={5}
+                              editWallet={[Function]}
                               getHelperDimensions={[Function]}
                               handleCardClick={[Function]}
                               handleToggleFold={[Function]}
@@ -4382,6 +4388,7 @@ ShallowWrapper {
                             axis="xy"
                             deleteWallet={[Function]}
                             distance={5}
+                            editWallet={[Function]}
                             getHelperDimensions={[Function]}
                             handleCardClick={[Function]}
                             handleToggleFold={[Function]}
@@ -5078,6 +5085,7 @@ ShallowWrapper {
                   axis="xy"
                   deleteWallet={[Function]}
                   distance={5}
+                  editWallet={[Function]}
                   getHelperDimensions={[Function]}
                   handleCardClick={[Function]}
                   handleToggleFold={[Function]}
@@ -5773,6 +5781,7 @@ ShallowWrapper {
                   "axis": "xy",
                   "deleteWallet": [Function],
                   "distance": 5,
+                  "editWallet": [Function],
                   "getHelperDimensions": [Function],
                   "handleCardClick": [Function],
                   "handleToggleFold": [Function],
@@ -6478,6 +6487,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <WalletsOverview
     deleteWallet={[Function]}
     dragWallet={[Function]}
+    editWallet={[Function]}
     history={
         Object {
             "push": [Function],
@@ -7357,6 +7367,7 @@ ShallowWrapper {
                         axis="xy"
                         deleteWallet={[Function]}
                         distance={5}
+                        editWallet={[Function]}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
                         handleToggleFold={[Function]}
@@ -8053,6 +8064,7 @@ ShallowWrapper {
                         axis="xy"
                         deleteWallet={[Function]}
                         distance={5}
+                        editWallet={[Function]}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
                         handleToggleFold={[Function]}
@@ -8749,6 +8761,7 @@ ShallowWrapper {
                 axis="xy"
                 deleteWallet={[Function]}
                 distance={5}
+                editWallet={[Function]}
                 getHelperDimensions={[Function]}
                 handleCardClick={[Function]}
                 handleToggleFold={[Function]}
@@ -9444,6 +9457,7 @@ ShallowWrapper {
                 "axis": "xy",
                 "deleteWallet": [Function],
                 "distance": 5,
+                "editWallet": [Function],
                 "getHelperDimensions": [Function],
                 "handleCardClick": [Function],
                 "handleToggleFold": [Function],
@@ -10157,6 +10171,7 @@ ShallowWrapper {
                               axis="xy"
                               deleteWallet={[Function]}
                               distance={5}
+                              editWallet={[Function]}
                               getHelperDimensions={[Function]}
                               handleCardClick={[Function]}
                               handleToggleFold={[Function]}
@@ -10853,6 +10868,7 @@ ShallowWrapper {
                             axis="xy"
                             deleteWallet={[Function]}
                             distance={5}
+                            editWallet={[Function]}
                             getHelperDimensions={[Function]}
                             handleCardClick={[Function]}
                             handleToggleFold={[Function]}
@@ -11549,6 +11565,7 @@ ShallowWrapper {
                   axis="xy"
                   deleteWallet={[Function]}
                   distance={5}
+                  editWallet={[Function]}
                   getHelperDimensions={[Function]}
                   handleCardClick={[Function]}
                   handleToggleFold={[Function]}
@@ -12244,6 +12261,7 @@ ShallowWrapper {
                   "axis": "xy",
                   "deleteWallet": [Function],
                   "distance": 5,
+                  "editWallet": [Function],
                   "getHelperDimensions": [Function],
                   "handleCardClick": [Function],
                   "handleToggleFold": [Function],
@@ -12949,6 +12967,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <WalletsOverview
     deleteWallet={[Function]}
     dragWallet={[Function]}
+    editWallet={[Function]}
     history={
         Object {
             "push": [Function],
@@ -15172,6 +15191,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <WalletsOverview
     deleteWallet={[Function]}
     dragWallet={[Function]}
+    editWallet={[Function]}
     history={
         Object {
             "push": [Function],
@@ -17395,6 +17415,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <WalletsOverview
     deleteWallet={[Function]}
     dragWallet={[Function]}
+    editWallet={[Function]}
     history={
         Object {
             "push": [Function],
@@ -18310,6 +18331,7 @@ ShallowWrapper {
                         axis="xy"
                         deleteWallet={[Function]}
                         distance={5}
+                        editWallet={[Function]}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
                         handleToggleFold={[Function]}
@@ -19170,6 +19192,7 @@ ShallowWrapper {
                         axis="xy"
                         deleteWallet={[Function]}
                         distance={5}
+                        editWallet={[Function]}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
                         handleToggleFold={[Function]}
@@ -20030,6 +20053,7 @@ ShallowWrapper {
                 axis="xy"
                 deleteWallet={[Function]}
                 distance={5}
+                editWallet={[Function]}
                 getHelperDimensions={[Function]}
                 handleCardClick={[Function]}
                 handleToggleFold={[Function]}
@@ -20725,6 +20749,7 @@ ShallowWrapper {
                 "axis": "xy",
                 "deleteWallet": [Function],
                 "distance": 5,
+                "editWallet": [Function],
                 "getHelperDimensions": [Function],
                 "handleCardClick": [Function],
                 "handleToggleFold": [Function],
@@ -21946,6 +21971,7 @@ ShallowWrapper {
                               axis="xy"
                               deleteWallet={[Function]}
                               distance={5}
+                              editWallet={[Function]}
                               getHelperDimensions={[Function]}
                               handleCardClick={[Function]}
                               handleToggleFold={[Function]}
@@ -22806,6 +22832,7 @@ ShallowWrapper {
                             axis="xy"
                             deleteWallet={[Function]}
                             distance={5}
+                            editWallet={[Function]}
                             getHelperDimensions={[Function]}
                             handleCardClick={[Function]}
                             handleToggleFold={[Function]}
@@ -23666,6 +23693,7 @@ ShallowWrapper {
                   axis="xy"
                   deleteWallet={[Function]}
                   distance={5}
+                  editWallet={[Function]}
                   getHelperDimensions={[Function]}
                   handleCardClick={[Function]}
                   handleToggleFold={[Function]}
@@ -24361,6 +24389,7 @@ ShallowWrapper {
                   "axis": "xy",
                   "deleteWallet": [Function],
                   "distance": 5,
+                  "editWallet": [Function],
                   "getHelperDimensions": [Function],
                   "handleCardClick": [Function],
                   "handleToggleFold": [Function],
@@ -25574,6 +25603,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <WalletsOverview
     deleteWallet={[Function]}
     dragWallet={[Function]}
+    editWallet={[Function]}
     history={
         Object {
             "push": [Function],
@@ -26435,6 +26465,7 @@ ShallowWrapper {
                         axis="xy"
                         deleteWallet={[Function]}
                         distance={5}
+                        editWallet={[Function]}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
                         handleToggleFold={[Function]}
@@ -27241,6 +27272,7 @@ ShallowWrapper {
                         axis="xy"
                         deleteWallet={[Function]}
                         distance={5}
+                        editWallet={[Function]}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
                         handleToggleFold={[Function]}
@@ -28047,6 +28079,7 @@ ShallowWrapper {
                 axis="xy"
                 deleteWallet={[Function]}
                 distance={5}
+                editWallet={[Function]}
                 getHelperDimensions={[Function]}
                 handleCardClick={[Function]}
                 handleToggleFold={[Function]}
@@ -28742,6 +28775,7 @@ ShallowWrapper {
                 "axis": "xy",
                 "deleteWallet": [Function],
                 "distance": 5,
+                "editWallet": [Function],
                 "getHelperDimensions": [Function],
                 "handleCardClick": [Function],
                 "handleToggleFold": [Function],
@@ -29801,6 +29835,7 @@ ShallowWrapper {
                               axis="xy"
                               deleteWallet={[Function]}
                               distance={5}
+                              editWallet={[Function]}
                               getHelperDimensions={[Function]}
                               handleCardClick={[Function]}
                               handleToggleFold={[Function]}
@@ -30607,6 +30642,7 @@ ShallowWrapper {
                             axis="xy"
                             deleteWallet={[Function]}
                             distance={5}
+                            editWallet={[Function]}
                             getHelperDimensions={[Function]}
                             handleCardClick={[Function]}
                             handleToggleFold={[Function]}
@@ -31413,6 +31449,7 @@ ShallowWrapper {
                   axis="xy"
                   deleteWallet={[Function]}
                   distance={5}
+                  editWallet={[Function]}
                   getHelperDimensions={[Function]}
                   handleCardClick={[Function]}
                   handleToggleFold={[Function]}
@@ -32108,6 +32145,7 @@ ShallowWrapper {
                   "axis": "xy",
                   "deleteWallet": [Function],
                   "distance": 5,
+                  "editWallet": [Function],
                   "getHelperDimensions": [Function],
                   "handleCardClick": [Function],
                   "handleToggleFold": [Function],
@@ -33159,6 +33197,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <WalletsOverview
     deleteWallet={[Function]}
     dragWallet={[Function]}
+    editWallet={[Function]}
     history={
         Object {
             "push": [Function],
@@ -34020,6 +34059,7 @@ ShallowWrapper {
                         axis="xy"
                         deleteWallet={[Function]}
                         distance={5}
+                        editWallet={[Function]}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
                         handleToggleFold={[Function]}
@@ -34826,6 +34866,7 @@ ShallowWrapper {
                         axis="xy"
                         deleteWallet={[Function]}
                         distance={5}
+                        editWallet={[Function]}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
                         handleToggleFold={[Function]}
@@ -35632,6 +35673,7 @@ ShallowWrapper {
                 axis="xy"
                 deleteWallet={[Function]}
                 distance={5}
+                editWallet={[Function]}
                 getHelperDimensions={[Function]}
                 handleCardClick={[Function]}
                 handleToggleFold={[Function]}
@@ -36327,6 +36369,7 @@ ShallowWrapper {
                 "axis": "xy",
                 "deleteWallet": [Function],
                 "distance": 5,
+                "editWallet": [Function],
                 "getHelperDimensions": [Function],
                 "handleCardClick": [Function],
                 "handleToggleFold": [Function],
@@ -37386,6 +37429,7 @@ ShallowWrapper {
                               axis="xy"
                               deleteWallet={[Function]}
                               distance={5}
+                              editWallet={[Function]}
                               getHelperDimensions={[Function]}
                               handleCardClick={[Function]}
                               handleToggleFold={[Function]}
@@ -38192,6 +38236,7 @@ ShallowWrapper {
                             axis="xy"
                             deleteWallet={[Function]}
                             distance={5}
+                            editWallet={[Function]}
                             getHelperDimensions={[Function]}
                             handleCardClick={[Function]}
                             handleToggleFold={[Function]}
@@ -38998,6 +39043,7 @@ ShallowWrapper {
                   axis="xy"
                   deleteWallet={[Function]}
                   distance={5}
+                  editWallet={[Function]}
                   getHelperDimensions={[Function]}
                   handleCardClick={[Function]}
                   handleToggleFold={[Function]}
@@ -39693,6 +39739,7 @@ ShallowWrapper {
                   "axis": "xy",
                   "deleteWallet": [Function],
                   "distance": 5,
+                  "editWallet": [Function],
                   "getHelperDimensions": [Function],
                   "handleCardClick": [Function],
                   "handleToggleFold": [Function],
