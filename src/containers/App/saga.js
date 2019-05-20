@@ -9,7 +9,7 @@ import { makeSelectLocale } from 'containers/LanguageProvider/selectors';
 import { makeSelectWallets } from 'containers/WalletHoc/selectors';
 import { makeSelectContacts } from 'containers/ContactBook/selectors';
 import { CHANGE_LOCALE } from 'containers/LanguageProvider/constants';
-import { setIntl } from 'utils/localisation';
+import { setIntl, getIntl } from 'utils/localisation';
 
 import { createContact } from 'containers/ContactBook/actions';
 import { createWalletSuccess, saveTrezorAddress, saveWatchAddress } from 'containers/WalletHoc/actions';
@@ -87,16 +87,16 @@ export function* batchExport({ password, filePath }) {
     encrypted += cipher.final('hex');
     fs.writeFileSync(filePath, encrypted);
     yield put(batchExportSuccess());
-    yield put(notify('success', 'Successfully made a backup'));
+    yield put(notify('success', getIntl().formatMessage({ id: 'backup_success' })));
   } catch (error) {
     yield put(batchExportError(error));
-    yield put(notify('error', 'Failed to made a backup'));
+    yield put(notify('error', getIntl().formatMessage({ id: 'backup_failed' })));
   }
 }
 
 export function* decryptImport({ password, filePath }) {
   try {
-    const encrypted = fs.readFileSync(filePath);
+    const encrypted = fs.readFileSync(filePath, 'utf8');
     const algorithm = 'aes-256-cbc';
     const decipher = crypto.createDecipher(algorithm, password);
     let decrypted = decipher.update(encrypted, 'hex', 'utf8');
@@ -104,6 +104,7 @@ export function* decryptImport({ password, filePath }) {
     yield put(decryptImportSuccess(JSON.parse(decrypted)));
   } catch (error) {
     yield put(decryptImportError(error));
+    yield put(notify('error', getIntl().formatMessage({ id: 'decrypt_failed' })));
   }
 }
 
@@ -121,10 +122,10 @@ export function* batchImport() {
           yield put(createWalletSuccess(wallet.name, wallet.encrypted, null, wallet.address));
           break;
         case 'lns':
-          yield put(saveTrezorAddress(wallet.name, wallet.derivationPath, wallet.deviceId, wallet.address));
+          yield put(saveLedgerAddress(wallet.name, wallet.derivationPath, wallet.deviceId, wallet.address));
           break;
         case 'trezor':
-          yield put(saveLedgerAddress(wallet.name, wallet.derivationPath, wallet.deviceId, wallet.address));
+          yield put(saveTrezorAddress(wallet.name, wallet.derivationPath, wallet.deviceId, wallet.address));
           break;
         case 'watch':
           yield put(saveWatchAddress(wallet.name, wallet.address));
@@ -147,7 +148,7 @@ export function* batchImport() {
     yield put(batchImportSuccess());
   } catch (error) {
     yield put(batchImportError(error));
-    yield put(notify('error', `Failed to import: ${error.message}`));
+    yield put(notify('error', getIntl().formatMessage({ id: 'import_failed' }, { message: error.message })));
   }
 }
 

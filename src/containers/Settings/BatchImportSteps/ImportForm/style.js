@@ -32,9 +32,11 @@ export const Wrapper = styled.div`
   .ant-form-item {
     margin-bottom: 0rem;
   }
+  margin-bottom: 2rem;
 `;
 export const StyledButton = styled(Button)`
-  min-width: 11.43rem;
+  min-width: 9rem;
+  margin-right: 2rem;
 `;
 
 export const ParentDiv = styled.div`

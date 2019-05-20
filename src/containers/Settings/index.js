@@ -52,9 +52,9 @@ export class Settings extends React.PureComponent {
     this.setState({ modalVisibility: false });
   }
 
-  handleDecryptImport() {
+  handleDecryptImport({ password, filePath }) {
     const { onDecryptImport } = this.props;
-    onDecryptImport();
+    onDecryptImport(password, filePath);
   }
 
   render() {

@@ -20,11 +20,16 @@ class BatchImportSteps extends React.Component {
       current: 0,
     };
     this.handleBack = this.handleBack.bind(this);
-    this.handleNext = this.handleNext.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.restoreContents && this.props.restoreContents !== prevProps.restoreContents) {
+      this.setState({current: 1});// eslint-disable-line
+    }
   }
 
   getSteps() {
-    const { onDecrypt, onImport } = this.props;
+    const { onDecrypt, onImport, restoreContents } = this.props;
     const steps = [
       {
         title: 'First',
@@ -39,6 +44,8 @@ class BatchImportSteps extends React.Component {
         content: (
           <ImportForm
             onImport={onImport}
+            onBack={this.handleBack}
+            restoreContents={restoreContents}
           />
         ),
       },
@@ -47,19 +54,7 @@ class BatchImportSteps extends React.Component {
   }
 
   handleBack() {
-    this.setState(({ current }) => ({ current: current - 1 }));
-  }
-
-  handleNext() {
-    const { onClose } = this.props;
-    this.setState((prev) => {
-      const { current } = prev;
-      const steps = this.getSteps();
-      if (current === steps.length - 1) {
-        return onClose();
-      }
-      return { current: current + 1 };
-    });
+    this.setState({ current: 0 });
   }
 
   render() {
@@ -69,7 +64,7 @@ class BatchImportSteps extends React.Component {
     const FormNavigation = (
       <Wrapper>
         <NavigationWrapper>
-          <Text large>{formatMessage({ id: 'import_exist_wallet' })}</Text>
+          <Text large>{formatMessage({ id: 'batch_import' })}</Text>
         </NavigationWrapper>
       </Wrapper>
     );
@@ -83,7 +78,7 @@ class BatchImportSteps extends React.Component {
 BatchImportSteps.propTypes = {
   onImport: PropTypes.func.isRequired,
   onDecrypt: PropTypes.func.isRequired,
-  onClose: PropTypes.func.isRequired,
+  restoreContents: PropTypes.object,
   intl: PropTypes.object.isRequired,
 };
 

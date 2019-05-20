@@ -254,10 +254,10 @@ describe('batch import/export', () => {
             saga.put(createWalletSuccess(wallet.name, wallet.encrypted, null, wallet.address));
             break;
           case 'lns':
-            saga.put(saveTrezorAddress(wallet.name, wallet.derivationPath, wallet.deviceId, wallet.address));
+            saga.put(saveLedgerAddress(wallet.name, wallet.derivationPath, wallet.deviceId, wallet.address));
             break;
           case 'trezor':
-            saga.put(saveLedgerAddress(wallet.name, wallet.derivationPath, wallet.deviceId, wallet.address));
+            saga.put(saveTrezorAddress(wallet.name, wallet.derivationPath, wallet.deviceId, wallet.address));
             break;
           case 'watch':
             saga.put(saveWatchAddress(wallet.name, wallet.address));

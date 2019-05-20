@@ -15,11 +15,11 @@ import {
  * Modal component for exporting a wallet.
  */
 
-export class DecryptModal extends React.Component {
+export class DecryptForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = { filePath: null, password: null };
-    this.handleExport = this.handleExport.bind(this);
+    this.handleDecrypt = this.handleDecrypt.bind(this);
     this.handleSetFilePath = this.handleSetFilePath.bind(this);
   }
 
@@ -34,13 +34,13 @@ export class DecryptModal extends React.Component {
     });
   }
 
-  handleExport(e) {
-    const { onExport } = this.props;
+  handleDecrypt(e) {
+    const { onDecrypt } = this.props;
     const { filePath } = this.state;
     e.preventDefault();
     this.props.form.validateFields((err, value) => {
       if (!err) {
-        onExport({ password: value.password, filePath });
+        onDecrypt({ password: value.password, filePath });
       }
     });
   }
@@ -56,11 +56,11 @@ export class DecryptModal extends React.Component {
         <WrapperIcon>
           <Icon type="info-circle-o" />
           <Text>
-            {formatMessage({ id: 'export' })}
+            {formatMessage({ id: 'import_decrypt_info' })}
           </Text>
         </WrapperIcon>
-        <Form layout="vertical" onSubmit={this.handleExport}>
-          <ModalFormItem label={<ModalFormLabel>{formatMessage({ id: 'enter_backup_decrypt_password' })}</ModalFormLabel>}>
+        <Form layout="vertical" onSubmit={this.handleDecrypt}>
+          <ModalFormItem label={<ModalFormLabel>{formatMessage({ id: 'decrypt_password' })}</ModalFormLabel>}>
             {getFieldDecorator('password', {
               rules: [
                 {
@@ -97,12 +97,11 @@ export class DecryptModal extends React.Component {
   }
 }
 
-DecryptModal.propTypes = {
-  onExport: PropTypes.func,
-  onCancel: PropTypes.func,
+DecryptForm.propTypes = {
+  onDecrypt: PropTypes.func,
   form: PropTypes.object,
   intl: PropTypes.object.isRequired,
 };
 
-export default Form.create()(injectIntl(DecryptModal));
+export default Form.create()(injectIntl(DecryptForm));
 

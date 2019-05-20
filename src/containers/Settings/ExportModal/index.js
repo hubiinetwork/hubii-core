@@ -56,7 +56,7 @@ export class ExportModal extends React.Component {
         <WrapperIcon>
           <Icon type="info-circle-o" />
           <Text>
-            {formatMessage({ id: 'export' })}
+            {formatMessage({ id: 'batch_export' })}
           </Text>
         </WrapperIcon>
         <Form layout="vertical" onSubmit={this.handleExport}>
