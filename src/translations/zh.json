@@ -148,7 +148,7 @@
     "ledger_connect_unlock": "连接并解锁您的 Ledger 设备",
     "ledger_open_eth_app": "打开您设备商的 Ethereum 应用",
     "ledger_transaction_cancelled_error": "交易被取消",
-    "ledger_contract_transaction_data_error": "Token 传送失败。青确认设备上的 ‘Contract data’ 设置已打开。",
+    "ledger_contract_transaction_data_error": "签名失败。请确认设备上的 ‘Contract data’ 设置已打开。",
     "trezor_not_connected_error": "Trezor 没有连接。",
     "trezor_invalid_pin_error": "Trezor PIN 码非有效",
     "trezor_invalid_passphrase_error": "请重新连接 Trezor 设备，并确认您输入了正确的加密密码。",
