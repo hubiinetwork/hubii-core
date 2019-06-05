@@ -21,8 +21,14 @@ const makeSelectPathnameId = () => createSelector(
   }
 );
 
+const makeSelectRestoreContents = () => createSelector(
+  selectAppDomain,
+  (appDomain) => appDomain.getIn(['restore', 'import', 'data'])
+);
+
 export {
   makeSelectPathnameId,
   makeSelectCurrentNetwork,
   makeSelectSupportedNetworks,
+  makeSelectRestoreContents,
 };

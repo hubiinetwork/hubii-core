@@ -46,6 +46,11 @@ function ledgerErrorMsg(error) {
   return msg;
 }
 
+function hwErrorMsg(msg) {
+  const error = { message: msg };
+  return ledgerErrorMsg(error) || trezorErrorMsg(error);
+}
+
 export const logErrorMsg = (error) => {
   let msg;
   if (error.asStringified) {
@@ -53,6 +58,9 @@ export const logErrorMsg = (error) => {
   } else {
     msg = error.message;
   }
+
+  msg = hwErrorMsg(msg) || msg;
+
   if (process.env.NODE_ENV !== 'test') {
     console.error(msg); //eslint-disable-line
   }

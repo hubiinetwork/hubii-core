@@ -119,8 +119,11 @@ ShallowWrapper {
           }
     }
     locale="en"
+    onBatchExport={[Function]}
+    onBatchImport={[Function]}
     onChangeLocale={[Function]}
     onChangeNetwork={[Function]}
+    onDecryptImport={[Function]}
     supportedNetworks={
         Immutable.Map {
             mainnet: Immutable.Map {
@@ -362,7 +365,45 @@ ShallowWrapper {
                               </Option>
                     </Select>
           </style__SettingWrapper>
+          <style__SettingWrapper>
+                    <style__StyledSectionHeading>
+                              backup
+                    </style__StyledSectionHeading>
+                    <style__StyledButton
+                              onClick={[Function]}
+                    >
+                              <Icon
+                                        type="upload"
+                              />
+                              <Text>
+                                        export
+                              </Text>
+                    </style__StyledButton>
+                    <style__StyledButton
+                              onClick={[Function]}
+                    >
+                              <Icon
+                                        type="download"
+                              />
+                              <Text>
+                                        import
+                              </Text>
+                    </style__StyledButton>
+          </style__SettingWrapper>
 </style__Body>,
+        <Modal__Modal
+          destroyOnClose={true}
+          footer={null}
+          maskClosable={true}
+          onCancel={[Function]}
+          style={
+                    Object {
+                              "marginTop": "1.43rem",
+                            }
+          }
+          visible={false}
+          width="40rem"
+/>,
       ],
     },
     "ref": null,
@@ -440,6 +481,31 @@ ShallowWrapper {
                                           English
                             </Option>
               </Select>
+</style__SettingWrapper>,
+            <style__SettingWrapper>
+              <style__StyledSectionHeading>
+                            backup
+              </style__StyledSectionHeading>
+              <style__StyledButton
+                            onClick={[Function]}
+              >
+                            <Icon
+                                          type="upload"
+                            />
+                            <Text>
+                                          export
+                            </Text>
+              </style__StyledButton>
+              <style__StyledButton
+                            onClick={[Function]}
+              >
+                            <Icon
+                                          type="download"
+                            />
+                            <Text>
+                                          import
+                            </Text>
+              </style__StyledButton>
 </style__SettingWrapper>,
           ],
         },
@@ -621,7 +687,158 @@ ShallowWrapper {
             ],
             "type": [Function],
           },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <style__StyledSectionHeading>
+                  backup
+</style__StyledSectionHeading>,
+                <style__StyledButton
+                  onClick={[Function]}
+>
+                  <Icon
+                                    type="upload"
+                  />
+                  <Text>
+                                    export
+                  </Text>
+</style__StyledButton>,
+                <style__StyledButton
+                  onClick={[Function]}
+>
+                  <Icon
+                                    type="download"
+                  />
+                  <Text>
+                                    import
+                  </Text>
+</style__StyledButton>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "backup",
+                },
+                "ref": null,
+                "rendered": "backup",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <Icon
+                      type="upload"
+/>,
+                    <Text>
+                      export
+</Text>,
+                  ],
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "type": "upload",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "export",
+                    },
+                    "ref": null,
+                    "rendered": "export",
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <Icon
+                      type="download"
+/>,
+                    <Text>
+                      import
+</Text>,
+                  ],
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "type": "download",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "import",
+                    },
+                    "ref": null,
+                    "rendered": "import",
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
         ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": undefined,
+          "destroyOnClose": true,
+          "footer": null,
+          "maskClosable": true,
+          "onCancel": [Function],
+          "style": Object {
+            "marginTop": "1.43rem",
+          },
+          "visible": false,
+          "width": "40rem",
+        },
+        "ref": null,
+        "rendered": null,
         "type": [Function],
       },
     ],
@@ -685,7 +902,45 @@ ShallowWrapper {
                                     </Option>
                         </Select>
             </style__SettingWrapper>
+            <style__SettingWrapper>
+                        <style__StyledSectionHeading>
+                                    backup
+                        </style__StyledSectionHeading>
+                        <style__StyledButton
+                                    onClick={[Function]}
+                        >
+                                    <Icon
+                                                type="upload"
+                                    />
+                                    <Text>
+                                                export
+                                    </Text>
+                        </style__StyledButton>
+                        <style__StyledButton
+                                    onClick={[Function]}
+                        >
+                                    <Icon
+                                                type="download"
+                                    />
+                                    <Text>
+                                                import
+                                    </Text>
+                        </style__StyledButton>
+            </style__SettingWrapper>
 </style__Body>,
+          <Modal__Modal
+            destroyOnClose={true}
+            footer={null}
+            maskClosable={true}
+            onCancel={[Function]}
+            style={
+                        Object {
+                                    "marginTop": "1.43rem",
+                                  }
+            }
+            visible={false}
+            width="40rem"
+/>,
         ],
       },
       "ref": null,
@@ -763,6 +1018,31 @@ ShallowWrapper {
                                                 English
                                 </Option>
                 </Select>
+</style__SettingWrapper>,
+              <style__SettingWrapper>
+                <style__StyledSectionHeading>
+                                backup
+                </style__StyledSectionHeading>
+                <style__StyledButton
+                                onClick={[Function]}
+                >
+                                <Icon
+                                                type="upload"
+                                />
+                                <Text>
+                                                export
+                                </Text>
+                </style__StyledButton>
+                <style__StyledButton
+                                onClick={[Function]}
+                >
+                                <Icon
+                                                type="download"
+                                />
+                                <Text>
+                                                import
+                                </Text>
+                </style__StyledButton>
 </style__SettingWrapper>,
             ],
           },
@@ -944,7 +1224,158 @@ ShallowWrapper {
               ],
               "type": [Function],
             },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <style__StyledSectionHeading>
+                    backup
+</style__StyledSectionHeading>,
+                  <style__StyledButton
+                    onClick={[Function]}
+>
+                    <Icon
+                                        type="upload"
+                    />
+                    <Text>
+                                        export
+                    </Text>
+</style__StyledButton>,
+                  <style__StyledButton
+                    onClick={[Function]}
+>
+                    <Icon
+                                        type="download"
+                    />
+                    <Text>
+                                        import
+                    </Text>
+</style__StyledButton>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "backup",
+                  },
+                  "ref": null,
+                  "rendered": "backup",
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": Array [
+                      <Icon
+                        type="upload"
+/>,
+                      <Text>
+                        export
+</Text>,
+                    ],
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "type": "upload",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": "export",
+                      },
+                      "ref": null,
+                      "rendered": "export",
+                      "type": [Function],
+                    },
+                  ],
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": Array [
+                      <Icon
+                        type="download"
+/>,
+                      <Text>
+                        import
+</Text>,
+                    ],
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "type": "download",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": "import",
+                      },
+                      "ref": null,
+                      "rendered": "import",
+                      "type": [Function],
+                    },
+                  ],
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
           ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": undefined,
+            "destroyOnClose": true,
+            "footer": null,
+            "maskClosable": true,
+            "onCancel": [Function],
+            "style": Object {
+              "marginTop": "1.43rem",
+            },
+            "visible": false,
+            "width": "40rem",
+          },
+          "ref": null,
+          "rendered": null,
           "type": [Function],
         },
       ],

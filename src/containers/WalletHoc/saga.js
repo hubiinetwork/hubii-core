@@ -50,6 +50,7 @@ import {
   DECRYPT_WALLET_SUCCESS,
   DECRYPT_WALLET_FAILURE,
   LOCK_WALLET,
+  UPDATE_WALLET_NAME,
 } from './constants';
 
 import {
@@ -57,6 +58,7 @@ import {
   saveWatchAddress,
   createWalletFailed,
   createWalletSuccess,
+  updateWalletNameSuccess,
   decryptWalletFailed,
   decryptWalletSuccess,
   showDecryptWalletModal,
@@ -122,6 +124,24 @@ export function* createWalletFromAddress({ name, address }) {
   } catch (e) {
     yield put(notify('error', getIntl().formatMessage({ id: 'add_watch_address_error' }, { message: getIntl().formatMessage({ id: e.message }) })));
     yield put(createWalletFailed(e));
+  }
+}
+
+export function* updateWalletName({ address, newWalletName }) {
+  try {
+    const wallets = yield select(makeSelectWallets());
+    const existWallet = wallets.find((wallet) => nahmii.utils.caseInsensitiveCompare(wallet.get('address'), address));
+    const existName = wallets.find((wallet) => nahmii.utils.caseInsensitiveCompare(wallet.get('name'), newWalletName));
+    if (!existWallet) {
+      throw new Error(getIntl().formatMessage({ id: 'invalid_address' }));
+    }
+    if (existName) {
+      throw new Error(getIntl().formatMessage({ id: 'wallet_name_exist_error' }, { name: newWalletName }));
+    }
+    yield put(updateWalletNameSuccess(address, newWalletName));
+    yield put(notify('success', getIntl().formatMessage({ id: 'wallet_name_updated' })));
+  } catch (e) {
+    yield put(notify('error', getIntl().formatMessage({ id: 'update_wallet_name_error' }, { message: e.message })));
   }
 }
 
@@ -371,4 +391,5 @@ export default function* walletHoc() {
   yield takeEvery(DECRYPT_WALLET_FAILURE, decryptFailedHook);
   yield takeEvery(DECRYPT_WALLET, tryDecryptHook);
   yield takeEvery(LOCK_WALLET, lockHook);
+  yield takeEvery(UPDATE_WALLET_NAME, updateWalletName);
 }

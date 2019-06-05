@@ -8,6 +8,7 @@ import { trimDecimals, isHardwareWallet, isAddressMatch } from 'utils/wallet';
 import { formatFiat } from 'utils/numberFormats';
 import WalletStatusIndicator from 'components/WalletStatusIndicator';
 import DeletionModal from 'components/DeletionModal';
+import EditWalletModal from 'components/EditWalletModal';
 import { Modal } from 'components/ui/Modal';
 import NahmiiText from 'components/ui/NahmiiText';
 import Text from 'components/ui/Text';
@@ -49,8 +50,15 @@ export class WalletItemCard extends React.PureComponent {
     };
     this.settingsMenu = this.settingsMenu.bind(this);
     this.handleDeleteWallet = this.handleDeleteWallet.bind(this);
+    this.handleEditWallet = this.handleEditWallet.bind(this);
     this.handleExportSeedWords = this.handleExportSeedWords.bind(this);
     this.handleClickCopy = this.handleClickCopy.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.name !== this.props.name) {
+      this.setState({ modalVisibility: false }); // eslint-disable-line
+    }
   }
 
   settingsMenu(walletType, isDecrypted) {
@@ -82,6 +90,17 @@ export class WalletItemCard extends React.PureComponent {
       <MenuItem
         key="6"
         onClick={() =>
+          this.setState({ modalVisibility: true, modalType: 'editWallet' })
+        }
+      >
+        {formatMessage({ id: 'edit_wallet' })}
+      </MenuItem>
+    );
+    menuItems.push(<MenuDivider key="7" />);
+    menuItems.push(
+      <MenuItem
+        key="8"
+        onClick={() =>
           this.setState({ modalVisibility: true, modalType: 'deleteWallet' })
         }
       >
@@ -102,6 +121,10 @@ export class WalletItemCard extends React.PureComponent {
   handleDeleteWallet() {
     this.props.deleteWallet();
     this.setState({ modalVisibility: false });
+  }
+
+  handleEditWallet(changes) {
+    this.props.editWallet(changes);
   }
 
   handleClickCopy(e) {
@@ -177,6 +200,15 @@ export class WalletItemCard extends React.PureComponent {
             onDelete={this.handleDeleteWallet}
             name={name}
             address={address}
+          />
+        );
+        break;
+      case 'editWallet':
+        modal = (
+          <EditWalletModal
+            initialName={name}
+            onEdit={this.handleEditWallet}
+            onCancel={() => this.setState({ modalVisibility: false })}
           />
         );
         break;
@@ -290,12 +322,15 @@ export class WalletItemCard extends React.PureComponent {
         </DynamicOuterWrapper>
         <Modal
           footer={null}
-          width={modalType === 'deleteWallet' ? '37.14rem' : '50rem'}
+          width={['deleteWallet', 'editWallet'].includes(modalType) ? '37.14rem' : '50rem'}
           maskClosable
           style={{ marginTop: '1.43rem' }}
           visible={
-            (isDecrypted && modalVisibility) ||
-            (modalVisibility && modalType === 'deleteWallet')
+            modalVisibility && (
+              isDecrypted ||
+              modalType === 'deleteWallet' ||
+              modalType === 'editWallet'
+            )
           }
           onCancel={() => this.setState({ modalVisibility: false })}
           destroyOnClose
@@ -334,6 +369,7 @@ WalletItemCard.propTypes = {
   handleToggleFold: PropTypes.func.isRequired,
   notify: PropTypes.func.isRequired,
   deleteWallet: PropTypes.func.isRequired,
+  editWallet: PropTypes.func.isRequired,
   lock: PropTypes.func.isRequired,
   unlock: PropTypes.func.isRequired,
   showDecryptWalletModal: PropTypes.func.isRequired,

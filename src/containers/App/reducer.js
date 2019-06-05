@@ -15,6 +15,10 @@ import {
   CHANGE_NETWORK,
   UPDATE_NAHMII_PROVIDER,
   UPDATE_CURRENT_NETWORK_NAHMII_PROVIDER,
+  DECRYPT_IMPORT_SUCCESS,
+  DECRYPT_IMPORT_ERROR,
+  BATCH_EXPORT_ERROR,
+  BATCH_IMPORT_SUCCESS,
 } from './constants';
 
 export const initialState = fromJS({
@@ -25,6 +29,7 @@ export const initialState = fromJS({
     version: null,
     body: null,
   },
+  restore: {},
 });
 
 
@@ -42,6 +47,21 @@ function appReducer(state = initialState, action) {
     case UPDATE_CURRENT_NETWORK_NAHMII_PROVIDER:
       return state
         .setIn(['currentNetwork', 'nahmiiProvider'], action.nahmiiProvider);
+    case BATCH_EXPORT_ERROR:
+      return state
+        .setIn(['restore', 'export', 'error'], action.error);
+    case DECRYPT_IMPORT_ERROR:
+      return state
+        .setIn(['restore', 'import', 'error'], action.error)
+        .setIn(['restore', 'import', 'data'], null);
+    case DECRYPT_IMPORT_SUCCESS:
+      return state
+        .setIn(['restore', 'import', 'error'], null)
+        .setIn(['restore', 'import', 'data'], action.decryptedContent);
+    case BATCH_IMPORT_SUCCESS:
+      return state
+        .setIn(['restore', 'import', 'error'], null)
+        .setIn(['restore', 'import', 'data'], null);
     default:
       return state;
   }

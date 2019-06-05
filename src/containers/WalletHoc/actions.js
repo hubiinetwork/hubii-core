@@ -13,6 +13,8 @@ import {
   CREATE_WALLET_FROM_ADDRESS,
   CREATE_WALLET_FAILURE,
   CREATE_WALLET_SUCCESS,
+  UPDATE_WALLET_NAME,
+  UPDATE_WALLET_NAME_SUCCESS,
   ADD_NEW_WALLET,
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
@@ -104,6 +106,22 @@ export function createWalletFailed(error) {
   return {
     type: CREATE_WALLET_FAILURE,
     error,
+  };
+}
+
+export function updateWalletName(address, newWalletName) {
+  return {
+    type: UPDATE_WALLET_NAME,
+    address,
+    newWalletName,
+  };
+}
+
+export function updateWalletNameSuccess(address, newWalletName) {
+  return {
+    type: UPDATE_WALLET_NAME_SUCCESS,
+    address,
+    newWalletName,
   };
 }
 

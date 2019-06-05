@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import SectionHeading from 'components/ui/SectionHeading';
 import { Switch } from 'antd';
+import Button from 'components/ui/Button';
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -34,4 +35,13 @@ export const SettingWrapper = styled.div`
 
 export const StyledSectionHeading = styled(SectionHeading)`
   margin-bottom: 0.5rem;
+`;
+
+export const StyledButton = styled(Button)`
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15rem;
+  margin-bottom: 1rem;
 `;

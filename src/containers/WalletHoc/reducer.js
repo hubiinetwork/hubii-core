@@ -19,6 +19,7 @@ import {
   CREATE_WALLET_FROM_MNEMONIC,
   CREATE_WALLET_FROM_PRIVATE_KEY,
   CREATE_WALLET_SUCCESS,
+  UPDATE_WALLET_NAME_SUCCESS,
   ADD_NEW_WALLET,
   CREATE_WALLET_FAILURE,
   DECRYPT_WALLET,
@@ -85,6 +86,9 @@ function walletHocReducer(state = initialState, action) {
       return state
         .setIn(['loading', 'creatingWallet'], false)
         .setIn(['inputs', 'password'], '');
+    case UPDATE_WALLET_NAME_SUCCESS:
+      return state
+        .setIn(['wallets', findWalletIndex(state, action.address), 'name'], action.newWalletName);
     case ADD_NEW_WALLET:
       return state
         .set('wallets', state

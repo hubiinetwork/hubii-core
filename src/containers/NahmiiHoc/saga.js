@@ -518,6 +518,8 @@ export function* startChallenge({ stageAmount, currency, options }) {
     let errorMessage = logErrorMsg(e);
     if (errorMessage.match(/gas.*required.*exceeds/i) || errorMessage.match(/out.*of.*gas/i)) {
       errorMessage = getIntl().formatMessage({ id: 'gas_limit_too_low' });
+    } else {
+      errorMessage = getIntl().formatMessage({ id: errorMessage });
     }
 
     yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: errorMessage })));
@@ -560,6 +562,8 @@ export function* settle({ address, currency, options }) {
     let errorMessage = logErrorMsg(e);
     if (errorMessage.match(/gas.*required.*exceeds/i) || errorMessage.match(/out.*of.*gas/i)) {
       errorMessage = getIntl().formatMessage({ id: 'gas_limit_too_low' });
+    } else {
+      errorMessage = getIntl().formatMessage({ id: errorMessage });
     }
     yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: errorMessage })));
     yield put(actions.settleError(walletDetails.address, currency));
@@ -594,6 +598,8 @@ export function* withdraw({ amount, address, currency, options }) {
 
     if (errorMessage.match(/gas.*required.*exceeds/i) || errorMessage.match(/out.*of.*gas/i)) {
       errorMessage = getIntl().formatMessage({ id: 'gas_limit_too_low' });
+    } else {
+      errorMessage = getIntl().formatMessage({ id: errorMessage });
     }
     yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: errorMessage })));
     yield put(actions.withdrawError(walletDetails.address, currency));

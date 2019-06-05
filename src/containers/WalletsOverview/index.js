@@ -14,6 +14,7 @@ import { isConnected } from 'utils/wallet';
 
 import {
   deleteWallet as deleteWalletAction,
+  updateWalletName as updateWalletNameAction,
   showDecryptWalletModal,
   setCurrentWallet,
   lockWallet as lockWalletAction,
@@ -86,6 +87,7 @@ const SortableWallet = SortableElement((props) => {
         handleCardClick={() => props.handleCardClick(props.wallet)}
         handleToggleFold={(e) => props.handleToggleFold(e, props.wallet.address)}
         deleteWallet={() => props.deleteWallet(props.wallet.address)}
+        editWallet={({ name }) => props.editWallet(props.wallet.address, name)}
         lock={() => props.lockWallet(props.wallet.address)}
         unlock={() => props.unlockWallet(props.wallet.address)}
         priceInfo={props.priceInfo.toJS().assets}
@@ -101,6 +103,7 @@ const SortableList = SortableContainer((props) => (
       <SortableWallet
         showDecryptWalletModal={props.showDecryptWalletModal}
         deleteWallet={props.deleteWallet}
+        editWallet={props.editWallet}
         lockWallet={props.lockWallet}
         unlockWallet={props.unlockWallet}
         handleCardClick={props.handleCardClick}
@@ -162,6 +165,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
       ledgerNanoSInfo,
       trezorInfo,
       deleteWallet,
+      editWallet,
       lockWallet,
       notify,
     } = this.props;
@@ -188,6 +192,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
         ledgerNanoSInfo={ledgerNanoSInfo}
         trezorInfo={trezorInfo}
         deleteWallet={deleteWallet}
+        editWallet={editWallet}
         lockWallet={lockWallet}
         unlockWallet={this.unlockWallet}
         handleCardClick={this.handleCardClick}
@@ -234,6 +239,7 @@ WalletsOverview.propTypes = {
   showDecryptWalletModal: PropTypes.func.isRequired,
   setCurrentWallet: PropTypes.func.isRequired,
   deleteWallet: PropTypes.func.isRequired,
+  editWallet: PropTypes.func.isRequired,
   notify: PropTypes.func.isRequired,
   lockWallet: PropTypes.func.isRequired,
   dragWallet: PropTypes.func.isRequired,
@@ -262,6 +268,7 @@ const mapStateToProps = createStructuredSelector({
 export function mapDispatchToProps(dispatch) {
   return {
     deleteWallet: (...args) => dispatch(deleteWalletAction(...args)),
+    editWallet: (...args) => dispatch(updateWalletNameAction(...args)),
     lockWallet: (addr) => dispatch(lockWalletAction(addr)),
     dragWallet: (...args) => dispatch(dragWalletAction(...args)),
     toggleFoldWallet: (...args) => dispatch(toggleFoldWalletAction(...args)),
