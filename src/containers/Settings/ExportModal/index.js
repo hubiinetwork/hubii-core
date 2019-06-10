@@ -21,6 +21,9 @@ export class ExportModal extends React.Component {
     this.state = { filePath: null, password: null };
     this.handleExport = this.handleExport.bind(this);
     this.handleSetFilePath = this.handleSetFilePath.bind(this);
+    this.handleConfirmBlur = this.handleConfirmBlur.bind(this);
+    this.compareToFirstPassword = this.compareToFirstPassword.bind(this);
+    this.validateToNextPassword = this.validateToNextPassword.bind(this);
   }
 
   handleSetFilePath() {
@@ -45,6 +48,30 @@ export class ExportModal extends React.Component {
     });
   }
 
+  handleConfirmBlur(e) {
+    const value = e.target.value;
+    this.setState({
+      confirmPasswordsMatch: this.state.confirmPasswordsMatch || !!value,
+    });
+  }
+
+  compareToFirstPassword(rule, value, callback) {
+    const form = this.props.form;
+    const { formatMessage } = this.props.intl;
+    if (value && value !== form.getFieldValue('password')) {
+      callback(formatMessage({ id: 'password_notmatch' }));
+    } else {
+      callback();
+    }
+  }
+
+  validateToNextPassword(rule, value, callback) {
+    const form = this.props.form;
+    if (value && this.state.confirmPasswordsMatch) {
+      form.validateFields(['confirm'], { force: true });
+    }
+    callback();
+  }
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -68,7 +95,28 @@ export class ExportModal extends React.Component {
                   required: true,
                 },
               ],
-            })(<ModalFormInput />)}
+            })(<ModalFormInput type="password" />)}
+          </ModalFormItem>
+          <ModalFormItem
+            colon={false}
+            label={<ModalFormLabel>{formatMessage({ id: 'repeat_password' })}</ModalFormLabel>}
+          >
+            {getFieldDecorator('confirm', {
+              rules: [
+                {
+                  required: true,
+                  message: formatMessage({ id: 'confirm_password' }),
+                },
+                {
+                  validator: this.compareToFirstPassword,
+                },
+              ],
+            })(
+              <ModalFormInput
+                type="password"
+                onBlur={this.handleConfirmBlur}
+              />
+            )}
           </ModalFormItem>
           <ModalFormItem
             label={

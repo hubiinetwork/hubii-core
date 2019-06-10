@@ -68,7 +68,7 @@ export class DecryptForm extends React.Component {
                   required: true,
                 },
               ],
-            })(<ModalFormInput />)}
+            })(<ModalFormInput type="password" />)}
           </ModalFormItem>
           <ModalFormItem
             label={
