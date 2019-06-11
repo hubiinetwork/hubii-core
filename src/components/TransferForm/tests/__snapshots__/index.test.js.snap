@@ -489,6 +489,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     onSend={[Function]}
@@ -7523,6 +7524,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     onSend={[Function]}
@@ -14280,6 +14282,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     onSend={[Function]}
@@ -21314,6 +21317,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     onSend={[Function]}

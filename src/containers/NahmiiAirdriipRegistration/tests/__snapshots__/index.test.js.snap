@@ -14,6 +14,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     setCurrentWallet={[Function]}
@@ -408,6 +409,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     setCurrentWallet={[Function]}
@@ -761,6 +763,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     setCurrentWallet={[Function]}
@@ -944,6 +947,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     notify={[Function]}
@@ -1646,6 +1650,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     ledgerInfo={
@@ -1746,6 +1751,7 @@ ShallowWrapper {
                 intl={
                         Object {
                                 "formatMessage": [Function],
+                                "formatNumber": [Function],
                               }
                 }
                 notify={[Function]}
@@ -1794,6 +1800,7 @@ ShallowWrapper {
             intl={
                         Object {
                                     "formatMessage": [Function],
+                                    "formatNumber": [Function],
                                   }
             }
             notify={[Function]}
@@ -1850,6 +1857,7 @@ ShallowWrapper {
             "changeManualSignedMessage": [Function],
             "intl": Object {
               "formatMessage": [Function],
+              "formatNumber": [Function],
             },
             "notify": [Function],
             "signedMessageValue": "0x8bfb0e2034f6e5e311c100308264551719db9d674dfbd5b20c54e545d310b6c41bfb02f74c5f2b49d6a55e133ee2d290578f90e9f810d6887a5b229282f6b8a600",
@@ -1944,6 +1952,7 @@ ShallowWrapper {
                     intl={
                               Object {
                                         "formatMessage": [Function],
+                                        "formatNumber": [Function],
                                       }
                     }
                     notify={[Function]}
@@ -1992,6 +2001,7 @@ ShallowWrapper {
               intl={
                             Object {
                                           "formatMessage": [Function],
+                                          "formatNumber": [Function],
                                         }
               }
               notify={[Function]}
@@ -2048,6 +2058,7 @@ ShallowWrapper {
               "changeManualSignedMessage": [Function],
               "intl": Object {
                 "formatMessage": [Function],
+                "formatNumber": [Function],
               },
               "notify": [Function],
               "signedMessageValue": "0x8bfb0e2034f6e5e311c100308264551719db9d674dfbd5b20c54e545d310b6c41bfb02f74c5f2b49d6a55e133ee2d290578f90e9f810d6887a5b229282f6b8a600",
@@ -2619,6 +2630,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     ledgerInfo={
@@ -3083,6 +3095,7 @@ ShallowWrapper {
                 intl={
                         Object {
                                 "formatMessage": [Function],
+                                "formatNumber": [Function],
                               }
                 }
                 setCurrentWallet={[Function]}
@@ -3540,6 +3553,7 @@ ShallowWrapper {
             intl={
                         Object {
                                     "formatMessage": [Function],
+                                    "formatNumber": [Function],
                                   }
             }
             setCurrentWallet={[Function]}
@@ -4003,6 +4017,7 @@ ShallowWrapper {
 },
             "intl": Object {
               "formatMessage": [Function],
+              "formatNumber": [Function],
             },
             "setCurrentWallet": [Function],
             "showHwPrompt": false,
@@ -4511,6 +4526,7 @@ ShallowWrapper {
                     intl={
                               Object {
                                         "formatMessage": [Function],
+                                        "formatNumber": [Function],
                                       }
                     }
                     setCurrentWallet={[Function]}
@@ -4968,6 +4984,7 @@ ShallowWrapper {
               intl={
                             Object {
                                           "formatMessage": [Function],
+                                          "formatNumber": [Function],
                                         }
               }
               setCurrentWallet={[Function]}
@@ -5431,6 +5448,7 @@ ShallowWrapper {
 },
               "intl": Object {
                 "formatMessage": [Function],
+                "formatNumber": [Function],
               },
               "setCurrentWallet": [Function],
               "showHwPrompt": false,
@@ -6052,6 +6070,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     ledgerInfo={
@@ -6150,6 +6169,7 @@ ShallowWrapper {
                 intl={
                         Object {
                                 "formatMessage": [Function],
+                                "formatNumber": [Function],
                               }
                 }
         />
@@ -6173,6 +6193,7 @@ ShallowWrapper {
             intl={
                         Object {
                                     "formatMessage": [Function],
+                                    "formatNumber": [Function],
                                   }
             }
 />,
@@ -6207,6 +6228,7 @@ ShallowWrapper {
             "changeStage": [Function],
             "intl": Object {
               "formatMessage": [Function],
+              "formatNumber": [Function],
             },
           },
           "ref": null,
@@ -6241,6 +6263,7 @@ ShallowWrapper {
                     intl={
                               Object {
                                         "formatMessage": [Function],
+                                        "formatNumber": [Function],
                                       }
                     }
           />
@@ -6264,6 +6287,7 @@ ShallowWrapper {
               intl={
                             Object {
                                           "formatMessage": [Function],
+                                          "formatNumber": [Function],
                                         }
               }
 />,
@@ -6298,6 +6322,7 @@ ShallowWrapper {
               "changeStage": [Function],
               "intl": Object {
                 "formatMessage": [Function],
+                "formatNumber": [Function],
               },
             },
             "ref": null,
@@ -6811,6 +6836,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     ledgerInfo={
@@ -6909,6 +6935,7 @@ ShallowWrapper {
                 intl={
                         Object {
                                 "formatMessage": [Function],
+                                "formatNumber": [Function],
                               }
                 }
         />
@@ -6938,6 +6965,7 @@ ShallowWrapper {
             intl={
                         Object {
                                     "formatMessage": [Function],
+                                    "formatNumber": [Function],
                                   }
             }
 />,
@@ -6977,6 +7005,7 @@ ShallowWrapper {
             "changeStage": [Function],
             "intl": Object {
               "formatMessage": [Function],
+              "formatNumber": [Function],
             },
           },
           "ref": null,
@@ -7024,6 +7053,7 @@ ShallowWrapper {
                     intl={
                               Object {
                                         "formatMessage": [Function],
+                                        "formatNumber": [Function],
                                       }
                     }
           />
@@ -7053,6 +7083,7 @@ ShallowWrapper {
               intl={
                             Object {
                                           "formatMessage": [Function],
+                                          "formatNumber": [Function],
                                         }
               }
 />,
@@ -7092,6 +7123,7 @@ ShallowWrapper {
               "changeStage": [Function],
               "intl": Object {
                 "formatMessage": [Function],
+                "formatNumber": [Function],
               },
             },
             "ref": null,
@@ -7615,6 +7647,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     ledgerInfo={
@@ -7707,6 +7740,7 @@ ShallowWrapper {
                 intl={
                         Object {
                                 "formatMessage": [Function],
+                                "formatNumber": [Function],
                               }
                 }
         />
@@ -7725,6 +7759,7 @@ ShallowWrapper {
             intl={
                         Object {
                                     "formatMessage": [Function],
+                                    "formatNumber": [Function],
                                   }
             }
 />,
@@ -7746,6 +7781,7 @@ ShallowWrapper {
             "changeStage": [Function],
             "intl": Object {
               "formatMessage": [Function],
+              "formatNumber": [Function],
             },
           },
           "ref": null,
@@ -7774,6 +7810,7 @@ ShallowWrapper {
                     intl={
                               Object {
                                         "formatMessage": [Function],
+                                        "formatNumber": [Function],
                                       }
                     }
           />
@@ -7792,6 +7829,7 @@ ShallowWrapper {
               intl={
                             Object {
                                           "formatMessage": [Function],
+                                          "formatNumber": [Function],
                                         }
               }
 />,
@@ -7813,6 +7851,7 @@ ShallowWrapper {
               "changeStage": [Function],
               "intl": Object {
                 "formatMessage": [Function],
+                "formatNumber": [Function],
               },
             },
             "ref": null,
@@ -7849,6 +7888,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
 />,

@@ -377,7 +377,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
             </Row>
             <Row>
               <TransferDescriptionItem
-                main={<SelectableText><NumericText value={amountToDeposit.toString()} /> {assetToDeposit.symbol}</SelectableText>}
+                main={<SelectableText><NumericText maxDecimalPlaces={18} value={amountToDeposit.toString()} /> {assetToDeposit.symbol}</SelectableText>}
                 subtitle={<NumericText value={usdValueToDeposit.toString()} type="currency" />}
               />
             </Row>
@@ -390,7 +390,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
             </Row>
             <Row>
               <TransferDescriptionItem
-                main={<SelectableText><NumericText value={transactionFee.amount.toString()} /> {'ETH'}</SelectableText>}
+                main={<SelectableText><NumericText maxDecimalPlaces={18} value={transactionFee.amount.toString()} /> {'ETH'}</SelectableText>}
                 subtitle={<NumericText value={transactionFee.usdValue.toString()} type="currency" />}
               />
             </Row>
@@ -399,7 +399,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
             </Row>
             <Row>
               <TransferDescriptionItem
-                main={<SelectableText><NumericText value={baseLayerEthBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
+                main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
                 subtitle={<NumericText value={baseLayerEthBalanceBefore.usdValue.toString()} type="currency" />}
               />
             </Row>
@@ -410,7 +410,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
             </Row>
             <Row>
               <TransferDescriptionItem
-                main={<SelectableText><NumericText value={baseLayerEthBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
+                main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
                 subtitle={<NumericText value={baseLayerEthBalanceAfter.usdValue.toString()} type="currency" />}
               />
             </Row>
@@ -421,7 +421,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
               </Row>
               <Row>
                 <TransferDescriptionItem
-                  main={<SelectableText><NumericText value={nahmiiBalanceBefore.amount.toString()} /> {assetToDeposit.symbol}</SelectableText>}
+                  main={<SelectableText><NumericText maxDecimalPlaces={18} value={nahmiiBalanceBefore.amount.toString()} /> {assetToDeposit.symbol}</SelectableText>}
                   subtitle={<NumericText value={nahmiiBalanceBefore.usdValue.toString()} type="currency" />}
                 />
               </Row>
@@ -432,7 +432,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
               </Row>
               <Row>
                 <TransferDescriptionItem
-                  main={<SelectableText><NumericText value={nahmiiBalanceAfter.amount.toString()} /> {assetToDeposit.symbol}</SelectableText>}
+                  main={<SelectableText><NumericText maxDecimalPlaces={18} value={nahmiiBalanceAfter.amount.toString()} /> {assetToDeposit.symbol}</SelectableText>}
                   subtitle={<NumericText value={nahmiiBalanceAfter.usdValue.toString()} type="currency" />}
                 />
               </Row>
@@ -445,7 +445,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
               </Row>
               <Row>
                 <TransferDescriptionItem
-                  main={<SelectableText><NumericText value={baseLayerBalanceBefore.amount.toString()} /> {assetToDeposit.symbol}</SelectableText>}
+                  main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerBalanceBefore.amount.toString()} /> {assetToDeposit.symbol}</SelectableText>}
                   subtitle={<NumericText value={baseLayerBalanceBefore.usdValue.toString()} type="currency" />}
                 />
               </Row>
@@ -456,7 +456,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
               </Row>
               <Row>
                 <TransferDescriptionItem
-                  main={<SelectableText><NumericText value={baseLayerBalanceAfter.amount.toString()} /> {assetToDeposit.symbol}</SelectableText>}
+                  main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerBalanceAfter.amount.toString()} /> {assetToDeposit.symbol}</SelectableText>}
                   subtitle={<NumericText value={baseLayerBalanceAfter.usdValue.toString()} type="currency" />}
                 />
               </Row>
@@ -465,7 +465,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
               </Row>
               <Row>
                 <TransferDescriptionItem
-                  main={<SelectableText><NumericText value={nahmiiBalanceBefore.amount.toString()} /> {assetToDeposit.symbol}</SelectableText>}
+                  main={<SelectableText><NumericText maxDecimalPlaces={18} value={nahmiiBalanceBefore.amount.toString()} /> {assetToDeposit.symbol}</SelectableText>}
                   subtitle={<NumericText value={nahmiiBalanceBefore.usdValue.toString()} type="currency" />}
                 />
               </Row>
@@ -476,7 +476,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
               </Row>
               <Row>
                 <TransferDescriptionItem
-                  main={<SelectableText><NumericText value={nahmiiBalanceAfter.amount.toString()} /> {assetToDeposit.symbol}</SelectableText>}
+                  main={<SelectableText><NumericText maxDecimalPlaces={18} value={nahmiiBalanceAfter.amount.toString()} /> {assetToDeposit.symbol}</SelectableText>}
                   subtitle={<NumericText value={nahmiiBalanceAfter.usdValue.toString()} type="currency" />}
                 />
               </Row>

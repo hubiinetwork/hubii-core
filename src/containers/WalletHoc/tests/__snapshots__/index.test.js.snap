@@ -383,6 +383,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     loading={
@@ -784,6 +785,7 @@ ShallowWrapper {
           intl={
                     Object {
                               "formatMessage": [Function],
+                              "formatNumber": [Function],
                             }
           }
           loading={
@@ -1211,6 +1213,7 @@ ShallowWrapper {
           "hideDecryptWalletModal": [Function],
           "intl": Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           },
           "loading": Immutable.Map {
             decryptingWallet: false,
@@ -1701,6 +1704,7 @@ ShallowWrapper {
             intl={
                         Object {
                                     "formatMessage": [Function],
+                                    "formatNumber": [Function],
                                   }
             }
             loading={
@@ -2128,6 +2132,7 @@ ShallowWrapper {
             "hideDecryptWalletModal": [Function],
             "intl": Object {
               "formatMessage": [Function],
+              "formatNumber": [Function],
             },
             "loading": Immutable.Map {
               decryptingWallet: false,
@@ -2626,6 +2631,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     loading={
@@ -3027,6 +3033,7 @@ ShallowWrapper {
           intl={
                     Object {
                               "formatMessage": [Function],
+                              "formatNumber": [Function],
                             }
           }
           loading={
@@ -3451,6 +3458,7 @@ ShallowWrapper {
           "hideDecryptWalletModal": [Function],
           "intl": Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           },
           "loading": Immutable.Map {
             decryptingWallet: true,
@@ -3936,6 +3944,7 @@ ShallowWrapper {
             intl={
                         Object {
                                     "formatMessage": [Function],
+                                    "formatNumber": [Function],
                                   }
             }
             loading={
@@ -4360,6 +4369,7 @@ ShallowWrapper {
             "hideDecryptWalletModal": [Function],
             "intl": Object {
               "formatMessage": [Function],
+              "formatNumber": [Function],
             },
             "loading": Immutable.Map {
               decryptingWallet: true,
