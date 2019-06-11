@@ -1,28 +1,52 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
+import BigNumber from 'bignumber.js';
 import SelectableText from '../SelectableText';
 
-const NumericText = (props) => {
-  const { value, type, intl } = props;
+export const NumericText = (props) => {
+  const { value, type, maxDecimalPlaces, intl } = props;
   const { formatNumber } = intl;
-  const options = {
-    maximumFractionDigits: 6,
-  };
+
   if (type === 'currency') {
-    options.style = 'currency';
-    options.currency = 'USD';
-    options.maximumFractionDigits = 2;
+    const defaultMaxDecimalPlaces = 2;
+    const _maxDecimalPlaces = maxDecimalPlaces || defaultMaxDecimalPlaces;
+    return (
+      <SelectableText {...props}>
+        {formatNumber(value, {
+          style: 'currency',
+          currency: 'USD',
+          maximumFractionDigits: _maxDecimalPlaces,
+        })}
+      </SelectableText>
+    );
+  }
+
+  const defaultMaxDecimalPlaces = 6;
+  const _maxDecimalPlaces = maxDecimalPlaces || defaultMaxDecimalPlaces;
+  const bn = new BigNumber(value);
+
+  if (bn.gte(new BigNumber(10).pow(-_maxDecimalPlaces))) {
+    return (
+      <SelectableText {...props}>
+        {formatNumber(value, {
+          maximumFractionDigits: _maxDecimalPlaces,
+        })}
+      </SelectableText>
+    );
   }
   return (
-    <SelectableText {...props}>{formatNumber(value, options)}</SelectableText>
+    <SelectableText {...props}>
+      {bn.eq(0) ? '0' : bn.toExponential(3)}
+    </SelectableText>
   );
 };
 
 NumericText.propTypes = {
   value: PropTypes.string.isRequired,
-  type: PropTypes.string,
   intl: PropTypes.object,
+  type: PropTypes.string,
+  maxDecimalPlaces: PropTypes.number,
 };
 
 export default injectIntl(NumericText);
