@@ -26,7 +26,7 @@ export const NumericText = (props) => {
   const _maxDecimalPlaces = maxDecimalPlaces || defaultMaxDecimalPlaces;
   const bn = new BigNumber(value);
 
-  if (bn.gte(new BigNumber(10).pow(-_maxDecimalPlaces))) {
+  if (bn.gte(new BigNumber(10).pow(-_maxDecimalPlaces)) || bn.lte(0)) {
     return (
       <SelectableText {...props}>
         {formatNumber(value, {
@@ -37,7 +37,7 @@ export const NumericText = (props) => {
   }
   return (
     <SelectableText {...props}>
-      {bn.eq(0) ? '0' : bn.toExponential(3)}
+      {bn.toExponential(3)}
     </SelectableText>
   );
 };

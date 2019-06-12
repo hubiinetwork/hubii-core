@@ -21,12 +21,15 @@ describe('<NumericText />', () => {
     describe('without maxDecimalPlaces param', () => {
       describe('when value is greater or equal to default 6 decimal places', () => {
         [
+          '-0.0000001',
+          '-0.000001',
           '0.000001',
           '0.00001',
           '0.0001',
           '0.001',
           '0.01',
           '0.1',
+          '0',
           '1',
           '1.1',
         ].forEach((val) => {
@@ -36,7 +39,8 @@ describe('<NumericText />', () => {
               value={val}
             />
             );
-            expect(getInnerText(wrapper.find(SelectableText).html())).toContain(val);
+            const paramString = '{&quot;maximumFractionDigits&quot;:6}';
+            expect(getInnerText(wrapper.find(SelectableText).html())).toEqual(`${val} ${paramString}`);
           });
         });
       });
@@ -96,16 +100,6 @@ describe('<NumericText />', () => {
             expect(getInnerText(wrapper.find(SelectableText).html())).toContain(expected);
           });
         });
-      });
-    });
-    describe('when value is 0', () => {
-      it('should render 0', () => {
-        wrapper = shallow(<NumericText
-          {...props}
-          value={'0'}
-        />
-        );
-        expect(getInnerText(wrapper.find(SelectableText).html())).toEqual('0');
       });
     });
   });
