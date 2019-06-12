@@ -62,7 +62,7 @@ ShallowWrapper {
                                         UKG
                                 </SelectableText>
                                 <style__FiatValue
-                                        type="currency"
+                                        type="fiat"
                                         value="$123.34 USD"
                                 />
                                 <div
@@ -149,7 +149,7 @@ ShallowWrapper {
                                         UKG
                               </SelectableText>
                               <style__FiatValue
-                                        type="currency"
+                                        type="fiat"
                                         value="$123.34 USD"
                               />
                               <div
@@ -269,7 +269,7 @@ ShallowWrapper {
                         UKG
             </SelectableText>
             <style__FiatValue
-                        type="currency"
+                        type="fiat"
                         value="$123.34 USD"
             />
             <div
@@ -510,7 +510,7 @@ ShallowWrapper {
                                                   UKG
                                         </SelectableText>
                                         <style__FiatValue
-                                                  type="currency"
+                                                  type="fiat"
                                                   value="$123.34 USD"
                                         />
                                         <div
@@ -597,7 +597,7 @@ ShallowWrapper {
                                                 UKG
                                     </SelectableText>
                                     <style__FiatValue
-                                                type="currency"
+                                                type="fiat"
                                                 value="$123.34 USD"
                                     />
                                     <div
@@ -717,7 +717,7 @@ ShallowWrapper {
                             UKG
               </SelectableText>
               <style__FiatValue
-                            type="currency"
+                            type="fiat"
                             value="$123.34 USD"
               />
               <div
@@ -998,7 +998,7 @@ ShallowWrapper {
                                         UKG
                                 </SelectableText>
                                 <style__FiatValue
-                                        type="currency"
+                                        type="fiat"
                                         value="$123.34 USD"
                                 />
                                 <div
@@ -1087,7 +1087,7 @@ ShallowWrapper {
                                         UKG
                               </SelectableText>
                               <style__FiatValue
-                                        type="currency"
+                                        type="fiat"
                                         value="$123.34 USD"
                               />
                               <div
@@ -1211,7 +1211,7 @@ ShallowWrapper {
                         UKG
             </SelectableText>
             <style__FiatValue
-                        type="currency"
+                        type="fiat"
                         value="$123.34 USD"
             />
             <div
@@ -1456,7 +1456,7 @@ ShallowWrapper {
                                                   UKG
                                         </SelectableText>
                                         <style__FiatValue
-                                                  type="currency"
+                                                  type="fiat"
                                                   value="$123.34 USD"
                                         />
                                         <div
@@ -1545,7 +1545,7 @@ ShallowWrapper {
                                                 UKG
                                     </SelectableText>
                                     <style__FiatValue
-                                                type="currency"
+                                                type="fiat"
                                                 value="$123.34 USD"
                                     />
                                     <div
@@ -1669,7 +1669,7 @@ ShallowWrapper {
                             UKG
               </SelectableText>
               <style__FiatValue
-                            type="currency"
+                            type="fiat"
                             value="$123.34 USD"
               />
               <div
@@ -1954,7 +1954,7 @@ ShallowWrapper {
                                         UKG
                                 </SelectableText>
                                 <style__FiatValue
-                                        type="currency"
+                                        type="fiat"
                                         value="$123.34 USD"
                                 />
                                 <div
@@ -2043,7 +2043,7 @@ ShallowWrapper {
                                         UKG
                               </SelectableText>
                               <style__FiatValue
-                                        type="currency"
+                                        type="fiat"
                                         value="$123.34 USD"
                               />
                               <div
@@ -2167,7 +2167,7 @@ ShallowWrapper {
                         UKG
             </SelectableText>
             <style__FiatValue
-                        type="currency"
+                        type="fiat"
                         value="$123.34 USD"
             />
             <div
@@ -2412,7 +2412,7 @@ ShallowWrapper {
                                                   UKG
                                         </SelectableText>
                                         <style__FiatValue
-                                                  type="currency"
+                                                  type="fiat"
                                                   value="$123.34 USD"
                                         />
                                         <div
@@ -2501,7 +2501,7 @@ ShallowWrapper {
                                                 UKG
                                     </SelectableText>
                                     <style__FiatValue
-                                                type="currency"
+                                                type="fiat"
                                                 value="$123.34 USD"
                                     />
                                     <div
@@ -2625,7 +2625,7 @@ ShallowWrapper {
                             UKG
               </SelectableText>
               <style__FiatValue
-                            type="currency"
+                            type="fiat"
                             value="$123.34 USD"
               />
               <div
@@ -2910,7 +2910,7 @@ ShallowWrapper {
                                         UKG
                                 </SelectableText>
                                 <style__FiatValue
-                                        type="currency"
+                                        type="fiat"
                                         value="$123.34 USD"
                                 />
                                 <div
@@ -2999,7 +2999,7 @@ ShallowWrapper {
                                         UKG
                               </SelectableText>
                               <style__FiatValue
-                                        type="currency"
+                                        type="fiat"
                                         value="$123.34 USD"
                               />
                               <div
@@ -3123,7 +3123,7 @@ ShallowWrapper {
                         UKG
             </SelectableText>
             <style__FiatValue
-                        type="currency"
+                        type="fiat"
                         value="$123.34 USD"
             />
             <div
@@ -3368,7 +3368,7 @@ ShallowWrapper {
                                                   UKG
                                         </SelectableText>
                                         <style__FiatValue
-                                                  type="currency"
+                                                  type="fiat"
                                                   value="$123.34 USD"
                                         />
                                         <div
@@ -3457,7 +3457,7 @@ ShallowWrapper {
                                                 UKG
                                     </SelectableText>
                                     <style__FiatValue
-                                                type="currency"
+                                                type="fiat"
                                                 value="$123.34 USD"
                                     />
                                     <div
@@ -3581,7 +3581,7 @@ ShallowWrapper {
                             UKG
               </SelectableText>
               <style__FiatValue
-                            type="currency"
+                            type="fiat"
                             value="$123.34 USD"
               />
               <div

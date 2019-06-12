@@ -108,7 +108,7 @@ describe('<NumericText />', () => {
       it('should pass correct params to the #formatNumber()', () => {
         wrapper = shallow(<NumericText
           {...props}
-          type={'currency'}
+          type={'fiat'}
           value={'0.001'}
           maxDecimalPlaces={3}
         />
@@ -120,7 +120,7 @@ describe('<NumericText />', () => {
       it('should pass correct params to the #formatNumber()', () => {
         wrapper = shallow(<NumericText
           {...props}
-          type={'currency'}
+          type={'fiat'}
           value={'0.001'}
         />
         );

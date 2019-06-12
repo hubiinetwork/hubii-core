@@ -8,7 +8,7 @@ export const NumericText = (props) => {
   const { value, type, maxDecimalPlaces, intl } = props;
   const { formatNumber } = intl;
 
-  if (type === 'currency') {
+  if (type === 'fiat') {
     const defaultMaxDecimalPlaces = 2;
     const _maxDecimalPlaces = maxDecimalPlaces || defaultMaxDecimalPlaces;
     return (

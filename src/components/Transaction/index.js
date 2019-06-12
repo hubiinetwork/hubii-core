@@ -66,7 +66,7 @@ const Transaction = (props) => {
               <SelectableText>
                 <Amount maxDecimalPlaces={18} value={amount.toString()} /> {symbol}
               </SelectableText>
-              <FiatValue value={fiatEquivilent.toString()} type="currency"></FiatValue>
+              <FiatValue value={fiatEquivilent.toString()} type="fiat"></FiatValue>
               <div style={{ marginLeft: 'auto' }}>
                 {
                   layer === 'nahmii' &&
