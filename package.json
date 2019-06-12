@@ -48,7 +48,7 @@
     "prebuild": "node ./internals/scripts/pre-build.js",
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout && yarn electron-compile",
     "build:dll": "node ./internals/scripts/dependencies.js",
-    "start-web": "cross-env NODE_ENV=development NODE_OPTIONS=--max_old_space_size=4096 node server",
+    "start-web": "cross-env NODE_ENV=development NODE_OPTIONS=--max_old_space_size=2048 node server",
     "presetup": "npm i chalk shelljs",
     "setup": "node ./internals/scripts/setup.js",
     "postsetup": "npm run build:dll",
