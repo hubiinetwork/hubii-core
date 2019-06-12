@@ -94,8 +94,15 @@ export class ExportModal extends React.Component {
                   message: formatMessage({ id: 'enter_backup_encrypt_password' }),
                   required: true,
                 },
+                {
+                  validator: this.validateToNextPassword,
+                },
               ],
-            })(<ModalFormInput type="password" />)}
+            })(
+              <ModalFormInput
+                type="password"
+              />
+            )}
           </ModalFormItem>
           <ModalFormItem
             colon={false}
