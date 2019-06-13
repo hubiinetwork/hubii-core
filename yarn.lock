@@ -295,9 +295,9 @@
   integrity sha512-eajkMXG812/w3w4a1OcBlaTwsFPO5F7fJ/amy+tieQxEMWBlbV1JGSjkFM+zkHNf81Cad+dfIRA+IBkvmvdAeA==
 
 "@types/node@^10.12.18":
-  version "10.14.7"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.14.7.tgz#1854f0a9aa8d2cd6818d607b3d091346c6730362"
-  integrity sha512-on4MmIDgHXiuJDELPk1NFaKVUxxCFr37tm8E9yN6rAiF5Pzp/9bBfBHkoexqRiY+hk/Z04EJU9kKEb59YqJ82A==
+  version "10.14.8"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.14.8.tgz#fe444203ecef1162348cd6deb76c62477b2cc6e9"
+  integrity sha512-I4+DbJEhLEg4/vIy/2gkWDvXBOOtPKV9EnLhYjMoqxcRW+TTZtUftkHktz/a8suoD5mUL7m6ReLrkPvSsCQQmw==
 
 "@types/node@^10.3.2":
   version "10.12.12"
@@ -11053,10 +11053,10 @@ mime@^2.0.3, mime@^2.1.0, mime@^2.3.1:
   resolved "https://registry.yarnpkg.com/mime/-/mime-2.3.1.tgz#b1621c54d63b97c47d3cfe7f7215f7d64517c369"
   integrity sha512-OEUllcVoydBHGN1z84yfQDimn58pZNNNXgZlHXSboxMlFvgI6MXSWpWKpFRra7H1HxpVhHTkrghfRW49k6yjeg==
 
-mime@^2.4.2:
-  version "2.4.3"
-  resolved "https://registry.yarnpkg.com/mime/-/mime-2.4.3.tgz#229687331e86f68924e6cb59e1cdd937f18275fe"
-  integrity sha512-QgrPRJfE+riq5TPZMcHZOtm8c6K/yYrMbKIoRfapfiGLxS8OTeIfRhUGW5LU7MlRa52KOAGCfUNruqLrIBvWZw==
+mime@^2.4.3:
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/mime/-/mime-2.4.4.tgz#bd7b91135fc6b01cde3e9bae33d659b63d8857e5"
+  integrity sha512-LRxmNwziLPT828z+4YkNzloCFC2YM4wrB99k+AV5ZbEyfGNWfG8SO1FUXLmLDBSo89NrJZ4DIWeLjy1CHGhMGA==
 
 mimic-fn@^1.0.0:
   version "1.2.0"
@@ -11293,10 +11293,10 @@ mute-stream@0.0.7:
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
   integrity sha1-MHXOk7whuPq0PhvE2n6BFe0ee6s=
 
-nahmii-contract-abstractions-ropsten@~1.5.3:
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/nahmii-contract-abstractions-ropsten/-/nahmii-contract-abstractions-ropsten-1.5.3.tgz#ff5899295977fd12fa39a5bd3ee9dd5e838c5d5c"
-  integrity sha512-kTbopi8ZnsyXeVO68IDcoxkpoM0E1aRcmRcQbABPbFYURDxO4OMK9HDZdDUwxE0n9RwvaULoMhJltSlHxR0odg==
+nahmii-contract-abstractions-ropsten@~2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/nahmii-contract-abstractions-ropsten/-/nahmii-contract-abstractions-ropsten-2.0.0.tgz#b534eada104326e6a554e5154b5739c0c770f901"
+  integrity sha512-0JO5Y7lwQeDAGxVvnKi8gfuH+WsNK/j7LeXnjtD2fEvjbTPrUAHxGOpZi4+hyYLoZQ/jW4lA/2TOCmha+ixQOw==
   dependencies:
     glob "^7.1.4"
 
@@ -11314,16 +11314,16 @@ nahmii-ethereum-address@^2.0.0:
   dependencies:
     bson "^3.0.2"
 
-nahmii-sdk@2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/nahmii-sdk/-/nahmii-sdk-2.2.3.tgz#f83f303202e9bc083f99d10361cc3e1aaf7bea27"
-  integrity sha512-3hgPxFOASKRTZQSSTJYVxYPvF9uL9xdEMV53Q2p9dHa3W/nkzKdCgV+3mh2uJ/mC5k1Ws2JW+k//Gmr+1kYw2w==
+nahmii-sdk@2.2.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/nahmii-sdk/-/nahmii-sdk-2.2.5.tgz#45293255b41ff80197887757afdad81aa159ae72"
+  integrity sha512-7Gy+adUu/culgPKZP/707jWczI954hlm+BEk/E/amMNUpsIuvnEdbDQ9yfPVycTgmWcUnWeNh5xB+4EUtaZD8A==
   dependencies:
     ethereumjs-util "^6.1.0"
     keythereum "^1.0.4"
     lodash.get "^4.4.2"
     nahmii-contract-abstractions "1.2.2"
-    nahmii-contract-abstractions-ropsten "~1.5.3"
+    nahmii-contract-abstractions-ropsten "~2.0.0"
     nahmii-ethereum-address "^2.0.0"
     node-yaml "^3.2.0"
     socket.io-client "^2.2.0"
@@ -14290,7 +14290,7 @@ readable-stream@^3.0.6:
     string_decoder "^1.1.1"
     util-deprecate "^1.0.1"
 
-readable-stream@^3.3.0:
+readable-stream@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-3.4.0.tgz#a51c26754658e0a3c21dbf59163bd45ba6f447fc"
   integrity sha512-jItXPLmrSR8jmTRmRWJXCnGJsfy85mB3Wd/uINMXA65yrnFo0cPClFIUWzo2najVNSl+mx7/4W8ttlLWJe99pQ==
@@ -15241,7 +15241,7 @@ semver@^4.0.3:
   resolved "http://registry.npmjs.org/semver/-/semver-4.3.6.tgz#300bc6e0e86374f7ba61068b5b1ecd57fc6532da"
   integrity sha1-MAvG4OhjdPe6YQaLWx7NV/xlMto=
 
-semver@^6.0.0:
+semver@^6.1.1:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.1.1.tgz#53f53da9b30b2103cd4f15eab3a18ecbcb210c9b"
   integrity sha512-rWYq2e5iYW+fFe/oPPtYJxYgjBm8sC4rmoGdUOgBB7VnwKt6HrL793l2voH1UlsyYZpJ4g0wfjnTEO1s1NP2eQ==
@@ -16263,9 +16263,9 @@ sumchecker@^2.0.2:
     debug "^2.2.0"
 
 superagent@^5.0.2:
-  version "5.0.5"
-  resolved "https://registry.yarnpkg.com/superagent/-/superagent-5.0.5.tgz#53d0f578c4db0aab1a849b647af01b9750f8a2e7"
-  integrity sha512-5fnihpNqJfDJHxeIkqlXKFDOW5t4WUFV8Ba1erxdWT0RySqjgAW6Hska0xNYEpAfaoMzubn77GROm/XlkssOoQ==
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/superagent/-/superagent-5.0.6.tgz#78cb26a2742cfadc7aa422c329f23bbd61f08121"
+  integrity sha512-Rs1F18i4/o3C5N1kKAjWRS+uwQma3zz8J+hduC3E6CCE9LMF44ZPInBuvAibpgDoTtj42nkRNuasQ2r2JeMMIw==
   dependencies:
     component-emitter "^1.3.0"
     cookiejar "^2.1.2"
@@ -16273,10 +16273,10 @@ superagent@^5.0.2:
     form-data "^2.3.3"
     formidable "^1.2.1"
     methods "^1.1.2"
-    mime "^2.4.2"
+    mime "^2.4.3"
     qs "^6.7.0"
-    readable-stream "^3.3.0"
-    semver "^6.0.0"
+    readable-stream "^3.4.0"
+    semver "^6.1.1"
 
 supports-color@^0.2.0:
   version "0.2.0"

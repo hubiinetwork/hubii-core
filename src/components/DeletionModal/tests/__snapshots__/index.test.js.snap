@@ -9,6 +9,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     name="mike"

@@ -422,7 +422,7 @@ export class TransferForm extends React.PureComponent {
                         />
                       </div>
                       <ETHtoDollar>
-                        {`1 ${assetToSend.symbol} = `}<StyledNumericText value={assetToSendUsdValue.toString()} type="currency" />
+                        {`1 ${assetToSend.symbol} = `}<StyledNumericText value={assetToSendUsdValue.toString()} type="fiat" />
                       </ETHtoDollar>
                     </div>
                   )

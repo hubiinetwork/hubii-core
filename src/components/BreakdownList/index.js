@@ -37,7 +37,7 @@ const generateList = (data, formatMessage, extraInfo = false) => {
         {
         extraInfo &&
         <Percentage>
-          <StyledNumericText value={0} type="currency" />
+          <StyledNumericText value={0} type="fiat" />
         </Percentage>
       }
       </FlexItem>
@@ -62,7 +62,7 @@ const generateList = (data, formatMessage, extraInfo = false) => {
         <Percentage unknownPrice={unknownPrice}>
           { unknownPrice
             ? formatMessage({ id: 'missing_price' })
-            : <StyledText><StyledNumericText value={item.value} type="currency" /> {`(${item.percentage > 1 ? item.percentage.toFixed(0) : '<1'}%)`}</StyledText>
+            : <StyledText><StyledNumericText value={item.value} type="fiat" /> {`(${item.percentage > 1 ? item.percentage.toFixed(0) : '<1'}%)`}</StyledText>
           }
         </Percentage>
       }

@@ -8,6 +8,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     supportedAssets={
@@ -252,6 +253,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     supportedAssets={
@@ -496,6 +498,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     supportedAssets={
@@ -722,6 +725,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     supportedAssets={
@@ -948,6 +952,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     supportedAssets={
@@ -1131,7 +1136,7 @@ ShallowWrapper {
           >
                     <style__StyledNumericText
                               large={true}
-                              type="currency"
+                              type="fiat"
                               value="164.492044"
                     />
           </style__StyledHeading>
@@ -1185,7 +1190,7 @@ ShallowWrapper {
 >
               <style__StyledNumericText
                             large={true}
-                            type="currency"
+                            type="fiat"
                             value="164.492044"
               />
 </style__StyledHeading>,
@@ -1212,7 +1217,7 @@ ShallowWrapper {
             "props": Object {
               "children": <style__StyledNumericText
                 large={true}
-                type="currency"
+                type="fiat"
                 value="164.492044"
 />,
               "large": true,
@@ -1224,7 +1229,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "large": true,
-                "type": "currency",
+                "type": "fiat",
                 "value": "164.492044",
               },
               "ref": null,
@@ -1287,7 +1292,7 @@ ShallowWrapper {
             >
                         <style__StyledNumericText
                                     large={true}
-                                    type="currency"
+                                    type="fiat"
                                     value="164.492044"
                         />
             </style__StyledHeading>
@@ -1341,7 +1346,7 @@ ShallowWrapper {
 >
                 <style__StyledNumericText
                                 large={true}
-                                type="currency"
+                                type="fiat"
                                 value="164.492044"
                 />
 </style__StyledHeading>,
@@ -1368,7 +1373,7 @@ ShallowWrapper {
               "props": Object {
                 "children": <style__StyledNumericText
                   large={true}
-                  type="currency"
+                  type="fiat"
                   value="164.492044"
 />,
                 "large": true,
@@ -1380,7 +1385,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "large": true,
-                  "type": "currency",
+                  "type": "fiat",
                   "value": "164.492044",
                 },
                 "ref": null,

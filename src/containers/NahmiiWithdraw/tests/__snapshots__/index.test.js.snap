@@ -488,6 +488,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     ledgerNanoSInfo={
@@ -730,6 +731,7 @@ ShallowWrapper {
                                                   intl={
                                                             Object {
                                                                       "formatMessage": [Function],
+                                                                      "formatNumber": [Function],
                                                                     }
                                                   }
                                                   onChange={[Function]}
@@ -771,6 +773,7 @@ ShallowWrapper {
                                                             main={
                                                                       <SelectableText>
                                                                                 <NumericText
+                                                                                          maxDecimalPlaces={18}
                                                                                           value="0"
                                                                                 />
                                                                                  
@@ -779,7 +782,7 @@ ShallowWrapper {
                                                             }
                                                             subtitle={
                                                                       <NumericText
-                                                                                type="currency"
+                                                                                type="fiat"
                                                                                 value="0"
                                                                       />
                                                             }
@@ -805,6 +808,7 @@ ShallowWrapper {
                                                             main={
                                                                       <SelectableText>
                                                                                 <NumericText
+                                                                                          maxDecimalPlaces={18}
                                                                                           value="0.06"
                                                                                 />
                                                                                  
@@ -813,7 +817,7 @@ ShallowWrapper {
                                                             }
                                                             subtitle={
                                                                       <NumericText
-                                                                                type="currency"
+                                                                                type="fiat"
                                                                                 value="24.72"
                                                                       />
                                                             }
@@ -838,6 +842,7 @@ ShallowWrapper {
                                                             main={
                                                                       <SelectableText>
                                                                                 <NumericText
+                                                                                          maxDecimalPlaces={18}
                                                                                           value="0.198937"
                                                                                 />
                                                                                  
@@ -846,7 +851,7 @@ ShallowWrapper {
                                                             }
                                                             subtitle={
                                                                       <NumericText
-                                                                                type="currency"
+                                                                                type="fiat"
                                                                                 value="81.962044"
                                                                       />
                                                             }
@@ -871,6 +876,7 @@ ShallowWrapper {
                                                             main={
                                                                       <SelectableText>
                                                                                 <NumericText
+                                                                                          maxDecimalPlaces={18}
                                                                                           value="0.138937"
                                                                                 />
                                                                                  
@@ -879,7 +885,7 @@ ShallowWrapper {
                                                             }
                                                             subtitle={
                                                                       <NumericText
-                                                                                type="currency"
+                                                                                type="fiat"
                                                                                 value="57.242044"
                                                                       />
                                                             }
@@ -905,6 +911,7 @@ ShallowWrapper {
                                                                       main={
                                                                                 <SelectableText>
                                                                                           <NumericText
+                                                                                                    maxDecimalPlaces={18}
                                                                                                     value="0"
                                                                                           />
                                                                                            
@@ -913,7 +920,7 @@ ShallowWrapper {
                                                                       }
                                                                       subtitle={
                                                                                 <NumericText
-                                                                                          type="currency"
+                                                                                          type="fiat"
                                                                                           value="0"
                                                                                 />
                                                                       }
@@ -938,6 +945,7 @@ ShallowWrapper {
                                                                       main={
                                                                                 <SelectableText>
                                                                                           <NumericText
+                                                                                                    maxDecimalPlaces={18}
                                                                                                     value="0"
                                                                                           />
                                                                                            
@@ -946,7 +954,7 @@ ShallowWrapper {
                                                                       }
                                                                       subtitle={
                                                                                 <NumericText
-                                                                                          type="currency"
+                                                                                          type="fiat"
                                                                                           value="0"
                                                                                 />
                                                                       }
@@ -1082,6 +1090,7 @@ ShallowWrapper {
                                                 intl={
                                                             Object {
                                                                         "formatMessage": [Function],
+                                                                        "formatNumber": [Function],
                                                                       }
                                                 }
                                                 onChange={[Function]}
@@ -1123,6 +1132,7 @@ ShallowWrapper {
                                                             main={
                                                                         <SelectableText>
                                                                                     <NumericText
+                                                                                                maxDecimalPlaces={18}
                                                                                                 value="0"
                                                                                     />
                                                                                      
@@ -1131,7 +1141,7 @@ ShallowWrapper {
                                                             }
                                                             subtitle={
                                                                         <NumericText
-                                                                                    type="currency"
+                                                                                    type="fiat"
                                                                                     value="0"
                                                                         />
                                                             }
@@ -1157,6 +1167,7 @@ ShallowWrapper {
                                                             main={
                                                                         <SelectableText>
                                                                                     <NumericText
+                                                                                                maxDecimalPlaces={18}
                                                                                                 value="0.06"
                                                                                     />
                                                                                      
@@ -1165,7 +1176,7 @@ ShallowWrapper {
                                                             }
                                                             subtitle={
                                                                         <NumericText
-                                                                                    type="currency"
+                                                                                    type="fiat"
                                                                                     value="24.72"
                                                                         />
                                                             }
@@ -1190,6 +1201,7 @@ ShallowWrapper {
                                                             main={
                                                                         <SelectableText>
                                                                                     <NumericText
+                                                                                                maxDecimalPlaces={18}
                                                                                                 value="0.198937"
                                                                                     />
                                                                                      
@@ -1198,7 +1210,7 @@ ShallowWrapper {
                                                             }
                                                             subtitle={
                                                                         <NumericText
-                                                                                    type="currency"
+                                                                                    type="fiat"
                                                                                     value="81.962044"
                                                                         />
                                                             }
@@ -1223,6 +1235,7 @@ ShallowWrapper {
                                                             main={
                                                                         <SelectableText>
                                                                                     <NumericText
+                                                                                                maxDecimalPlaces={18}
                                                                                                 value="0.138937"
                                                                                     />
                                                                                      
@@ -1231,7 +1244,7 @@ ShallowWrapper {
                                                             }
                                                             subtitle={
                                                                         <NumericText
-                                                                                    type="currency"
+                                                                                    type="fiat"
                                                                                     value="57.242044"
                                                                         />
                                                             }
@@ -1257,6 +1270,7 @@ ShallowWrapper {
                                                                         main={
                                                                                     <SelectableText>
                                                                                                 <NumericText
+                                                                                                            maxDecimalPlaces={18}
                                                                                                             value="0"
                                                                                                 />
                                                                                                  
@@ -1265,7 +1279,7 @@ ShallowWrapper {
                                                                         }
                                                                         subtitle={
                                                                                     <NumericText
-                                                                                                type="currency"
+                                                                                                type="fiat"
                                                                                                 value="0"
                                                                                     />
                                                                         }
@@ -1290,6 +1304,7 @@ ShallowWrapper {
                                                                         main={
                                                                                     <SelectableText>
                                                                                                 <NumericText
+                                                                                                            maxDecimalPlaces={18}
                                                                                                             value="0"
                                                                                                 />
                                                                                                  
@@ -1298,7 +1313,7 @@ ShallowWrapper {
                                                                         }
                                                                         subtitle={
                                                                                     <NumericText
-                                                                                                type="currency"
+                                                                                                type="fiat"
                                                                                                 value="0"
                                                                                     />
                                                                         }
@@ -1414,6 +1429,7 @@ ShallowWrapper {
                                                 intl={
                                                                 Object {
                                                                                 "formatMessage": [Function],
+                                                                                "formatNumber": [Function],
                                                                               }
                                                 }
                                                 onChange={[Function]}
@@ -1455,6 +1471,7 @@ ShallowWrapper {
                                                                 main={
                                                                                 <SelectableText>
                                                                                                 <NumericText
+                                                                                                                maxDecimalPlaces={18}
                                                                                                                 value="0"
                                                                                                 />
                                                                                                  
@@ -1463,7 +1480,7 @@ ShallowWrapper {
                                                                 }
                                                                 subtitle={
                                                                                 <NumericText
-                                                                                                type="currency"
+                                                                                                type="fiat"
                                                                                                 value="0"
                                                                                 />
                                                                 }
@@ -1489,6 +1506,7 @@ ShallowWrapper {
                                                                 main={
                                                                                 <SelectableText>
                                                                                                 <NumericText
+                                                                                                                maxDecimalPlaces={18}
                                                                                                                 value="0.06"
                                                                                                 />
                                                                                                  
@@ -1497,7 +1515,7 @@ ShallowWrapper {
                                                                 }
                                                                 subtitle={
                                                                                 <NumericText
-                                                                                                type="currency"
+                                                                                                type="fiat"
                                                                                                 value="24.72"
                                                                                 />
                                                                 }
@@ -1522,6 +1540,7 @@ ShallowWrapper {
                                                                 main={
                                                                                 <SelectableText>
                                                                                                 <NumericText
+                                                                                                                maxDecimalPlaces={18}
                                                                                                                 value="0.198937"
                                                                                                 />
                                                                                                  
@@ -1530,7 +1549,7 @@ ShallowWrapper {
                                                                 }
                                                                 subtitle={
                                                                                 <NumericText
-                                                                                                type="currency"
+                                                                                                type="fiat"
                                                                                                 value="81.962044"
                                                                                 />
                                                                 }
@@ -1555,6 +1574,7 @@ ShallowWrapper {
                                                                 main={
                                                                                 <SelectableText>
                                                                                                 <NumericText
+                                                                                                                maxDecimalPlaces={18}
                                                                                                                 value="0.138937"
                                                                                                 />
                                                                                                  
@@ -1563,7 +1583,7 @@ ShallowWrapper {
                                                                 }
                                                                 subtitle={
                                                                                 <NumericText
-                                                                                                type="currency"
+                                                                                                type="fiat"
                                                                                                 value="57.242044"
                                                                                 />
                                                                 }
@@ -1589,6 +1609,7 @@ ShallowWrapper {
                                                                                 main={
                                                                                                 <SelectableText>
                                                                                                                 <NumericText
+                                                                                                                                maxDecimalPlaces={18}
                                                                                                                                 value="0"
                                                                                                                 />
                                                                                                                  
@@ -1597,7 +1618,7 @@ ShallowWrapper {
                                                                                 }
                                                                                 subtitle={
                                                                                                 <NumericText
-                                                                                                                type="currency"
+                                                                                                                type="fiat"
                                                                                                                 value="0"
                                                                                                 />
                                                                                 }
@@ -1622,6 +1643,7 @@ ShallowWrapper {
                                                                                 main={
                                                                                                 <SelectableText>
                                                                                                                 <NumericText
+                                                                                                                                maxDecimalPlaces={18}
                                                                                                                                 value="0"
                                                                                                                 />
                                                                                                                  
@@ -1630,7 +1652,7 @@ ShallowWrapper {
                                                                                 }
                                                                                 subtitle={
                                                                                                 <NumericText
-                                                                                                                type="currency"
+                                                                                                                type="fiat"
                                                                                                                 value="0"
                                                                                                 />
                                                                                 }
@@ -1740,6 +1762,7 @@ ShallowWrapper {
                                     intl={
                                                       Object {
                                                                         "formatMessage": [Function],
+                                                                        "formatNumber": [Function],
                                                                       }
                                     }
                                     onChange={[Function]}
@@ -1828,6 +1851,7 @@ ShallowWrapper {
                       intl={
                                             Object {
                                                                   "formatMessage": [Function],
+                                                                  "formatNumber": [Function],
                                                                 }
                       }
                       onChange={[Function]}
@@ -2000,6 +2024,7 @@ ShallowWrapper {
                       "gasStatistics": undefined,
                       "intl": Object {
                         "formatMessage": [Function],
+                        "formatNumber": [Function],
                       },
                       "onChange": [Function],
                     },
@@ -2052,6 +2077,7 @@ ShallowWrapper {
                                                             main={
                                                                                 <SelectableText>
                                                                                                     <NumericText
+                                                                                                                        maxDecimalPlaces={18}
                                                                                                                         value="0"
                                                                                                     />
                                                                                                      
@@ -2060,7 +2086,7 @@ ShallowWrapper {
                                                             }
                                                             subtitle={
                                                                                 <NumericText
-                                                                                                    type="currency"
+                                                                                                    type="fiat"
                                                                                                     value="0"
                                                                                 />
                                                             }
@@ -2086,6 +2112,7 @@ ShallowWrapper {
                                                             main={
                                                                                 <SelectableText>
                                                                                                     <NumericText
+                                                                                                                        maxDecimalPlaces={18}
                                                                                                                         value="0.06"
                                                                                                     />
                                                                                                      
@@ -2094,7 +2121,7 @@ ShallowWrapper {
                                                             }
                                                             subtitle={
                                                                                 <NumericText
-                                                                                                    type="currency"
+                                                                                                    type="fiat"
                                                                                                     value="24.72"
                                                                                 />
                                                             }
@@ -2119,6 +2146,7 @@ ShallowWrapper {
                                                             main={
                                                                                 <SelectableText>
                                                                                                     <NumericText
+                                                                                                                        maxDecimalPlaces={18}
                                                                                                                         value="0.198937"
                                                                                                     />
                                                                                                      
@@ -2127,7 +2155,7 @@ ShallowWrapper {
                                                             }
                                                             subtitle={
                                                                                 <NumericText
-                                                                                                    type="currency"
+                                                                                                    type="fiat"
                                                                                                     value="81.962044"
                                                                                 />
                                                             }
@@ -2152,6 +2180,7 @@ ShallowWrapper {
                                                             main={
                                                                                 <SelectableText>
                                                                                                     <NumericText
+                                                                                                                        maxDecimalPlaces={18}
                                                                                                                         value="0.138937"
                                                                                                     />
                                                                                                      
@@ -2160,7 +2189,7 @@ ShallowWrapper {
                                                             }
                                                             subtitle={
                                                                                 <NumericText
-                                                                                                    type="currency"
+                                                                                                    type="fiat"
                                                                                                     value="57.242044"
                                                                                 />
                                                             }
@@ -2186,6 +2215,7 @@ ShallowWrapper {
                                                                                 main={
                                                                                                     <SelectableText>
                                                                                                                         <NumericText
+                                                                                                                                            maxDecimalPlaces={18}
                                                                                                                                             value="0"
                                                                                                                         />
                                                                                                                          
@@ -2194,7 +2224,7 @@ ShallowWrapper {
                                                                                 }
                                                                                 subtitle={
                                                                                                     <NumericText
-                                                                                                                        type="currency"
+                                                                                                                        type="fiat"
                                                                                                                         value="0"
                                                                                                     />
                                                                                 }
@@ -2219,6 +2249,7 @@ ShallowWrapper {
                                                                                 main={
                                                                                                     <SelectableText>
                                                                                                                         <NumericText
+                                                                                                                                            maxDecimalPlaces={18}
                                                                                                                                             value="0"
                                                                                                                         />
                                                                                                                          
@@ -2227,7 +2258,7 @@ ShallowWrapper {
                                                                                 }
                                                                                 subtitle={
                                                                                                     <NumericText
-                                                                                                                        type="currency"
+                                                                                                                        type="fiat"
                                                                                                                         value="0"
                                                                                                     />
                                                                                 }
@@ -2289,6 +2320,7 @@ ShallowWrapper {
                                                 main={
                                                                         <SelectableText>
                                                                                                 <NumericText
+                                                                                                                        maxDecimalPlaces={18}
                                                                                                                         value="0"
                                                                                                 />
                                                                                                  
@@ -2297,7 +2329,7 @@ ShallowWrapper {
                                                 }
                                                 subtitle={
                                                                         <NumericText
-                                                                                                type="currency"
+                                                                                                type="fiat"
                                                                                                 value="0"
                                                                         />
                                                 }
@@ -2323,6 +2355,7 @@ ShallowWrapper {
                                                 main={
                                                                         <SelectableText>
                                                                                                 <NumericText
+                                                                                                                        maxDecimalPlaces={18}
                                                                                                                         value="0.06"
                                                                                                 />
                                                                                                  
@@ -2331,7 +2364,7 @@ ShallowWrapper {
                                                 }
                                                 subtitle={
                                                                         <NumericText
-                                                                                                type="currency"
+                                                                                                type="fiat"
                                                                                                 value="24.72"
                                                                         />
                                                 }
@@ -2356,6 +2389,7 @@ ShallowWrapper {
                                                 main={
                                                                         <SelectableText>
                                                                                                 <NumericText
+                                                                                                                        maxDecimalPlaces={18}
                                                                                                                         value="0.198937"
                                                                                                 />
                                                                                                  
@@ -2364,7 +2398,7 @@ ShallowWrapper {
                                                 }
                                                 subtitle={
                                                                         <NumericText
-                                                                                                type="currency"
+                                                                                                type="fiat"
                                                                                                 value="81.962044"
                                                                         />
                                                 }
@@ -2389,6 +2423,7 @@ ShallowWrapper {
                                                 main={
                                                                         <SelectableText>
                                                                                                 <NumericText
+                                                                                                                        maxDecimalPlaces={18}
                                                                                                                         value="0.138937"
                                                                                                 />
                                                                                                  
@@ -2397,7 +2432,7 @@ ShallowWrapper {
                                                 }
                                                 subtitle={
                                                                         <NumericText
-                                                                                                type="currency"
+                                                                                                type="fiat"
                                                                                                 value="57.242044"
                                                                         />
                                                 }
@@ -2423,6 +2458,7 @@ ShallowWrapper {
                                                                         main={
                                                                                                 <SelectableText>
                                                                                                                         <NumericText
+                                                                                                                                                maxDecimalPlaces={18}
                                                                                                                                                 value="0"
                                                                                                                         />
                                                                                                                          
@@ -2431,7 +2467,7 @@ ShallowWrapper {
                                                                         }
                                                                         subtitle={
                                                                                                 <NumericText
-                                                                                                                        type="currency"
+                                                                                                                        type="fiat"
                                                                                                                         value="0"
                                                                                                 />
                                                                         }
@@ -2456,6 +2492,7 @@ ShallowWrapper {
                                                                         main={
                                                                                                 <SelectableText>
                                                                                                                         <NumericText
+                                                                                                                                                maxDecimalPlaces={18}
                                                                                                                                                 value="0"
                                                                                                                         />
                                                                                                                          
@@ -2464,7 +2501,7 @@ ShallowWrapper {
                                                                         }
                                                                         subtitle={
                                                                                                 <NumericText
-                                                                                                                        type="currency"
+                                                                                                                        type="fiat"
                                                                                                                         value="0"
                                                                                                 />
                                                                         }
@@ -2548,6 +2585,7 @@ ShallowWrapper {
                           main={
                                                     <SelectableText>
                                                                               <NumericText
+                                                                                                        maxDecimalPlaces={18}
                                                                                                         value="0"
                                                                               />
                                                                                
@@ -2556,7 +2594,7 @@ ShallowWrapper {
                           }
                           subtitle={
                                                     <NumericText
-                                                                              type="currency"
+                                                                              type="fiat"
                                                                               value="0"
                                                     />
                           }
@@ -2571,13 +2609,14 @@ ShallowWrapper {
                         "props": Object {
                           "main": <SelectableText>
                             <NumericText
+                                                        maxDecimalPlaces={18}
                                                         value="0"
                             />
                              
                             ETH
 </SelectableText>,
                           "subtitle": <NumericText
-                            type="currency"
+                            type="fiat"
                             value="0"
 />,
                         },
@@ -2642,6 +2681,7 @@ ShallowWrapper {
                           main={
                                                     <SelectableText>
                                                                               <NumericText
+                                                                                                        maxDecimalPlaces={18}
                                                                                                         value="0.06"
                                                                               />
                                                                                
@@ -2650,7 +2690,7 @@ ShallowWrapper {
                           }
                           subtitle={
                                                     <NumericText
-                                                                              type="currency"
+                                                                              type="fiat"
                                                                               value="24.72"
                                                     />
                           }
@@ -2665,13 +2705,14 @@ ShallowWrapper {
                         "props": Object {
                           "main": <SelectableText>
                             <NumericText
+                                                        maxDecimalPlaces={18}
                                                         value="0.06"
                             />
                              
                             ETH
 </SelectableText>,
                           "subtitle": <NumericText
-                            type="currency"
+                            type="fiat"
                             value="24.72"
 />,
                         },
@@ -2728,6 +2769,7 @@ ShallowWrapper {
                           main={
                                                     <SelectableText>
                                                                               <NumericText
+                                                                                                        maxDecimalPlaces={18}
                                                                                                         value="0.198937"
                                                                               />
                                                                                
@@ -2736,7 +2778,7 @@ ShallowWrapper {
                           }
                           subtitle={
                                                     <NumericText
-                                                                              type="currency"
+                                                                              type="fiat"
                                                                               value="81.962044"
                                                     />
                           }
@@ -2752,13 +2794,14 @@ ShallowWrapper {
                           "className": "base-layer-eth-balance-before",
                           "main": <SelectableText>
                             <NumericText
+                                                        maxDecimalPlaces={18}
                                                         value="0.198937"
                             />
                              
                             ETH
 </SelectableText>,
                           "subtitle": <NumericText
-                            type="currency"
+                            type="fiat"
                             value="81.962044"
 />,
                         },
@@ -2815,6 +2858,7 @@ ShallowWrapper {
                           main={
                                                     <SelectableText>
                                                                               <NumericText
+                                                                                                        maxDecimalPlaces={18}
                                                                                                         value="0.138937"
                                                                               />
                                                                                
@@ -2823,7 +2867,7 @@ ShallowWrapper {
                           }
                           subtitle={
                                                     <NumericText
-                                                                              type="currency"
+                                                                              type="fiat"
                                                                               value="57.242044"
                                                     />
                           }
@@ -2839,13 +2883,14 @@ ShallowWrapper {
                           "className": "base-layer-eth-balance-after",
                           "main": <SelectableText>
                             <NumericText
+                                                        maxDecimalPlaces={18}
                                                         value="0.138937"
                             />
                              
                             ETH
 </SelectableText>,
                           "subtitle": <NumericText
-                            type="currency"
+                            type="fiat"
                             value="57.242044"
 />,
                         },
@@ -2880,6 +2925,7 @@ ShallowWrapper {
                                                         main={
                                                                                     <SelectableText>
                                                                                                                 <NumericText
+                                                                                                                                            maxDecimalPlaces={18}
                                                                                                                                             value="0"
                                                                                                                 />
                                                                                                                  
@@ -2888,7 +2934,7 @@ ShallowWrapper {
                                                         }
                                                         subtitle={
                                                                                     <NumericText
-                                                                                                                type="currency"
+                                                                                                                type="fiat"
                                                                                                                 value="0"
                                                                                     />
                                                         }
@@ -2913,6 +2959,7 @@ ShallowWrapper {
                                                         main={
                                                                                     <SelectableText>
                                                                                                                 <NumericText
+                                                                                                                                            maxDecimalPlaces={18}
                                                                                                                                             value="0"
                                                                                                                 />
                                                                                                                  
@@ -2921,7 +2968,7 @@ ShallowWrapper {
                                                         }
                                                         subtitle={
                                                                                     <NumericText
-                                                                                                                type="currency"
+                                                                                                                type="fiat"
                                                                                                                 value="0"
                                                                                     />
                                                         }
@@ -2978,6 +3025,7 @@ ShallowWrapper {
                               main={
                                                             <SelectableText>
                                                                                           <NumericText
+                                                                                                                        maxDecimalPlaces={18}
                                                                                                                         value="0"
                                                                                           />
                                                                                            
@@ -2986,7 +3034,7 @@ ShallowWrapper {
                               }
                               subtitle={
                                                             <NumericText
-                                                                                          type="currency"
+                                                                                          type="fiat"
                                                                                           value="0"
                                                             />
                               }
@@ -3002,13 +3050,14 @@ ShallowWrapper {
                               "className": "staged-balance-before",
                               "main": <SelectableText>
                                 <NumericText
+                                                                maxDecimalPlaces={18}
                                                                 value="0"
                                 />
                                  
                                 ETH
 </SelectableText>,
                               "subtitle": <NumericText
-                                type="currency"
+                                type="fiat"
                                 value="0"
 />,
                             },
@@ -3065,6 +3114,7 @@ ShallowWrapper {
                               main={
                                                             <SelectableText>
                                                                                           <NumericText
+                                                                                                                        maxDecimalPlaces={18}
                                                                                                                         value="0"
                                                                                           />
                                                                                            
@@ -3073,7 +3123,7 @@ ShallowWrapper {
                               }
                               subtitle={
                                                             <NumericText
-                                                                                          type="currency"
+                                                                                          type="fiat"
                                                                                           value="0"
                                                             />
                               }
@@ -3089,13 +3139,14 @@ ShallowWrapper {
                               "className": "staged-balance-after",
                               "main": <SelectableText>
                                 <NumericText
+                                                                maxDecimalPlaces={18}
                                                                 value="0"
                                 />
                                  
                                 ETH
 </SelectableText>,
                               "subtitle": <NumericText
-                                type="currency"
+                                type="fiat"
                                 value="0"
 />,
                             },
@@ -3328,6 +3379,7 @@ ShallowWrapper {
                                                             intl={
                                                                         Object {
                                                                                     "formatMessage": [Function],
+                                                                                    "formatNumber": [Function],
                                                                                   }
                                                             }
                                                             onChange={[Function]}
@@ -3369,6 +3421,7 @@ ShallowWrapper {
                                                                         main={
                                                                                     <SelectableText>
                                                                                                 <NumericText
+                                                                                                            maxDecimalPlaces={18}
                                                                                                             value="0"
                                                                                                 />
                                                                                                  
@@ -3377,7 +3430,7 @@ ShallowWrapper {
                                                                         }
                                                                         subtitle={
                                                                                     <NumericText
-                                                                                                type="currency"
+                                                                                                type="fiat"
                                                                                                 value="0"
                                                                                     />
                                                                         }
@@ -3403,6 +3456,7 @@ ShallowWrapper {
                                                                         main={
                                                                                     <SelectableText>
                                                                                                 <NumericText
+                                                                                                            maxDecimalPlaces={18}
                                                                                                             value="0.06"
                                                                                                 />
                                                                                                  
@@ -3411,7 +3465,7 @@ ShallowWrapper {
                                                                         }
                                                                         subtitle={
                                                                                     <NumericText
-                                                                                                type="currency"
+                                                                                                type="fiat"
                                                                                                 value="24.72"
                                                                                     />
                                                                         }
@@ -3436,6 +3490,7 @@ ShallowWrapper {
                                                                         main={
                                                                                     <SelectableText>
                                                                                                 <NumericText
+                                                                                                            maxDecimalPlaces={18}
                                                                                                             value="0.198937"
                                                                                                 />
                                                                                                  
@@ -3444,7 +3499,7 @@ ShallowWrapper {
                                                                         }
                                                                         subtitle={
                                                                                     <NumericText
-                                                                                                type="currency"
+                                                                                                type="fiat"
                                                                                                 value="81.962044"
                                                                                     />
                                                                         }
@@ -3469,6 +3524,7 @@ ShallowWrapper {
                                                                         main={
                                                                                     <SelectableText>
                                                                                                 <NumericText
+                                                                                                            maxDecimalPlaces={18}
                                                                                                             value="0.138937"
                                                                                                 />
                                                                                                  
@@ -3477,7 +3533,7 @@ ShallowWrapper {
                                                                         }
                                                                         subtitle={
                                                                                     <NumericText
-                                                                                                type="currency"
+                                                                                                type="fiat"
                                                                                                 value="57.242044"
                                                                                     />
                                                                         }
@@ -3503,6 +3559,7 @@ ShallowWrapper {
                                                                                     main={
                                                                                                 <SelectableText>
                                                                                                             <NumericText
+                                                                                                                        maxDecimalPlaces={18}
                                                                                                                         value="0"
                                                                                                             />
                                                                                                              
@@ -3511,7 +3568,7 @@ ShallowWrapper {
                                                                                     }
                                                                                     subtitle={
                                                                                                 <NumericText
-                                                                                                            type="currency"
+                                                                                                            type="fiat"
                                                                                                             value="0"
                                                                                                 />
                                                                                     }
@@ -3536,6 +3593,7 @@ ShallowWrapper {
                                                                                     main={
                                                                                                 <SelectableText>
                                                                                                             <NumericText
+                                                                                                                        maxDecimalPlaces={18}
                                                                                                                         value="0"
                                                                                                             />
                                                                                                              
@@ -3544,7 +3602,7 @@ ShallowWrapper {
                                                                                     }
                                                                                     subtitle={
                                                                                                 <NumericText
-                                                                                                            type="currency"
+                                                                                                            type="fiat"
                                                                                                             value="0"
                                                                                                 />
                                                                                     }
@@ -3680,6 +3738,7 @@ ShallowWrapper {
                                                         intl={
                                                                       Object {
                                                                                     "formatMessage": [Function],
+                                                                                    "formatNumber": [Function],
                                                                                   }
                                                         }
                                                         onChange={[Function]}
@@ -3721,6 +3780,7 @@ ShallowWrapper {
                                                                       main={
                                                                                     <SelectableText>
                                                                                                   <NumericText
+                                                                                                                maxDecimalPlaces={18}
                                                                                                                 value="0"
                                                                                                   />
                                                                                                    
@@ -3729,7 +3789,7 @@ ShallowWrapper {
                                                                       }
                                                                       subtitle={
                                                                                     <NumericText
-                                                                                                  type="currency"
+                                                                                                  type="fiat"
                                                                                                   value="0"
                                                                                     />
                                                                       }
@@ -3755,6 +3815,7 @@ ShallowWrapper {
                                                                       main={
                                                                                     <SelectableText>
                                                                                                   <NumericText
+                                                                                                                maxDecimalPlaces={18}
                                                                                                                 value="0.06"
                                                                                                   />
                                                                                                    
@@ -3763,7 +3824,7 @@ ShallowWrapper {
                                                                       }
                                                                       subtitle={
                                                                                     <NumericText
-                                                                                                  type="currency"
+                                                                                                  type="fiat"
                                                                                                   value="24.72"
                                                                                     />
                                                                       }
@@ -3788,6 +3849,7 @@ ShallowWrapper {
                                                                       main={
                                                                                     <SelectableText>
                                                                                                   <NumericText
+                                                                                                                maxDecimalPlaces={18}
                                                                                                                 value="0.198937"
                                                                                                   />
                                                                                                    
@@ -3796,7 +3858,7 @@ ShallowWrapper {
                                                                       }
                                                                       subtitle={
                                                                                     <NumericText
-                                                                                                  type="currency"
+                                                                                                  type="fiat"
                                                                                                   value="81.962044"
                                                                                     />
                                                                       }
@@ -3821,6 +3883,7 @@ ShallowWrapper {
                                                                       main={
                                                                                     <SelectableText>
                                                                                                   <NumericText
+                                                                                                                maxDecimalPlaces={18}
                                                                                                                 value="0.138937"
                                                                                                   />
                                                                                                    
@@ -3829,7 +3892,7 @@ ShallowWrapper {
                                                                       }
                                                                       subtitle={
                                                                                     <NumericText
-                                                                                                  type="currency"
+                                                                                                  type="fiat"
                                                                                                   value="57.242044"
                                                                                     />
                                                                       }
@@ -3855,6 +3918,7 @@ ShallowWrapper {
                                                                                     main={
                                                                                                   <SelectableText>
                                                                                                                 <NumericText
+                                                                                                                              maxDecimalPlaces={18}
                                                                                                                               value="0"
                                                                                                                 />
                                                                                                                  
@@ -3863,7 +3927,7 @@ ShallowWrapper {
                                                                                     }
                                                                                     subtitle={
                                                                                                   <NumericText
-                                                                                                                type="currency"
+                                                                                                                type="fiat"
                                                                                                                 value="0"
                                                                                                   />
                                                                                     }
@@ -3888,6 +3952,7 @@ ShallowWrapper {
                                                                                     main={
                                                                                                   <SelectableText>
                                                                                                                 <NumericText
+                                                                                                                              maxDecimalPlaces={18}
                                                                                                                               value="0"
                                                                                                                 />
                                                                                                                  
@@ -3896,7 +3961,7 @@ ShallowWrapper {
                                                                                     }
                                                                                     subtitle={
                                                                                                   <NumericText
-                                                                                                                type="currency"
+                                                                                                                type="fiat"
                                                                                                                 value="0"
                                                                                                   />
                                                                                     }
@@ -4012,6 +4077,7 @@ ShallowWrapper {
                                                       intl={
                                                                         Object {
                                                                                           "formatMessage": [Function],
+                                                                                          "formatNumber": [Function],
                                                                                         }
                                                       }
                                                       onChange={[Function]}
@@ -4053,6 +4119,7 @@ ShallowWrapper {
                                                                         main={
                                                                                           <SelectableText>
                                                                                                             <NumericText
+                                                                                                                              maxDecimalPlaces={18}
                                                                                                                               value="0"
                                                                                                             />
                                                                                                              
@@ -4061,7 +4128,7 @@ ShallowWrapper {
                                                                         }
                                                                         subtitle={
                                                                                           <NumericText
-                                                                                                            type="currency"
+                                                                                                            type="fiat"
                                                                                                             value="0"
                                                                                           />
                                                                         }
@@ -4087,6 +4154,7 @@ ShallowWrapper {
                                                                         main={
                                                                                           <SelectableText>
                                                                                                             <NumericText
+                                                                                                                              maxDecimalPlaces={18}
                                                                                                                               value="0.06"
                                                                                                             />
                                                                                                              
@@ -4095,7 +4163,7 @@ ShallowWrapper {
                                                                         }
                                                                         subtitle={
                                                                                           <NumericText
-                                                                                                            type="currency"
+                                                                                                            type="fiat"
                                                                                                             value="24.72"
                                                                                           />
                                                                         }
@@ -4120,6 +4188,7 @@ ShallowWrapper {
                                                                         main={
                                                                                           <SelectableText>
                                                                                                             <NumericText
+                                                                                                                              maxDecimalPlaces={18}
                                                                                                                               value="0.198937"
                                                                                                             />
                                                                                                              
@@ -4128,7 +4197,7 @@ ShallowWrapper {
                                                                         }
                                                                         subtitle={
                                                                                           <NumericText
-                                                                                                            type="currency"
+                                                                                                            type="fiat"
                                                                                                             value="81.962044"
                                                                                           />
                                                                         }
@@ -4153,6 +4222,7 @@ ShallowWrapper {
                                                                         main={
                                                                                           <SelectableText>
                                                                                                             <NumericText
+                                                                                                                              maxDecimalPlaces={18}
                                                                                                                               value="0.138937"
                                                                                                             />
                                                                                                              
@@ -4161,7 +4231,7 @@ ShallowWrapper {
                                                                         }
                                                                         subtitle={
                                                                                           <NumericText
-                                                                                                            type="currency"
+                                                                                                            type="fiat"
                                                                                                             value="57.242044"
                                                                                           />
                                                                         }
@@ -4187,6 +4257,7 @@ ShallowWrapper {
                                                                                           main={
                                                                                                             <SelectableText>
                                                                                                                               <NumericText
+                                                                                                                                                maxDecimalPlaces={18}
                                                                                                                                                 value="0"
                                                                                                                               />
                                                                                                                                
@@ -4195,7 +4266,7 @@ ShallowWrapper {
                                                                                           }
                                                                                           subtitle={
                                                                                                             <NumericText
-                                                                                                                              type="currency"
+                                                                                                                              type="fiat"
                                                                                                                               value="0"
                                                                                                             />
                                                                                           }
@@ -4220,6 +4291,7 @@ ShallowWrapper {
                                                                                           main={
                                                                                                             <SelectableText>
                                                                                                                               <NumericText
+                                                                                                                                                maxDecimalPlaces={18}
                                                                                                                                                 value="0"
                                                                                                                               />
                                                                                                                                
@@ -4228,7 +4300,7 @@ ShallowWrapper {
                                                                                           }
                                                                                           subtitle={
                                                                                                             <NumericText
-                                                                                                                              type="currency"
+                                                                                                                              type="fiat"
                                                                                                                               value="0"
                                                                                                             />
                                                                                           }
@@ -4338,6 +4410,7 @@ ShallowWrapper {
                                         intl={
                                                             Object {
                                                                                 "formatMessage": [Function],
+                                                                                "formatNumber": [Function],
                                                                               }
                                         }
                                         onChange={[Function]}
@@ -4426,6 +4499,7 @@ ShallowWrapper {
                         intl={
                                                 Object {
                                                                         "formatMessage": [Function],
+                                                                        "formatNumber": [Function],
                                                                       }
                         }
                         onChange={[Function]}
@@ -4598,6 +4672,7 @@ ShallowWrapper {
                         "gasStatistics": undefined,
                         "intl": Object {
                           "formatMessage": [Function],
+                          "formatNumber": [Function],
                         },
                         "onChange": [Function],
                       },
@@ -4650,6 +4725,7 @@ ShallowWrapper {
                                                                   main={
                                                                                         <SelectableText>
                                                                                                               <NumericText
+                                                                                                                                    maxDecimalPlaces={18}
                                                                                                                                     value="0"
                                                                                                               />
                                                                                                                
@@ -4658,7 +4734,7 @@ ShallowWrapper {
                                                                   }
                                                                   subtitle={
                                                                                         <NumericText
-                                                                                                              type="currency"
+                                                                                                              type="fiat"
                                                                                                               value="0"
                                                                                         />
                                                                   }
@@ -4684,6 +4760,7 @@ ShallowWrapper {
                                                                   main={
                                                                                         <SelectableText>
                                                                                                               <NumericText
+                                                                                                                                    maxDecimalPlaces={18}
                                                                                                                                     value="0.06"
                                                                                                               />
                                                                                                                
@@ -4692,7 +4769,7 @@ ShallowWrapper {
                                                                   }
                                                                   subtitle={
                                                                                         <NumericText
-                                                                                                              type="currency"
+                                                                                                              type="fiat"
                                                                                                               value="24.72"
                                                                                         />
                                                                   }
@@ -4717,6 +4794,7 @@ ShallowWrapper {
                                                                   main={
                                                                                         <SelectableText>
                                                                                                               <NumericText
+                                                                                                                                    maxDecimalPlaces={18}
                                                                                                                                     value="0.198937"
                                                                                                               />
                                                                                                                
@@ -4725,7 +4803,7 @@ ShallowWrapper {
                                                                   }
                                                                   subtitle={
                                                                                         <NumericText
-                                                                                                              type="currency"
+                                                                                                              type="fiat"
                                                                                                               value="81.962044"
                                                                                         />
                                                                   }
@@ -4750,6 +4828,7 @@ ShallowWrapper {
                                                                   main={
                                                                                         <SelectableText>
                                                                                                               <NumericText
+                                                                                                                                    maxDecimalPlaces={18}
                                                                                                                                     value="0.138937"
                                                                                                               />
                                                                                                                
@@ -4758,7 +4837,7 @@ ShallowWrapper {
                                                                   }
                                                                   subtitle={
                                                                                         <NumericText
-                                                                                                              type="currency"
+                                                                                                              type="fiat"
                                                                                                               value="57.242044"
                                                                                         />
                                                                   }
@@ -4784,6 +4863,7 @@ ShallowWrapper {
                                                                                         main={
                                                                                                               <SelectableText>
                                                                                                                                     <NumericText
+                                                                                                                                                          maxDecimalPlaces={18}
                                                                                                                                                           value="0"
                                                                                                                                     />
                                                                                                                                      
@@ -4792,7 +4872,7 @@ ShallowWrapper {
                                                                                         }
                                                                                         subtitle={
                                                                                                               <NumericText
-                                                                                                                                    type="currency"
+                                                                                                                                    type="fiat"
                                                                                                                                     value="0"
                                                                                                               />
                                                                                         }
@@ -4817,6 +4897,7 @@ ShallowWrapper {
                                                                                         main={
                                                                                                               <SelectableText>
                                                                                                                                     <NumericText
+                                                                                                                                                          maxDecimalPlaces={18}
                                                                                                                                                           value="0"
                                                                                                                                     />
                                                                                                                                      
@@ -4825,7 +4906,7 @@ ShallowWrapper {
                                                                                         }
                                                                                         subtitle={
                                                                                                               <NumericText
-                                                                                                                                    type="currency"
+                                                                                                                                    type="fiat"
                                                                                                                                     value="0"
                                                                                                               />
                                                                                         }
@@ -4887,6 +4968,7 @@ ShallowWrapper {
                                                     main={
                                                                               <SelectableText>
                                                                                                         <NumericText
+                                                                                                                                  maxDecimalPlaces={18}
                                                                                                                                   value="0"
                                                                                                         />
                                                                                                          
@@ -4895,7 +4977,7 @@ ShallowWrapper {
                                                     }
                                                     subtitle={
                                                                               <NumericText
-                                                                                                        type="currency"
+                                                                                                        type="fiat"
                                                                                                         value="0"
                                                                               />
                                                     }
@@ -4921,6 +5003,7 @@ ShallowWrapper {
                                                     main={
                                                                               <SelectableText>
                                                                                                         <NumericText
+                                                                                                                                  maxDecimalPlaces={18}
                                                                                                                                   value="0.06"
                                                                                                         />
                                                                                                          
@@ -4929,7 +5012,7 @@ ShallowWrapper {
                                                     }
                                                     subtitle={
                                                                               <NumericText
-                                                                                                        type="currency"
+                                                                                                        type="fiat"
                                                                                                         value="24.72"
                                                                               />
                                                     }
@@ -4954,6 +5037,7 @@ ShallowWrapper {
                                                     main={
                                                                               <SelectableText>
                                                                                                         <NumericText
+                                                                                                                                  maxDecimalPlaces={18}
                                                                                                                                   value="0.198937"
                                                                                                         />
                                                                                                          
@@ -4962,7 +5046,7 @@ ShallowWrapper {
                                                     }
                                                     subtitle={
                                                                               <NumericText
-                                                                                                        type="currency"
+                                                                                                        type="fiat"
                                                                                                         value="81.962044"
                                                                               />
                                                     }
@@ -4987,6 +5071,7 @@ ShallowWrapper {
                                                     main={
                                                                               <SelectableText>
                                                                                                         <NumericText
+                                                                                                                                  maxDecimalPlaces={18}
                                                                                                                                   value="0.138937"
                                                                                                         />
                                                                                                          
@@ -4995,7 +5080,7 @@ ShallowWrapper {
                                                     }
                                                     subtitle={
                                                                               <NumericText
-                                                                                                        type="currency"
+                                                                                                        type="fiat"
                                                                                                         value="57.242044"
                                                                               />
                                                     }
@@ -5021,6 +5106,7 @@ ShallowWrapper {
                                                                               main={
                                                                                                         <SelectableText>
                                                                                                                                   <NumericText
+                                                                                                                                                            maxDecimalPlaces={18}
                                                                                                                                                             value="0"
                                                                                                                                   />
                                                                                                                                    
@@ -5029,7 +5115,7 @@ ShallowWrapper {
                                                                               }
                                                                               subtitle={
                                                                                                         <NumericText
-                                                                                                                                  type="currency"
+                                                                                                                                  type="fiat"
                                                                                                                                   value="0"
                                                                                                         />
                                                                               }
@@ -5054,6 +5140,7 @@ ShallowWrapper {
                                                                               main={
                                                                                                         <SelectableText>
                                                                                                                                   <NumericText
+                                                                                                                                                            maxDecimalPlaces={18}
                                                                                                                                                             value="0"
                                                                                                                                   />
                                                                                                                                    
@@ -5062,7 +5149,7 @@ ShallowWrapper {
                                                                               }
                                                                               subtitle={
                                                                                                         <NumericText
-                                                                                                                                  type="currency"
+                                                                                                                                  type="fiat"
                                                                                                                                   value="0"
                                                                                                         />
                                                                               }
@@ -5146,6 +5233,7 @@ ShallowWrapper {
                             main={
                                                         <SelectableText>
                                                                                     <NumericText
+                                                                                                                maxDecimalPlaces={18}
                                                                                                                 value="0"
                                                                                     />
                                                                                      
@@ -5154,7 +5242,7 @@ ShallowWrapper {
                             }
                             subtitle={
                                                         <NumericText
-                                                                                    type="currency"
+                                                                                    type="fiat"
                                                                                     value="0"
                                                         />
                             }
@@ -5169,13 +5257,14 @@ ShallowWrapper {
                           "props": Object {
                             "main": <SelectableText>
                               <NumericText
+                                                            maxDecimalPlaces={18}
                                                             value="0"
                               />
                                
                               ETH
 </SelectableText>,
                             "subtitle": <NumericText
-                              type="currency"
+                              type="fiat"
                               value="0"
 />,
                           },
@@ -5240,6 +5329,7 @@ ShallowWrapper {
                             main={
                                                         <SelectableText>
                                                                                     <NumericText
+                                                                                                                maxDecimalPlaces={18}
                                                                                                                 value="0.06"
                                                                                     />
                                                                                      
@@ -5248,7 +5338,7 @@ ShallowWrapper {
                             }
                             subtitle={
                                                         <NumericText
-                                                                                    type="currency"
+                                                                                    type="fiat"
                                                                                     value="24.72"
                                                         />
                             }
@@ -5263,13 +5353,14 @@ ShallowWrapper {
                           "props": Object {
                             "main": <SelectableText>
                               <NumericText
+                                                            maxDecimalPlaces={18}
                                                             value="0.06"
                               />
                                
                               ETH
 </SelectableText>,
                             "subtitle": <NumericText
-                              type="currency"
+                              type="fiat"
                               value="24.72"
 />,
                           },
@@ -5326,6 +5417,7 @@ ShallowWrapper {
                             main={
                                                         <SelectableText>
                                                                                     <NumericText
+                                                                                                                maxDecimalPlaces={18}
                                                                                                                 value="0.198937"
                                                                                     />
                                                                                      
@@ -5334,7 +5426,7 @@ ShallowWrapper {
                             }
                             subtitle={
                                                         <NumericText
-                                                                                    type="currency"
+                                                                                    type="fiat"
                                                                                     value="81.962044"
                                                         />
                             }
@@ -5350,13 +5442,14 @@ ShallowWrapper {
                             "className": "base-layer-eth-balance-before",
                             "main": <SelectableText>
                               <NumericText
+                                                            maxDecimalPlaces={18}
                                                             value="0.198937"
                               />
                                
                               ETH
 </SelectableText>,
                             "subtitle": <NumericText
-                              type="currency"
+                              type="fiat"
                               value="81.962044"
 />,
                           },
@@ -5413,6 +5506,7 @@ ShallowWrapper {
                             main={
                                                         <SelectableText>
                                                                                     <NumericText
+                                                                                                                maxDecimalPlaces={18}
                                                                                                                 value="0.138937"
                                                                                     />
                                                                                      
@@ -5421,7 +5515,7 @@ ShallowWrapper {
                             }
                             subtitle={
                                                         <NumericText
-                                                                                    type="currency"
+                                                                                    type="fiat"
                                                                                     value="57.242044"
                                                         />
                             }
@@ -5437,13 +5531,14 @@ ShallowWrapper {
                             "className": "base-layer-eth-balance-after",
                             "main": <SelectableText>
                               <NumericText
+                                                            maxDecimalPlaces={18}
                                                             value="0.138937"
                               />
                                
                               ETH
 </SelectableText>,
                             "subtitle": <NumericText
-                              type="currency"
+                              type="fiat"
                               value="57.242044"
 />,
                           },
@@ -5478,6 +5573,7 @@ ShallowWrapper {
                                                             main={
                                                                                           <SelectableText>
                                                                                                                         <NumericText
+                                                                                                                                                      maxDecimalPlaces={18}
                                                                                                                                                       value="0"
                                                                                                                         />
                                                                                                                          
@@ -5486,7 +5582,7 @@ ShallowWrapper {
                                                             }
                                                             subtitle={
                                                                                           <NumericText
-                                                                                                                        type="currency"
+                                                                                                                        type="fiat"
                                                                                                                         value="0"
                                                                                           />
                                                             }
@@ -5511,6 +5607,7 @@ ShallowWrapper {
                                                             main={
                                                                                           <SelectableText>
                                                                                                                         <NumericText
+                                                                                                                                                      maxDecimalPlaces={18}
                                                                                                                                                       value="0"
                                                                                                                         />
                                                                                                                          
@@ -5519,7 +5616,7 @@ ShallowWrapper {
                                                             }
                                                             subtitle={
                                                                                           <NumericText
-                                                                                                                        type="currency"
+                                                                                                                        type="fiat"
                                                                                                                         value="0"
                                                                                           />
                                                             }
@@ -5576,6 +5673,7 @@ ShallowWrapper {
                                 main={
                                                                 <SelectableText>
                                                                                                 <NumericText
+                                                                                                                                maxDecimalPlaces={18}
                                                                                                                                 value="0"
                                                                                                 />
                                                                                                  
@@ -5584,7 +5682,7 @@ ShallowWrapper {
                                 }
                                 subtitle={
                                                                 <NumericText
-                                                                                                type="currency"
+                                                                                                type="fiat"
                                                                                                 value="0"
                                                                 />
                                 }
@@ -5600,13 +5698,14 @@ ShallowWrapper {
                                 "className": "staged-balance-before",
                                 "main": <SelectableText>
                                   <NumericText
+                                                                    maxDecimalPlaces={18}
                                                                     value="0"
                                   />
                                    
                                   ETH
 </SelectableText>,
                                 "subtitle": <NumericText
-                                  type="currency"
+                                  type="fiat"
                                   value="0"
 />,
                               },
@@ -5663,6 +5762,7 @@ ShallowWrapper {
                                 main={
                                                                 <SelectableText>
                                                                                                 <NumericText
+                                                                                                                                maxDecimalPlaces={18}
                                                                                                                                 value="0"
                                                                                                 />
                                                                                                  
@@ -5671,7 +5771,7 @@ ShallowWrapper {
                                 }
                                 subtitle={
                                                                 <NumericText
-                                                                                                type="currency"
+                                                                                                type="fiat"
                                                                                                 value="0"
                                                                 />
                                 }
@@ -5687,13 +5787,14 @@ ShallowWrapper {
                                 "className": "staged-balance-after",
                                 "main": <SelectableText>
                                   <NumericText
+                                                                    maxDecimalPlaces={18}
                                                                     value="0"
                                   />
                                    
                                   ETH
 </SelectableText>,
                                 "subtitle": <NumericText
-                                  type="currency"
+                                  type="fiat"
                                   value="0"
 />,
                               },

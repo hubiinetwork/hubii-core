@@ -13,6 +13,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     layer="baseLayer"
@@ -54,13 +55,14 @@ ShallowWrapper {
                                 </style__TypeText>
                                 <SelectableText>
                                         <style__Amount
+                                                maxDecimalPlaces={18}
                                                 value="0.000000000000000001"
                                         />
                                          
                                         UKG
                                 </SelectableText>
                                 <style__FiatValue
-                                        type="currency"
+                                        type="fiat"
                                         value="$123.34 USD"
                                 />
                                 <div
@@ -140,13 +142,14 @@ ShallowWrapper {
                               </style__TypeText>
                               <SelectableText>
                                         <style__Amount
+                                                  maxDecimalPlaces={18}
                                                   value="0.000000000000000001"
                                         />
                                          
                                         UKG
                               </SelectableText>
                               <style__FiatValue
-                                        type="currency"
+                                        type="fiat"
                                         value="$123.34 USD"
                               />
                               <div
@@ -259,13 +262,14 @@ ShallowWrapper {
             </style__TypeText>
             <SelectableText>
                         <style__Amount
+                                    maxDecimalPlaces={18}
                                     value="0.000000000000000001"
                         />
                          
                         UKG
             </SelectableText>
             <style__FiatValue
-                        type="currency"
+                        type="fiat"
                         value="$123.34 USD"
             />
             <div
@@ -499,13 +503,14 @@ ShallowWrapper {
                                         </style__TypeText>
                                         <SelectableText>
                                                   <style__Amount
+                                                            maxDecimalPlaces={18}
                                                             value="0.000000000000000001"
                                                   />
                                                    
                                                   UKG
                                         </SelectableText>
                                         <style__FiatValue
-                                                  type="currency"
+                                                  type="fiat"
                                                   value="$123.34 USD"
                                         />
                                         <div
@@ -585,13 +590,14 @@ ShallowWrapper {
                                     </style__TypeText>
                                     <SelectableText>
                                                 <style__Amount
+                                                            maxDecimalPlaces={18}
                                                             value="0.000000000000000001"
                                                 />
                                                  
                                                 UKG
                                     </SelectableText>
                                     <style__FiatValue
-                                                type="currency"
+                                                type="fiat"
                                                 value="$123.34 USD"
                                     />
                                     <div
@@ -704,13 +710,14 @@ ShallowWrapper {
               </style__TypeText>
               <SelectableText>
                             <style__Amount
+                                          maxDecimalPlaces={18}
                                           value="0.000000000000000001"
                             />
                              
                             UKG
               </SelectableText>
               <style__FiatValue
-                            type="currency"
+                            type="fiat"
                             value="$123.34 USD"
               />
               <div
@@ -942,6 +949,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     layer="baseLayer"
@@ -983,13 +991,14 @@ ShallowWrapper {
                                 </style__TypeText>
                                 <SelectableText>
                                         <style__Amount
+                                                maxDecimalPlaces={18}
                                                 value="0.000000000000000001"
                                         />
                                          
                                         UKG
                                 </SelectableText>
                                 <style__FiatValue
-                                        type="currency"
+                                        type="fiat"
                                         value="$123.34 USD"
                                 />
                                 <div
@@ -1071,13 +1080,14 @@ ShallowWrapper {
                               </style__TypeText>
                               <SelectableText>
                                         <style__Amount
+                                                  maxDecimalPlaces={18}
                                                   value="0.000000000000000001"
                                         />
                                          
                                         UKG
                               </SelectableText>
                               <style__FiatValue
-                                        type="currency"
+                                        type="fiat"
                                         value="$123.34 USD"
                               />
                               <div
@@ -1194,13 +1204,14 @@ ShallowWrapper {
             </style__TypeText>
             <SelectableText>
                         <style__Amount
+                                    maxDecimalPlaces={18}
                                     value="0.000000000000000001"
                         />
                          
                         UKG
             </SelectableText>
             <style__FiatValue
-                        type="currency"
+                        type="fiat"
                         value="$123.34 USD"
             />
             <div
@@ -1438,13 +1449,14 @@ ShallowWrapper {
                                         </style__TypeText>
                                         <SelectableText>
                                                   <style__Amount
+                                                            maxDecimalPlaces={18}
                                                             value="0.000000000000000001"
                                                   />
                                                    
                                                   UKG
                                         </SelectableText>
                                         <style__FiatValue
-                                                  type="currency"
+                                                  type="fiat"
                                                   value="$123.34 USD"
                                         />
                                         <div
@@ -1526,13 +1538,14 @@ ShallowWrapper {
                                     </style__TypeText>
                                     <SelectableText>
                                                 <style__Amount
+                                                            maxDecimalPlaces={18}
                                                             value="0.000000000000000001"
                                                 />
                                                  
                                                 UKG
                                     </SelectableText>
                                     <style__FiatValue
-                                                type="currency"
+                                                type="fiat"
                                                 value="$123.34 USD"
                                     />
                                     <div
@@ -1649,13 +1662,14 @@ ShallowWrapper {
               </style__TypeText>
               <SelectableText>
                             <style__Amount
+                                          maxDecimalPlaces={18}
                                           value="0.000000000000000001"
                             />
                              
                             UKG
               </SelectableText>
               <style__FiatValue
-                            type="currency"
+                            type="fiat"
                             value="$123.34 USD"
               />
               <div
@@ -1891,6 +1905,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     layer="baseLayer"
@@ -1932,13 +1947,14 @@ ShallowWrapper {
                                 </style__TypeText>
                                 <SelectableText>
                                         <style__Amount
+                                                maxDecimalPlaces={18}
                                                 value="0.000000000000000001"
                                         />
                                          
                                         UKG
                                 </SelectableText>
                                 <style__FiatValue
-                                        type="currency"
+                                        type="fiat"
                                         value="$123.34 USD"
                                 />
                                 <div
@@ -2020,13 +2036,14 @@ ShallowWrapper {
                               </style__TypeText>
                               <SelectableText>
                                         <style__Amount
+                                                  maxDecimalPlaces={18}
                                                   value="0.000000000000000001"
                                         />
                                          
                                         UKG
                               </SelectableText>
                               <style__FiatValue
-                                        type="currency"
+                                        type="fiat"
                                         value="$123.34 USD"
                               />
                               <div
@@ -2143,13 +2160,14 @@ ShallowWrapper {
             </style__TypeText>
             <SelectableText>
                         <style__Amount
+                                    maxDecimalPlaces={18}
                                     value="0.000000000000000001"
                         />
                          
                         UKG
             </SelectableText>
             <style__FiatValue
-                        type="currency"
+                        type="fiat"
                         value="$123.34 USD"
             />
             <div
@@ -2387,13 +2405,14 @@ ShallowWrapper {
                                         </style__TypeText>
                                         <SelectableText>
                                                   <style__Amount
+                                                            maxDecimalPlaces={18}
                                                             value="0.000000000000000001"
                                                   />
                                                    
                                                   UKG
                                         </SelectableText>
                                         <style__FiatValue
-                                                  type="currency"
+                                                  type="fiat"
                                                   value="$123.34 USD"
                                         />
                                         <div
@@ -2475,13 +2494,14 @@ ShallowWrapper {
                                     </style__TypeText>
                                     <SelectableText>
                                                 <style__Amount
+                                                            maxDecimalPlaces={18}
                                                             value="0.000000000000000001"
                                                 />
                                                  
                                                 UKG
                                     </SelectableText>
                                     <style__FiatValue
-                                                type="currency"
+                                                type="fiat"
                                                 value="$123.34 USD"
                                     />
                                     <div
@@ -2598,13 +2618,14 @@ ShallowWrapper {
               </style__TypeText>
               <SelectableText>
                             <style__Amount
+                                          maxDecimalPlaces={18}
                                           value="0.000000000000000001"
                             />
                              
                             UKG
               </SelectableText>
               <style__FiatValue
-                            type="currency"
+                            type="fiat"
                             value="$123.34 USD"
               />
               <div
@@ -2840,6 +2861,7 @@ ShallowWrapper {
     intl={
         Object {
             "formatMessage": [Function],
+            "formatNumber": [Function],
           }
     }
     layer="baseLayer"
@@ -2881,13 +2903,14 @@ ShallowWrapper {
                                 </style__TypeText>
                                 <SelectableText>
                                         <style__Amount
+                                                maxDecimalPlaces={18}
                                                 value="0.000000000000000001"
                                         />
                                          
                                         UKG
                                 </SelectableText>
                                 <style__FiatValue
-                                        type="currency"
+                                        type="fiat"
                                         value="$123.34 USD"
                                 />
                                 <div
@@ -2969,13 +2992,14 @@ ShallowWrapper {
                               </style__TypeText>
                               <SelectableText>
                                         <style__Amount
+                                                  maxDecimalPlaces={18}
                                                   value="0.000000000000000001"
                                         />
                                          
                                         UKG
                               </SelectableText>
                               <style__FiatValue
-                                        type="currency"
+                                        type="fiat"
                                         value="$123.34 USD"
                               />
                               <div
@@ -3092,13 +3116,14 @@ ShallowWrapper {
             </style__TypeText>
             <SelectableText>
                         <style__Amount
+                                    maxDecimalPlaces={18}
                                     value="0.000000000000000001"
                         />
                          
                         UKG
             </SelectableText>
             <style__FiatValue
-                        type="currency"
+                        type="fiat"
                         value="$123.34 USD"
             />
             <div
@@ -3336,13 +3361,14 @@ ShallowWrapper {
                                         </style__TypeText>
                                         <SelectableText>
                                                   <style__Amount
+                                                            maxDecimalPlaces={18}
                                                             value="0.000000000000000001"
                                                   />
                                                    
                                                   UKG
                                         </SelectableText>
                                         <style__FiatValue
-                                                  type="currency"
+                                                  type="fiat"
                                                   value="$123.34 USD"
                                         />
                                         <div
@@ -3424,13 +3450,14 @@ ShallowWrapper {
                                     </style__TypeText>
                                     <SelectableText>
                                                 <style__Amount
+                                                            maxDecimalPlaces={18}
                                                             value="0.000000000000000001"
                                                 />
                                                  
                                                 UKG
                                     </SelectableText>
                                     <style__FiatValue
-                                                type="currency"
+                                                type="fiat"
                                                 value="$123.34 USD"
                                     />
                                     <div
@@ -3547,13 +3574,14 @@ ShallowWrapper {
               </style__TypeText>
               <SelectableText>
                             <style__Amount
+                                          maxDecimalPlaces={18}
                                           value="0.000000000000000001"
                             />
                              
                             UKG
               </SelectableText>
               <style__FiatValue
-                            type="currency"
+                            type="fiat"
                             value="$123.34 USD"
               />
               <div

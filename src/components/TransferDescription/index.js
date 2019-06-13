@@ -115,8 +115,8 @@ class TransferDescription extends React.PureComponent {
         </Row>
         <Row>
           <TransferDescriptionItem
-            main={<SelectableText><NumericText value={amountToSend.toString()} /> {assetToSend.symbol}</SelectableText>}
-            subtitle={<NumericText value={usdValueToSend.toString()} type="currency" />}
+            main={<SelectableText><NumericText maxDecimalPlaces={18} value={amountToSend.toString()} /> {assetToSend.symbol}</SelectableText>}
+            subtitle={<NumericText value={usdValueToSend.toString()} type="fiat" />}
           />
         </Row>
         <Row>
@@ -130,8 +130,8 @@ class TransferDescription extends React.PureComponent {
         </Row>
         <Row>
           <TransferDescriptionItem
-            main={<SelectableText><NumericText value={transactionFee.amount.toString()} /> {transactionFee.symbol}</SelectableText>}
-            subtitle={<NumericText value={transactionFee.usdValue.toString()} type="currency" />}
+            main={<SelectableText><NumericText maxDecimalPlaces={18} value={transactionFee.amount.toString()} /> {transactionFee.symbol}</SelectableText>}
+            subtitle={<NumericText value={transactionFee.usdValue.toString()} type="fiat" />}
           />
         </Row>
         {layer === 'baseLayer' &&
@@ -141,8 +141,8 @@ class TransferDescription extends React.PureComponent {
           </Row>
           <Row>
             <TransferDescriptionItem
-              main={<SelectableText><NumericText value={baseLayerEthBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
-              subtitle={<NumericText value={baseLayerEthBalanceBefore.usdValue.toString()} type="currency" />}
+              main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
+              subtitle={<NumericText value={baseLayerEthBalanceBefore.usdValue.toString()} type="fiat" />}
             />
           </Row>
           <Row>
@@ -152,8 +152,8 @@ class TransferDescription extends React.PureComponent {
           </Row>
           <Row>
             <TransferDescriptionItem
-              main={<SelectableText><NumericText value={baseLayerEthBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
-              subtitle={<NumericText value={baseLayerEthBalanceAfter.usdValue.toString()} type="currency" />}
+              main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
+              subtitle={<NumericText value={baseLayerEthBalanceAfter.usdValue.toString()} type="fiat" />}
             />
           </Row>
         </div>
@@ -167,8 +167,8 @@ class TransferDescription extends React.PureComponent {
           </Row>
           <Row>
             <TransferDescriptionItem
-              main={<SelectableText><NumericText value={assetBalanceBefore.amount.toString()} /> {assetToSend.symbol}</SelectableText>}
-              subtitle={<NumericText value={assetBalanceBefore.usdValue.toString()} type="currency" />}
+              main={<SelectableText><NumericText maxDecimalPlaces={18} value={assetBalanceBefore.amount.toString()} /> {assetToSend.symbol}</SelectableText>}
+              subtitle={<NumericText value={assetBalanceBefore.usdValue.toString()} type="fiat" />}
             />
           </Row>
           <Row>
@@ -178,8 +178,8 @@ class TransferDescription extends React.PureComponent {
           </Row>
           <Row>
             <TransferDescriptionItem
-              main={<SelectableText><NumericText value={assetBalanceAfter.amount.toString()} /> {assetToSend.symbol}</SelectableText>}
-              subtitle={<NumericText value={assetBalanceAfter.usdValue.toString()} type="currency" />}
+              main={<SelectableText><NumericText maxDecimalPlaces={18} value={assetBalanceAfter.amount.toString()} /> {assetToSend.symbol}</SelectableText>}
+              subtitle={<NumericText value={assetBalanceAfter.usdValue.toString()} type="fiat" />}
             />
           </Row>
         </div>
@@ -189,7 +189,7 @@ class TransferDescription extends React.PureComponent {
         </Row>
         <Row>
           <Balance>
-            {<NumericText large value={walletUsdValueBefore.toString()} type="currency" />}
+            {<NumericText large value={walletUsdValueBefore.toString()} type="fiat" />}
           </Balance>
         </Row>
         <Row>
@@ -197,7 +197,7 @@ class TransferDescription extends React.PureComponent {
         </Row>
         <Row>
           <Balance>
-            {<NumericText large value={walletUsdValueAfter.toString()} type="currency" />}
+            {<NumericText large value={walletUsdValueAfter.toString()} type="fiat" />}
           </Balance>
         </Row>
         <Row>

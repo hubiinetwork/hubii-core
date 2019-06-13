@@ -1,6 +1,6 @@
 {
   "name": "hubii-core",
-  "version": "1.1.0-beta.1",
+  "version": "1.1.0-beta.2",
   "author": {
     "name": "hubii",
     "email": "info@hubii.com",
@@ -48,7 +48,7 @@
     "prebuild": "node ./internals/scripts/pre-build.js",
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout && yarn electron-compile",
     "build:dll": "node ./internals/scripts/dependencies.js",
-    "start-web": "cross-env NODE_ENV=development node server",
+    "start-web": "cross-env NODE_ENV=development NODE_OPTIONS=--max_old_space_size=2048 node server",
     "presetup": "npm i chalk shelljs",
     "setup": "node ./internals/scripts/setup.js",
     "postsetup": "npm run build:dll",
@@ -313,7 +313,7 @@
     "lodash.debounce": "^4.0.8",
     "minimist": "1.2.0",
     "moment": "2.22.2",
-    "nahmii-sdk": "2.2.4",
+    "nahmii-sdk": "2.2.5",
     "prop-types": "15.6.1",
     "qrcode.react": "0.8.0",
     "react": "16.6.3",

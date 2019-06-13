@@ -53,7 +53,7 @@ class Breakdown extends React.Component {
         <div>
           <Text large>{formatMessage({ id: 'total_fiat_value' })}</Text>
           <StyledHeading large>
-            <StyledNumericText large value={value.toString()} type="currency" />
+            <StyledNumericText large value={value.toString()} type="fiat" />
             {/* {formatFiat(value, 'USD')} */}
           </StyledHeading>
         </div>

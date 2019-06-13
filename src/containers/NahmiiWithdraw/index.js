@@ -673,8 +673,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                       </Row>
                       <Row>
                         <TransferDescriptionItem
-                          main={<SelectableText><NumericText value={transactionFee.amount.toString()} /> {'ETH'}</SelectableText>}
-                          subtitle={<NumericText value={transactionFee.usdValue.toString()} type="currency" />}
+                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={transactionFee.amount.toString()} /> {'ETH'}</SelectableText>}
+                          subtitle={<NumericText value={transactionFee.usdValue.toString()} type="fiat" />}
                         />
                       </Row>
                       <Row>
@@ -683,8 +683,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                       <Row>
                         <TransferDescriptionItem
                           className="base-layer-eth-balance-before"
-                          main={<SelectableText><NumericText value={baseLayerEthBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
-                          subtitle={<NumericText value={baseLayerEthBalanceBefore.usdValue.toString()} type="currency" />}
+                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
+                          subtitle={<NumericText value={baseLayerEthBalanceBefore.usdValue.toString()} type="fiat" />}
                         />
                       </Row>
                       <Row>
@@ -695,8 +695,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                       <Row>
                         <TransferDescriptionItem
                           className="base-layer-eth-balance-after"
-                          main={<SelectableText><NumericText value={baseLayerEthBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
-                          subtitle={<NumericText value={baseLayerEthBalanceAfter.usdValue.toString()} type="currency" />}
+                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
+                          subtitle={<NumericText value={baseLayerEthBalanceAfter.usdValue.toString()} type="fiat" />}
                         />
                       </Row>
                       <Row>
@@ -704,8 +704,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                       </Row>
                       <Row>
                         <TransferDescriptionItem
-                          main={<SelectableText><NumericText value={requiredSettlementAmount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
-                          subtitle={<NumericText value={requiredSettlementAmount.times(assetToWithdrawUsdValue).toString()} type="currency" />}
+                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={requiredSettlementAmount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
+                          subtitle={<NumericText value={requiredSettlementAmount.times(assetToWithdrawUsdValue).toString()} type="fiat" />}
                         />
                       </Row>
                       <Row>
@@ -714,8 +714,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                       <Row>
                         <TransferDescriptionItem
                           className="nahmii-balance-before-staging"
-                          main={<SelectableText><NumericText value={nahmiiBalanceBefore.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
-                          subtitle={<NumericText value={nahmiiBalanceBefore.usdValue.toString()} type="currency" />}
+                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={nahmiiBalanceBefore.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
+                          subtitle={<NumericText value={nahmiiBalanceBefore.usdValue.toString()} type="fiat" />}
                         />
                       </Row>
                       <Row>
@@ -726,8 +726,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                       <Row>
                         <TransferDescriptionItem
                           className="nahmii-balance-after-staging"
-                          main={<SelectableText><NumericText value={nahmiiBalanceAfterStaging.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
-                          subtitle={<NumericText value={nahmiiBalanceAfterStaging.usdValue.toString()} type="currency" />}
+                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={nahmiiBalanceAfterStaging.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
+                          subtitle={<NumericText value={nahmiiBalanceAfterStaging.usdValue.toString()} type="fiat" />}
                         />
                       </Row>
                       <Row>
@@ -754,8 +754,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                       </Row>
                       <Row>
                         <TransferDescriptionItem
-                          main={<SelectableText><NumericText value={amountToWithdraw.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
-                          subtitle={<NumericText value={usdValueToWithdraw.toString()} type="currency" />}
+                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={amountToWithdraw.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
+                          subtitle={<NumericText value={usdValueToWithdraw.toString()} type="fiat" />}
                         />
                       </Row>
                       <Row>
@@ -767,8 +767,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                       </Row>
                       <Row>
                         <TransferDescriptionItem
-                          main={<SelectableText><NumericText value={transactionFee.amount.toString()} /> {'ETH'}</SelectableText>}
-                          subtitle={<NumericText value={transactionFee.usdValue.toString()} type="currency" />}
+                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={transactionFee.amount.toString()} /> {'ETH'}</SelectableText>}
+                          subtitle={<NumericText value={transactionFee.usdValue.toString()} type="fiat" />}
                         />
                       </Row>
                       <Row>
@@ -777,8 +777,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                       <Row>
                         <TransferDescriptionItem
                           className="base-layer-eth-balance-before"
-                          main={<SelectableText><NumericText value={baseLayerEthBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
-                          subtitle={<NumericText value={baseLayerEthBalanceBefore.usdValue.toString()} type="currency" />}
+                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
+                          subtitle={<NumericText value={baseLayerEthBalanceBefore.usdValue.toString()} type="fiat" />}
                         />
                       </Row>
                       <Row>
@@ -789,8 +789,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                       <Row>
                         <TransferDescriptionItem
                           className="base-layer-eth-balance-after"
-                          main={<SelectableText><NumericText value={baseLayerEthBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
-                          subtitle={<NumericText value={baseLayerEthBalanceAfter.usdValue.toString()} type="currency" />}
+                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
+                          subtitle={<NumericText value={baseLayerEthBalanceAfter.usdValue.toString()} type="fiat" />}
                         />
                       </Row>
                       {assetToWithdraw.symbol === 'ETH' &&
@@ -801,8 +801,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                         <Row>
                           <TransferDescriptionItem
                             className="staged-balance-before"
-                            main={<SelectableText><NumericText value={nahmiiStagedBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
-                            subtitle={<NumericText value={nahmiiStagedBalanceBefore.usdValue.toString()} type="currency" />}
+                            main={<SelectableText><NumericText maxDecimalPlaces={18} value={nahmiiStagedBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
+                            subtitle={<NumericText value={nahmiiStagedBalanceBefore.usdValue.toString()} type="fiat" />}
                           />
                         </Row>
                         <Row>
@@ -813,8 +813,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                         <Row>
                           <TransferDescriptionItem
                             className="staged-balance-after"
-                            main={<SelectableText><NumericText value={nahmiiStagedBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
-                            subtitle={<NumericText value={nahmiiStagedBalanceAfter.usdValue.toString()} type="currency" />}
+                            main={<SelectableText><NumericText maxDecimalPlaces={18} value={nahmiiStagedBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
+                            subtitle={<NumericText value={nahmiiStagedBalanceAfter.usdValue.toString()} type="fiat" />}
                           />
                         </Row>
                       </div>
@@ -827,8 +827,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                         <Row>
                           <TransferDescriptionItem
                             className="base-layer-token-balance-before"
-                            main={<SelectableText><NumericText value={baseLayerBalanceBefore.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
-                            subtitle={<NumericText value={baseLayerBalanceBefore.usdValue.toString()} type="currency" />}
+                            main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerBalanceBefore.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
+                            subtitle={<NumericText value={baseLayerBalanceBefore.usdValue.toString()} type="fiat" />}
                           />
                         </Row>
                         <Row>
@@ -839,8 +839,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                         <Row>
                           <TransferDescriptionItem
                             className="base-layer-token-balance-after"
-                            main={<SelectableText><NumericText value={baseLayerBalanceAfter.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
-                            subtitle={<NumericText value={baseLayerBalanceAfter.usdValue.toString()} type="currency" />}
+                            main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerBalanceAfter.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
+                            subtitle={<NumericText value={baseLayerBalanceAfter.usdValue.toString()} type="fiat" />}
                           />
                         </Row>
                         <Row>
@@ -849,8 +849,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                         <Row>
                           <TransferDescriptionItem
                             className="staged-balance-before"
-                            main={<SelectableText><NumericText value={nahmiiStagedBalanceBefore.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
-                            subtitle={<NumericText value={nahmiiStagedBalanceBefore.usdValue.toString()} type="currency" />}
+                            main={<SelectableText><NumericText maxDecimalPlaces={18} value={nahmiiStagedBalanceBefore.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
+                            subtitle={<NumericText value={nahmiiStagedBalanceBefore.usdValue.toString()} type="fiat" />}
                           />
                         </Row>
                         <Row>
@@ -861,8 +861,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                         <Row>
                           <TransferDescriptionItem
                             className="staged-balance-after"
-                            main={<SelectableText><NumericText value={nahmiiStagedBalanceAfter.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
-                            subtitle={<NumericText value={nahmiiStagedBalanceAfter.usdValue.toString()} type="currency" />}
+                            main={<SelectableText><NumericText maxDecimalPlaces={18} value={nahmiiStagedBalanceAfter.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
+                            subtitle={<NumericText value={nahmiiStagedBalanceAfter.usdValue.toString()} type="fiat" />}
                           />
                         </Row>
                       </div>
