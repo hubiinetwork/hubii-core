@@ -86,6 +86,9 @@ describe('nahmiiHocSaga', () => {
               { type: 'ACTION2' },
             ];
           }
+          if (effect.fn === nahmii.Settlement.prototype.hasOffchainSynchronised) {
+            return true;
+          }
           if (effect.fn === nahmii.Payment.prototype.sign) {
             return true;
           }
@@ -115,6 +118,9 @@ describe('nahmiiHocSaga', () => {
               { type: 'ACTION2' },
             ];
           }
+          if (effect.fn === nahmii.Settlement.prototype.hasOffchainSynchronised) {
+            return true;
+          }
           if (effect.fn === nahmii.Payment.prototype.sign) {
             throw errorMock;
           }
@@ -140,6 +146,9 @@ describe('nahmiiHocSaga', () => {
               { type: 'ACTION1' },
               { type: 'ACTION2' },
             ];
+          }
+          if (effect.fn === nahmii.Settlement.prototype.hasOffchainSynchronised) {
+            return true;
           }
           if (effect.fn === nahmii.Payment.prototype.sign) {
             return true;
@@ -170,6 +179,9 @@ describe('nahmiiHocSaga', () => {
               { type: 'ACTION2' },
             ];
           }
+          if (effect.fn === nahmii.Settlement.prototype.hasOffchainSynchronised) {
+            return true;
+          }
           if (effect.fn === nahmii.Payment.prototype.sign) {
             return true;
           }
@@ -185,7 +197,7 @@ describe('nahmiiHocSaga', () => {
       .put(notify('error', getIntl().formatMessage({ id: 'nahmii_transfer_insufficient_funds_error' }, { minimumBalance: errorMock.minimumBalance })))
       .run({ silenceTimeout: true });
     });
-    it('should dispatch correct actions on payment lock errors', () => {
+    it('should dispatch correct actions on payment lock errors when it is within the time blocker', () => {
       const error = new Error('Payment is locked for 30 block height');
       const walletAddress = storeMock.getIn(['walletHoc', 'currentWallet', 'address']);
       const { currency } = monetaryAmount.toJSON();
@@ -195,6 +207,22 @@ describe('nahmiiHocSaga', () => {
           .setIn(['ethOperationsHoc', 'blockHeight', 'height'], 5)
           .setIn(['nahmiiHoc', 'challengeAttemptedAtBlockHeight', walletAddress, currency.ct], 1)
       )
+      .put(actions.nahmiiPaymentError(error))
+      .put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_transfer' })))
+      .run({ silenceTimeout: true });
+    });
+    it('should dispatch correct actions on payment lock errors when off-chain balance is not yet synchronised with the contracts', () => {
+      const error = new Error('Payment is locked until off-chain balance is synchronised.');
+      return expectSaga(makePayment, { monetaryAmount, recipient, walletOverride })
+      .withState(storeMock)
+      .provide({
+        call(effect, next) {
+          if (effect.fn === nahmii.Settlement.prototype.hasOffchainSynchronised) {
+            return false;
+          }
+          return next();
+        },
+      })
       .put(actions.nahmiiPaymentError(error))
       .put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_transfer' })))
       .run({ silenceTimeout: true });

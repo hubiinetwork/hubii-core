@@ -189,6 +189,15 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
 
     const network = yield select(makeSelectCurrentNetwork());
     const nahmiiProvider = network.nahmiiProvider;
+
+    const settlement = new nahmii.Settlement(nahmiiProvider);
+    const synced = yield call([settlement, 'hasOffchainSynchronised'], wallet.address, currency.ct);
+    if (!synced) {
+      yield put(actions.nahmiiPaymentError(new Error('Payment is locked until off-chain balance is synchronised.')));
+      yield put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_transfer' })));
+      return;
+    }
+
     [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, wallet);
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
     const payment = new nahmii.Payment(monetaryAmount, wallet.address, recipient, nahmiiWallet);
@@ -518,6 +527,8 @@ export function* startChallenge({ stageAmount, currency, options }) {
     let errorMessage = logErrorMsg(e);
     if (errorMessage.match(/gas.*required.*exceeds/i) || errorMessage.match(/out.*of.*gas/i)) {
       errorMessage = getIntl().formatMessage({ id: 'gas_limit_too_low' });
+    } else if (errorMessage.match(/balance.*not.*synchronised/i)) {
+      errorMessage = getIntl().formatMessage({ id: 'nahmii_settlement_lock_start_challenge' });
     } else {
       errorMessage = getIntl().formatMessage({ id: errorMessage });
     }
@@ -562,6 +573,8 @@ export function* settle({ address, currency, options }) {
     let errorMessage = logErrorMsg(e);
     if (errorMessage.match(/gas.*required.*exceeds/i) || errorMessage.match(/out.*of.*gas/i)) {
       errorMessage = getIntl().formatMessage({ id: 'gas_limit_too_low' });
+    } else if (errorMessage.match(/insufficient.*funds/i)) {
+      errorMessage = getIntl().formatMessage({ id: 'insufficient_ether_fund' });
     } else {
       errorMessage = getIntl().formatMessage({ id: errorMessage });
     }
