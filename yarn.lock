@@ -6206,10 +6206,10 @@ ethereumjs-vm@^2.0.2, ethereumjs-vm@^2.1.0, ethereumjs-vm@^2.3.4:
     rustbn.js "~0.2.0"
     safe-buffer "^5.1.1"
 
-ethers@^4.0.1:
-  version "4.0.16"
-  resolved "https://registry.yarnpkg.com/ethers/-/ethers-4.0.16.tgz#04cc07dca66967b95e6220822ce8ac945f99ede2"
-  integrity sha512-XQx0yY2KMOV9IG+siUogZ0hiedD2sjcWMIInyw2Bz1VqEHQht6NdDeXRecbI6332v6H+hXm0n5Oi6PquC1mwMA==
+ethers@~4.0.27:
+  version "4.0.30"
+  resolved "https://registry.yarnpkg.com/ethers/-/ethers-4.0.30.tgz#140653fd08adf2834bb2f3aceefa10d04205b47d"
+  integrity sha512-1a39Y+q5zTfrXCLndV+CHsTHq+T5/TvAx5y0S/PKd700C0lfU70CJnU7q89bd+4pIuWp05TkrEsrTj2dXhkcSA==
   dependencies:
     "@types/node" "^10.3.2"
     aes-js "3.0.0"
