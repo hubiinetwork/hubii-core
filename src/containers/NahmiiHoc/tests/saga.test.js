@@ -19,6 +19,8 @@ import {
   loadOngoingChallenges,
   loadSettleableChallenges,
   reloadSettlementStatesHook,
+  processTx,
+  processPendingSettlementTransactions,
 } from '../saga';
 import nahmiiHocReducer from '../reducer';
 
@@ -197,15 +199,27 @@ describe('nahmiiHocSaga', () => {
       .put(notify('error', getIntl().formatMessage({ id: 'nahmii_transfer_insufficient_funds_error' }, { minimumBalance: errorMock.minimumBalance })))
       .run({ silenceTimeout: true });
     });
-    it('should dispatch correct actions on payment lock errors when it is within the time blocker', () => {
-      const error = new Error('Payment is locked for 30 block height');
+    it('should dispatch correct actions on payment lock errors when the transaction is in requesting status', () => {
+      const error = new Error('Payment is locked until the settlement transaction is confirmed.');
       const walletAddress = storeMock.getIn(['walletHoc', 'currentWallet', 'address']);
       const { currency } = monetaryAmount.toJSON();
       return expectSaga(makePayment, { monetaryAmount, recipient, walletOverride })
       .withState(
         storeMock
-          .setIn(['ethOperationsHoc', 'blockHeight', 'height'], 5)
-          .setIn(['nahmiiHoc', 'challengeAttemptedAtBlockHeight', walletAddress, currency.ct], 1)
+          .setIn(['nahmiiHoc', 'ongoingChallenges', walletAddress, currency.ct, 'status'], 'requesting')
+      )
+      .put(actions.nahmiiPaymentError(error))
+      .put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_transfer' })))
+      .run({ silenceTimeout: true });
+    });
+    it('should dispatch correct actions on payment lock errors when the transaction is in mining status', () => {
+      const error = new Error('Payment is locked until the settlement transaction is confirmed.');
+      const walletAddress = storeMock.getIn(['walletHoc', 'currentWallet', 'address']);
+      const { currency } = monetaryAmount.toJSON();
+      return expectSaga(makePayment, { monetaryAmount, recipient, walletOverride })
+      .withState(
+        storeMock
+          .setIn(['nahmiiHoc', 'ongoingChallenges', walletAddress, currency.ct, 'status'], 'mining')
       )
       .put(actions.nahmiiPaymentError(error))
       .put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_transfer' })))
@@ -232,7 +246,7 @@ describe('nahmiiHocSaga', () => {
     const options = { gasLimit: 1, gasPrice: 1 };
     const currency = '0x0000000000000000000000000000000000000001';
     const stageAmount = new BigNumber(10000000000000000000000);
-    const fakeTxs = [{ hash: 'hash1' }, { hash: 'hash2' }];
+    const fakeTxs = [{ chainId: 3, hash: 'hash1' }, { chainId: 3, hash: 'hash2' }];
     const fakeTxReceipts = [{ transactionHash: 'hash1', status: 1 }, { transactionHash: 'hash2', status: 1 }];
     const signerMock = {
       signMessage: () => {},
@@ -430,49 +444,6 @@ describe('nahmiiHocSaga', () => {
             expect(status).toEqual('success');
             expect(tx).toEqual(fakeTxReceipts[0]);
           });
-      }
-      );
-
-      it('should correctly update block height after initialized the saga function', () => {
-        const mockedBlockHeight = 31;
-        return expectSaga(startChallenge, { stageAmount, address: signerMock.address, currency, txReceipt: fakeTxReceipts[0], options })
-          .withReducer(withReducer, storeMock.setIn(['ethOperationsHoc', 'blockHeight', 'height'], mockedBlockHeight))
-          .provide({
-            call(effect, next) {
-              if (effect.fn.name.includes('getRequiredChallengesForIntendedStageAmount')) {
-                return [];
-              }
-              if (effect.fn === getSdkWalletSigner) {
-                return [
-                  signerMock,
-                  { type: 'ACTION1' },
-                  { type: 'ACTION2' },
-                ];
-              }
-              return next();
-            },
-          })
-          .put(actions.updateChallengeBlockHeight(signerMock.address, currency, mockedBlockHeight))
-          .run({ silenceTimeout: true })
-          .then((result) => {
-            const lastattemptedAtBlockHeight = result.storeState.getIn(['nahmiiHoc', 'challengeAttemptedAtBlockHeight', signerMock.address, currency]);
-            expect(lastattemptedAtBlockHeight).toEqual(mockedBlockHeight);
-          });
-      }
-      );
-
-      it('should prevent start new challenge when it is within block timer', () => {
-        const mockedBlockHeight = 30;
-        return expectSaga(startChallenge, { stageAmount, address: signerMock.address, currency, txReceipt: fakeTxReceipts[0], options })
-          .withReducer(
-            withReducer,
-            storeMock
-              .setIn(['ethOperationsHoc', 'blockHeight', 'height'], mockedBlockHeight)
-              .setIn(['nahmiiHoc', 'challengeAttemptedAtBlockHeight', signerMock.address, currency], 1)
-          )
-          .put(actions.startChallengeError(signerMock.address, currency))
-          .put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_start_challenge' })))
-          .run({ silenceTimeout: true });
       }
       );
 
@@ -988,6 +959,173 @@ describe('nahmiiHocSaga', () => {
           });
       }
       );
+    });
+    describe('#processPendingSettlementTransactions', () => {
+      it('should update store when the network chain id does not match with the current network', () => expectSaga(processPendingSettlementTransactions)
+          .withReducer(
+            withReducer,
+            storeMock.setIn(
+              ['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency], { ...fakeTxs[0], chainId: 1 })
+          )
+          .provide({
+            call(effect, next) {
+              if (effect.fn.name === 'waitForTransaction') {
+                return new Promise((resolve) => {
+                  setTimeout(() => {
+                    resolve();
+                  }, 1000);
+                });
+              }
+              return next();
+            },
+          })
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
+            const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency]);
+            expect(status).toEqual(undefined);
+            expect(tx).toEqual({ ...fakeTxs[0], chainId: 1 });
+          })
+      );
+      it('should update store when the network chain id matches with the current network', () => expectSaga(processPendingSettlementTransactions)
+            .withReducer(
+              withReducer,
+              storeMock.setIn(
+                ['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency], fakeTxs[0])
+            )
+            .provide({
+              call(effect, next) {
+                if (effect.fn.name === 'waitForTransaction') {
+                  return new Promise((resolve) => {
+                    setTimeout(() => {
+                      resolve();
+                    }, 1000);
+                  });
+                }
+                return next();
+              },
+            })
+            .put(actions.loadTxRequestForPaymentChallengeSuccess(signerMock.address, fakeTxs[0], currency))
+            .run({ silenceTimeout: true })
+            .then((result) => {
+              const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
+              const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency]);
+              expect(status).toEqual('mining');
+              expect(tx).toEqual({ ...fakeTxs[0], timestamp: new Date().getTime() });
+            })
+        );
+      it('should update store accordingly when existing multiple pending transations', () => {
+        const otherCurrency = '0x2';
+        return expectSaga(processPendingSettlementTransactions)
+            .withReducer(
+              withReducer,
+              storeMock
+                .setIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency], fakeTxs[0])
+                .setIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, otherCurrency], fakeTxs[1])
+            )
+            .provide({
+              call(effect, next) {
+                if (effect.fn.name === 'waitForTransaction') {
+                  return new Promise((resolve) => {
+                    setTimeout(() => {
+                      resolve();
+                    }, 1000);
+                  });
+                }
+                return next();
+              },
+            })
+            .put(actions.loadTxRequestForPaymentChallengeSuccess(signerMock.address, fakeTxs[0], currency))
+            .put(actions.loadTxRequestForPaymentChallengeSuccess(signerMock.address, fakeTxs[1], otherCurrency))
+            .run({ silenceTimeout: true })
+            .then((result) => {
+              const expects = [[fakeTxs[0], currency], [fakeTxs[1], otherCurrency]];
+              for (const [fakeTx, ct] of expects) {
+                const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, ct, 'status']);
+                const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, ct]);
+                expect(status).toEqual('mining');
+                expect(tx).toEqual({ ...fakeTx, timestamp: new Date().getTime() });
+              }
+            });
+      });
+      it('should update store when failed to mine the transaction', () => expectSaga(processPendingSettlementTransactions)
+            .withReducer(
+              withReducer,
+              storeMock.setIn(
+                ['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency], fakeTxs[0])
+            )
+            .provide({
+              call(effect, next) {
+                if (effect.fn.name === 'waitForTransaction') {
+                  return { transactionHash: fakeTxs[0].hash };
+                }
+                if (effect.fn.name === 'getTransactionReceipt') {
+                  return { transactionHash: fakeTxs[0].hash, status: 0 };
+                }
+                return next();
+              },
+            })
+            .put(actions.loadTxRequestForPaymentChallengeSuccess(signerMock.address, fakeTxs[0], currency))
+            .put(actions.startChallengeError(signerMock.address, currency))
+            .run({ silenceTimeout: true })
+            .then((result) => {
+              const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
+              const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency]);
+              expect(status).toEqual('failed');
+              expect(tx).toEqual(undefined);
+            })
+        );
+      describe('#processTx', () => {
+        it('should update store when waiting for transaction confirmation', () => expectSaga(processTx, 'start-challenge', { chainId: 3 }, fakeTxs[0], signerMock.address, currency)
+            .withReducer(withReducer, storeMock)
+            .provide({
+              call(effect, next) {
+                if (effect.fn.name === 'waitForTransaction') {
+                  return new Promise((resolve) => {
+                    setTimeout(() => {
+                      resolve();
+                    }, 1000);
+                  });
+                }
+                return next();
+              },
+            })
+            .put(actions.loadTxRequestForPaymentChallengeSuccess(signerMock.address, fakeTxs[0], currency))
+            .run({ silenceTimeout: true })
+            .then((result) => {
+              const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
+              const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency]);
+              expect(status).toEqual('mining');
+              expect(tx).toEqual({ ...fakeTxs[0], timestamp: new Date().getTime() });
+            })
+        );
+        it('should update store when confirmed the transaction', () => expectSaga(processTx, 'start-challenge', { chainId: 3 }, fakeTxs[0], signerMock.address, currency)
+          .withReducer(
+            withReducer,
+            storeMock.setIn(
+              ['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency], fakeTxs[0])
+          )
+          .provide({
+            call(effect, next) {
+              if (effect.fn.name === 'waitForTransaction') {
+                return { transactionHash: fakeTxs[0].hash };
+              }
+              if (effect.fn.name === 'getTransactionReceipt') {
+                return fakeTxReceipts[0];
+              }
+              return next();
+            },
+          })
+          .put(actions.loadTxRequestForPaymentChallengeSuccess(signerMock.address, fakeTxs[0], currency))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
+            const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency]);
+            expect(status).toEqual('success');
+            expect(tx).toEqual(undefined);
+          })
+      );
+      });
     });
   });
 });

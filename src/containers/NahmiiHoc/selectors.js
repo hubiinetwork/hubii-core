@@ -155,6 +155,11 @@ const makeSelectSettleableChallenges = () => createSelector(
   (nahmiiHocDomain) => nahmiiHocDomain.get('settleableChallenges') || fromJS({})
 );
 
+const makeSelectNewSettlementPendingTxs = () => createSelector(
+  selectNahmiiHocDomain,
+  (nahmiiHocDomain) => nahmiiHocDomain.get('newSettlementPendingTxs')
+);
+
 const makeSelectWithdrawals = () => createSelector(
   selectNahmiiHocDomain,
   (nahmiiHocDomain) => nahmiiHocDomain.get('withdrawals') || fromJS({})
@@ -163,11 +168,6 @@ const makeSelectWithdrawals = () => createSelector(
 const makeSelectNahmiiSettlementTransactions = () => createSelector(
   selectNahmiiHocDomain,
   (nahmiiHocDomain) => nahmiiHocDomain.get('transactions') || fromJS({})
-);
-
-const makeSelectBlockHeightByChallengeAttempted = () => createSelector(
-  selectNahmiiHocDomain,
-  (nahmiiHocDomain) => nahmiiHocDomain.get('challengeAttemptedAtBlockHeight') || fromJS({})
 );
 
 const makeSelectOngoingChallengesForCurrentWalletCurrency = () => createSelector(
@@ -362,5 +362,5 @@ export {
   makeSelectOngoingChallengesForCurrentWalletCurrency,
   makeSelectSettleableChallengesForCurrentWalletCurrency,
   makeSelectWithdrawalsForCurrentWalletCurrency,
-  makeSelectBlockHeightByChallengeAttempted,
+  makeSelectNewSettlementPendingTxs,
 };
