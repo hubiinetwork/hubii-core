@@ -35,9 +35,18 @@ export class Settings extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = { modalVisibility: false, modalType: '' };
+    this.handleNetworkChange = this.handleNetworkChange.bind(this);
     this.handleExport = this.handleExport.bind(this);
     this.handleImport = this.handleImport.bind(this);
     this.handleDecryptImport = this.handleDecryptImport.bind(this);
+  }
+
+  handleNetworkChange(v) {
+    const networkIds = { mainnet: 1, ropsten: 3 };
+    const { onChangeNetwork, currentNetwork } = this.props;
+    if (networkIds[v] !== currentNetwork.nahmiiProvider.network.chainId) {
+      onChangeNetwork(v);
+    }
   }
 
   handleExport({ password, filePath }) {
@@ -58,10 +67,10 @@ export class Settings extends React.PureComponent {
   }
 
   render() {
-    const { locale, onChangeNetwork, onChangeLocale, currentNetwork, supportedNetworks, restoreContents, intl } = this.props;
+    const { locale, onChangeLocale, currentNetwork, supportedNetworks, restoreContents, intl } = this.props;
     const { modalVisibility, modalType } = this.state;
     const { formatMessage } = intl;
-    const currentNetworkText = currentNetwork.provider._network.chainId === 1
+    const currentNetworkText = currentNetwork.nahmiiProvider.network.chainId === 1
       ? 'Mainnet'
       : 'Ropsten [TESTNET]';
 
@@ -102,7 +111,7 @@ export class Settings extends React.PureComponent {
             <Select
               value={currentNetworkText}
               style={{ width: '15rem' }}
-              onChange={onChangeNetwork}
+              onChange={this.handleNetworkChange}
             >
               {
                 Object.entries(supportedNetworks.toJS()).map(([key]) => {
