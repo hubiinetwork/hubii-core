@@ -187,6 +187,7 @@
       "no-console": 1,
       "no-use-before-define": 0,
       "no-nested-ternary": 0,
+      "no-restricted-syntax": 0,
       "prefer-template": 2,
       "react/forbid-prop-types": 0,
       "react/jsx-first-prop-new-line": [
