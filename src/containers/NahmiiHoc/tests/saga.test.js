@@ -970,7 +970,7 @@ describe('nahmiiHocSaga', () => {
             .withReducer(
               withReducer,
               storeMock.setIn(
-                ['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency], { ...fakeTxsWithTimestamp[0], chainId: 1 })
+                ['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency, fakeTxsWithTimestamp[0].hash], fromJS({ ...fakeTxsWithTimestamp[0], chainId: 1 }))
             )
             .provide({
               call(effect, next) {
@@ -987,9 +987,9 @@ describe('nahmiiHocSaga', () => {
             .run({ silenceTimeout: true })
             .then((result) => {
               const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
-              const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency]);
+              const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency, fakeTxsWithTimestamp[0].hash]);
               expect(status).toEqual(undefined);
-              expect(tx).toEqual({ ...fakeTxsWithTimestamp[0], chainId: 1 });
+              expect(tx).toEqual(fromJS({ ...fakeTxsWithTimestamp[0], chainId: 1 }));
             })
         );
       });
@@ -998,7 +998,7 @@ describe('nahmiiHocSaga', () => {
               .withReducer(
                 withReducer,
                 storeMock.setIn(
-                  ['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency], fakeTxsWithTimestamp[0])
+                  ['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency, fakeTxsWithTimestamp[0].hash], fromJS(fakeTxsWithTimestamp[0]))
               )
               .provide({
                 call(effect, next) {
@@ -1016,9 +1016,9 @@ describe('nahmiiHocSaga', () => {
               .run({ silenceTimeout: true })
               .then((result) => {
                 const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
-                const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency]);
+                const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency, fakeTxsWithTimestamp[0].hash]);
                 expect(status).toEqual('mining');
-                expect(tx).toEqual(fakeTxsWithTimestamp[0]);
+                expect(tx).toEqual(fromJS(fakeTxsWithTimestamp[0]));
               })
           );
         it('should update store accordingly when existing multiple pending transations', () => {
@@ -1027,8 +1027,8 @@ describe('nahmiiHocSaga', () => {
               .withReducer(
                 withReducer,
                 storeMock
-                  .setIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency], fakeTxsWithTimestamp[0])
-                  .setIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, otherCurrency], fakeTxsWithTimestamp[1])
+                  .setIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency, fakeTxsWithTimestamp[0].hash], fromJS(fakeTxsWithTimestamp[0]))
+                  .setIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, otherCurrency, fakeTxsWithTimestamp[1].hash], fromJS(fakeTxsWithTimestamp[1]))
               )
               .provide({
                 call(effect, next) {
@@ -1049,17 +1049,19 @@ describe('nahmiiHocSaga', () => {
                 const expects = [[fakeTxsWithTimestamp[0], currency], [fakeTxsWithTimestamp[1], otherCurrency]];
                 for (const [fakeTx, ct] of expects) {
                   const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, ct, 'status']);
-                  const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, ct]);
+                  const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, ct, fakeTx.hash]);
                   expect(status).toEqual('mining');
-                  expect(tx).toEqual(fakeTx);
+                  expect(tx).toEqual(fromJS(fakeTx));
                 }
               });
         });
-        it('should remove pending tx from store when failed to mine the transaction', () => expectSaga(processPendingSettlementTransactions)
+        it('should remove pending tx from store when failed to mine the transaction', () => {
+          const failedTx = { transactionHash: fakeTxsWithTimestamp[0].hash, status: 0 };
+          return expectSaga(processPendingSettlementTransactions)
               .withReducer(
                 withReducer,
                 storeMock.setIn(
-                  ['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency], fakeTxsWithTimestamp[0])
+                  ['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency, fakeTxsWithTimestamp[0].hash], fromJS(fakeTxsWithTimestamp[0]))
               )
               .provide({
                 call(effect, next) {
@@ -1067,27 +1069,27 @@ describe('nahmiiHocSaga', () => {
                     return { transactionHash: fakeTxsWithTimestamp[0].hash };
                   }
                   if (effect.fn.name === 'getTransactionReceipt') {
-                    return { transactionHash: fakeTxsWithTimestamp[0].hash, status: 0 };
+                    return failedTx;
                   }
                   return next();
                 },
               })
               .put(actions.loadTxRequestForPaymentChallengeSuccess(signerMock.address, fakeTxsWithTimestamp[0], currency))
               .put(actions.startChallengeError(signerMock.address, currency))
-              .put(actions.loadTxReceiptForPaymentChallengeError(signerMock.address, currency))
+              .put(actions.loadTxReceiptForPaymentChallengeError(signerMock.address, currency, failedTx))
               .run({ silenceTimeout: true })
               .then((result) => {
                 const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
-                const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency]);
+                const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency, fakeTxsWithTimestamp[0].hash]);
                 expect(status).toEqual('failed');
                 expect(tx).toEqual(undefined);
-              })
-          );
+              });
+        });
         it('should not remove pending tx from store when the error is not caused by mining failure', () => expectSaga(processPendingSettlementTransactions)
               .withReducer(
                 withReducer,
                 storeMock.setIn(
-                  ['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency], fakeTxsWithTimestamp[0])
+                  ['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency, fakeTxsWithTimestamp[0].hash], fromJS(fakeTxsWithTimestamp[0]))
               )
               .provide({
                 call(effect, next) {
@@ -1102,9 +1104,9 @@ describe('nahmiiHocSaga', () => {
               .run({ silenceTimeout: true })
               .then((result) => {
                 const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
-                const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency]);
+                const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency, fakeTxsWithTimestamp[0].hash]);
                 expect(status).toEqual('failed');
-                expect(tx).toEqual(fakeTxsWithTimestamp[0]);
+                expect(tx).toEqual(fromJS(fakeTxsWithTimestamp[0]));
               })
           );
       });
@@ -1128,9 +1130,9 @@ describe('nahmiiHocSaga', () => {
               .run({ silenceTimeout: true })
               .then((result) => {
                 const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
-                const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency]);
+                const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency, fakeTxs[0].hash]);
                 expect(status).toEqual('mining');
-                expect(tx).toEqual({ ...fakeTxs[0], timestamp: new Date().getTime() });
+                expect(tx).toEqual(fromJS({ ...fakeTxs[0], timestamp: new Date().getTime() }));
               })
           );
           it('should not update timestamp if the tx object already contains a timestamp property', () => expectSaga(processTx, 'start-challenge', { chainId: 3 }, fakeTxsWithTimestamp[0], signerMock.address, currency)
@@ -1151,38 +1153,40 @@ describe('nahmiiHocSaga', () => {
               .run({ silenceTimeout: true })
               .then((result) => {
                 const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
-                const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency]);
+                const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency, fakeTxsWithTimestamp[0].hash]);
                 expect(status).toEqual('mining');
-                expect(tx).toEqual(fakeTxsWithTimestamp[0]);
+                expect(tx).toEqual(fromJS(fakeTxsWithTimestamp[0]));
               }));
         });
-        it('should update store when confirmed the transaction', () => expectSaga(processTx, 'start-challenge', { chainId: 3 }, fakeTxs[0], signerMock.address, currency)
-          .withReducer(
-            withReducer,
-            storeMock.setIn(
-              ['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency], fakeTxs[0])
-          )
-          .provide({
-            call(effect, next) {
-              if (effect.fn.name === 'waitForTransaction') {
-                return { transactionHash: fakeTxs[0].hash };
-              }
-              if (effect.fn.name === 'getTransactionReceipt') {
-                return fakeTxReceipts[0];
-              }
-              return next();
-            },
-          })
-          .put(actions.loadTxRequestForPaymentChallengeSuccess(signerMock.address, fakeTxs[0], currency))
-          .put(actions.startChallengeSuccess(signerMock.address, fakeTxReceipts[0], currency))
-          .run({ silenceTimeout: true })
-          .then((result) => {
-            const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
-            const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency]);
-            expect(status).toEqual('success');
-            expect(tx).toEqual(undefined);
-          })
-      );
+        describe('when confirmed the transaction', () => {
+          it('should update status to success and remove the pending tx', () => expectSaga(processTx, 'start-challenge', { chainId: 3 }, fakeTxs[0], signerMock.address, currency)
+            .withReducer(
+              withReducer,
+              storeMock.setIn(
+                ['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency, fakeTxs[0].hash], fromJS(fakeTxs[0]))
+            )
+            .provide({
+              call(effect, next) {
+                if (effect.fn.name === 'waitForTransaction') {
+                  return { transactionHash: fakeTxs[0].hash };
+                }
+                if (effect.fn.name === 'getTransactionReceipt') {
+                  return fakeTxReceipts[0];
+                }
+                return next();
+              },
+            })
+            .put(actions.loadTxRequestForPaymentChallengeSuccess(signerMock.address, fakeTxs[0], currency))
+            .put(actions.startChallengeSuccess(signerMock.address, fakeTxReceipts[0], currency))
+            .run({ silenceTimeout: true })
+            .then((result) => {
+              const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
+              const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency, fakeTxs[0].hash]);
+              expect(status).toEqual('success');
+              expect(tx).toEqual(undefined);
+            })
+          );
+        });
       });
     });
   });

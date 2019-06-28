@@ -160,6 +160,23 @@ const makeSelectNewSettlementPendingTxs = () => createSelector(
   (nahmiiHocDomain) => nahmiiHocDomain.get('newSettlementPendingTxs')
 );
 
+const makeSelectNewSettlementPendingTxsList = () => createSelector(
+  makeSelectNewSettlementPendingTxs(),
+  (newSettlementPendingTxs) => {
+    const pendingTxs = [];
+    const newSettlementPendingTxsJSON = newSettlementPendingTxs.toJS();
+    Object.keys(newSettlementPendingTxsJSON).forEach((address) => {
+      Object.keys(newSettlementPendingTxsJSON[address]).forEach((currency) => {
+        Object.keys(newSettlementPendingTxsJSON[address][currency]).forEach((txHash) => {
+          const pendingTx = newSettlementPendingTxsJSON[address][currency][txHash];
+          pendingTxs.push({ address, currency, tx: pendingTx });
+        });
+      });
+    });
+    return pendingTxs;
+  }
+);
+
 const makeSelectWithdrawals = () => createSelector(
   selectNahmiiHocDomain,
   (nahmiiHocDomain) => nahmiiHocDomain.get('withdrawals') || fromJS({})
@@ -363,4 +380,5 @@ export {
   makeSelectSettleableChallengesForCurrentWalletCurrency,
   makeSelectWithdrawalsForCurrentWalletCurrency,
   makeSelectNewSettlementPendingTxs,
+  makeSelectNewSettlementPendingTxsList,
 };

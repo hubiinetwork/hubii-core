@@ -22,7 +22,7 @@ import {
   makeSelectOngoingChallenges,
   makeSelectOngoingChallengesForCurrentWalletCurrency,
   makeSelectSettleableChallengesForCurrentWalletCurrency,
-  makeSelectNewSettlementPendingTxs,
+  makeSelectNewSettlementPendingTxsList,
 } from 'containers/NahmiiHoc/selectors';
 import { makeSelectCurrentWalletWithInfo } from 'containers/NahmiiHoc/combined-selectors';
 import { makeSelectTrezorHoc } from 'containers/TrezorHoc/selectors';
@@ -638,7 +638,7 @@ export function* processTx(type, provider, tx, address, currency) {
     yield put(notify('error', errorMsg));
 
     if (actionTargets.error) {
-      yield put(actionTargets.error(address, currency));
+      yield put(actionTargets.error(address, currency, txReceipt));
     }
 
     throw new Error(errorId);
@@ -783,7 +783,7 @@ export function* reloadSettlementStates({ address, currency }) {
   ]);
 }
 
-export function* wrapProcessTx(nahmiiProvider, tx, address, currency) {
+export function* wrapProcessTxForNewSettlements(nahmiiProvider, tx, address, currency) {
   try {
     yield processTx('start-challenge', nahmiiProvider, tx, address, currency);
   } catch (error) {
@@ -795,18 +795,16 @@ export function* wrapProcessTx(nahmiiProvider, tx, address, currency) {
 
 export function* processPendingSettlementTransactions() {
   const { nahmiiProvider } = yield select(makeSelectCurrentNetwork());
-  const settlementPendingTxs = (yield select(makeSelectNewSettlementPendingTxs())).toJS();
+  const settlementPendingTxs = yield select(makeSelectNewSettlementPendingTxsList());
   const pendingTxs = [];
-  Object.keys(settlementPendingTxs).forEach((address) => {
-    Object.keys(settlementPendingTxs[address]).forEach((currency) => {
-      const pendingTx = settlementPendingTxs[address][currency];
-      if (pendingTx && pendingTx.chainId === nahmiiProvider.network.chainId) {
-        pendingTxs.push({ address, currency, tx: pendingTx });
-      }
-    });
-  });
+  for (const pendingTx of settlementPendingTxs) {
+    const { address, currency, tx } = pendingTx;
+    if (tx && tx.chainId === nahmiiProvider.network.chainId) {
+      pendingTxs.push({ address, currency, tx });
+    }
+  }
 
-  yield all(pendingTxs.map(({ tx, address, currency }) => fork(wrapProcessTx, nahmiiProvider, tx, address, currency)));
+  yield all(pendingTxs.map(({ tx, address, currency }) => fork(wrapProcessTxForNewSettlements, nahmiiProvider, tx, address, currency)));
 }
 
 export default function* listen() {

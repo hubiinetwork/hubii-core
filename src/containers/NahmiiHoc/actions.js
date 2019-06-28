@@ -262,11 +262,12 @@ export function loadTxReceiptForPaymentChallengeSuccess(address, txReceipt, curr
   };
 }
 
-export function loadTxReceiptForPaymentChallengeError(address, currency) {
+export function loadTxReceiptForPaymentChallengeError(address, currency, txReceipt) {
   return {
     type: LOAD_START_CHALLENGE_TX_RECEIPT_ERROR,
     address,
     currency,
+    txReceipt,
   };
 }
 
