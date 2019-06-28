@@ -600,12 +600,12 @@ export function* withdraw({ amount, address, currency, options }) {
 export function* processTx(type, provider, tx, address, currency) {
   const actionTargets = {
     success: () => {},
-    error: () => {},
     loadTxRequestSuccess: () => {},
   };
 
   if (type === 'start-challenge') {
     actionTargets.success = actions.startChallengeSuccess;
+    actionTargets.error = actions.loadTxReceiptForPaymentChallengeError;
     actionTargets.loadTxRequestSuccess = actions.loadTxRequestForPaymentChallengeSuccess;
     actionTargets.loadTxReceiptSuccess = actions.loadTxReceiptForPaymentChallengeSuccess;
     yield put(notify('info', getIntl().formatMessage({ id: 'starting_payment_challenge' })));
@@ -633,9 +633,15 @@ export function* processTx(type, provider, tx, address, currency) {
     yield put(notify('success', getIntl().formatMessage({ id: 'tx_mined_success' })));
     yield put(actionTargets.success(address, txReceipt, currency));
   } else {
-    const errorMsg = getIntl().formatMessage({ id: 'tx_mined_error' });
+    const errorId = 'tx_mined_error';
+    const errorMsg = getIntl().formatMessage({ id: errorId });
     yield put(notify('error', errorMsg));
-    throw new Error(errorMsg);
+
+    if (actionTargets.error) {
+      yield put(actionTargets.error(address, currency));
+    }
+
+    throw new Error(errorId);
   }
 }
 
@@ -777,6 +783,16 @@ export function* reloadSettlementStates({ address, currency }) {
   ]);
 }
 
+export function* wrapProcessTx(nahmiiProvider, tx, address, currency) {
+  try {
+    yield processTx('start-challenge', nahmiiProvider, tx, address, currency);
+  } catch (error) {
+    const errorMessage = logErrorMsg(error);
+    yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: errorMessage })));
+    yield put(actions.startChallengeError(address, currency));
+  }
+}
+
 export function* processPendingSettlementTransactions() {
   const { nahmiiProvider } = yield select(makeSelectCurrentNetwork());
   const settlementPendingTxs = (yield select(makeSelectNewSettlementPendingTxs())).toJS();
@@ -790,23 +806,7 @@ export function* processPendingSettlementTransactions() {
     });
   });
 
-  yield all(pendingTxs.map(({ tx, address, currency }) => fork(function* wrapProcessTx() {
-    try {
-      yield processTx('start-challenge', nahmiiProvider, tx, address, currency);
-    } catch (error) {
-      let errorMessage = logErrorMsg(error);
-      if (errorMessage.match(/gas.*required.*exceeds/i) || errorMessage.match(/out.*of.*gas/i)) {
-        errorMessage = getIntl().formatMessage({ id: 'gas_limit_too_low' });
-      } else if (errorMessage.match(/insufficient.*funds/i)) {
-        errorMessage = getIntl().formatMessage({ id: 'insufficient_ether_fund' });
-      } else {
-        errorMessage = getIntl().formatMessage({ id: errorMessage });
-      }
-
-      yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: errorMessage })));
-      yield put(actions.startChallengeError(address, currency));
-    }
-  })));
+  yield all(pendingTxs.map(({ tx, address, currency }) => fork(wrapProcessTx, nahmiiProvider, tx, address, currency)));
 }
 
 export default function* listen() {

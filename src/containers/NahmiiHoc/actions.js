@@ -14,6 +14,7 @@ import {
   START_REQUIRED_CHALLENGES_SUCCESS,
   LOAD_START_CHALLENGE_TX_REQUEST,
   LOAD_START_CHALLENGE_TX_RECEIPT_SUCCESS,
+  LOAD_START_CHALLENGE_TX_RECEIPT_ERROR,
   SETTLE,
   SETTLE_SUCCESS,
   SETTLE_ERROR,
@@ -257,6 +258,14 @@ export function loadTxReceiptForPaymentChallengeSuccess(address, txReceipt, curr
     type: LOAD_START_CHALLENGE_TX_RECEIPT_SUCCESS,
     address,
     txReceipt,
+    currency,
+  };
+}
+
+export function loadTxReceiptForPaymentChallengeError(address, currency) {
+  return {
+    type: LOAD_START_CHALLENGE_TX_RECEIPT_ERROR,
+    address,
     currency,
   };
 }

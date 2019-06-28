@@ -18,6 +18,7 @@ import {
   START_REQUIRED_CHALLENGES_SUCCESS,
   LOAD_START_CHALLENGE_TX_REQUEST,
   LOAD_START_CHALLENGE_TX_RECEIPT_SUCCESS,
+  LOAD_START_CHALLENGE_TX_RECEIPT_ERROR,
   SETTLE,
   SETTLE_SUCCESS,
   SETTLE_ERROR,
@@ -141,20 +142,25 @@ function nahmiiHocReducer(state = initialState, action) {
     case START_CHALLENGE_SUCCESS:
       return state
           .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'success')
-          .setIn(['ongoingChallenges', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt);
+          .setIn(['ongoingChallenges', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt)
+          .deleteIn(['newSettlementPendingTxs', action.address, action.currency]);
     case START_CHALLENGE_ERROR:
       return state
-          .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'failed')
-          .deleteIn(['newSettlementPendingTxs', action.address, action.currency]);
+          .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'failed');
     case LOAD_START_CHALLENGE_TX_REQUEST:
       return state
         .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'mining')
         .setIn(['ongoingChallenges', action.address, action.currency, 'transactions', action.txRequest.hash], action.txRequest)
-        .setIn(['newSettlementPendingTxs', action.address, action.currency], { ...action.txRequest, timestamp: new Date().getTime() });
+        .setIn(['newSettlementPendingTxs', action.address, action.currency], {
+          ...action.txRequest,
+          timestamp: action.txRequest.timestamp || new Date().getTime(),
+        });
     case LOAD_START_CHALLENGE_TX_RECEIPT_SUCCESS:
       return state
         .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'receipt')
-        .setIn(['ongoingChallenges', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt)
+        .setIn(['ongoingChallenges', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt);
+    case LOAD_START_CHALLENGE_TX_RECEIPT_ERROR:
+      return state
         .deleteIn(['newSettlementPendingTxs', action.address, action.currency]);
     case SETTLE:
       return state
