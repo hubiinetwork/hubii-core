@@ -219,7 +219,7 @@ describe('nahmiiHocSaga', () => {
       return expectSaga(makePayment, { monetaryAmount, recipient, walletOverride })
       .withState(
         storeMock
-          .setIn(['nahmiiHoc', 'ongoingChallenges', walletAddress, currency.ct, 'status'], 'mining')
+          .setIn(['nahmiiHoc', 'newSettlementPendingTxs', walletAddress, currency.ct, 'hash1'], {})
       )
       .put(actions.nahmiiPaymentError(error))
       .put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_transfer' })))
@@ -618,6 +618,42 @@ describe('nahmiiHocSaga', () => {
             expect(tx1).toEqual(failedTx);
           });
       }
+      );
+      it('should prevent new settlement when there is a pending transaction', () => expectSaga(startChallenge, { stageAmount, address: signerMock.address, currency, txReceipt: fakeTxReceipts[0], options })
+          .withReducer(
+            withReducer,
+            storeMock
+              .setIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency, fakeTxs[0].hash], fakeTxs[0])
+          )
+          .provide({
+            call(effect, next) {
+              if (effect.fn.name.includes('getRequiredChallengesForIntendedStageAmount')) {
+                const { amount } = effect.args[0].toJSON();
+                expect(amount).toEqual(stageAmount.toFixed());
+                return { requiredChallenges: [{ type: 'payment-driip' }] };
+              }
+              if (effect.fn.name.includes('startByRequiredChallenge')) {
+                return fakeTxs[0];
+              }
+              if (effect.fn.name === 'waitForTransaction') {
+                return fakeTxs[0];
+              }
+              if (effect.fn.name === 'getTransactionReceipt') {
+                return fakeTxReceipts[0];
+              }
+              if (effect.fn === getSdkWalletSigner) {
+                return [
+                  signerMock,
+                  { type: 'ACTION1' },
+                  { type: 'ACTION2' },
+                ];
+              }
+              return next();
+            },
+          })
+          .put(actions.startChallengeError(signerMock.address, currency))
+          .put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' })))
+          .run({ silenceTimeout: true })
       );
     });
     describe('#settle', () => {

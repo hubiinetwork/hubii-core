@@ -23,6 +23,7 @@ import {
   makeSelectOngoingChallengesForCurrentWalletCurrency,
   makeSelectSettleableChallengesForCurrentWalletCurrency,
   makeSelectNewSettlementPendingTxsList,
+  makeSelectHasSettlementPendingTxsByWalletCurrency,
 } from 'containers/NahmiiHoc/selectors';
 import { makeSelectCurrentWalletWithInfo } from 'containers/NahmiiHoc/combined-selectors';
 import { makeSelectTrezorHoc } from 'containers/TrezorHoc/selectors';
@@ -170,18 +171,15 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
 
     const ongoingSettlements = yield select(makeSelectOngoingChallenges());
     const ongoingSettlementStatus = ongoingSettlements.getIn([wallet.address, currency.ct, 'status']);
-    if (['requesting', 'mining'].includes(ongoingSettlementStatus)) {
-      yield put(actions.nahmiiPaymentError(new Error('Payment is locked until the settlement transaction is confirmed.')));
-      yield put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_transfer' })));
-      return;
+    const hasPendingTx = yield select(makeSelectHasSettlementPendingTxsByWalletCurrency(wallet.address, currency.ct));
+    if (ongoingSettlementStatus === 'requesting' || hasPendingTx) {
+      throw new Error('Payment is locked until the settlement transaction is confirmed.');
     }
 
     const settlement = new nahmii.Settlement(nahmiiProvider);
     const synced = yield call([settlement, 'hasOffchainSynchronised'], wallet.address, currency.ct);
     if (!synced) {
-      yield put(actions.nahmiiPaymentError(new Error('Payment is locked until off-chain balance is synchronised.')));
-      yield put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_transfer' })));
-      return;
+      throw new Error('Payment is locked until off-chain balance is synchronised.');
     }
 
     [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, wallet);
@@ -194,10 +192,13 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
     yield put(actions.nahmiiPaymentSuccess());
     yield put(notify('success', getIntl().formatMessage({ id: 'sent_transaction_success' })));
   } catch (e) {
+    logErrorMsg(e);
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield put(actions.nahmiiPaymentError(e));
     if (e instanceof nahmii.InsufficientFundsError) {
       yield put(notify('error', getIntl().formatMessage({ id: 'nahmii_transfer_insufficient_funds_error' }, { minimumBalance: e.minimumBalance })));
+    } else if (e.message.match(/payment.*locked/i)) {
+      yield put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_transfer' })));
     } else {
       yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
     }
@@ -473,6 +474,12 @@ export function* startChallenge({ stageAmount, currency, options }) {
       yield put(actions.startChallengeError(walletDetails.address, currency));
       return;
     }
+
+    const hasPendingTx = yield select(makeSelectHasSettlementPendingTxsByWalletCurrency(walletDetails.address, currency));
+    if (hasPendingTx) {
+      throw new Error('New settlement is disabled until the last settlement transaction is confirmed.');
+    }
+
     const network = yield select(makeSelectCurrentNetwork());
     const { nahmiiProvider } = network;
 
@@ -504,6 +511,8 @@ export function* startChallenge({ stageAmount, currency, options }) {
     if (errorMessage.match(/gas.*required.*exceeds/i) || errorMessage.match(/out.*of.*gas/i)) {
       errorMessage = getIntl().formatMessage({ id: 'gas_limit_too_low' });
     } else if (errorMessage.match(/balance.*not.*synchronised/i)) {
+      errorMessage = getIntl().formatMessage({ id: 'nahmii_settlement_lock_start_challenge' });
+    } else if (errorMessage.match(/settlement.*disabled/i)) {
       errorMessage = getIntl().formatMessage({ id: 'nahmii_settlement_lock_start_challenge' });
     } else {
       errorMessage = getIntl().formatMessage({ id: errorMessage });

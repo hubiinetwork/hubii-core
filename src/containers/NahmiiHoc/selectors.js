@@ -1,3 +1,4 @@
+import nahmii from 'nahmii-sdk';
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect';
 import { fromJS, List } from 'immutable';
 import BigNumber from 'bignumber.js';
@@ -164,6 +165,9 @@ const makeSelectNewSettlementPendingTxsList = () => createSelector(
   makeSelectNewSettlementPendingTxs(),
   (newSettlementPendingTxs) => {
     const pendingTxs = [];
+    if (!newSettlementPendingTxs) {
+      return pendingTxs;
+    }
     const newSettlementPendingTxsJSON = newSettlementPendingTxs.toJS();
     Object.keys(newSettlementPendingTxsJSON).forEach((address) => {
       Object.keys(newSettlementPendingTxsJSON[address]).forEach((currency) => {
@@ -174,6 +178,17 @@ const makeSelectNewSettlementPendingTxsList = () => createSelector(
       });
     });
     return pendingTxs;
+  }
+);
+
+const makeSelectHasSettlementPendingTxsByWalletCurrency = (address, currency) => createSelector(
+  makeSelectNewSettlementPendingTxsList(),
+  (pendingTxs) => {
+    const matches = pendingTxs.filter((pendingTx) =>
+      nahmii.utils.caseInsensitiveCompare(pendingTx.address, address) &&
+      nahmii.utils.caseInsensitiveCompare(pendingTx.currency, currency)
+    );
+    return matches.length > 0;
   }
 );
 
@@ -381,4 +396,5 @@ export {
   makeSelectWithdrawalsForCurrentWalletCurrency,
   makeSelectNewSettlementPendingTxs,
   makeSelectNewSettlementPendingTxsList,
+  makeSelectHasSettlementPendingTxsByWalletCurrency,
 };
