@@ -12,9 +12,9 @@ import {
   START_CHALLENGE_SUCCESS,
   START_CHALLENGE_ERROR,
   START_REQUIRED_CHALLENGES_SUCCESS,
-  UPDATE_START_CHALLENGE_BLOCK_HEIGHT,
   LOAD_START_CHALLENGE_TX_REQUEST,
   LOAD_START_CHALLENGE_TX_RECEIPT_SUCCESS,
+  LOAD_START_CHALLENGE_TX_RECEIPT_ERROR,
   SETTLE,
   SETTLE_SUCCESS,
   SETTLE_ERROR,
@@ -243,15 +243,6 @@ export function startRequiredChallengesSuccess(address, currency) {
   };
 }
 
-export function updateChallengeBlockHeight(address, currency, blockHeight) {
-  return {
-    type: UPDATE_START_CHALLENGE_BLOCK_HEIGHT,
-    address,
-    currency,
-    blockHeight,
-  };
-}
-
 export function loadTxRequestForPaymentChallengeSuccess(address, txRequest, currency, networkName) {
   return {
     type: LOAD_START_CHALLENGE_TX_REQUEST,
@@ -268,6 +259,15 @@ export function loadTxReceiptForPaymentChallengeSuccess(address, txReceipt, curr
     address,
     txReceipt,
     currency,
+  };
+}
+
+export function loadTxReceiptForPaymentChallengeError(address, currency, txReceipt) {
+  return {
+    type: LOAD_START_CHALLENGE_TX_RECEIPT_ERROR,
+    address,
+    currency,
+    txReceipt,
   };
 }
 

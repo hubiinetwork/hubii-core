@@ -6206,10 +6206,10 @@ ethereumjs-vm@^2.0.2, ethereumjs-vm@^2.1.0, ethereumjs-vm@^2.3.4:
     rustbn.js "~0.2.0"
     safe-buffer "^5.1.1"
 
-ethers@^4.0.1:
-  version "4.0.16"
-  resolved "https://registry.yarnpkg.com/ethers/-/ethers-4.0.16.tgz#04cc07dca66967b95e6220822ce8ac945f99ede2"
-  integrity sha512-XQx0yY2KMOV9IG+siUogZ0hiedD2sjcWMIInyw2Bz1VqEHQht6NdDeXRecbI6332v6H+hXm0n5Oi6PquC1mwMA==
+ethers@~4.0.27:
+  version "4.0.30"
+  resolved "https://registry.yarnpkg.com/ethers/-/ethers-4.0.30.tgz#140653fd08adf2834bb2f3aceefa10d04205b47d"
+  integrity sha512-1a39Y+q5zTfrXCLndV+CHsTHq+T5/TvAx5y0S/PKd700C0lfU70CJnU7q89bd+4pIuWp05TkrEsrTj2dXhkcSA==
   dependencies:
     "@types/node" "^10.3.2"
     aes-js "3.0.0"
@@ -11319,10 +11319,10 @@ nahmii-ethereum-address@^2.0.0:
   dependencies:
     bson "^3.0.2"
 
-nahmii-sdk@2.2.7:
-  version "2.2.7"
-  resolved "https://registry.yarnpkg.com/nahmii-sdk/-/nahmii-sdk-2.2.7.tgz#6536649962d6b531b85b0c76046fc6eba7be8ec3"
-  integrity sha512-D4OsR1jMCX95YQ5lEZpUwL6eUWxxNi2WTr1fG4b0OZou9vS/PhpYVU72j5KIKtYw9WRX3OHSDlSPhrILGyONnA==
+nahmii-sdk@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/nahmii-sdk/-/nahmii-sdk-2.3.0.tgz#e8ecd4060e2d30a841b3192ce88a081d53f82f8a"
+  integrity sha512-KcS2j/yaHZMbL69qBEoL24H5jVfuWXnF+/ecBXGlLy4+JC14Q/AEH0DTpaM/QiP3/Gzqr42imEnodmjEII73uw==
   dependencies:
     ethereumjs-util "^6.1.0"
     keythereum "^1.0.4"

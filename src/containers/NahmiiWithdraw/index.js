@@ -553,7 +553,10 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       baseLayerEthBalanceAfterAmount.isNegative() ||
       nahmiiBalanceAfterStagingAmt.isNegative() ||
       !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
-    const disableConfirmSettleButton = !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
+
+    const disableConfirmSettleButton =
+      baseLayerEthBalanceAfterAmount.isNegative() ||
+      !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
     const TxStatus = this.generateTxStatus();
 
     return (
@@ -636,31 +639,73 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
             <div style={{ flex: '0.5', minWidth: '34rem', marginBottom: '3rem' }}>
               {
                 settleableChallenges.get('details').length > 0 ?
-                (<SettlementWarning
-                  className="confirm-settlement"
-                  message={formatMessage({ id: 'settlement_period_ended' })}
-                  description={
+                (
+                  <div>
                     <div>
-                      <div>
-                        {formatMessage({ id: 'settlement_period_ended_notice' }, { symbol: assetToWithdraw.symbol, intended_stage_amount: totalSettleableStageAmount, tx_count: settleableChallenges.get('details').length })}
-                      </div>
-                      {
-                        TxStatus ?
-                          (
-                            <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} className="confirm-tx-status">
-                              {TxStatus}
-                            </div>
-                          ) : (
-                            <StyledButton className="confirm-btn" onClick={() => this.settle(assetToWithdraw)} disabled={disableConfirmSettleButton}>
-                              {formatMessage({ id: 'confirm_settlement' })}
-                            </StyledButton>
-                          )
-                      }
+                      <Row>
+                        <StyledCol span={12}>
+                          <TooltipText details={formatMessage({ id: 'max_base_layer_fee_explain' })}>
+                            {formatMessage({ id: 'max_base_layer_fee' })}
+                          </TooltipText>
+                        </StyledCol>
+                      </Row>
+                      <Row>
+                        <TransferDescriptionItem
+                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={transactionFee.amount.toString()} /> {'ETH'}</SelectableText>}
+                          subtitle={<NumericText value={transactionFee.usdValue.toString()} type="fiat" />}
+                        />
+                      </Row>
+                      <Row>
+                        <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
+                      </Row>
+                      <Row>
+                        <TransferDescriptionItem
+                          className="base-layer-eth-balance-before"
+                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
+                          subtitle={<NumericText value={baseLayerEthBalanceBefore.usdValue.toString()} type="fiat" />}
+                        />
+                      </Row>
+                      <Row>
+                        <StyledCol span={12}>
+                          {formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_after' })}
+                        </StyledCol>
+                      </Row>
+                      <Row>
+                        <TransferDescriptionItem
+                          className="base-layer-eth-balance-after"
+                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
+                          subtitle={<NumericText value={baseLayerEthBalanceAfter.usdValue.toString()} type="fiat" />}
+                        />
+                      </Row>
                     </div>
-                  }
-                  type="warning"
-                  showIcon
-                />) : (
+                    <SettlementWarning
+                      className="confirm-settlement"
+                      message={formatMessage({ id: 'settlement_period_ended' })}
+                      style={{ marginTop: '2rem' }}
+                      description={
+                        <div>
+                          <div>
+                            {formatMessage({ id: 'settlement_period_ended_notice' }, { symbol: assetToWithdraw.symbol, intended_stage_amount: totalSettleableStageAmount, tx_count: settleableChallenges.get('details').length })}
+                          </div>
+                          {
+                            TxStatus ?
+                              (
+                                <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} className="confirm-tx-status">
+                                  {TxStatus}
+                                </div>
+                              ) : (
+                                <StyledButton className="confirm-btn" onClick={() => this.settle(assetToWithdraw)} disabled={disableConfirmSettleButton}>
+                                  {formatMessage({ id: 'confirm_settlement' })}
+                                </StyledButton>
+                              )
+                          }
+                        </div>
+                      }
+                      type="warning"
+                      showIcon
+                    />
+                  </div>
+                ) : (
                   requiredSettlementAmount.gt(0) ?
                   (
                     <div className="start-settlement">

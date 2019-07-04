@@ -90,7 +90,7 @@ export const filterPersistedState = (state) => {
    */
   persistedState = persistedState.set('nahmiiHoc', nahmiiHocInitialState);
   persistedState = persistedState
-    .setIn(['nahmiiHoc', 'challengeAttemptedAtBlockHeight'], state.getIn(['nahmiiHoc', 'challengeAttemptedAtBlockHeight']));
+    .setIn(['nahmiiHoc', 'newSettlementPendingTxs'], state.getIn(['nahmiiHoc', 'newSettlementPendingTxs']));
 
   return persistedState;
 };

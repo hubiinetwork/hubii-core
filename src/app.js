@@ -13,6 +13,7 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import { Route } from 'react-router';
 import createHistory from 'history/createBrowserHistory';
+import { ethers } from 'ethers';
 
 // import semantic ui styles
 import 'semantic-ui-css/semantic.min.css';
@@ -92,3 +93,7 @@ if (!window.Intl) {
 if (process.env.NODE_ENV === 'production') {
   require('offline-plugin/runtime').install(); // eslint-disable-line global-require
 }
+
+// Silence the warnings on the overloaded functions from the contract ABIs.
+// ethers v5 will deprecate these warnings https://github.com/ethers-io/ethers.js/issues/499
+ethers.errors.setLogLevel('error');
