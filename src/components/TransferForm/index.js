@@ -25,6 +25,7 @@ import { Modal } from 'components/ui/Modal';
 import EditContactModal from 'components/EditContactModal';
 import TransferDescription from 'components/TransferDescription';
 import GasOptions from 'components/GasOptions';
+import BlockieAvatar from 'components/BlockieAvatar';
 
 import {
   OuterWrapper,
@@ -374,7 +375,11 @@ export class TransferForm extends React.PureComponent {
               >
                 <ComboBoxSelect
                   disabled={transfering}
-                  options={recipients.map((recipient) => ({ name: recipient.name, value: recipient.address }))}
+                  options={recipients.map((recipient) => ({
+                    name: recipient.name,
+                    value: recipient.address,
+                    icon: <BlockieAvatar style={{ width: '1.5rem', marginRight: '0.5rem' }} address={recipient.address} />,
+                  }))}
                   handleSelect={(value) => this.handleRecipient(value)}
                   addInputValidator={(value) => isValidAddress(value)}
                   invalidAdditionMessage={formatMessage({ id: 'enter_valid_address_contact' })}

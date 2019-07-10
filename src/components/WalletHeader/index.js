@@ -6,6 +6,7 @@ import { formatFiat } from 'utils/numberFormats';
 import Heading from 'components/ui/Heading';
 import WalletStatusIndicator from 'components/WalletStatusIndicator';
 import Notification from 'components/Notification';
+import BlockieAvatar from 'components/BlockieAvatar';
 
 import {
   Address,
@@ -40,20 +41,27 @@ const WalletHeader = (props) => (
         walletType={props.type}
       />
       <HeaderDetail>
-        <DetailWrapper>
-          <Heading>{props.name}</Heading>
-          <Address>
-            {`${props.address}`}
-            <CopyToClipboard text={`${props.address}`}>
-              <CopyButton
-                type="icon"
-                icon="copy"
-                size={'small'}
-                onClick={showNotification}
-                key={2}
-              />
-            </CopyToClipboard>
-          </Address>
+        <DetailWrapper style={{ flexDirection: 'row' }}>
+          <div>
+            <BlockieAvatar style={{ width: '3.5rem', marginRight: '0.5rem' }} address={props.address} />
+          </div>
+          <div>
+            <Heading>
+              {props.name}
+            </Heading>
+            <Address>
+              {`${props.address}`}
+              <CopyToClipboard text={`${props.address}`}>
+                <CopyButton
+                  type="icon"
+                  icon="copy"
+                  size={'small'}
+                  onClick={showNotification}
+                  key={2}
+                />
+              </CopyToClipboard>
+            </Address>
+          </div>
         </DetailWrapper>
         <DetailWrapper>
           <Balance large>{formatFiat(props.balance, 'USD')}</Balance>

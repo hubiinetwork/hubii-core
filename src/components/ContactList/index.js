@@ -11,6 +11,7 @@ import PlaceholderText from 'components/ui/PlaceholderText';
 import Button from 'components/ui/Button';
 import { Modal } from 'components/ui/Modal';
 import Notification from 'components/Notification';
+import BlockieAvatar from 'components/BlockieAvatar';
 
 import { StyledList } from './style';
 
@@ -126,7 +127,11 @@ class ContactList extends React.PureComponent {
           </CopyToClipboard>,
         ]}
       >
-        <List.Item.Meta title={item.name} description={item.address} />
+        <List.Item.Meta
+          avatar={<BlockieAvatar style={{ width: '2.5rem' }} address={item.address} />}
+          title={item.name}
+          description={item.address}
+        />
       </List.Item>
     );
     return (

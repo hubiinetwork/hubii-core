@@ -154,8 +154,8 @@ describe('<ComboBoxSelect />', () => {
   });
   describe('#handleFilterOption', () => {
     const option = {
+      key: 'mike',
       props: {
-        children: 'mike',
         value: '0x32324',
       },
     };
