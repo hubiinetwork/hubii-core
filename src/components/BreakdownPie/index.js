@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
 import { Spring } from 'react-spring';
 import { VictoryPie, VictoryContainer, VictoryTooltip } from 'victory';
+import ColorHash from 'color-hash';
 import { getBreakdown } from 'utils/wallet';
 
 import BreakdownList from 'components/BreakdownList';
@@ -47,14 +48,34 @@ class Breakdown extends React.Component {
       y: 2 * item.percentage,
       label: `${item.label}: ${item.percentage.toFixed(0)}%`,
     }));
-    const colors = combinedBreakdown.map((item) => item.color);
+    const colorHash = new ColorHash();
+    const colors = combinedBreakdown.map((item) => {
+      let color;
+      switch (item.label) {
+        case 'ETH': {
+          color = '#647BE7';
+          break;
+        }
+        case 'HBT': {
+          color = '#204969';
+          break;
+        }
+        case 'NII': {
+          color = '#fff7f7';
+          break;
+        }
+        default: {
+          color = colorHash.hex(item.label);
+        }
+      }
+      return color;
+    });
     return (
       <Wrapper>
         <div>
           <Text large>{formatMessage({ id: 'total_fiat_value' })}</Text>
           <StyledHeading large>
             <StyledNumericText large value={value.toString()} type="fiat" />
-            {/* {formatFiat(value, 'USD')} */}
           </StyledHeading>
         </div>
         <Spring
