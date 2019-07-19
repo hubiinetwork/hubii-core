@@ -20,12 +20,12 @@ export function createContact(name, address) {
 export function removeContact(contacts, recentContacts, contact) {
   const remainingContacts = contacts.filter(
     (person) =>
-    !(person.address === contact.address && person.name === contact.name)
+      !(person.address === contact.address && person.name === contact.name)
   );
 
   const remainingRecentContacts = recentContacts.filter(
     (person) =>
-    !(person.address === contact.address && person.name === contact.name)
+      !(person.address === contact.address && person.name === contact.name)
   );
   return {
     type: REMOVE_CONTACT,
@@ -37,16 +37,16 @@ export function removeContact(contacts, recentContacts, contact) {
 export function editContact(contacts, recentContacts, newContact, oldContact) {
   const newContactsList = contacts.map(
     (contact) =>
-    contact.name === oldContact.name && contact.address === oldContact.address ?
-    newContact :
-    contact
+      contact.name === oldContact.name && contact.address === oldContact.address ?
+        newContact :
+        contact
   );
 
   const newRecentContactsList = recentContacts.map(
     (contact) =>
-    contact.name === oldContact.name && contact.address === oldContact.address ?
-    newContact :
-    contact
+      contact.name === oldContact.name && contact.address === oldContact.address ?
+        newContact :
+        contact
   );
 
   return {

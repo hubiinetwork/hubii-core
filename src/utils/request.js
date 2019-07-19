@@ -22,12 +22,12 @@ export function requestHardwareWalletAPI(path, opts = {}, endpoint = 'trezor://'
     method: 'POST',
     body: JSON.stringify(opts),
   }, endpoint)
-  .then((response) => {
-    if (response.error) {
-      throw new Error(response.error.message);
-    }
-    return response;
-  });
+    .then((response) => {
+      if (response.error) {
+        throw new Error(response.error.message);
+      }
+      return response;
+    });
 }
 
 // Checks if a network request came back fine, and throws an error if not

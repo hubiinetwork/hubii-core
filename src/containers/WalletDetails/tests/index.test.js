@@ -40,7 +40,7 @@ describe('WalletDetails', () => {
           {...props}
           setCurrentWallet={setCurrentWalletSpy}
         />
-        );
+      );
       const instance = dom.instance();
       instance.componentDidMount();
       expect(setCurrentWalletSpy).toBeCalledWith(props.match.params.address);
@@ -55,7 +55,7 @@ describe('WalletDetails', () => {
           {...props}
           history={history}
         />
-        );
+      );
       const instance = dom.instance();
       instance.onHomeClick();
       expect(historySpy).toBeCalledWith('/wallets');
@@ -70,7 +70,7 @@ describe('WalletDetails', () => {
           {...props}
           history={history}
         />
-        );
+      );
       const instance = dom.instance();
       const path = '/path';
       instance.onTabsChange(path);

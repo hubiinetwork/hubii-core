@@ -47,11 +47,7 @@ class ImportWallet extends React.Component {
             <Option value={wallet.name} key={wallet.name}>
               <Center>
                 {
-                  wallet.src
-                  ?
-                    <Image src={wallet.src} />
-                  :
-                    <OptionText>{wallet.name}</OptionText>
+                  wallet.src ? <Image src={wallet.src} /> : <OptionText>{wallet.name}</OptionText>
                 }
               </Center>
             </Option>
@@ -70,7 +66,7 @@ ImportWallet.propTypes = {
    * Array of contacts whose list is to be shown.
    */
   wallets: PropTypes.array.isRequired,
-    /**
+  /**
    * Function to be executed when next button is pressed
    */
   handleNext: PropTypes.func,

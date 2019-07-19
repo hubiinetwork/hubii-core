@@ -102,7 +102,7 @@ describe('localStorage', () => {
               ],
             },
           }
-      );
+        );
         const persistedState = filterPersistedState(state);
         expect(persistedState.getIn(['walletHoc', 'wallets', 0, 'decrypted'])).toBeUndefined();
       });

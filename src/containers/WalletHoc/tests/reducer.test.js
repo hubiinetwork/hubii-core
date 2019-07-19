@@ -113,14 +113,14 @@ describe('walletHocReducer', () => {
   describe('software wallet lifecycle reducers', () => {
     it('should handle deleteWallet action correctly', () => {
       const expected = stateWithWallet
-      .deleteIn(['wallets', 0]);
+        .deleteIn(['wallets', 0]);
       expect(walletHocReducer(stateWithWallet, deleteWallet('0x00'))).toEqual(expected);
     });
 
     it('should handle createWalletFromMnemonic action correctly', () => {
       const expected = state
-      .setIn(['loading', 'creatingWallet'], true)
-      .setIn(['errors', 'creatingWalletError'], null);
+        .setIn(['loading', 'creatingWallet'], true)
+        .setIn(['errors', 'creatingWalletError'], null);
       expect(walletHocReducer(state, createWalletFromMnemonic())).toEqual(expected);
     });
 
@@ -135,37 +135,37 @@ describe('walletHocReducer', () => {
           .push(fromJS(newWallet))
         );
       expect(walletHocReducer(
-      state,
-      addNewWallet(newWallet)))
-      .toEqual(expected);
+        state,
+        addNewWallet(newWallet)))
+        .toEqual(expected);
     });
 
     it('should handle CREATE_WALLET_SUCCESS type correctly', () => {
       const initState = state
-      .setIn(['loading', 'creatingWallet'], true)
-      .setIn(['inputs', 'password'], 'test');
+        .setIn(['loading', 'creatingWallet'], true)
+        .setIn(['inputs', 'password'], 'test');
       const expected = state
-      .setIn(['loading', 'creatingWallet'], false)
-      .setIn(['inputs', 'password'], '');
+        .setIn(['loading', 'creatingWallet'], false)
+        .setIn(['inputs', 'password'], '');
       expect(walletHocReducer(
-      initState,
-      createWalletSuccess('', '{"address":"123"}', { address: '0x00' })))
-      .toEqual(expected);
+        initState,
+        createWalletSuccess('', '{"address":"123"}', { address: '0x00' })))
+        .toEqual(expected);
     });
 
 
     it('should handle createWalletFailed action correctly', () => {
       const error = 'error 1';
       const expected = state
-      .setIn(['loading', 'creatingWallet'], false)
-      .setIn(['errors', 'creatingWalletError'], error);
+        .setIn(['loading', 'creatingWallet'], false)
+        .setIn(['errors', 'creatingWalletError'], error);
       expect(walletHocReducer(state, createWalletFailed(error))).toEqual(expected);
     });
 
     it('should handle decryptWallet action correctly', () => {
       const expected = state
-      .setIn(['loading', 'decryptingWallet'], true)
-      .set('progress', 0);
+        .setIn(['loading', 'decryptingWallet'], true)
+        .set('progress', 0);
       expect(walletHocReducer(state, decryptWallet())).toEqual(expected);
     });
 
@@ -190,9 +190,9 @@ describe('walletHocReducer', () => {
       const address = '0x00';
       const decryptedWallet = { address: '0x00', id: 1234 };
       const expected = stateWithWallet
-      .setIn(['loading', 'decryptingWallet'], false)
-      .setIn(['inputs', 'password'], '')
-      .setIn(['wallets', 0, 'decrypted'], fromJS(decryptedWallet));
+        .setIn(['loading', 'decryptingWallet'], false)
+        .setIn(['inputs', 'password'], '')
+        .setIn(['wallets', 0, 'decrypted'], fromJS(decryptedWallet));
       expect(walletHocReducer(stateWithWallet, decryptWalletSuccess(address, decryptedWallet))).toEqual(expected);
     });
 
@@ -214,7 +214,7 @@ describe('walletHocReducer', () => {
         lastTransaction: null,
       };
       const expected = state
-          .set('currentWallet', fromJS(currentWallet));
+        .set('currentWallet', fromJS(currentWallet));
 
       expect(walletHocReducer(state, setCurrentWallet(address))).toEqual(expected);
     });
@@ -226,7 +226,7 @@ describe('walletHocReducer', () => {
         lastTransaction: null,
       };
       const expected = state
-          .set('currentWallet', fromJS(currentWallet));
+        .set('currentWallet', fromJS(currentWallet));
 
       expect(walletHocReducer(state, transfer({}))).toEqual(expected);
     });
@@ -238,7 +238,7 @@ describe('walletHocReducer', () => {
         lastTransaction: null,
       };
       const expected = state
-          .set('currentWallet', fromJS(currentWallet));
+        .set('currentWallet', fromJS(currentWallet));
 
       expect(walletHocReducer(state, makeNahmiiPayment())).toEqual(expected);
     });
@@ -249,7 +249,7 @@ describe('walletHocReducer', () => {
         transferError: null,
       };
       const expected = state
-          .set('currentWallet', fromJS(currentWallet));
+        .set('currentWallet', fromJS(currentWallet));
 
       expect(walletHocReducer(state, transferSuccess({}))).toEqual(expected);
     });
@@ -260,7 +260,7 @@ describe('walletHocReducer', () => {
         transferError: null,
       };
       const expected = state
-          .set('currentWallet', fromJS(currentWallet));
+        .set('currentWallet', fromJS(currentWallet));
 
       expect(walletHocReducer(state, nahmiiPaymentSuccess())).toEqual(expected);
     });
@@ -273,7 +273,7 @@ describe('walletHocReducer', () => {
         lastTransaction: null,
       };
       const expected = state
-          .set('currentWallet', fromJS(currentWallet));
+        .set('currentWallet', fromJS(currentWallet));
 
       expect(walletHocReducer(state, transferError(error))).toEqual(expected);
     });
@@ -286,7 +286,7 @@ describe('walletHocReducer', () => {
         lastTransaction: null,
       };
       const expected = state
-          .set('currentWallet', fromJS(currentWallet));
+        .set('currentWallet', fromJS(currentWallet));
 
       expect(walletHocReducer(state, nahmiiPaymentError(error))).toEqual(expected);
     });
@@ -297,8 +297,8 @@ describe('walletHocReducer', () => {
       };
       const decryptionCallback = { type: 'TRANSFER' };
       const expected = state
-          .set('currentWallet', fromJS(currentWallet))
-          .set('currentDecryptionCallback', fromJS(decryptionCallback));
+        .set('currentWallet', fromJS(currentWallet))
+        .set('currentDecryptionCallback', fromJS(decryptionCallback));
 
       expect(walletHocReducer(state, showDecryptWalletModal(decryptionCallback))).toEqual(expected);
     });
@@ -308,7 +308,7 @@ describe('walletHocReducer', () => {
         showDecryptModal: false,
       };
       const expected = state
-          .set('currentWallet', fromJS(currentWallet));
+        .set('currentWallet', fromJS(currentWallet));
 
       expect(walletHocReducer(state, hideDecryptWalletModal())).toEqual(expected);
     });

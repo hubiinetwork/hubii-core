@@ -112,7 +112,7 @@ describe('<NahmiiAirdriipRegistration />', () => {
           {...props}
           changeStage={changeStageSpy}
         />
-        );
+      );
       const noBtn = wrapper.find('style__StyledButtonTall').at(0);
       const yesBtn = wrapper.find('style__StyledButtonTall').at(1);
       expect(changeStageSpy).toHaveBeenCalledTimes(0);
@@ -143,7 +143,7 @@ describe('<NahmiiAirdriipRegistration />', () => {
           {...props}
           currentWalletWithInfo={currentWalletSoftwareMock}
         />
-        );
+      );
       expect(wrapper).toMatchSnapshot();
     });
     it('should render correctly when there are no wallets', () => {
@@ -153,7 +153,7 @@ describe('<NahmiiAirdriipRegistration />', () => {
           wallets={walletsWithInfoEmptyMock}
           currentWalletWithInfo={currentWalletNoneMock}
         />
-        );
+      );
       expect(wrapper).toMatchSnapshot();
     });
     it('should call setCurrentWallet correctly', () => {
@@ -163,7 +163,7 @@ describe('<NahmiiAirdriipRegistration />', () => {
           {...props}
           setCurrentWallet={setCurrentWalletSpy}
         />
-        );
+      );
       const selectWalletWrapper = wrapper.find('SelectWallet');
       expect(setCurrentWalletSpy).toHaveBeenCalledTimes(0);
       selectWalletWrapper.simulate('change', { target: { value: 'wallet123' } });

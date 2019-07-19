@@ -83,36 +83,28 @@ export class SideBar extends React.Component {
                         </SvgIcon>
                       )}
                       {menuItem.icon === 'dex' && (
-                      <SvgIcon viewBox="0 0 28 16">
-                        <g
-                          fill="none"
-                          fillRule="evenodd"
-                          transform="translate(-2 -8)"
-                        >
-                          <polygon points="0 0 32 0 32 32 0 32" />
-                          <polygon
-                            fill={currentRoute === menuItem.to ? info : dark2}
-                            fillRule="nonzero"
-                            points="21.333 8 24.387 11.053 17.88 17.56 12.547 12.227 2.667 22.12 4.547 24 12.547 16 17.88 21.333 26.28 12.947 29.333 16 29.333 8"
-                          />
-                        </g>
-                      </SvgIcon>
-                    )}
+                        <SvgIcon viewBox="0 0 28 16">
+                          <g
+                            fill="none"
+                            fillRule="evenodd"
+                            transform="translate(-2 -8)"
+                          >
+                            <polygon points="0 0 32 0 32 32 0 32" />
+                            <polygon
+                              fill={currentRoute === menuItem.to ? info : dark2}
+                              fillRule="nonzero"
+                              points="21.333 8 24.387 11.053 17.88 17.56 12.547 12.227 2.667 22.12 4.547 24 12.547 16 17.88 21.333 26.28 12.947 29.333 16 29.333 8"
+                            />
+                          </g>
+                        </SvgIcon>
+                      )}
                       {menuItem.icon === 'nahmii-token' && (
-                       currentRoute.includes('nahmii')
-                       ?
-                         <div>
-                           <img alt="nahmii token" style={{ height: 'auto', width: '32px' }} src={NahmiiGreen} />
-                         </div>
-                      :
-                         <div>
-                           <img alt="nahmii token" style={{ height: 'auto', width: '32px' }} src={NahmiiGrey} />
-                         </div>
-                    )}
+                        currentRoute.includes('nahmii') ? <div><img alt="nahmii token" style={{ height: 'auto', width: '32px' }} src={NahmiiGreen} /></div> : <div><img alt="nahmii token" style={{ height: 'auto', width: '32px' }} src={NahmiiGrey} /></div>
+                      )}
                     </div>
                   </Link>
                 </Menu.Item>
-                ))}
+              ))}
             <Menu.Item key="settings" className="menu-setting">
               <Link to="/settings">
                 <div>

@@ -639,301 +639,301 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
             <div style={{ flex: '0.5', minWidth: '34rem', marginBottom: '3rem' }}>
               {
                 settleableChallenges.get('details').length > 0 ?
-                (
-                  <div>
-                    <div>
-                      <Row>
-                        <StyledCol span={12}>
-                          <TooltipText details={formatMessage({ id: 'max_base_layer_fee_explain' })}>
-                            {formatMessage({ id: 'max_base_layer_fee' })}
-                          </TooltipText>
-                        </StyledCol>
-                      </Row>
-                      <Row>
-                        <TransferDescriptionItem
-                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={transactionFee.amount.toString()} /> {'ETH'}</SelectableText>}
-                          subtitle={<NumericText value={transactionFee.usdValue.toString()} type="fiat" />}
-                        />
-                      </Row>
-                      <Row>
-                        <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
-                      </Row>
-                      <Row>
-                        <TransferDescriptionItem
-                          className="base-layer-eth-balance-before"
-                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
-                          subtitle={<NumericText value={baseLayerEthBalanceBefore.usdValue.toString()} type="fiat" />}
-                        />
-                      </Row>
-                      <Row>
-                        <StyledCol span={12}>
-                          {formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_after' })}
-                        </StyledCol>
-                      </Row>
-                      <Row>
-                        <TransferDescriptionItem
-                          className="base-layer-eth-balance-after"
-                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
-                          subtitle={<NumericText value={baseLayerEthBalanceAfter.usdValue.toString()} type="fiat" />}
-                        />
-                      </Row>
-                    </div>
-                    <SettlementWarning
-                      className="confirm-settlement"
-                      message={formatMessage({ id: 'settlement_period_ended' })}
-                      style={{ marginTop: '2rem' }}
-                      description={
-                        <div>
-                          <div>
-                            {formatMessage({ id: 'settlement_period_ended_notice' }, { symbol: assetToWithdraw.symbol, intended_stage_amount: totalSettleableStageAmount, tx_count: settleableChallenges.get('details').length })}
-                          </div>
-                          {
-                            TxStatus ?
-                              (
-                                <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} className="confirm-tx-status">
-                                  {TxStatus}
-                                </div>
-                              ) : (
-                                <StyledButton className="confirm-btn" onClick={() => this.settle(assetToWithdraw)} disabled={disableConfirmSettleButton}>
-                                  {formatMessage({ id: 'confirm_settlement' })}
-                                </StyledButton>
-                              )
-                          }
-                        </div>
-                      }
-                      type="warning"
-                      showIcon
-                    />
-                  </div>
-                ) : (
-                  requiredSettlementAmount.gt(0) ?
                   (
-                    <div className="start-settlement">
-                      <Row>
-                        <StyledCol span={12}>
-                          <TooltipText details={formatMessage({ id: 'max_base_layer_fee_explain' })}>
-                            {formatMessage({ id: 'max_base_layer_fee' })}
-                          </TooltipText>
-                        </StyledCol>
-                      </Row>
-                      <Row>
-                        <TransferDescriptionItem
-                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={transactionFee.amount.toString()} /> {'ETH'}</SelectableText>}
-                          subtitle={<NumericText value={transactionFee.usdValue.toString()} type="fiat" />}
-                        />
-                      </Row>
-                      <Row>
-                        <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
-                      </Row>
-                      <Row>
-                        <TransferDescriptionItem
-                          className="base-layer-eth-balance-before"
-                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
-                          subtitle={<NumericText value={baseLayerEthBalanceBefore.usdValue.toString()} type="fiat" />}
-                        />
-                      </Row>
-                      <Row>
-                        <StyledCol span={12}>
-                          {formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_after' })}
-                        </StyledCol>
-                      </Row>
-                      <Row>
-                        <TransferDescriptionItem
-                          className="base-layer-eth-balance-after"
-                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
-                          subtitle={<NumericText value={baseLayerEthBalanceAfter.usdValue.toString()} type="fiat" />}
-                        />
-                      </Row>
-                      <Row>
-                        <StyledCol span={12}>{formatMessage({ id: 'required_stage_amount' })}</StyledCol>
-                      </Row>
-                      <Row>
-                        <TransferDescriptionItem
-                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={requiredSettlementAmount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
-                          subtitle={<NumericText value={requiredSettlementAmount.times(assetToWithdrawUsdValue).toString()} type="fiat" />}
-                        />
-                      </Row>
-                      <Row>
-                        <StyledCol span={12}>{formatMessage({ id: 'nahmii_available' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
-                      </Row>
-                      <Row>
-                        <TransferDescriptionItem
-                          className="nahmii-balance-before-staging"
-                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={nahmiiBalanceBefore.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
-                          subtitle={<NumericText value={nahmiiBalanceBefore.usdValue.toString()} type="fiat" />}
-                        />
-                      </Row>
-                      <Row>
-                        <StyledCol span={12}>
-                          {formatMessage({ id: 'nahmii_available' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_after' })}
-                        </StyledCol>
-                      </Row>
-                      <Row>
-                        <TransferDescriptionItem
-                          className="nahmii-balance-after-staging"
-                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={nahmiiBalanceAfterStaging.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
-                          subtitle={<NumericText value={nahmiiBalanceAfterStaging.usdValue.toString()} type="fiat" />}
-                        />
-                      </Row>
-                      <Row>
-                        {
-                        TxStatus ?
-                          (
-                            <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} className="challenge-tx-status">
-                              {TxStatus}
+                    <div>
+                      <div>
+                        <Row>
+                          <StyledCol span={12}>
+                            <TooltipText details={formatMessage({ id: 'max_base_layer_fee_explain' })}>
+                              {formatMessage({ id: 'max_base_layer_fee' })}
+                            </TooltipText>
+                          </StyledCol>
+                        </Row>
+                        <Row>
+                          <TransferDescriptionItem
+                            main={<SelectableText><NumericText maxDecimalPlaces={18} value={transactionFee.amount.toString()} /> {'ETH'}</SelectableText>}
+                            subtitle={<NumericText value={transactionFee.usdValue.toString()} type="fiat" />}
+                          />
+                        </Row>
+                        <Row>
+                          <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
+                        </Row>
+                        <Row>
+                          <TransferDescriptionItem
+                            className="base-layer-eth-balance-before"
+                            main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
+                            subtitle={<NumericText value={baseLayerEthBalanceBefore.usdValue.toString()} type="fiat" />}
+                          />
+                        </Row>
+                        <Row>
+                          <StyledCol span={12}>
+                            {formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_after' })}
+                          </StyledCol>
+                        </Row>
+                        <Row>
+                          <TransferDescriptionItem
+                            className="base-layer-eth-balance-after"
+                            main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
+                            subtitle={<NumericText value={baseLayerEthBalanceAfter.usdValue.toString()} type="fiat" />}
+                          />
+                        </Row>
+                      </div>
+                      <SettlementWarning
+                        className="confirm-settlement"
+                        message={formatMessage({ id: 'settlement_period_ended' })}
+                        style={{ marginTop: '2rem' }}
+                        description={
+                          <div>
+                            <div>
+                              {formatMessage({ id: 'settlement_period_ended_notice' }, { symbol: assetToWithdraw.symbol, intended_stage_amount: totalSettleableStageAmount, tx_count: settleableChallenges.get('details').length })}
                             </div>
-                          ) : (
-                            <StyledButton className="challenge-btn" onClick={() => this.startChallenge(requiredSettlementAmount, assetToWithdraw)} disabled={disableSettleButton}>
-                              {formatMessage({ id: 'settle_balance' })}
-                            </StyledButton>
-                          )
-                      }
-                      </Row>
+                            {
+                              TxStatus ?
+                                (
+                                  <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} className="confirm-tx-status">
+                                    {TxStatus}
+                                  </div>
+                                ) : (
+                                  <StyledButton className="confirm-btn" onClick={() => this.settle(assetToWithdraw)} disabled={disableConfirmSettleButton}>
+                                    {formatMessage({ id: 'confirm_settlement' })}
+                                  </StyledButton>
+                                )
+                            }
+                          </div>
+                        }
+                        type="warning"
+                        showIcon
+                      />
                     </div>
                   ) : (
-                    <div className="withdraw-review">
-                      <Row>
-                        <StyledCol span={12}>
-                          <StyledText capitalize>{formatMessage({ id: 'withdraw' })}</StyledText>
-                        </StyledCol>
-                      </Row>
-                      <Row>
-                        <TransferDescriptionItem
-                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={amountToWithdraw.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
-                          subtitle={<NumericText value={usdValueToWithdraw.toString()} type="fiat" />}
-                        />
-                      </Row>
-                      <Row>
-                        <StyledCol span={12}>
-                          <TooltipText details={formatMessage({ id: 'max_base_layer_fee_explain' })}>
-                            {formatMessage({ id: 'max_base_layer_fee' })}
-                          </TooltipText>
-                        </StyledCol>
-                      </Row>
-                      <Row>
-                        <TransferDescriptionItem
-                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={transactionFee.amount.toString()} /> {'ETH'}</SelectableText>}
-                          subtitle={<NumericText value={transactionFee.usdValue.toString()} type="fiat" />}
-                        />
-                      </Row>
-                      <Row>
-                        <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
-                      </Row>
-                      <Row>
-                        <TransferDescriptionItem
-                          className="base-layer-eth-balance-before"
-                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
-                          subtitle={<NumericText value={baseLayerEthBalanceBefore.usdValue.toString()} type="fiat" />}
-                        />
-                      </Row>
-                      <Row>
-                        <StyledCol span={12}>
-                          {formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_after' })}
-                        </StyledCol>
-                      </Row>
-                      <Row>
-                        <TransferDescriptionItem
-                          className="base-layer-eth-balance-after"
-                          main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
-                          subtitle={<NumericText value={baseLayerEthBalanceAfter.usdValue.toString()} type="fiat" />}
-                        />
-                      </Row>
-                      {assetToWithdraw.symbol === 'ETH' &&
-                      <div>
-                        <Row>
-                          <StyledCol span={12}>{formatMessage({ id: 'nahmii_staged' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
-                        </Row>
-                        <Row>
-                          <TransferDescriptionItem
-                            className="staged-balance-before"
-                            main={<SelectableText><NumericText maxDecimalPlaces={18} value={nahmiiStagedBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
-                            subtitle={<NumericText value={nahmiiStagedBalanceBefore.usdValue.toString()} type="fiat" />}
-                          />
-                        </Row>
-                        <Row>
-                          <StyledCol span={12}>
-                            {formatMessage({ id: 'nahmii_staged' })} ETH {formatMessage({ id: 'balance_after' })}
-                          </StyledCol>
-                        </Row>
-                        <Row>
-                          <TransferDescriptionItem
-                            className="staged-balance-after"
-                            main={<SelectableText><NumericText maxDecimalPlaces={18} value={nahmiiStagedBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
-                            subtitle={<NumericText value={nahmiiStagedBalanceAfter.usdValue.toString()} type="fiat" />}
-                          />
-                        </Row>
-                      </div>
-                      }
-                      {assetToWithdraw.symbol !== 'ETH' &&
-                      <div>
-                        <Row>
-                          <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
-                        </Row>
-                        <Row>
-                          <TransferDescriptionItem
-                            className="base-layer-token-balance-before"
-                            main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerBalanceBefore.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
-                            subtitle={<NumericText value={baseLayerBalanceBefore.usdValue.toString()} type="fiat" />}
-                          />
-                        </Row>
-                        <Row>
-                          <StyledCol span={12}>
-                            {formatMessage({ id: 'base_layer' })} { assetToWithdraw.symbol } {formatMessage({ id: 'balance_after' })}
-                          </StyledCol>
-                        </Row>
-                        <Row>
-                          <TransferDescriptionItem
-                            className="base-layer-token-balance-after"
-                            main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerBalanceAfter.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
-                            subtitle={<NumericText value={baseLayerBalanceAfter.usdValue.toString()} type="fiat" />}
-                          />
-                        </Row>
-                        <Row>
-                          <StyledCol span={12}>{formatMessage({ id: 'nahmii_staged' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
-                        </Row>
-                        <Row>
-                          <TransferDescriptionItem
-                            className="staged-balance-before"
-                            main={<SelectableText><NumericText maxDecimalPlaces={18} value={nahmiiStagedBalanceBefore.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
-                            subtitle={<NumericText value={nahmiiStagedBalanceBefore.usdValue.toString()} type="fiat" />}
-                          />
-                        </Row>
-                        <Row>
-                          <StyledCol span={12}>
-                            {formatMessage({ id: 'nahmii_staged' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_after' })}
-                          </StyledCol>
-                        </Row>
-                        <Row>
-                          <TransferDescriptionItem
-                            className="staged-balance-after"
-                            main={<SelectableText><NumericText maxDecimalPlaces={18} value={nahmiiStagedBalanceAfter.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
-                            subtitle={<NumericText value={nahmiiStagedBalanceAfter.usdValue.toString()} type="fiat" />}
-                          />
-                        </Row>
-                      </div>
-                      }
-                      <Row>
-                        {
-                        TxStatus ?
-                          (
-                            <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} className="withdraw-status">
-                              {TxStatus}
-                            </div>
-                          ) : (
-                            <StyledButton
-                              type="primary"
-                              className="withdraw-btn"
-                              onClick={() => this.withdraw(amountToWithdraw, assetToWithdraw)}
-                              disabled={disableWithdrawButton}
-                            >
+                    requiredSettlementAmount.gt(0) ?
+                      (
+                        <div className="start-settlement">
+                          <Row>
+                            <StyledCol span={12}>
+                              <TooltipText details={formatMessage({ id: 'max_base_layer_fee_explain' })}>
+                                {formatMessage({ id: 'max_base_layer_fee' })}
+                              </TooltipText>
+                            </StyledCol>
+                          </Row>
+                          <Row>
+                            <TransferDescriptionItem
+                              main={<SelectableText><NumericText maxDecimalPlaces={18} value={transactionFee.amount.toString()} /> {'ETH'}</SelectableText>}
+                              subtitle={<NumericText value={transactionFee.usdValue.toString()} type="fiat" />}
+                            />
+                          </Row>
+                          <Row>
+                            <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
+                          </Row>
+                          <Row>
+                            <TransferDescriptionItem
+                              className="base-layer-eth-balance-before"
+                              main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
+                              subtitle={<NumericText value={baseLayerEthBalanceBefore.usdValue.toString()} type="fiat" />}
+                            />
+                          </Row>
+                          <Row>
+                            <StyledCol span={12}>
+                              {formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_after' })}
+                            </StyledCol>
+                          </Row>
+                          <Row>
+                            <TransferDescriptionItem
+                              className="base-layer-eth-balance-after"
+                              main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
+                              subtitle={<NumericText value={baseLayerEthBalanceAfter.usdValue.toString()} type="fiat" />}
+                            />
+                          </Row>
+                          <Row>
+                            <StyledCol span={12}>{formatMessage({ id: 'required_stage_amount' })}</StyledCol>
+                          </Row>
+                          <Row>
+                            <TransferDescriptionItem
+                              main={<SelectableText><NumericText maxDecimalPlaces={18} value={requiredSettlementAmount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
+                              subtitle={<NumericText value={requiredSettlementAmount.times(assetToWithdrawUsdValue).toString()} type="fiat" />}
+                            />
+                          </Row>
+                          <Row>
+                            <StyledCol span={12}>{formatMessage({ id: 'nahmii_available' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
+                          </Row>
+                          <Row>
+                            <TransferDescriptionItem
+                              className="nahmii-balance-before-staging"
+                              main={<SelectableText><NumericText maxDecimalPlaces={18} value={nahmiiBalanceBefore.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
+                              subtitle={<NumericText value={nahmiiBalanceBefore.usdValue.toString()} type="fiat" />}
+                            />
+                          </Row>
+                          <Row>
+                            <StyledCol span={12}>
+                              {formatMessage({ id: 'nahmii_available' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_after' })}
+                            </StyledCol>
+                          </Row>
+                          <Row>
+                            <TransferDescriptionItem
+                              className="nahmii-balance-after-staging"
+                              main={<SelectableText><NumericText maxDecimalPlaces={18} value={nahmiiBalanceAfterStaging.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
+                              subtitle={<NumericText value={nahmiiBalanceAfterStaging.usdValue.toString()} type="fiat" />}
+                            />
+                          </Row>
+                          <Row>
+                            {
+                              TxStatus ?
+                                (
+                                  <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} className="challenge-tx-status">
+                                    {TxStatus}
+                                  </div>
+                                ) : (
+                                  <StyledButton className="challenge-btn" onClick={() => this.startChallenge(requiredSettlementAmount, assetToWithdraw)} disabled={disableSettleButton}>
+                                    {formatMessage({ id: 'settle_balance' })}
+                                  </StyledButton>
+                                )
+                            }
+                          </Row>
+                        </div>
+                      ) : (
+                        <div className="withdraw-review">
+                          <Row>
+                            <StyledCol span={12}>
                               <StyledText capitalize>{formatMessage({ id: 'withdraw' })}</StyledText>
-                            </StyledButton>
-                            )
+                            </StyledCol>
+                          </Row>
+                          <Row>
+                            <TransferDescriptionItem
+                              main={<SelectableText><NumericText maxDecimalPlaces={18} value={amountToWithdraw.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
+                              subtitle={<NumericText value={usdValueToWithdraw.toString()} type="fiat" />}
+                            />
+                          </Row>
+                          <Row>
+                            <StyledCol span={12}>
+                              <TooltipText details={formatMessage({ id: 'max_base_layer_fee_explain' })}>
+                                {formatMessage({ id: 'max_base_layer_fee' })}
+                              </TooltipText>
+                            </StyledCol>
+                          </Row>
+                          <Row>
+                            <TransferDescriptionItem
+                              main={<SelectableText><NumericText maxDecimalPlaces={18} value={transactionFee.amount.toString()} /> {'ETH'}</SelectableText>}
+                              subtitle={<NumericText value={transactionFee.usdValue.toString()} type="fiat" />}
+                            />
+                          </Row>
+                          <Row>
+                            <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
+                          </Row>
+                          <Row>
+                            <TransferDescriptionItem
+                              className="base-layer-eth-balance-before"
+                              main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
+                              subtitle={<NumericText value={baseLayerEthBalanceBefore.usdValue.toString()} type="fiat" />}
+                            />
+                          </Row>
+                          <Row>
+                            <StyledCol span={12}>
+                              {formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_after' })}
+                            </StyledCol>
+                          </Row>
+                          <Row>
+                            <TransferDescriptionItem
+                              className="base-layer-eth-balance-after"
+                              main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
+                              subtitle={<NumericText value={baseLayerEthBalanceAfter.usdValue.toString()} type="fiat" />}
+                            />
+                          </Row>
+                          {assetToWithdraw.symbol === 'ETH' &&
+                          <div>
+                            <Row>
+                              <StyledCol span={12}>{formatMessage({ id: 'nahmii_staged' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
+                            </Row>
+                            <Row>
+                              <TransferDescriptionItem
+                                className="staged-balance-before"
+                                main={<SelectableText><NumericText maxDecimalPlaces={18} value={nahmiiStagedBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
+                                subtitle={<NumericText value={nahmiiStagedBalanceBefore.usdValue.toString()} type="fiat" />}
+                              />
+                            </Row>
+                            <Row>
+                              <StyledCol span={12}>
+                                {formatMessage({ id: 'nahmii_staged' })} ETH {formatMessage({ id: 'balance_after' })}
+                              </StyledCol>
+                            </Row>
+                            <Row>
+                              <TransferDescriptionItem
+                                className="staged-balance-after"
+                                main={<SelectableText><NumericText maxDecimalPlaces={18} value={nahmiiStagedBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
+                                subtitle={<NumericText value={nahmiiStagedBalanceAfter.usdValue.toString()} type="fiat" />}
+                              />
+                            </Row>
+                          </div>
                           }
-                      </Row>
-                    </div>
+                          {assetToWithdraw.symbol !== 'ETH' &&
+                          <div>
+                            <Row>
+                              <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
+                            </Row>
+                            <Row>
+                              <TransferDescriptionItem
+                                className="base-layer-token-balance-before"
+                                main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerBalanceBefore.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
+                                subtitle={<NumericText value={baseLayerBalanceBefore.usdValue.toString()} type="fiat" />}
+                              />
+                            </Row>
+                            <Row>
+                              <StyledCol span={12}>
+                                {formatMessage({ id: 'base_layer' })} { assetToWithdraw.symbol } {formatMessage({ id: 'balance_after' })}
+                              </StyledCol>
+                            </Row>
+                            <Row>
+                              <TransferDescriptionItem
+                                className="base-layer-token-balance-after"
+                                main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerBalanceAfter.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
+                                subtitle={<NumericText value={baseLayerBalanceAfter.usdValue.toString()} type="fiat" />}
+                              />
+                            </Row>
+                            <Row>
+                              <StyledCol span={12}>{formatMessage({ id: 'nahmii_staged' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
+                            </Row>
+                            <Row>
+                              <TransferDescriptionItem
+                                className="staged-balance-before"
+                                main={<SelectableText><NumericText maxDecimalPlaces={18} value={nahmiiStagedBalanceBefore.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
+                                subtitle={<NumericText value={nahmiiStagedBalanceBefore.usdValue.toString()} type="fiat" />}
+                              />
+                            </Row>
+                            <Row>
+                              <StyledCol span={12}>
+                                {formatMessage({ id: 'nahmii_staged' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_after' })}
+                              </StyledCol>
+                            </Row>
+                            <Row>
+                              <TransferDescriptionItem
+                                className="staged-balance-after"
+                                main={<SelectableText><NumericText maxDecimalPlaces={18} value={nahmiiStagedBalanceAfter.amount.toString()} /> {assetToWithdraw.symbol}</SelectableText>}
+                                subtitle={<NumericText value={nahmiiStagedBalanceAfter.usdValue.toString()} type="fiat" />}
+                              />
+                            </Row>
+                          </div>
+                          }
+                          <Row>
+                            {
+                              TxStatus ?
+                                (
+                                  <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} className="withdraw-status">
+                                    {TxStatus}
+                                  </div>
+                                ) : (
+                                  <StyledButton
+                                    type="primary"
+                                    className="withdraw-btn"
+                                    onClick={() => this.withdraw(amountToWithdraw, assetToWithdraw)}
+                                    disabled={disableWithdrawButton}
+                                  >
+                                    <StyledText capitalize>{formatMessage({ id: 'withdraw' })}</StyledText>
+                                  </StyledButton>
+                                )
+                            }
+                          </Row>
+                        </div>
+                      )
                   )
-                )
               }
               {
                 isHardwareWallet(currentWalletWithInfo.get('type')) &&

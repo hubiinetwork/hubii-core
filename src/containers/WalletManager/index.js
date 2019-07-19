@@ -155,8 +155,8 @@ export class WalletManager extends React.PureComponent {
           >
             <Icon type="plus" />
             {history.location.pathname === `${match.url}/overview`
-                ? formatMessage({ id: 'add_wallet' })
-                : formatMessage({ id: 'add_contact' })}
+              ? formatMessage({ id: 'add_wallet' })
+              : formatMessage({ id: 'add_contact' })}
           </StyledButton>
           <Modal
             footer={null}

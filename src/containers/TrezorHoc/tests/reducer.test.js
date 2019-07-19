@@ -29,15 +29,15 @@ describe('trezorHocReducer', () => {
 
   it('should handle TREZOR_CONFIRM_TX_ON_DEVICE action correctly', () => {
     const expected = state
-          .set('confTxOnDevice', true);
+      .set('confTxOnDevice', true);
     expect(trezorHocReducer(state, trezorConfirmTxOnDevice())).toEqual(expected);
   });
 
   it('should handle TREZOR_CONFIRM_TX_ON_DEVICE_DONE action correctly', () => {
     const testState = state
-        .set('confTxOnDevice', true);
+      .set('confTxOnDevice', true);
     const expected = state
-        .set('confTxOnDevice', false);
+      .set('confTxOnDevice', false);
     expect(trezorHocReducer(testState, trezorConfirmTxOnDeviceDone())).toEqual(expected);
   });
 });

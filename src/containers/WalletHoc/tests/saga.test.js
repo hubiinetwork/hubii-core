@@ -188,15 +188,15 @@ describe('createWalletFromMnemonic saga', () => {
       it('when private key is invalid', () => expectSaga(createWalletFromPrivateKey, { privateKeyMock: null, name, password: pwd })
         .put(notify('error', 'import_wallet_failed_error'))
         .put(createWalletFailed(new Error('invalid_param_error')))
-          .run({ silenceTimeout: true }));
+        .run({ silenceTimeout: true }));
       it('when address is not given', () => expectSaga(createWalletFromPrivateKey, { privateKeyMock, address: null, password: pwd })
         .put(notify('error', 'import_wallet_failed_error'))
         .put(createWalletFailed(new Error('invalid_param_error')))
-          .run({ silenceTimeout: true }));
+        .run({ silenceTimeout: true }));
       it('when password is not given', () => expectSaga(createWalletFromPrivateKey, { privateKeyMock, name, password: null })
         .put(notify('error', 'import_wallet_failed_error'))
         .put(createWalletFailed(new Error('invalid_param_error')))
-          .run({ silenceTimeout: true }));
+        .run({ silenceTimeout: true }));
     });
   });
 
@@ -221,14 +221,14 @@ describe('createWalletFromMnemonic saga', () => {
         return expectSaga(createWalletFromKeystore, { name, keystore: invalidEncrypted })
           .put(notify('error', 'import_keystore_failed_error'))
           .put(createWalletFailed(new Error('invalid_keystore_error')))
-            .run({ silenceTimeout: true });
+          .run({ silenceTimeout: true });
       });
       it('encrypted string is not a valid json string', () => {
         const invalidEncrypted = 'a';
         return expectSaga(createWalletFromKeystore, { name, keystore: invalidEncrypted })
           .put(notify('error', 'import_keystore_failed_error'))
           .put(createWalletFailed(new SyntaxError('Unexpected token a in JSON at position 0')))
-            .run({ silenceTimeout: true });
+          .run({ silenceTimeout: true });
       });
     });
   });
@@ -237,26 +237,26 @@ describe('createWalletFromMnemonic saga', () => {
     const address = addressMock;
 
     it('should dispatch saveWatchAddress when a watch address is valid', () => expectSaga(createWalletFromAddress, { name, address })
-        .put(saveWatchAddress(name, address))
-        .run({ silenceTimeout: true }));
+      .put(saveWatchAddress(name, address))
+      .run({ silenceTimeout: true }));
 
     describe('exceptions', () => {
       it('when name param is not provided', () => expectSaga(createWalletFromAddress, { address })
-          .put(notify('error', 'add_watch_address_error'))
-          .put(createWalletFailed(new Error('invalid_param_error')))
-            .run({ silenceTimeout: true }));
+        .put(notify('error', 'add_watch_address_error'))
+        .put(createWalletFailed(new Error('invalid_param_error')))
+        .run({ silenceTimeout: true }));
 
       it('when address param is not provided', () => expectSaga(createWalletFromAddress, { name })
-          .put(notify('error', 'add_watch_address_error'))
-          .put(createWalletFailed(new Error('invalid_param_error')))
-            .run({ silenceTimeout: true }));
+        .put(notify('error', 'add_watch_address_error'))
+        .put(createWalletFailed(new Error('invalid_param_error')))
+        .run({ silenceTimeout: true }));
 
       it('when address is in valid', () => {
         const invalidAddress = '0x1dkdkdkd';
         return expectSaga(createWalletFromAddress, { name, address: invalidAddress })
           .put(notify('error', 'add_watch_address_error'))
           .put(createWalletFailed(new Error('invalid_address')))
-            .run({ silenceTimeout: true });
+          .run({ silenceTimeout: true });
       });
     });
   });
@@ -391,17 +391,17 @@ describe('decryptWallet saga', () => {
   });
 
   it('should dispatch decryptWalletFailed and notify action if address is undefined', () => expectSaga(decryptWallet, { address: undefined, encryptedWallet, password })
-      .withState(storeMock)
-      .put(decryptWalletFailed(new Error('address_undefined_error')))
-      .run());
+    .withState(storeMock)
+    .put(decryptWalletFailed(new Error('address_undefined_error')))
+    .run());
 
   it('should dispatch the decryptWalletFailed and notify action if decryption fails', () => expectSaga(decryptWallet, { address, encryptedWallet, password: 'cats' })
-      .withState(storeMock)
-      .provide([
-        [matchers.call.fn(Wallet.fromEncryptedJson), new Error('invalid_password')],
-      ])
-      .put(decryptWalletFailed(new Error('invalid_password')))
-      .run());
+    .withState(storeMock)
+    .provide([
+      [matchers.call.fn(Wallet.fromEncryptedJson), new Error('invalid_password')],
+    ])
+    .put(decryptWalletFailed(new Error('invalid_password')))
+    .run());
 });
 
 it('sign transaction for eth payment', () => {
@@ -412,22 +412,22 @@ it('sign transaction for eth payment', () => {
   // update pending txn in store
   let called = 0;
   return expectSaga(walletHoc)
-      .provide({
-        call(effect, next) {
-          called += 1;
-          if (called === 1) {
-            return softwareSignedTransactionMock;
-          }
-          if (called === 2) {
-            return confirmedTransactionMock;
-          }
-          return next();
-        },
-      })
-      .withReducer(withReducer, fromJS(storeState))
-      .dispatch(transferAction(transferEthActionParamsMock))
-      .put(transferSuccess(softwareSignedTransactionMock, 'ETH'))// send signed transaction
-      .run({ silenceTimeout: true });
+    .provide({
+      call(effect, next) {
+        called += 1;
+        if (called === 1) {
+          return softwareSignedTransactionMock;
+        }
+        if (called === 2) {
+          return confirmedTransactionMock;
+        }
+        return next();
+      },
+    })
+    .withReducer(withReducer, fromJS(storeState))
+    .dispatch(transferAction(transferEthActionParamsMock))
+    .put(transferSuccess(softwareSignedTransactionMock, 'ETH'))// send signed transaction
+    .run({ silenceTimeout: true });
 });
 
 it('sign transaction for erc20 payment', () => {
@@ -480,22 +480,22 @@ it('sign transaction for erc20 payment', () => {
   };
   let called = 0;
   return expectSaga(walletHoc)
-      .provide({
-        call(effect, next) {
-          called += 1;
-          if (called === 1) {
-            return signedTransaction;
-          }
-          if (called === 2) {
-            return confirmedTransaction;
-          }
-          return next();
-        },
-      })
-      .withReducer(withReducer, fromJS(storeState))
-      .dispatch(transferAction(transferErc20ActionParamsMock))
-      .put(transferSuccess(signedTransaction, 'BOKKY'))// send signed transaction
-      .run({ silenceTimeout: true });
+    .provide({
+      call(effect, next) {
+        called += 1;
+        if (called === 1) {
+          return signedTransaction;
+        }
+        if (called === 2) {
+          return confirmedTransaction;
+        }
+        return next();
+      },
+    })
+    .withReducer(withReducer, fromJS(storeState))
+    .dispatch(transferAction(transferErc20ActionParamsMock))
+    .put(transferSuccess(signedTransaction, 'BOKKY'))// send signed transaction
+    .run({ silenceTimeout: true });
 });
 
 describe('payment transfer', () => {
@@ -529,28 +529,28 @@ describe('payment transfer', () => {
       });
       let called = 0;
       return expectSaga(walletHoc)
-          .provide({
-            call(effect, next) {
-              called += 1;
-              if (called === 1) {
-                return softwareSignedTransactionMock;
-              }
-              if (called === 2) {
-                return confirmedTransactionMock;
-              }
-              return next();
-            },
-          })
-          .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-          .dispatch(transferAction(transferEthActionParamsMock))
-          .put(transferSuccess(softwareSignedTransactionMock, 'ETH'))// send signed transaction
-          .run({ silenceTimeout: true });
+        .provide({
+          call(effect, next) {
+            called += 1;
+            if (called === 1) {
+              return softwareSignedTransactionMock;
+            }
+            if (called === 2) {
+              return confirmedTransactionMock;
+            }
+            return next();
+          },
+        })
+        .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+        .dispatch(transferAction(transferEthActionParamsMock))
+        .put(transferSuccess(softwareSignedTransactionMock, 'ETH'))// send signed transaction
+        .run({ silenceTimeout: true });
     });
     it('sign transaction for erc20 payment', () => {
-        // create txn hash
-        // should save pending txn hash in store and localstorage
-        // listen for confirmation
-        // update pending txn in store
+      // create txn hash
+      // should save pending txn hash in store and localstorage
+      // listen for confirmation
+      // update pending txn in store
       const storeState = {
         ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
@@ -616,22 +616,22 @@ describe('payment transfer', () => {
       };
       let called = 0;
       return expectSaga(walletHoc)
-          .provide({
-            call(effect, next) {
-              called += 1;
-              if (called === 1) {
-                return signedTransaction;
-              }
-              if (called === 2) {
-                return confirmedTransaction;
-              }
-              return next();
-            },
-          })
-          .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-          .dispatch(transferAction(params))
-          .put(transferSuccess(signedTransaction, 'BOKKY'))// send signed transaction
-          .run({ silenceTimeout: true });
+        .provide({
+          call(effect, next) {
+            called += 1;
+            if (called === 1) {
+              return signedTransaction;
+            }
+            if (called === 2) {
+              return confirmedTransaction;
+            }
+            return next();
+          },
+        })
+        .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+        .dispatch(transferAction(params))
+        .put(transferSuccess(signedTransaction, 'BOKKY'))// send signed transaction
+        .run({ silenceTimeout: true });
     });
     it('#generateContractTransaction should generate transaction object using etherjs contract', async () => {
       const nonce = 1;
@@ -694,25 +694,25 @@ describe('payment transfer', () => {
       };
       const sentTx = { value: 1, data: '0xa9059cbb000000000000000000000000994c3de8cc5bc781183205a3dd6e175be1e6f14a00000000000000000000000000000000000000000000000000005af3107a4000' };
       return expectSaga(transferERC20, params)
-          .provide({
-            call(effect, next) {
-              if (effect.fn === generateContractTransaction) {
-                return tx;
-              }
-              if (effect.fn === sendTransactionForHardwareWallet) {
-                expect(effect.args[0].toAddress).toEqual(tx.to);
-                expect(effect.args[0].amount).toEqual(tx.value);
-                return sentTx;
-              }
-              if (effect.fn.name === 'getTransactionConfirmation') {
-                return null;
-              }
-              return next();
-            },
-          })
-          .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-          .put.actionType(transferSuccess(sentTx).type)// send signed transaction
-          .run({ silenceTimeout: true });
+        .provide({
+          call(effect, next) {
+            if (effect.fn === generateContractTransaction) {
+              return tx;
+            }
+            if (effect.fn === sendTransactionForHardwareWallet) {
+              expect(effect.args[0].toAddress).toEqual(tx.to);
+              expect(effect.args[0].amount).toEqual(tx.value);
+              return sentTx;
+            }
+            if (effect.fn.name === 'getTransactionConfirmation') {
+              return null;
+            }
+            return next();
+          },
+        })
+        .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+        .put.actionType(transferSuccess(sentTx).type)// send signed transaction
+        .run({ silenceTimeout: true });
     });
   });
   describe('hardware wallet: ledger', () => {
@@ -751,30 +751,30 @@ describe('payment transfer', () => {
         amount: utils.parseEther(transferErc20ActionParamsMock.amount.toFixed()),
       };
       return expectSaga(sendTransactionForHardwareWallet, params)
-          .provide({
-            call(effect) {
-              if (effect.fn === tryCreateEthTransportActivity) {
-                return lnsSignedTxMock;
-              }
-              if (effect.args.includes('pending')) {
-                return nonce;
-              }
-              if (effect.args[0].startsWith('0xf8')) {
-                signedTxHex = effect.args[0];
-                return { hash: 'hash' };
-              }
-              if (effect.fn === getTransaction) {
-                return { value: 1 };
-              }
-              return {};
-            },
-          })
-          .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-          .not.put.actionType(LEDGER_ERROR)
-          .run({ silenceTimeout: true })
-          .then(() => {
-            expect(signedTxHex).toEqual(lnsExpectedSignedTxHex);
-          });
+        .provide({
+          call(effect) {
+            if (effect.fn === tryCreateEthTransportActivity) {
+              return lnsSignedTxMock;
+            }
+            if (effect.args.includes('pending')) {
+              return nonce;
+            }
+            if (effect.args[0].startsWith('0xf8')) {
+              signedTxHex = effect.args[0];
+              return { hash: 'hash' };
+            }
+            if (effect.fn === getTransaction) {
+              return { value: 1 };
+            }
+            return {};
+          },
+        })
+        .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+        .not.put.actionType(LEDGER_ERROR)
+        .run({ silenceTimeout: true })
+        .then(() => {
+          expect(signedTxHex).toEqual(lnsExpectedSignedTxHex);
+        });
     });
   });
   describe('hardware wallet: trezor', () => {
@@ -807,17 +807,17 @@ describe('payment transfer', () => {
         trezorHoc: trezorHocConnectedMock,
       });
       const nonce = 8;
-        // const rawTx = [
-        //   '0x08',
-        //   '0x7530',
-        //   '0x5208',
-        //   '0xbfdc0c8e54af5719872a2edef8e65c9f4a3eae88',
-        //   '0x2742',
-        //   '0x',
-        //   '0x03',
-        //   '0x',
-        //   '0x',
-        // ];
+      // const rawTx = [
+      //   '0x08',
+      //   '0x7530',
+      //   '0x5208',
+      //   '0xbfdc0c8e54af5719872a2edef8e65c9f4a3eae88',
+      //   '0x2742',
+      //   '0x',
+      //   '0x03',
+      //   '0x',
+      //   '0x',
+      // ];
       const signedTx = {
         r: '0f7bfadeca8f4a9c022db1ce73b255ca0d3e293367b47231f161f20b91966095',
         s: '7fb01cb8c9e2f7fdd385e213d653a24436bea63c572c6f8993e4880a66457bbf',
@@ -831,33 +831,33 @@ describe('payment transfer', () => {
         amount: utils.bigNumberify(transferErc20ActionParamsMock.amount.toFixed()),
       };
       return expectSaga(sendTransactionForHardwareWallet, params)
-          .provide({
-            call(effect) {
-              if (effect.fn === requestHardwareWalletAPI && effect.args[0] === 'getaddress') {
-                return { address };
-              }
-              if (effect.fn === requestHardwareWalletAPI && effect.args[0] === 'signtx') {
-                return signedTx;
-              }
-              if (effect.args.includes('pending')) {
-                return nonce;
-              }
-              if (effect.args[0].startsWith('0xf8')) {
-                signedTxHex = effect.args[0];
-                return { hash: 'hash' };
-              }
-              if (effect.fn === getTransaction) {
-                return { value: 1 };
-              }
-              return {};
-            },
-          })
-          .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-          .not.put.actionType(LEDGER_ERROR)
-          .run({ silenceTimeout: true })
-          .then(() => {
-            expect(signedTxHex).toEqual(expectedSignedTxHex);
-          });
+        .provide({
+          call(effect) {
+            if (effect.fn === requestHardwareWalletAPI && effect.args[0] === 'getaddress') {
+              return { address };
+            }
+            if (effect.fn === requestHardwareWalletAPI && effect.args[0] === 'signtx') {
+              return signedTx;
+            }
+            if (effect.args.includes('pending')) {
+              return nonce;
+            }
+            if (effect.args[0].startsWith('0xf8')) {
+              signedTxHex = effect.args[0];
+              return { hash: 'hash' };
+            }
+            if (effect.fn === getTransaction) {
+              return { value: 1 };
+            }
+            return {};
+          },
+        })
+        .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+        .not.put.actionType(LEDGER_ERROR)
+        .run({ silenceTimeout: true })
+        .then(() => {
+          expect(signedTxHex).toEqual(expectedSignedTxHex);
+        });
     });
   });
 });
@@ -876,30 +876,30 @@ describe('transfer', () => {
   const transaction = { hash: '' };
 
   it('should trigger SHOW_DECRYPT_WALLET_MODAL action when the wallet is not decrypted yet', () => expectSaga(transfer, { wallet: lockedWallet })
-        .put(showDecryptWalletModal(transferAction({ wallet: lockedWallet })))
-        .put(transferError(new Error('wallet_encrypted_error')))
-        .run());
+    .put(showDecryptWalletModal(transferAction({ wallet: lockedWallet })))
+    .put(transferError(new Error('wallet_encrypted_error')))
+    .run());
   xit('should trigger transferSuccess action', () => expectSaga(transfer, { wallet, token, toAddress, amount, gasPrice, gasLimit })
-        .provide({
-          call(effect) {
-            expect(effect.args[0]).toEqual(toAddress);
-            expect(effect.args[1]).toEqual(utils.parseEther(amount.toString()));
-            expect(effect.args[2]).toEqual({ gasPrice, gasLimit });
-            return transaction;
-          },
-        })
-        .put(transferSuccess(transaction))
-        .run());
+    .provide({
+      call(effect) {
+        expect(effect.args[0]).toEqual(toAddress);
+        expect(effect.args[1]).toEqual(utils.parseEther(amount.toString()));
+        expect(effect.args[2]).toEqual({ gasPrice, gasLimit });
+        return transaction;
+      },
+    })
+    .put(transferSuccess(transaction))
+    .run());
   xit('should trigger transferError action', () => {
     const error = new Error();
     return expectSaga(transfer, { wallet, token, toAddress, amount, gasPrice, gasLimit })
-        .provide({
-          call() {
-            throw error;
-          },
-        })
-        .put(transferError(error))
-        .run({ silenceTimeout: true });
+      .provide({
+        call() {
+          throw error;
+        },
+      })
+      .put(transferError(error))
+      .run({ silenceTimeout: true });
   });
 });
 
@@ -915,7 +915,7 @@ describe('#signPersonalMessage', () => {
     const wallet = decryptedSoftwareWallet1Mock.toJS();
 
     const { returnValue } = await expectSaga(signPersonalMessage, { wallet, message })
-        .run({ silenceTimeout: true });
+      .run({ silenceTimeout: true });
     expect(returnValue).toEqual(expandedSig);
   });
   it('should run the function relevant to a lns', async () => {
@@ -928,16 +928,16 @@ describe('#signPersonalMessage', () => {
       descriptor: 'IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/XHC@14/XHC@14000000/HS09@14900000/Nano S@14900000/Nano S@0/IOUSBHostHIDDevice@14900000,0',
     }));
     const { returnValue } = await expectSaga(signPersonalMessage, { wallet: lnsWalletMock.toJS(), message })
-        .provide({
-          call(effect) {
-            if (effect.fn === tryCreateEthTransportActivity) {
-              return ledgerExpandedSig;
-            }
-            return {};
-          },
-        })
-        .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), mockState)
-        .run({ silenceTimeout: true });
+      .provide({
+        call(effect) {
+          if (effect.fn === tryCreateEthTransportActivity) {
+            return ledgerExpandedSig;
+          }
+          return {};
+        },
+      })
+      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), mockState)
+      .run({ silenceTimeout: true });
     expect(returnValue).toEqual(expandedSig);
   });
 
@@ -958,48 +958,48 @@ describe('#signPersonalMessage', () => {
     }));
 
     const { returnValue } = await expectSaga(signPersonalMessage, { wallet: trezorWalletMock.toJS(), message })
-        .provide({
-          call(effect) {
-            if (effect.fn === requestHardwareWalletAPI && effect.args[0] === 'signpersonalmessage') {
-              return trezorSignedMessage;
-            }
-            if (effect.fn === requestHardwareWalletAPI && effect.args[0] === 'getaddress') {
-              return { address: expectedReturnAddress };
-            }
-            return {};
-          },
-        })
-        .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), mockState)
-        .run({ silenceTimeout: true });
+      .provide({
+        call(effect) {
+          if (effect.fn === requestHardwareWalletAPI && effect.args[0] === 'signpersonalmessage') {
+            return trezorSignedMessage;
+          }
+          if (effect.fn === requestHardwareWalletAPI && effect.args[0] === 'getaddress') {
+            return { address: expectedReturnAddress };
+          }
+          return {};
+        },
+      })
+      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), mockState)
+      .run({ silenceTimeout: true });
     expect(returnValue).toEqual(trezorExpandedSig);
   });
 });
 
 describe('tryDecryptHook saga', () => {
   it('should dispatch correct notify action', () => expectSaga(tryDecryptHook)
-      .put(notify('info', 'unlock_wallet_info'))
-      .run()
+    .put(notify('info', 'unlock_wallet_info'))
+    .run()
   );
 });
 
 describe('decryptSuccessHook saga', () => {
   it('should dispatch correct notify action', () => expectSaga(decryptSuccessHook)
-      .put(notify('success', 'unlock_wallet_success'))
-      .run()
+    .put(notify('success', 'unlock_wallet_success'))
+    .run()
   );
 });
 
 describe('decryptFailedHook saga', () => {
   it('should dispatch correct notify action', () => expectSaga(decryptFailedHook, { error: new Error('some msg') })
-      .put(notify('error', 'unlock_wallet_failed_error'))
-      .run()
+    .put(notify('error', 'unlock_wallet_failed_error'))
+    .run()
   );
 });
 
 describe('lockHook saga', () => {
   it('should dispatch correct notify action', () => expectSaga(lockHook)
-      .put(notify('success', 'wallet_locked'))
-      .run()
+    .put(notify('success', 'wallet_locked'))
+    .run()
   );
 });
 

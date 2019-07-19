@@ -35,21 +35,21 @@ describe('load block height', () => {
   });
   it('should correctly handle success scenario', () => {
     saga
-        .next() // eth provider
-        .next(height).put(loadBlockHeightSuccess(height))
-        .next() // delay
-        .next() // eth provider
-        .next(height).put(loadBlockHeightSuccess(height));
+      .next() // eth provider
+      .next(height).put(loadBlockHeightSuccess(height))
+      .next() // delay
+      .next() // eth provider
+      .next(height).put(loadBlockHeightSuccess(height));
   });
 
   it('should correctly handle err scenario', () => {
     const e = new Error('some err');
     saga
-        .next() // eth provider
-        .throw(e).put(loadBlockHeightError(e))
-        .next() // delay
-        .next() // eth provider
-        .next(height).put(loadBlockHeightSuccess(height));
+      .next() // eth provider
+      .throw(e).put(loadBlockHeightError(e))
+      .next() // delay
+      .next() // eth provider
+      .next(height).put(loadBlockHeightSuccess(height));
   });
 
   it('should correctly drop existing call and stop when cancelled', () => {
@@ -70,12 +70,12 @@ describe('eth operations orcentrator', () => {
       fork(loadGasStatistics),
     ];
     saga
-        .next() // network selector
-        .next(currentNetworkMock).all(allSagas)
-        .next([mockTask]).take(CHANGE_NETWORK)
-        .next().cancel(mockTask)
-        .next() // network selector
-        .next(currentNetworkMock).all(allSagas);
+      .next() // network selector
+      .next(currentNetworkMock).all(allSagas)
+      .next([mockTask]).take(CHANGE_NETWORK)
+      .next().cancel(mockTask)
+      .next() // network selector
+      .next(currentNetworkMock).all(allSagas);
   });
 });
 

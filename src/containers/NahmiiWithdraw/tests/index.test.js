@@ -106,7 +106,7 @@ describe('<NahmiiWithdraw />', () => {
             <NahmiiWithdraw
               {...props}
               ongoingChallenges={ongoingChallengesNone.set('details', [
-              { type: t, expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
+                { type: t, expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
               ])}
             />
           );
@@ -146,8 +146,8 @@ describe('<NahmiiWithdraw />', () => {
         <NahmiiWithdraw
           {...props}
           ongoingChallenges={ongoingChallengesNone.set('details', [
-          { type: 'payment-driip', expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
-          { type: 'null', expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
+            { type: 'payment-driip', expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
+            { type: 'null', expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
           ])}
           settleableChallenges={settleableChallengesNone.set('details', [
             { type: 'payment-driip', intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
@@ -163,8 +163,8 @@ describe('<NahmiiWithdraw />', () => {
         <NahmiiWithdraw
           {...props}
           ongoingChallenges={ongoingChallengesNone.set('details', [
-          { type: 'payment-driip', expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
-          { type: 'null', expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
+            { type: 'payment-driip', expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
+            { type: 'null', expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
           ])}
         />
       );
@@ -176,11 +176,11 @@ describe('<NahmiiWithdraw />', () => {
         <NahmiiWithdraw
           {...props}
           ongoingChallenges={ongoingChallengesNone.set('details', [
-          { type: 'null', expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
+            { type: 'null', expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
           ])}
           currentWalletWithInfo={walletsWithInfoMock
-          .get(0)
-          .setIn(['balances', 'nahmiiStaged', 'assets'], fromJS([{ balance: new BigNumber(3), symbol: 'ETH', currency: '0x0000000000000000000000000000000000000000' }]))
+            .get(0)
+            .setIn(['balances', 'nahmiiStaged', 'assets'], fromJS([{ balance: new BigNumber(3), symbol: 'ETH', currency: '0x0000000000000000000000000000000000000000' }]))
           }
         />
       );

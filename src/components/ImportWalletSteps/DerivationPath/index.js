@@ -90,7 +90,7 @@ class DerivationPath extends React.Component {
                     <SectionHeading>{path.subtitle}</SectionHeading>
                   </PathWrapper>
                 </RadioButtonWrapper>
-            ))}
+              ))}
               <RadioButtonWrapper
                 key={'Custom'}
               >
@@ -116,27 +116,27 @@ class DerivationPath extends React.Component {
           </div>
           {
             pathValid
-            ? <div>
-              <StyledHeading>
-                {formatMessage({ id: 'select_import_address' })}
-              </StyledHeading>
-              <Table
-                onRow={(record) => ({
-                  onClick: () => this.props.onSelectAddress(record.index),
-                })}
-                columns={columns}
-                dataSource={addresses}
-                size="small"
-                style={{ cursor: 'pointer' }}
-                pagination={{ onChange: this.props.onChangePage }}
+              ? <div>
+                <StyledHeading>
+                  {formatMessage({ id: 'select_import_address' })}
+                </StyledHeading>
+                <Table
+                  onRow={(record) => ({
+                    onClick: () => this.props.onSelectAddress(record.index),
+                  })}
+                  columns={columns}
+                  dataSource={addresses}
+                  size="small"
+                  style={{ cursor: 'pointer' }}
+                  pagination={{ onChange: this.props.onChangePage }}
+                />
+              </div>
+              : <Alert
+                message={formatMessage({ id: 'invalid_dpath' })}
+                type="info"
+                showIcon
+                style={{ margin: '2rem 0' }}
               />
-            </div>
-            : <Alert
-              message={formatMessage({ id: 'invalid_dpath' })}
-              type="info"
-              showIcon
-              style={{ margin: '2rem 0' }}
-            />
           }
         </FormDiv>
       </Form>

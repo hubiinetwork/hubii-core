@@ -62,7 +62,7 @@ export async function execWalletMethods(method, params) {
     if (method === 'getaddress') {
       const addressData = await session.ethereumGetAddress(
         parseHDPath(path)
-      , false);
+        , false);
       result = { address: addressData.message.address };
     }
     if (method === 'signtx') {

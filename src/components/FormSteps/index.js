@@ -17,7 +17,7 @@ const FormSteps = ({ steps, currentStep, beforeContent, afterContent }) => (
       </StepsCentered>
     </div>
   </Wrapper>
-  );
+);
 FormSteps.propTypes = {
   steps: PropTypes.array.isRequired,
   currentStep: PropTypes.number.isRequired,

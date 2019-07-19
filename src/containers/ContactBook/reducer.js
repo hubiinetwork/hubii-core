@@ -28,7 +28,7 @@ function contactsReducer(state = initialState, action) {
   switch (action.type) {
     case CREATE_CONTACT:
       return state
-      .update('contacts', (contacts) => contacts.push(fromJS(action.contactDetails)));
+        .update('contacts', (contacts) => contacts.push(fromJS(action.contactDetails)));
     case REMOVE_CONTACT:
       return state
         .set('contacts', fromJS(action.remainingContacts))

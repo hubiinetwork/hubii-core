@@ -24,9 +24,9 @@ function createWindow() {
     {
       label: 'Application',
       submenu: [
-          { label: `Version: ${version}`, enabled: false },
-          { type: 'separator' },
-          { label: 'Quit', accelerator: 'Command+Q', click() { app.quit(); } },
+        { label: `Version: ${version}`, enabled: false },
+        { type: 'separator' },
+        { label: 'Quit', accelerator: 'Command+Q', click() { app.quit(); } },
       ],
     },
     {
@@ -88,8 +88,8 @@ function createWindow() {
     } = require('electron-devtools-installer'); // eslint-disable-line global-require
     [REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS].forEach((extension) => {
       installExtension(extension)
-      .then()
-      .catch((err) => console.error(`An error occurred loading extension ${name}: `, err)); // eslint-disable-line no-console
+        .then()
+        .catch((err) => console.error(`An error occurred loading extension ${name}: `, err)); // eslint-disable-line no-console
     });
   }
   mainWindow.once('show', () => {

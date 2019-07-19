@@ -256,9 +256,9 @@ export class TransferForm extends React.PureComponent {
     }
     const txFeeUsdValue = txFeeAmt.times(
       prices.assets
-      .find((a) => a.currency === assetToSend.currency)
-      .usd
-      );
+        .find((a) => a.currency === assetToSend.currency)
+        .usd
+    );
     const transactionFee = {
       amount: txFeeAmt,
       usdValue: txFeeUsdValue,
@@ -295,8 +295,8 @@ export class TransferForm extends React.PureComponent {
     };
 
     const baseLayerEthBalanceAfterAmount = assetToSend.symbol === 'ETH'
-        ? baseLayerEthBalanceBefore.amount.minus(amountToSend).minus(transactionFee.amount)
-        : baseLayerEthBalanceBefore.amount.minus(transactionFee.amount);
+      ? baseLayerEthBalanceBefore.amount.minus(amountToSend).minus(transactionFee.amount)
+      : baseLayerEthBalanceBefore.amount.minus(transactionFee.amount);
     const baseLayerEthBalanceAfter = {
       amount: baseLayerEthBalanceAfterAmount,
       usdValue: baseLayerEthBalanceAfterAmount.times(ethUsdValue),
@@ -353,7 +353,7 @@ export class TransferForm extends React.PureComponent {
                     <Option value={currency.symbol} key={currency.symbol}>
                       {currency.symbol}
                     </Option>
-                ))}
+                  ))}
                 </Select>
               </FormItem>
               <FormItem
@@ -363,14 +363,14 @@ export class TransferForm extends React.PureComponent {
                   this.props.recipients.find((recipient) => isAddressMatch(recipient.address, address)) ?
                     <HelperText left={address} /> :
                     !isValidAddress(address) ?
-                    null :
-                    <StyledButton
-                      type="primary"
-                      onClick={this.showContactModal}
-                    >
-                      <Icon type="plus" />
-                      {formatMessage({ id: 'add_address_contacts_book' })}
-                    </StyledButton>
+                      null :
+                      <StyledButton
+                        type="primary"
+                        onClick={this.showContactModal}
+                      >
+                        <Icon type="plus" />
+                        {formatMessage({ id: 'add_address_contacts_book' })}
+                      </StyledButton>
                 }
               >
                 <ComboBoxSelect

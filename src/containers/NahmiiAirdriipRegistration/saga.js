@@ -37,7 +37,7 @@ export function* checkRegistrationStatus({ address }) {
     }
 
     const addressStatus = (yield select(makeSelectNahmiiAirdriipRegistration()))
-                            .getIn(['addressStatuses', address]);
+      .getIn(['addressStatuses', address]);
 
     if (addressStatus === 'registered') return;
 

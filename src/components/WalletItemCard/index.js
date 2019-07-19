@@ -188,7 +188,7 @@ export class WalletItemCard extends React.PureComponent {
               amount={trimDecimals(asset.balance, asset.currency, this.props.priceInfo.find((c) => isAddressMatch(c.currency, asset.currency)))}
             />
           </AssetWrapper>
-      ));
+        ));
     }
 
     let modal;

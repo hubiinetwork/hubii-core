@@ -11,7 +11,7 @@ const AssetAmountBubble = (props) => (
     />
     <StyledNumericText value={props.amount} />
   </Wrapper>
-  );
+);
 
 AssetAmountBubble.propTypes = {
   name: PropTypes.string.isRequired,

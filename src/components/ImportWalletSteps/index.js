@@ -56,7 +56,7 @@ class ImportWalletSteps extends React.Component {
               deviceType="lns"
               pathTemplate={'m/44\'/60\'/0\'/{index}'}
             />
-            ),
+          ),
         },
         {
           title: 'Last',
@@ -81,7 +81,7 @@ class ImportWalletSteps extends React.Component {
               deviceType="trezor"
               pathTemplate={'m/44\'/60\'/0\'/0/{index}'}
             />
-            ),
+          ),
         },
         {
           title: 'Last',

@@ -104,14 +104,14 @@ const makeSelectTransactionsWithInfo = () => createSelector(
 
           // get tx type
           const type = address.toLowerCase() === tx.get('sender').toLowerCase() ?
-                'sent' :
-                'received';
+            'sent' :
+            'received';
           txWithInfo = txWithInfo.set('type', type);
 
           // get counterpartyAddress
           const counterpartyAddress = type === 'sent' ?
-                tx.get('recipient') :
-                tx.get('sender');
+            tx.get('recipient') :
+            tx.get('sender');
           txWithInfo = txWithInfo.set('counterpartyAddress', counterpartyAddress);
 
           // get currency symbol for this tx

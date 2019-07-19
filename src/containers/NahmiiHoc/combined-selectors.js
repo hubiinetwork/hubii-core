@@ -160,8 +160,8 @@ const makeSelectWalletsWithInfo = () => createSelector(
       balanceTypes(baseLayerBalances, nahmiiBalances).forEach(({ label, key, balances }) => {
         // Have all information needed to construct walletWithInfo balance
         walletBalances = key
-            ? balances.getIn([wallet.get('address'), key])
-            : balances.get(wallet.get('address'));
+          ? balances.getIn([wallet.get('address'), key])
+          : balances.get(wallet.get('address'));
         if (requiredDataHasError(supportedAssets, prices, walletBalances)) {
           walletBalances = fromJS({ loading: false, error: true, assets: [], total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } });
         } else if (requiredDataLoading(supportedAssets, prices, walletBalances)) {
@@ -295,7 +295,7 @@ const makeSelectTotalBalances = () => createSelector(
         // Check address balance is available, and owned by the app user
         const addressBalances = key ? balances.getIn([address, key]) : balances.get(address);
         if (
-        !addressBalances ||
+          !addressBalances ||
         addressBalances.get('error') ||
         addressBalances.get('loading') ||
         !wallets.find((w) => w.get('address') === address)
@@ -344,19 +344,19 @@ const makeSelectTotalBalances = () => createSelector(
 
       const prevValue = totalBalances.getIn([label, 'assets', asset, 'value']) || fromJS({ usd: new BigNumber('0') });
       const nextValue = assetDetails
-          .get('value')
-          .reduce((acc, value, currency) => acc.set(currency, value.plus(acc.get(currency) || '0')), prevValue);
+        .get('value')
+        .reduce((acc, value, currency) => acc.set(currency, value.plus(acc.get(currency) || '0')), prevValue);
 
         // update total values
       const prevTotalValue = totalBalances.getIn([label, 'total']) || new BigNumber('0');
       const nextTotalValue = assetDetails
-          .get('value')
-          .reduce((acc, value, currency) => acc.set(currency, value.plus(acc.get(currency) || '0')), prevTotalValue);
+        .get('value')
+        .reduce((acc, value, currency) => acc.set(currency, value.plus(acc.get(currency) || '0')), prevTotalValue);
 
       totalBalances = totalBalances
-          .setIn([label, 'assets', asset, 'value'], nextValue)
-          .setIn([label, 'assets', asset, 'amount'], nextAmount)
-          .setIn([label, 'total'], nextTotalValue);
+        .setIn([label, 'assets', asset, 'value'], nextValue)
+        .setIn([label, 'assets', asset, 'amount'], nextAmount)
+        .setIn([label, 'total'], nextTotalValue);
     };
 
     totalBalances.forEach((balance, balanceType) => {

@@ -102,7 +102,7 @@ class Breakdown extends React.Component {
                         style={{ fill: 'white' }}
                         width={90}
                       />
-                  }
+                    }
                     innerRadius={90}
                     colorScale={colors}
                     data={chartData}
@@ -110,7 +110,7 @@ class Breakdown extends React.Component {
                       <VictoryContainer
                         responsive
                       />
-                  }
+                    }
                   />
                 </div>
                 <div>
@@ -127,7 +127,7 @@ class Breakdown extends React.Component {
                 </div>
               </div>
               )
-            }
+          }
         </Spring>
       </Wrapper>
     );

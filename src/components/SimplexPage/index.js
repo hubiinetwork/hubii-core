@@ -57,7 +57,7 @@ class SimplexPage extends React.PureComponent { // eslint-disable-line react/pre
       <ScrollableContentWrapper>
         <Wrapper>
           {
-          loading &&
+            loading &&
             <StyledSpin tip="Loading..." size="large" />
           }
           <webview

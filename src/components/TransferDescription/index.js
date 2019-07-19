@@ -66,10 +66,10 @@ class TransferDescription extends React.PureComponent {
           role="link"
           tabIndex={0}
           onClick={
-                    currentNetwork.provider._network.name === 'ropsten' ?
-                      () => shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletWithInfo.get('address')}`) :
-                      () => shell.openExternal(`https://etherscan.io/address/${currentWalletWithInfo.get('address')}`)
-                  }
+            currentNetwork.provider._network.name === 'ropsten' ?
+              () => shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletWithInfo.get('address')}`) :
+              () => shell.openExternal(`https://etherscan.io/address/${currentWalletWithInfo.get('address')}`)
+          }
         >
           {'Track progress on Etherscan'}
         </a>
@@ -189,7 +189,7 @@ class TransferDescription extends React.PureComponent {
             />
           </Row>
         </div>
-      }
+        }
         <Row>
           <StyledCol span={12}>{formatMessage({ id: 'total_value_before' })}</StyledCol>
         </Row>

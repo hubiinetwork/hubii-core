@@ -27,14 +27,14 @@ export const loadedEmptyBalanceState = fromJS({
 
 export const loadedErroredBalanceState = loadedEmptyBalanceState
   .setIn(
-  ['staged', 'error'],
-  'someerror'
+    ['staged', 'error'],
+    'someerror'
   );
 
 export const loadingBalanceState = loadedEmptyBalanceState
   .setIn(
-  ['staging', 'loading'],
-  true
+    ['staging', 'loading'],
+    true
   );
 
 export const loadedBalanceState = loadedEmptyBalanceState.setIn(

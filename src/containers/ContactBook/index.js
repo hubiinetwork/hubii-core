@@ -40,7 +40,7 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
   filterSearchText(data, type) {
     if (this.state[type]) {
       return data.filter((contact) =>
-                contact.name.toLowerCase().includes(this.state[type].toLowerCase())
+        contact.name.toLowerCase().includes(this.state[type].toLowerCase())
                 || contact.address.includes(this.state[type]));
     }
     return data;

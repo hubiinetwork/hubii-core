@@ -15,7 +15,6 @@ import {
 
 // eslint-disable-next-line react/prefer-stateless-function
 export class ImportModal extends React.Component {
-
   render() {
     const { intl, restoreContents } = this.props;
     const { formatMessage } = intl;
