@@ -82,7 +82,7 @@ class ComboBoxSelect extends React.PureComponent { // eslint-disable-line react/
   }
 
   handleFilterOption(input, option) {
-    return option.props.children.toLowerCase().indexOf(input.toLowerCase().trim()) >= 0 || isAddressMatch(option.props.value, input.trim());
+    return option.key.toLowerCase().indexOf(input.toLowerCase().trim()) >= 0 || isAddressMatch(option.props.value, input.trim());
   }
 
   render() {
@@ -103,6 +103,7 @@ class ComboBoxSelect extends React.PureComponent { // eslint-disable-line react/
       >
         {options.map((option) => (
           <Option key={option.name} value={option.value}>
+            {option.icon}
             {option.name}
           </Option>
         ))}

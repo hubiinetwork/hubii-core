@@ -188,7 +188,7 @@ ImportWalletPrivateKeyForm.propTypes = {
    * Function to be executed when next is clicked.
    */
   handleNext: PropTypes.func.isRequired,
-    /**
+  /**
    * ant design form
    */
   form: PropTypes.object,

@@ -16,7 +16,7 @@ const DashboardCard = ({ className, iconType, title, iconSrc }) => (
     {iconSrc ? <Icon src={iconSrc} /> : <AntdIcon type={iconType} />}
     <Title>{title}</Title>
   </Wrapper>
-  );
+);
 
 DashboardCard.propTypes = {
   /**

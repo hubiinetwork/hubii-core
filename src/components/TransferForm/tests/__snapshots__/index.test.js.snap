@@ -742,14 +742,41 @@ ShallowWrapper {
                                                   options={
                                                             Array [
                                                                       Object {
+                                                                        "icon": <BlockieAvatar
+                                                                          address="0x324234"
+                                                                          style={
+                                                                                        Object {
+                                                                                                      "marginRight": "0.5rem",
+                                                                                                      "width": "1.5rem",
+                                                                                                    }
+                                                                          }
+                                                            />,
                                                                         "name": "mike",
                                                                         "value": "0x324234",
                                                                       },
                                                                       Object {
+                                                                        "icon": <BlockieAvatar
+                                                                          address="04234"
+                                                                          style={
+                                                                                        Object {
+                                                                                                      "marginRight": "0.5rem",
+                                                                                                      "width": "1.5rem",
+                                                                                                    }
+                                                                          }
+                                                            />,
                                                                         "name": "john",
                                                                         "value": "04234",
                                                                       },
                                                                       Object {
+                                                                        "icon": <BlockieAvatar
+                                                                          address="0x344234"
+                                                                          style={
+                                                                                        Object {
+                                                                                                      "marginRight": "0.5rem",
+                                                                                                      "width": "1.5rem",
+                                                                                                    }
+                                                                          }
+                                                            />,
                                                                         "name": "ester",
                                                                         "value": "0x344234",
                                                                       },
@@ -1500,14 +1527,41 @@ ShallowWrapper {
                                                         options={
                                                                       Array [
                                                                                     Object {
+                                                                                      "icon": <BlockieAvatar
+                                                                                        address="0x324234"
+                                                                                        style={
+                                                                                                          Object {
+                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                            "width": "1.5rem",
+                                                                                                                          }
+                                                                                        }
+                                                                      />,
                                                                                       "name": "mike",
                                                                                       "value": "0x324234",
                                                                                     },
                                                                                     Object {
+                                                                                      "icon": <BlockieAvatar
+                                                                                        address="04234"
+                                                                                        style={
+                                                                                                          Object {
+                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                            "width": "1.5rem",
+                                                                                                                          }
+                                                                                        }
+                                                                      />,
                                                                                       "name": "john",
                                                                                       "value": "04234",
                                                                                     },
                                                                                     Object {
+                                                                                      "icon": <BlockieAvatar
+                                                                                        address="0x344234"
+                                                                                        style={
+                                                                                                          Object {
+                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                            "width": "1.5rem",
+                                                                                                                          }
+                                                                                        }
+                                                                      />,
                                                                                       "name": "ester",
                                                                                       "value": "0x344234",
                                                                                     },
@@ -2189,14 +2243,41 @@ ShallowWrapper {
                                                 options={
                                                                 Array [
                                                                                 Object {
+                                                                                  "icon": <BlockieAvatar
+                                                                                    address="0x324234"
+                                                                                    style={
+                                                                                                        Object {
+                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                            "width": "1.5rem",
+                                                                                                                          }
+                                                                                    }
+                                                                />,
                                                                                   "name": "mike",
                                                                                   "value": "0x324234",
                                                                                 },
                                                                                 Object {
+                                                                                  "icon": <BlockieAvatar
+                                                                                    address="04234"
+                                                                                    style={
+                                                                                                        Object {
+                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                            "width": "1.5rem",
+                                                                                                                          }
+                                                                                    }
+                                                                />,
                                                                                   "name": "john",
                                                                                   "value": "04234",
                                                                                 },
                                                                                 Object {
+                                                                                  "icon": <BlockieAvatar
+                                                                                    address="0x344234"
+                                                                                    style={
+                                                                                                        Object {
+                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                            "width": "1.5rem",
+                                                                                                                          }
+                                                                                    }
+                                                                />,
                                                                                   "name": "ester",
                                                                                   "value": "0x344234",
                                                                                 },
@@ -2347,14 +2428,41 @@ ShallowWrapper {
                                         options={
                                                             Array [
                                                                                 Object {
+                                                                                  "icon": <BlockieAvatar
+                                                                                    address="0x324234"
+                                                                                    style={
+                                                                                                            Object {
+                                                                                                                                    "marginRight": "0.5rem",
+                                                                                                                                    "width": "1.5rem",
+                                                                                                                                  }
+                                                                                    }
+                                                            />,
                                                                                   "name": "mike",
                                                                                   "value": "0x324234",
                                                                                 },
                                                                                 Object {
+                                                                                  "icon": <BlockieAvatar
+                                                                                    address="04234"
+                                                                                    style={
+                                                                                                            Object {
+                                                                                                                                    "marginRight": "0.5rem",
+                                                                                                                                    "width": "1.5rem",
+                                                                                                                                  }
+                                                                                    }
+                                                            />,
                                                                                   "name": "john",
                                                                                   "value": "04234",
                                                                                 },
                                                                                 Object {
+                                                                                  "icon": <BlockieAvatar
+                                                                                    address="0x344234"
+                                                                                    style={
+                                                                                                            Object {
+                                                                                                                                    "marginRight": "0.5rem",
+                                                                                                                                    "width": "1.5rem",
+                                                                                                                                  }
+                                                                                    }
+                                                            />,
                                                                                   "name": "ester",
                                                                                   "value": "0x344234",
                                                                                 },
@@ -2640,14 +2748,41 @@ ShallowWrapper {
                       options={
                                             Array [
                                                                   Object {
+                                                                    "icon": <BlockieAvatar
+                                                                      address="0x324234"
+                                                                      style={
+                                                                                                Object {
+                                                                                                                          "marginRight": "0.5rem",
+                                                                                                                          "width": "1.5rem",
+                                                                                                                        }
+                                                                      }
+                                            />,
                                                                     "name": "mike",
                                                                     "value": "0x324234",
                                                                   },
                                                                   Object {
+                                                                    "icon": <BlockieAvatar
+                                                                      address="04234"
+                                                                      style={
+                                                                                                Object {
+                                                                                                                          "marginRight": "0.5rem",
+                                                                                                                          "width": "1.5rem",
+                                                                                                                        }
+                                                                      }
+                                            />,
                                                                     "name": "john",
                                                                     "value": "04234",
                                                                   },
                                                                   Object {
+                                                                    "icon": <BlockieAvatar
+                                                                      address="0x344234"
+                                                                      style={
+                                                                                                Object {
+                                                                                                                          "marginRight": "0.5rem",
+                                                                                                                          "width": "1.5rem",
+                                                                                                                        }
+                                                                      }
+                                            />,
                                                                     "name": "ester",
                                                                     "value": "0x344234",
                                                                   },
@@ -2672,14 +2807,41 @@ ShallowWrapper {
                       "invalidAdditionMessage": "enter_valid_address_contact",
                       "options": Array [
                         Object {
+                          "icon": <BlockieAvatar
+                            address="0x324234"
+                            style={
+                                                        Object {
+                                                                                    "marginRight": "0.5rem",
+                                                                                    "width": "1.5rem",
+                                                                                  }
+                            }
+/>,
                           "name": "mike",
                           "value": "0x324234",
                         },
                         Object {
+                          "icon": <BlockieAvatar
+                            address="04234"
+                            style={
+                                                        Object {
+                                                                                    "marginRight": "0.5rem",
+                                                                                    "width": "1.5rem",
+                                                                                  }
+                            }
+/>,
                           "name": "john",
                           "value": "04234",
                         },
                         Object {
+                          "icon": <BlockieAvatar
+                            address="0x344234"
+                            style={
+                                                        Object {
+                                                                                    "marginRight": "0.5rem",
+                                                                                    "width": "1.5rem",
+                                                                                  }
+                            }
+/>,
                           "name": "ester",
                           "value": "0x344234",
                         },
@@ -3953,14 +4115,41 @@ ShallowWrapper {
                                                             options={
                                                                         Array [
                                                                                     Object {
+                                                                                      "icon": <BlockieAvatar
+                                                                                        address="0x324234"
+                                                                                        style={
+                                                                                                        Object {
+                                                                                                                        "marginRight": "0.5rem",
+                                                                                                                        "width": "1.5rem",
+                                                                                                                      }
+                                                                                        }
+                                                                        />,
                                                                                       "name": "mike",
                                                                                       "value": "0x324234",
                                                                                     },
                                                                                     Object {
+                                                                                      "icon": <BlockieAvatar
+                                                                                        address="04234"
+                                                                                        style={
+                                                                                                        Object {
+                                                                                                                        "marginRight": "0.5rem",
+                                                                                                                        "width": "1.5rem",
+                                                                                                                      }
+                                                                                        }
+                                                                        />,
                                                                                       "name": "john",
                                                                                       "value": "04234",
                                                                                     },
                                                                                     Object {
+                                                                                      "icon": <BlockieAvatar
+                                                                                        address="0x344234"
+                                                                                        style={
+                                                                                                        Object {
+                                                                                                                        "marginRight": "0.5rem",
+                                                                                                                        "width": "1.5rem",
+                                                                                                                      }
+                                                                                        }
+                                                                        />,
                                                                                       "name": "ester",
                                                                                       "value": "0x344234",
                                                                                     },
@@ -4711,14 +4900,41 @@ ShallowWrapper {
                                                                 options={
                                                                                 Array [
                                                                                                 Object {
+                                                                                                  "icon": <BlockieAvatar
+                                                                                                    address="0x324234"
+                                                                                                    style={
+                                                                                                                        Object {
+                                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                                            "width": "1.5rem",
+                                                                                                                                          }
+                                                                                                    }
+                                                                                />,
                                                                                                   "name": "mike",
                                                                                                   "value": "0x324234",
                                                                                                 },
                                                                                                 Object {
+                                                                                                  "icon": <BlockieAvatar
+                                                                                                    address="04234"
+                                                                                                    style={
+                                                                                                                        Object {
+                                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                                            "width": "1.5rem",
+                                                                                                                                          }
+                                                                                                    }
+                                                                                />,
                                                                                                   "name": "john",
                                                                                                   "value": "04234",
                                                                                                 },
                                                                                                 Object {
+                                                                                                  "icon": <BlockieAvatar
+                                                                                                    address="0x344234"
+                                                                                                    style={
+                                                                                                                        Object {
+                                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                                            "width": "1.5rem",
+                                                                                                                                          }
+                                                                                                    }
+                                                                                />,
                                                                                                   "name": "ester",
                                                                                                   "value": "0x344234",
                                                                                                 },
@@ -5400,14 +5616,41 @@ ShallowWrapper {
                                                       options={
                                                                         Array [
                                                                                           Object {
+                                                                                            "icon": <BlockieAvatar
+                                                                                              address="0x324234"
+                                                                                              style={
+                                                                                                                    Object {
+                                                                                                                                          "marginRight": "0.5rem",
+                                                                                                                                          "width": "1.5rem",
+                                                                                                                                        }
+                                                                                              }
+                                                                        />,
                                                                                             "name": "mike",
                                                                                             "value": "0x324234",
                                                                                           },
                                                                                           Object {
+                                                                                            "icon": <BlockieAvatar
+                                                                                              address="04234"
+                                                                                              style={
+                                                                                                                    Object {
+                                                                                                                                          "marginRight": "0.5rem",
+                                                                                                                                          "width": "1.5rem",
+                                                                                                                                        }
+                                                                                              }
+                                                                        />,
                                                                                             "name": "john",
                                                                                             "value": "04234",
                                                                                           },
                                                                                           Object {
+                                                                                            "icon": <BlockieAvatar
+                                                                                              address="0x344234"
+                                                                                              style={
+                                                                                                                    Object {
+                                                                                                                                          "marginRight": "0.5rem",
+                                                                                                                                          "width": "1.5rem",
+                                                                                                                                        }
+                                                                                              }
+                                                                        />,
                                                                                             "name": "ester",
                                                                                             "value": "0x344234",
                                                                                           },
@@ -5558,14 +5801,41 @@ ShallowWrapper {
                                             options={
                                                                   Array [
                                                                                         Object {
+                                                                                          "icon": <BlockieAvatar
+                                                                                            address="0x324234"
+                                                                                            style={
+                                                                                                                      Object {
+                                                                                                                                                "marginRight": "0.5rem",
+                                                                                                                                                "width": "1.5rem",
+                                                                                                                                              }
+                                                                                            }
+                                                                  />,
                                                                                           "name": "mike",
                                                                                           "value": "0x324234",
                                                                                         },
                                                                                         Object {
+                                                                                          "icon": <BlockieAvatar
+                                                                                            address="04234"
+                                                                                            style={
+                                                                                                                      Object {
+                                                                                                                                                "marginRight": "0.5rem",
+                                                                                                                                                "width": "1.5rem",
+                                                                                                                                              }
+                                                                                            }
+                                                                  />,
                                                                                           "name": "john",
                                                                                           "value": "04234",
                                                                                         },
                                                                                         Object {
+                                                                                          "icon": <BlockieAvatar
+                                                                                            address="0x344234"
+                                                                                            style={
+                                                                                                                      Object {
+                                                                                                                                                "marginRight": "0.5rem",
+                                                                                                                                                "width": "1.5rem",
+                                                                                                                                              }
+                                                                                            }
+                                                                  />,
                                                                                           "name": "ester",
                                                                                           "value": "0x344234",
                                                                                         },
@@ -5851,14 +6121,41 @@ ShallowWrapper {
                         options={
                                                 Array [
                                                                         Object {
+                                                                          "icon": <BlockieAvatar
+                                                                            address="0x324234"
+                                                                            style={
+                                                                                                        Object {
+                                                                                                                                    "marginRight": "0.5rem",
+                                                                                                                                    "width": "1.5rem",
+                                                                                                                                  }
+                                                                            }
+                                                />,
                                                                           "name": "mike",
                                                                           "value": "0x324234",
                                                                         },
                                                                         Object {
+                                                                          "icon": <BlockieAvatar
+                                                                            address="04234"
+                                                                            style={
+                                                                                                        Object {
+                                                                                                                                    "marginRight": "0.5rem",
+                                                                                                                                    "width": "1.5rem",
+                                                                                                                                  }
+                                                                            }
+                                                />,
                                                                           "name": "john",
                                                                           "value": "04234",
                                                                         },
                                                                         Object {
+                                                                          "icon": <BlockieAvatar
+                                                                            address="0x344234"
+                                                                            style={
+                                                                                                        Object {
+                                                                                                                                    "marginRight": "0.5rem",
+                                                                                                                                    "width": "1.5rem",
+                                                                                                                                  }
+                                                                            }
+                                                />,
                                                                           "name": "ester",
                                                                           "value": "0x344234",
                                                                         },
@@ -5883,14 +6180,41 @@ ShallowWrapper {
                         "invalidAdditionMessage": "enter_valid_address_contact",
                         "options": Array [
                           Object {
+                            "icon": <BlockieAvatar
+                              address="0x324234"
+                              style={
+                                                            Object {
+                                                                                          "marginRight": "0.5rem",
+                                                                                          "width": "1.5rem",
+                                                                                        }
+                              }
+/>,
                             "name": "mike",
                             "value": "0x324234",
                           },
                           Object {
+                            "icon": <BlockieAvatar
+                              address="04234"
+                              style={
+                                                            Object {
+                                                                                          "marginRight": "0.5rem",
+                                                                                          "width": "1.5rem",
+                                                                                        }
+                              }
+/>,
                             "name": "john",
                             "value": "04234",
                           },
                           Object {
+                            "icon": <BlockieAvatar
+                              address="0x344234"
+                              style={
+                                                            Object {
+                                                                                          "marginRight": "0.5rem",
+                                                                                          "width": "1.5rem",
+                                                                                        }
+                              }
+/>,
                             "name": "ester",
                             "value": "0x344234",
                           },
@@ -14553,14 +14877,41 @@ ShallowWrapper {
                                                   options={
                                                             Array [
                                                                       Object {
+                                                                        "icon": <BlockieAvatar
+                                                                          address="0x324234"
+                                                                          style={
+                                                                                        Object {
+                                                                                                      "marginRight": "0.5rem",
+                                                                                                      "width": "1.5rem",
+                                                                                                    }
+                                                                          }
+                                                            />,
                                                                         "name": "mike",
                                                                         "value": "0x324234",
                                                                       },
                                                                       Object {
+                                                                        "icon": <BlockieAvatar
+                                                                          address="04234"
+                                                                          style={
+                                                                                        Object {
+                                                                                                      "marginRight": "0.5rem",
+                                                                                                      "width": "1.5rem",
+                                                                                                    }
+                                                                          }
+                                                            />,
                                                                         "name": "john",
                                                                         "value": "04234",
                                                                       },
                                                                       Object {
+                                                                        "icon": <BlockieAvatar
+                                                                          address="0x344234"
+                                                                          style={
+                                                                                        Object {
+                                                                                                      "marginRight": "0.5rem",
+                                                                                                      "width": "1.5rem",
+                                                                                                    }
+                                                                          }
+                                                            />,
                                                                         "name": "ester",
                                                                         "value": "0x344234",
                                                                       },
@@ -15311,14 +15662,41 @@ ShallowWrapper {
                                                         options={
                                                                       Array [
                                                                                     Object {
+                                                                                      "icon": <BlockieAvatar
+                                                                                        address="0x324234"
+                                                                                        style={
+                                                                                                          Object {
+                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                            "width": "1.5rem",
+                                                                                                                          }
+                                                                                        }
+                                                                      />,
                                                                                       "name": "mike",
                                                                                       "value": "0x324234",
                                                                                     },
                                                                                     Object {
+                                                                                      "icon": <BlockieAvatar
+                                                                                        address="04234"
+                                                                                        style={
+                                                                                                          Object {
+                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                            "width": "1.5rem",
+                                                                                                                          }
+                                                                                        }
+                                                                      />,
                                                                                       "name": "john",
                                                                                       "value": "04234",
                                                                                     },
                                                                                     Object {
+                                                                                      "icon": <BlockieAvatar
+                                                                                        address="0x344234"
+                                                                                        style={
+                                                                                                          Object {
+                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                            "width": "1.5rem",
+                                                                                                                          }
+                                                                                        }
+                                                                      />,
                                                                                       "name": "ester",
                                                                                       "value": "0x344234",
                                                                                     },
@@ -16000,14 +16378,41 @@ ShallowWrapper {
                                                 options={
                                                                 Array [
                                                                                 Object {
+                                                                                  "icon": <BlockieAvatar
+                                                                                    address="0x324234"
+                                                                                    style={
+                                                                                                        Object {
+                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                            "width": "1.5rem",
+                                                                                                                          }
+                                                                                    }
+                                                                />,
                                                                                   "name": "mike",
                                                                                   "value": "0x324234",
                                                                                 },
                                                                                 Object {
+                                                                                  "icon": <BlockieAvatar
+                                                                                    address="04234"
+                                                                                    style={
+                                                                                                        Object {
+                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                            "width": "1.5rem",
+                                                                                                                          }
+                                                                                    }
+                                                                />,
                                                                                   "name": "john",
                                                                                   "value": "04234",
                                                                                 },
                                                                                 Object {
+                                                                                  "icon": <BlockieAvatar
+                                                                                    address="0x344234"
+                                                                                    style={
+                                                                                                        Object {
+                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                            "width": "1.5rem",
+                                                                                                                          }
+                                                                                    }
+                                                                />,
                                                                                   "name": "ester",
                                                                                   "value": "0x344234",
                                                                                 },
@@ -16158,14 +16563,41 @@ ShallowWrapper {
                                         options={
                                                             Array [
                                                                                 Object {
+                                                                                  "icon": <BlockieAvatar
+                                                                                    address="0x324234"
+                                                                                    style={
+                                                                                                            Object {
+                                                                                                                                    "marginRight": "0.5rem",
+                                                                                                                                    "width": "1.5rem",
+                                                                                                                                  }
+                                                                                    }
+                                                            />,
                                                                                   "name": "mike",
                                                                                   "value": "0x324234",
                                                                                 },
                                                                                 Object {
+                                                                                  "icon": <BlockieAvatar
+                                                                                    address="04234"
+                                                                                    style={
+                                                                                                            Object {
+                                                                                                                                    "marginRight": "0.5rem",
+                                                                                                                                    "width": "1.5rem",
+                                                                                                                                  }
+                                                                                    }
+                                                            />,
                                                                                   "name": "john",
                                                                                   "value": "04234",
                                                                                 },
                                                                                 Object {
+                                                                                  "icon": <BlockieAvatar
+                                                                                    address="0x344234"
+                                                                                    style={
+                                                                                                            Object {
+                                                                                                                                    "marginRight": "0.5rem",
+                                                                                                                                    "width": "1.5rem",
+                                                                                                                                  }
+                                                                                    }
+                                                            />,
                                                                                   "name": "ester",
                                                                                   "value": "0x344234",
                                                                                 },
@@ -16451,14 +16883,41 @@ ShallowWrapper {
                       options={
                                             Array [
                                                                   Object {
+                                                                    "icon": <BlockieAvatar
+                                                                      address="0x324234"
+                                                                      style={
+                                                                                                Object {
+                                                                                                                          "marginRight": "0.5rem",
+                                                                                                                          "width": "1.5rem",
+                                                                                                                        }
+                                                                      }
+                                            />,
                                                                     "name": "mike",
                                                                     "value": "0x324234",
                                                                   },
                                                                   Object {
+                                                                    "icon": <BlockieAvatar
+                                                                      address="04234"
+                                                                      style={
+                                                                                                Object {
+                                                                                                                          "marginRight": "0.5rem",
+                                                                                                                          "width": "1.5rem",
+                                                                                                                        }
+                                                                      }
+                                            />,
                                                                     "name": "john",
                                                                     "value": "04234",
                                                                   },
                                                                   Object {
+                                                                    "icon": <BlockieAvatar
+                                                                      address="0x344234"
+                                                                      style={
+                                                                                                Object {
+                                                                                                                          "marginRight": "0.5rem",
+                                                                                                                          "width": "1.5rem",
+                                                                                                                        }
+                                                                      }
+                                            />,
                                                                     "name": "ester",
                                                                     "value": "0x344234",
                                                                   },
@@ -16483,14 +16942,41 @@ ShallowWrapper {
                       "invalidAdditionMessage": "enter_valid_address_contact",
                       "options": Array [
                         Object {
+                          "icon": <BlockieAvatar
+                            address="0x324234"
+                            style={
+                                                        Object {
+                                                                                    "marginRight": "0.5rem",
+                                                                                    "width": "1.5rem",
+                                                                                  }
+                            }
+/>,
                           "name": "mike",
                           "value": "0x324234",
                         },
                         Object {
+                          "icon": <BlockieAvatar
+                            address="04234"
+                            style={
+                                                        Object {
+                                                                                    "marginRight": "0.5rem",
+                                                                                    "width": "1.5rem",
+                                                                                  }
+                            }
+/>,
                           "name": "john",
                           "value": "04234",
                         },
                         Object {
+                          "icon": <BlockieAvatar
+                            address="0x344234"
+                            style={
+                                                        Object {
+                                                                                    "marginRight": "0.5rem",
+                                                                                    "width": "1.5rem",
+                                                                                  }
+                            }
+/>,
                           "name": "ester",
                           "value": "0x344234",
                         },
@@ -17764,14 +18250,41 @@ ShallowWrapper {
                                                             options={
                                                                         Array [
                                                                                     Object {
+                                                                                      "icon": <BlockieAvatar
+                                                                                        address="0x324234"
+                                                                                        style={
+                                                                                                        Object {
+                                                                                                                        "marginRight": "0.5rem",
+                                                                                                                        "width": "1.5rem",
+                                                                                                                      }
+                                                                                        }
+                                                                        />,
                                                                                       "name": "mike",
                                                                                       "value": "0x324234",
                                                                                     },
                                                                                     Object {
+                                                                                      "icon": <BlockieAvatar
+                                                                                        address="04234"
+                                                                                        style={
+                                                                                                        Object {
+                                                                                                                        "marginRight": "0.5rem",
+                                                                                                                        "width": "1.5rem",
+                                                                                                                      }
+                                                                                        }
+                                                                        />,
                                                                                       "name": "john",
                                                                                       "value": "04234",
                                                                                     },
                                                                                     Object {
+                                                                                      "icon": <BlockieAvatar
+                                                                                        address="0x344234"
+                                                                                        style={
+                                                                                                        Object {
+                                                                                                                        "marginRight": "0.5rem",
+                                                                                                                        "width": "1.5rem",
+                                                                                                                      }
+                                                                                        }
+                                                                        />,
                                                                                       "name": "ester",
                                                                                       "value": "0x344234",
                                                                                     },
@@ -18522,14 +19035,41 @@ ShallowWrapper {
                                                                 options={
                                                                                 Array [
                                                                                                 Object {
+                                                                                                  "icon": <BlockieAvatar
+                                                                                                    address="0x324234"
+                                                                                                    style={
+                                                                                                                        Object {
+                                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                                            "width": "1.5rem",
+                                                                                                                                          }
+                                                                                                    }
+                                                                                />,
                                                                                                   "name": "mike",
                                                                                                   "value": "0x324234",
                                                                                                 },
                                                                                                 Object {
+                                                                                                  "icon": <BlockieAvatar
+                                                                                                    address="04234"
+                                                                                                    style={
+                                                                                                                        Object {
+                                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                                            "width": "1.5rem",
+                                                                                                                                          }
+                                                                                                    }
+                                                                                />,
                                                                                                   "name": "john",
                                                                                                   "value": "04234",
                                                                                                 },
                                                                                                 Object {
+                                                                                                  "icon": <BlockieAvatar
+                                                                                                    address="0x344234"
+                                                                                                    style={
+                                                                                                                        Object {
+                                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                                            "width": "1.5rem",
+                                                                                                                                          }
+                                                                                                    }
+                                                                                />,
                                                                                                   "name": "ester",
                                                                                                   "value": "0x344234",
                                                                                                 },
@@ -19211,14 +19751,41 @@ ShallowWrapper {
                                                       options={
                                                                         Array [
                                                                                           Object {
+                                                                                            "icon": <BlockieAvatar
+                                                                                              address="0x324234"
+                                                                                              style={
+                                                                                                                    Object {
+                                                                                                                                          "marginRight": "0.5rem",
+                                                                                                                                          "width": "1.5rem",
+                                                                                                                                        }
+                                                                                              }
+                                                                        />,
                                                                                             "name": "mike",
                                                                                             "value": "0x324234",
                                                                                           },
                                                                                           Object {
+                                                                                            "icon": <BlockieAvatar
+                                                                                              address="04234"
+                                                                                              style={
+                                                                                                                    Object {
+                                                                                                                                          "marginRight": "0.5rem",
+                                                                                                                                          "width": "1.5rem",
+                                                                                                                                        }
+                                                                                              }
+                                                                        />,
                                                                                             "name": "john",
                                                                                             "value": "04234",
                                                                                           },
                                                                                           Object {
+                                                                                            "icon": <BlockieAvatar
+                                                                                              address="0x344234"
+                                                                                              style={
+                                                                                                                    Object {
+                                                                                                                                          "marginRight": "0.5rem",
+                                                                                                                                          "width": "1.5rem",
+                                                                                                                                        }
+                                                                                              }
+                                                                        />,
                                                                                             "name": "ester",
                                                                                             "value": "0x344234",
                                                                                           },
@@ -19369,14 +19936,41 @@ ShallowWrapper {
                                             options={
                                                                   Array [
                                                                                         Object {
+                                                                                          "icon": <BlockieAvatar
+                                                                                            address="0x324234"
+                                                                                            style={
+                                                                                                                      Object {
+                                                                                                                                                "marginRight": "0.5rem",
+                                                                                                                                                "width": "1.5rem",
+                                                                                                                                              }
+                                                                                            }
+                                                                  />,
                                                                                           "name": "mike",
                                                                                           "value": "0x324234",
                                                                                         },
                                                                                         Object {
+                                                                                          "icon": <BlockieAvatar
+                                                                                            address="04234"
+                                                                                            style={
+                                                                                                                      Object {
+                                                                                                                                                "marginRight": "0.5rem",
+                                                                                                                                                "width": "1.5rem",
+                                                                                                                                              }
+                                                                                            }
+                                                                  />,
                                                                                           "name": "john",
                                                                                           "value": "04234",
                                                                                         },
                                                                                         Object {
+                                                                                          "icon": <BlockieAvatar
+                                                                                            address="0x344234"
+                                                                                            style={
+                                                                                                                      Object {
+                                                                                                                                                "marginRight": "0.5rem",
+                                                                                                                                                "width": "1.5rem",
+                                                                                                                                              }
+                                                                                            }
+                                                                  />,
                                                                                           "name": "ester",
                                                                                           "value": "0x344234",
                                                                                         },
@@ -19662,14 +20256,41 @@ ShallowWrapper {
                         options={
                                                 Array [
                                                                         Object {
+                                                                          "icon": <BlockieAvatar
+                                                                            address="0x324234"
+                                                                            style={
+                                                                                                        Object {
+                                                                                                                                    "marginRight": "0.5rem",
+                                                                                                                                    "width": "1.5rem",
+                                                                                                                                  }
+                                                                            }
+                                                />,
                                                                           "name": "mike",
                                                                           "value": "0x324234",
                                                                         },
                                                                         Object {
+                                                                          "icon": <BlockieAvatar
+                                                                            address="04234"
+                                                                            style={
+                                                                                                        Object {
+                                                                                                                                    "marginRight": "0.5rem",
+                                                                                                                                    "width": "1.5rem",
+                                                                                                                                  }
+                                                                            }
+                                                />,
                                                                           "name": "john",
                                                                           "value": "04234",
                                                                         },
                                                                         Object {
+                                                                          "icon": <BlockieAvatar
+                                                                            address="0x344234"
+                                                                            style={
+                                                                                                        Object {
+                                                                                                                                    "marginRight": "0.5rem",
+                                                                                                                                    "width": "1.5rem",
+                                                                                                                                  }
+                                                                            }
+                                                />,
                                                                           "name": "ester",
                                                                           "value": "0x344234",
                                                                         },
@@ -19694,14 +20315,41 @@ ShallowWrapper {
                         "invalidAdditionMessage": "enter_valid_address_contact",
                         "options": Array [
                           Object {
+                            "icon": <BlockieAvatar
+                              address="0x324234"
+                              style={
+                                                            Object {
+                                                                                          "marginRight": "0.5rem",
+                                                                                          "width": "1.5rem",
+                                                                                        }
+                              }
+/>,
                             "name": "mike",
                             "value": "0x324234",
                           },
                           Object {
+                            "icon": <BlockieAvatar
+                              address="04234"
+                              style={
+                                                            Object {
+                                                                                          "marginRight": "0.5rem",
+                                                                                          "width": "1.5rem",
+                                                                                        }
+                              }
+/>,
                             "name": "john",
                             "value": "04234",
                           },
                           Object {
+                            "icon": <BlockieAvatar
+                              address="0x344234"
+                              style={
+                                                            Object {
+                                                                                          "marginRight": "0.5rem",
+                                                                                          "width": "1.5rem",
+                                                                                        }
+                              }
+/>,
                             "name": "ester",
                             "value": "0x344234",
                           },
@@ -21597,14 +22245,41 @@ ShallowWrapper {
                                                   options={
                                                             Array [
                                                                       Object {
+                                                                        "icon": <BlockieAvatar
+                                                                          address="0x324234"
+                                                                          style={
+                                                                                        Object {
+                                                                                                      "marginRight": "0.5rem",
+                                                                                                      "width": "1.5rem",
+                                                                                                    }
+                                                                          }
+                                                            />,
                                                                         "name": "mike",
                                                                         "value": "0x324234",
                                                                       },
                                                                       Object {
+                                                                        "icon": <BlockieAvatar
+                                                                          address="04234"
+                                                                          style={
+                                                                                        Object {
+                                                                                                      "marginRight": "0.5rem",
+                                                                                                      "width": "1.5rem",
+                                                                                                    }
+                                                                          }
+                                                            />,
                                                                         "name": "john",
                                                                         "value": "04234",
                                                                       },
                                                                       Object {
+                                                                        "icon": <BlockieAvatar
+                                                                          address="0x344234"
+                                                                          style={
+                                                                                        Object {
+                                                                                                      "marginRight": "0.5rem",
+                                                                                                      "width": "1.5rem",
+                                                                                                    }
+                                                                          }
+                                                            />,
                                                                         "name": "ester",
                                                                         "value": "0x344234",
                                                                       },
@@ -22355,14 +23030,41 @@ ShallowWrapper {
                                                         options={
                                                                       Array [
                                                                                     Object {
+                                                                                      "icon": <BlockieAvatar
+                                                                                        address="0x324234"
+                                                                                        style={
+                                                                                                          Object {
+                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                            "width": "1.5rem",
+                                                                                                                          }
+                                                                                        }
+                                                                      />,
                                                                                       "name": "mike",
                                                                                       "value": "0x324234",
                                                                                     },
                                                                                     Object {
+                                                                                      "icon": <BlockieAvatar
+                                                                                        address="04234"
+                                                                                        style={
+                                                                                                          Object {
+                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                            "width": "1.5rem",
+                                                                                                                          }
+                                                                                        }
+                                                                      />,
                                                                                       "name": "john",
                                                                                       "value": "04234",
                                                                                     },
                                                                                     Object {
+                                                                                      "icon": <BlockieAvatar
+                                                                                        address="0x344234"
+                                                                                        style={
+                                                                                                          Object {
+                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                            "width": "1.5rem",
+                                                                                                                          }
+                                                                                        }
+                                                                      />,
                                                                                       "name": "ester",
                                                                                       "value": "0x344234",
                                                                                     },
@@ -23044,14 +23746,41 @@ ShallowWrapper {
                                                 options={
                                                                 Array [
                                                                                 Object {
+                                                                                  "icon": <BlockieAvatar
+                                                                                    address="0x324234"
+                                                                                    style={
+                                                                                                        Object {
+                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                            "width": "1.5rem",
+                                                                                                                          }
+                                                                                    }
+                                                                />,
                                                                                   "name": "mike",
                                                                                   "value": "0x324234",
                                                                                 },
                                                                                 Object {
+                                                                                  "icon": <BlockieAvatar
+                                                                                    address="04234"
+                                                                                    style={
+                                                                                                        Object {
+                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                            "width": "1.5rem",
+                                                                                                                          }
+                                                                                    }
+                                                                />,
                                                                                   "name": "john",
                                                                                   "value": "04234",
                                                                                 },
                                                                                 Object {
+                                                                                  "icon": <BlockieAvatar
+                                                                                    address="0x344234"
+                                                                                    style={
+                                                                                                        Object {
+                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                            "width": "1.5rem",
+                                                                                                                          }
+                                                                                    }
+                                                                />,
                                                                                   "name": "ester",
                                                                                   "value": "0x344234",
                                                                                 },
@@ -23202,14 +23931,41 @@ ShallowWrapper {
                                         options={
                                                             Array [
                                                                                 Object {
+                                                                                  "icon": <BlockieAvatar
+                                                                                    address="0x324234"
+                                                                                    style={
+                                                                                                            Object {
+                                                                                                                                    "marginRight": "0.5rem",
+                                                                                                                                    "width": "1.5rem",
+                                                                                                                                  }
+                                                                                    }
+                                                            />,
                                                                                   "name": "mike",
                                                                                   "value": "0x324234",
                                                                                 },
                                                                                 Object {
+                                                                                  "icon": <BlockieAvatar
+                                                                                    address="04234"
+                                                                                    style={
+                                                                                                            Object {
+                                                                                                                                    "marginRight": "0.5rem",
+                                                                                                                                    "width": "1.5rem",
+                                                                                                                                  }
+                                                                                    }
+                                                            />,
                                                                                   "name": "john",
                                                                                   "value": "04234",
                                                                                 },
                                                                                 Object {
+                                                                                  "icon": <BlockieAvatar
+                                                                                    address="0x344234"
+                                                                                    style={
+                                                                                                            Object {
+                                                                                                                                    "marginRight": "0.5rem",
+                                                                                                                                    "width": "1.5rem",
+                                                                                                                                  }
+                                                                                    }
+                                                            />,
                                                                                   "name": "ester",
                                                                                   "value": "0x344234",
                                                                                 },
@@ -23495,14 +24251,41 @@ ShallowWrapper {
                       options={
                                             Array [
                                                                   Object {
+                                                                    "icon": <BlockieAvatar
+                                                                      address="0x324234"
+                                                                      style={
+                                                                                                Object {
+                                                                                                                          "marginRight": "0.5rem",
+                                                                                                                          "width": "1.5rem",
+                                                                                                                        }
+                                                                      }
+                                            />,
                                                                     "name": "mike",
                                                                     "value": "0x324234",
                                                                   },
                                                                   Object {
+                                                                    "icon": <BlockieAvatar
+                                                                      address="04234"
+                                                                      style={
+                                                                                                Object {
+                                                                                                                          "marginRight": "0.5rem",
+                                                                                                                          "width": "1.5rem",
+                                                                                                                        }
+                                                                      }
+                                            />,
                                                                     "name": "john",
                                                                     "value": "04234",
                                                                   },
                                                                   Object {
+                                                                    "icon": <BlockieAvatar
+                                                                      address="0x344234"
+                                                                      style={
+                                                                                                Object {
+                                                                                                                          "marginRight": "0.5rem",
+                                                                                                                          "width": "1.5rem",
+                                                                                                                        }
+                                                                      }
+                                            />,
                                                                     "name": "ester",
                                                                     "value": "0x344234",
                                                                   },
@@ -23527,14 +24310,41 @@ ShallowWrapper {
                       "invalidAdditionMessage": "enter_valid_address_contact",
                       "options": Array [
                         Object {
+                          "icon": <BlockieAvatar
+                            address="0x324234"
+                            style={
+                                                        Object {
+                                                                                    "marginRight": "0.5rem",
+                                                                                    "width": "1.5rem",
+                                                                                  }
+                            }
+/>,
                           "name": "mike",
                           "value": "0x324234",
                         },
                         Object {
+                          "icon": <BlockieAvatar
+                            address="04234"
+                            style={
+                                                        Object {
+                                                                                    "marginRight": "0.5rem",
+                                                                                    "width": "1.5rem",
+                                                                                  }
+                            }
+/>,
                           "name": "john",
                           "value": "04234",
                         },
                         Object {
+                          "icon": <BlockieAvatar
+                            address="0x344234"
+                            style={
+                                                        Object {
+                                                                                    "marginRight": "0.5rem",
+                                                                                    "width": "1.5rem",
+                                                                                  }
+                            }
+/>,
                           "name": "ester",
                           "value": "0x344234",
                         },
@@ -24808,14 +25618,41 @@ ShallowWrapper {
                                                             options={
                                                                         Array [
                                                                                     Object {
+                                                                                      "icon": <BlockieAvatar
+                                                                                        address="0x324234"
+                                                                                        style={
+                                                                                                        Object {
+                                                                                                                        "marginRight": "0.5rem",
+                                                                                                                        "width": "1.5rem",
+                                                                                                                      }
+                                                                                        }
+                                                                        />,
                                                                                       "name": "mike",
                                                                                       "value": "0x324234",
                                                                                     },
                                                                                     Object {
+                                                                                      "icon": <BlockieAvatar
+                                                                                        address="04234"
+                                                                                        style={
+                                                                                                        Object {
+                                                                                                                        "marginRight": "0.5rem",
+                                                                                                                        "width": "1.5rem",
+                                                                                                                      }
+                                                                                        }
+                                                                        />,
                                                                                       "name": "john",
                                                                                       "value": "04234",
                                                                                     },
                                                                                     Object {
+                                                                                      "icon": <BlockieAvatar
+                                                                                        address="0x344234"
+                                                                                        style={
+                                                                                                        Object {
+                                                                                                                        "marginRight": "0.5rem",
+                                                                                                                        "width": "1.5rem",
+                                                                                                                      }
+                                                                                        }
+                                                                        />,
                                                                                       "name": "ester",
                                                                                       "value": "0x344234",
                                                                                     },
@@ -25566,14 +26403,41 @@ ShallowWrapper {
                                                                 options={
                                                                                 Array [
                                                                                                 Object {
+                                                                                                  "icon": <BlockieAvatar
+                                                                                                    address="0x324234"
+                                                                                                    style={
+                                                                                                                        Object {
+                                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                                            "width": "1.5rem",
+                                                                                                                                          }
+                                                                                                    }
+                                                                                />,
                                                                                                   "name": "mike",
                                                                                                   "value": "0x324234",
                                                                                                 },
                                                                                                 Object {
+                                                                                                  "icon": <BlockieAvatar
+                                                                                                    address="04234"
+                                                                                                    style={
+                                                                                                                        Object {
+                                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                                            "width": "1.5rem",
+                                                                                                                                          }
+                                                                                                    }
+                                                                                />,
                                                                                                   "name": "john",
                                                                                                   "value": "04234",
                                                                                                 },
                                                                                                 Object {
+                                                                                                  "icon": <BlockieAvatar
+                                                                                                    address="0x344234"
+                                                                                                    style={
+                                                                                                                        Object {
+                                                                                                                                            "marginRight": "0.5rem",
+                                                                                                                                            "width": "1.5rem",
+                                                                                                                                          }
+                                                                                                    }
+                                                                                />,
                                                                                                   "name": "ester",
                                                                                                   "value": "0x344234",
                                                                                                 },
@@ -26255,14 +27119,41 @@ ShallowWrapper {
                                                       options={
                                                                         Array [
                                                                                           Object {
+                                                                                            "icon": <BlockieAvatar
+                                                                                              address="0x324234"
+                                                                                              style={
+                                                                                                                    Object {
+                                                                                                                                          "marginRight": "0.5rem",
+                                                                                                                                          "width": "1.5rem",
+                                                                                                                                        }
+                                                                                              }
+                                                                        />,
                                                                                             "name": "mike",
                                                                                             "value": "0x324234",
                                                                                           },
                                                                                           Object {
+                                                                                            "icon": <BlockieAvatar
+                                                                                              address="04234"
+                                                                                              style={
+                                                                                                                    Object {
+                                                                                                                                          "marginRight": "0.5rem",
+                                                                                                                                          "width": "1.5rem",
+                                                                                                                                        }
+                                                                                              }
+                                                                        />,
                                                                                             "name": "john",
                                                                                             "value": "04234",
                                                                                           },
                                                                                           Object {
+                                                                                            "icon": <BlockieAvatar
+                                                                                              address="0x344234"
+                                                                                              style={
+                                                                                                                    Object {
+                                                                                                                                          "marginRight": "0.5rem",
+                                                                                                                                          "width": "1.5rem",
+                                                                                                                                        }
+                                                                                              }
+                                                                        />,
                                                                                             "name": "ester",
                                                                                             "value": "0x344234",
                                                                                           },
@@ -26413,14 +27304,41 @@ ShallowWrapper {
                                             options={
                                                                   Array [
                                                                                         Object {
+                                                                                          "icon": <BlockieAvatar
+                                                                                            address="0x324234"
+                                                                                            style={
+                                                                                                                      Object {
+                                                                                                                                                "marginRight": "0.5rem",
+                                                                                                                                                "width": "1.5rem",
+                                                                                                                                              }
+                                                                                            }
+                                                                  />,
                                                                                           "name": "mike",
                                                                                           "value": "0x324234",
                                                                                         },
                                                                                         Object {
+                                                                                          "icon": <BlockieAvatar
+                                                                                            address="04234"
+                                                                                            style={
+                                                                                                                      Object {
+                                                                                                                                                "marginRight": "0.5rem",
+                                                                                                                                                "width": "1.5rem",
+                                                                                                                                              }
+                                                                                            }
+                                                                  />,
                                                                                           "name": "john",
                                                                                           "value": "04234",
                                                                                         },
                                                                                         Object {
+                                                                                          "icon": <BlockieAvatar
+                                                                                            address="0x344234"
+                                                                                            style={
+                                                                                                                      Object {
+                                                                                                                                                "marginRight": "0.5rem",
+                                                                                                                                                "width": "1.5rem",
+                                                                                                                                              }
+                                                                                            }
+                                                                  />,
                                                                                           "name": "ester",
                                                                                           "value": "0x344234",
                                                                                         },
@@ -26706,14 +27624,41 @@ ShallowWrapper {
                         options={
                                                 Array [
                                                                         Object {
+                                                                          "icon": <BlockieAvatar
+                                                                            address="0x324234"
+                                                                            style={
+                                                                                                        Object {
+                                                                                                                                    "marginRight": "0.5rem",
+                                                                                                                                    "width": "1.5rem",
+                                                                                                                                  }
+                                                                            }
+                                                />,
                                                                           "name": "mike",
                                                                           "value": "0x324234",
                                                                         },
                                                                         Object {
+                                                                          "icon": <BlockieAvatar
+                                                                            address="04234"
+                                                                            style={
+                                                                                                        Object {
+                                                                                                                                    "marginRight": "0.5rem",
+                                                                                                                                    "width": "1.5rem",
+                                                                                                                                  }
+                                                                            }
+                                                />,
                                                                           "name": "john",
                                                                           "value": "04234",
                                                                         },
                                                                         Object {
+                                                                          "icon": <BlockieAvatar
+                                                                            address="0x344234"
+                                                                            style={
+                                                                                                        Object {
+                                                                                                                                    "marginRight": "0.5rem",
+                                                                                                                                    "width": "1.5rem",
+                                                                                                                                  }
+                                                                            }
+                                                />,
                                                                           "name": "ester",
                                                                           "value": "0x344234",
                                                                         },
@@ -26738,14 +27683,41 @@ ShallowWrapper {
                         "invalidAdditionMessage": "enter_valid_address_contact",
                         "options": Array [
                           Object {
+                            "icon": <BlockieAvatar
+                              address="0x324234"
+                              style={
+                                                            Object {
+                                                                                          "marginRight": "0.5rem",
+                                                                                          "width": "1.5rem",
+                                                                                        }
+                              }
+/>,
                             "name": "mike",
                             "value": "0x324234",
                           },
                           Object {
+                            "icon": <BlockieAvatar
+                              address="04234"
+                              style={
+                                                            Object {
+                                                                                          "marginRight": "0.5rem",
+                                                                                          "width": "1.5rem",
+                                                                                        }
+                              }
+/>,
                             "name": "john",
                             "value": "04234",
                           },
                           Object {
+                            "icon": <BlockieAvatar
+                              address="0x344234"
+                              style={
+                                                            Object {
+                                                                                          "marginRight": "0.5rem",
+                                                                                          "width": "1.5rem",
+                                                                                        }
+                              }
+/>,
                             "name": "ester",
                             "value": "0x344234",
                           },

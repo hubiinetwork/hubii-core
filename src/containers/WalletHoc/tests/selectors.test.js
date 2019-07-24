@@ -221,7 +221,7 @@ describe('makeSelectWalletsWithInfo', () => {
 
   it('should set a wallet\'s balance to error if it\'s balance state is errored', () => {
     const mockedState = storeMock
-        .setIn(['hubiiApiHoc', 'balances', currentWalletSoftwareMock.get('address'), 'error'], true);
+      .setIn(['hubiiApiHoc', 'balances', currentWalletSoftwareMock.get('address'), 'error'], true);
     const walletsWithInfo = walletsWithInfoSelector(mockedState);
     const wallet = walletsWithInfo.find((w) => w.get('address') === currentWalletSoftwareMock.get('address'));
     expect(wallet.getIn(['balances', 'baseLayer', 'error'])).toEqual(true);
@@ -237,28 +237,28 @@ describe('makeSelectTotalBalances', () => {
 
   it('should correctly return loading object if supportedAssets is loading', () => {
     const mockedState = storeMock
-        .setIn(['hubiiApiHoc', 'supportedAssets'], supportedAssetsLoadingMock);
+      .setIn(['hubiiApiHoc', 'supportedAssets'], supportedAssetsLoadingMock);
     const expected = totalBalancesLoadingMock;
     expect(totalBalancesSelector(mockedState)).toEqual(expected);
   });
 
   it('should correctly return loading object if prices is loading', () => {
     const mockedState = storeMock
-        .setIn(['hubiiApiHoc', 'prices'], pricesLoadingMock);
+      .setIn(['hubiiApiHoc', 'prices'], pricesLoadingMock);
     const expected = totalBalancesLoadingMock;
     expect(totalBalancesSelector(mockedState)).toEqual(expected);
   });
 
   it('should correctly return error object if supportedAssets is errored', () => {
     const mockedState = storeMock
-        .setIn(['hubiiApiHoc', 'supportedAssets'], supportedAssetsErrorMock);
+      .setIn(['hubiiApiHoc', 'supportedAssets'], supportedAssetsErrorMock);
     const expected = totalBalancesErrorMock;
     expect(totalBalancesSelector(mockedState)).toEqual(expected);
   });
 
   it('should correctly return error object if prices is errored', () => {
     const mockedState = storeMock
-        .setIn(['hubiiApiHoc', 'prices'], pricesErrorMock);
+      .setIn(['hubiiApiHoc', 'prices'], pricesErrorMock);
     const expected = totalBalancesErrorMock;
     expect(totalBalancesSelector(mockedState)).toEqual(expected);
   });

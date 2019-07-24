@@ -82,14 +82,14 @@ const makeSelectReceiptsWithInfo = () => createSelector(
 
         // get receipt type
         const type = address.toLowerCase() === receipt.getIn(['sender', 'wallet']).toLowerCase() ?
-                'sent' :
-                'received';
+          'sent' :
+          'received';
         receiptWithInfo = receiptWithInfo.set('type', type);
 
         // get counterpartyAddress
         const counterpartyAddress = type === 'sent' ?
-                receipt.getIn(['recipient', 'wallet']) :
-                receipt.getIn(['sender', 'wallet']);
+          receipt.getIn(['recipient', 'wallet']) :
+          receipt.getIn(['sender', 'wallet']);
         receiptWithInfo = receiptWithInfo.set('counterpartyAddress', counterpartyAddress);
 
         // get currency symbol for this receipt
@@ -365,8 +365,8 @@ const makeSelectNahmiiBalances = () => createDeepEqualSelector(
           } else {
             // asset in total, add to the balance
             assets = assets.setIn(
-            [assetIndex, 'balance'],
-            new BigNumber(assets.getIn([assetIndex, 'balance'])).plus(cur.getIn(['assets', j, 'balance'])).toString());
+              [assetIndex, 'balance'],
+              new BigNumber(assets.getIn([assetIndex, 'balance'])).plus(cur.getIn(['assets', j, 'balance'])).toString());
           }
         }
         return acc.set('assets', assets);

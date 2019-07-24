@@ -135,18 +135,18 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['settleableChallenges', action.address, action.currency, 'loading'], true);
     case START_CHALLENGE:
       return state
-          .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'requesting');
+        .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'requesting');
     case START_REQUIRED_CHALLENGES_SUCCESS:
       return state
-          .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'success');
+        .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'success');
     case START_CHALLENGE_SUCCESS:
       return state
-          .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'success')
-          .setIn(['ongoingChallenges', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt)
-          .deleteIn(['newSettlementPendingTxs', action.address, action.currency, action.txReceipt.transactionHash]);
+        .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'success')
+        .setIn(['ongoingChallenges', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt)
+        .deleteIn(['newSettlementPendingTxs', action.address, action.currency, action.txReceipt.transactionHash]);
     case START_CHALLENGE_ERROR:
       return state
-          .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'failed');
+        .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'failed');
     case LOAD_START_CHALLENGE_TX_REQUEST:
       return state
         .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'mining')

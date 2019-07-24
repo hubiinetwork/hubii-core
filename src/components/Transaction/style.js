@@ -86,8 +86,8 @@ export const CollapsableContent = styled.div`
 export const TypeIcon = styled(Icon)`
   &&& {
     color: ${(props) => props.type === 'upload' ?
-      props.theme.palette.warning :
-      props.theme.palette.info};
+    props.theme.palette.warning :
+    props.theme.palette.info};
     font-size: 1.43rem;
     display: flex;
     align-items: center;

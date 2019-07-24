@@ -12,6 +12,7 @@ import Text from 'components/ui/Text';
 import NumericText from 'components/ui/NumericText';
 import SelectableText from 'components/ui/SelectableText';
 import TooltipText from 'components/ui/TooltipText';
+import BlockieAvatar from 'components/BlockieAvatar';
 
 import {
   StyledCol,
@@ -65,10 +66,10 @@ class TransferDescription extends React.PureComponent {
           role="link"
           tabIndex={0}
           onClick={
-                    currentNetwork.provider._network.name === 'ropsten' ?
-                      () => shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletWithInfo.get('address')}`) :
-                      () => shell.openExternal(`https://etherscan.io/address/${currentWalletWithInfo.get('address')}`)
-                  }
+            currentNetwork.provider._network.name === 'ropsten' ?
+              () => shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletWithInfo.get('address')}`) :
+              () => shell.openExternal(`https://etherscan.io/address/${currentWalletWithInfo.get('address')}`)
+          }
         >
           {'Track progress on Etherscan'}
         </a>
@@ -123,7 +124,12 @@ class TransferDescription extends React.PureComponent {
           <StyledCol span={12}>{formatMessage({ id: 'to' })}</StyledCol>
         </Row>
         <Row>
-          <StyledRecipient span={12}>{recipient}</StyledRecipient>
+          <StyledRecipient span={12}>
+            {isValidAddress(recipient) && <BlockieAvatar style={{ width: '3rem', marginRight: '0.5rem', marginBottom: '0.3rem' }} address={recipient} />}
+            <span>
+              {recipient}
+            </span>
+          </StyledRecipient>
         </Row>
         <Row>
           <StyledCol span={12}>{this.getFeeText()}</StyledCol>
@@ -183,7 +189,7 @@ class TransferDescription extends React.PureComponent {
             />
           </Row>
         </div>
-      }
+        }
         <Row>
           <StyledCol span={12}>{formatMessage({ id: 'total_value_before' })}</StyledCol>
         </Row>

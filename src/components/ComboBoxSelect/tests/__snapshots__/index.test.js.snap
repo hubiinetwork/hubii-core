@@ -64,11 +64,17 @@ ShallowWrapper {
         "key": "mike",
         "nodeType": "class",
         "props": Object {
-          "children": "mike",
+          "children": Array [
+            undefined,
+            "mike",
+          ],
           "value": "0x324234",
         },
         "ref": null,
-        "rendered": "mike",
+        "rendered": Array [
+          undefined,
+          "mike",
+        ],
         "type": [Function],
       },
       Object {
@@ -76,11 +82,17 @@ ShallowWrapper {
         "key": "jake",
         "nodeType": "class",
         "props": Object {
-          "children": "jake",
+          "children": Array [
+            undefined,
+            "jake",
+          ],
           "value": "0x444224",
         },
         "ref": null,
-        "rendered": "jake",
+        "rendered": Array [
+          undefined,
+          "jake",
+        ],
         "type": [Function],
       },
     ],
@@ -122,11 +134,17 @@ ShallowWrapper {
           "key": "mike",
           "nodeType": "class",
           "props": Object {
-            "children": "mike",
+            "children": Array [
+              undefined,
+              "mike",
+            ],
             "value": "0x324234",
           },
           "ref": null,
-          "rendered": "mike",
+          "rendered": Array [
+            undefined,
+            "mike",
+          ],
           "type": [Function],
         },
         Object {
@@ -134,11 +152,17 @@ ShallowWrapper {
           "key": "jake",
           "nodeType": "class",
           "props": Object {
-            "children": "jake",
+            "children": Array [
+              undefined,
+              "jake",
+            ],
             "value": "0x444224",
           },
           "ref": null,
-          "rendered": "jake",
+          "rendered": Array [
+            undefined,
+            "jake",
+          ],
           "type": [Function],
         },
       ],

@@ -109,7 +109,7 @@ describe('WalletTransfer', () => {
         {...props}
         currentWalletWithInfo={walletsWithInfoMock.get(0).setIn(['balances', 'loading'], true)}
       />
-        );
+    );
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -119,7 +119,7 @@ describe('WalletTransfer', () => {
         {...props}
         currentWalletWithInfo={walletsWithInfoMock.get(0).setIn(['balances', 'error'], { message: 'some error' })}
       />
-        );
+    );
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -129,7 +129,7 @@ describe('WalletTransfer', () => {
         {...props}
         ledgerNanoSInfo={ledgerHocConfOnDeviceMock}
       />
-        );
+    );
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -139,7 +139,7 @@ describe('WalletTransfer', () => {
         {...props}
         trezorInfo={trezorHocConfOnDeviceMock}
       />
-        );
+    );
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -153,7 +153,7 @@ describe('WalletTransfer', () => {
           baseLayerTransfer={baseLayerTransferSpy}
           history={{ push: historySpy }}
         />
-        );
+      );
       const instance = wrapper.instance();
       const symbol = 'BOKKY';
       const toAddress = 'abcd';
@@ -182,7 +182,7 @@ describe('WalletTransfer', () => {
           nahmiiTransfer={nahmiiTransferSpy}
           history={{ push: historySpy }}
         />
-        );
+      );
       const instance = wrapper.instance();
       const symbol = 'BOKKY';
       const toAddress = 'abcd';
@@ -201,7 +201,7 @@ describe('WalletTransfer', () => {
           {...props}
           nahmiiTransfer={nahmiiTransferSpy}
         />
-        );
+      );
       const instance = wrapper.instance();
       const symbol = 'BOKKY';
       const toAddress = 'abcd';
@@ -224,7 +224,7 @@ describe('WalletTransfer', () => {
           {...props}
           currentWallet={fromJS({ transfering: false, transferError: false })}
         />
-        );
+      );
       const instance = wrapper.instance();
       instance.onCancel = cancelSpy;
       instance.componentDidUpdate({ currentWallet: fromJS({ transfering: true }) });
@@ -238,7 +238,7 @@ describe('WalletTransfer', () => {
           {...props}
           currentWallet={fromJS({ transfering: false, transferError: true })}
         />
-        );
+      );
       const instance = wrapper.instance();
       instance.onCancel = cancelSpy;
       instance.componentDidUpdate({ currentWallet: fromJS({ transfering: true }) });

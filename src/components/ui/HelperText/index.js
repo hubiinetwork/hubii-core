@@ -7,9 +7,9 @@ const HelperTextComponent = (props) => props.right ? (
     <Text style={props.leftStyle}>{props.left}</Text>
     <Text style={props.rightStyle}>{props.right}</Text>
   </HelperWrapper>
-  ) : (
-    <Text style={props.leftStyle}>{props.left}</Text>
-  );
+) : (
+  <Text style={props.leftStyle}>{props.left}</Text>
+);
 HelperTextComponent.propTypes = {
   left: PropTypes.string,
   right: PropTypes.string,

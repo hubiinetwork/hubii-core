@@ -35,36 +35,36 @@ describe('ledgerHocReducer', () => {
     const id = '893745sjdfhks83';
     const descriptor = 'desc';
     const expected = state
-        .set('status', 'connected')
-        .set('id', id)
-        .set('error', null)
-        .set('ethConnected', true);
+      .set('status', 'connected')
+      .set('id', id)
+      .set('error', null)
+      .set('ethConnected', true);
     expect(ledgerHocReducer(state, ledgerEthAppConnected(descriptor, id))).toEqual(expected);
   });
 
   it('should handle LEDGER_CONNECTED action correctly', () => {
     const descriptor = 'desc';
     const expected = state
-        .set('status', 'connected')
-        .set('connected', true)
-        .set('error', null)
-        .set('descriptor', descriptor);
+      .set('status', 'connected')
+      .set('connected', true)
+      .set('error', null)
+      .set('descriptor', descriptor);
     expect(ledgerHocReducer(state, ledgerConnected(descriptor))).toEqual(expected);
   });
 
   it('should handle LEDGER_ETH_DISCONNECTED action correctly', () => {
     const expected = state
-        .set('status', 'disconnected')
-        .set('ethConnected', false);
+      .set('status', 'disconnected')
+      .set('ethConnected', false);
     expect(ledgerHocReducer(state, ledgerEthAppDisconnected())).toEqual(expected);
   });
 
   it('should handle LEDGER_ERROR action correctly', () => {
     const error = 'oh no!';
     const expected = state
-        .set('status', 'disconnected')
-        .set('addresses', fromJS({}))
-        .set('error', `Unknown error occured: ${error}`);
+      .set('status', 'disconnected')
+      .set('addresses', fromJS({}))
+      .set('error', `Unknown error occured: ${error}`);
     expect(ledgerHocReducer(state, ledgerError(error))).toEqual(expected);
   });
 
@@ -72,21 +72,21 @@ describe('ledgerHocReducer', () => {
     const derivationPath = 'm01201010';
     const address = '0x0000000000000';
     const expected = state
-        .setIn(['addresses', derivationPath], address);
+      .setIn(['addresses', derivationPath], address);
     expect(ledgerHocReducer(state, fetchedLedgerAddress(derivationPath, address))).toEqual(expected);
   });
 
   it('should handle LEDGER_CONFIRM_TX_ON_DEVICE action correctly', () => {
     const expected = state
-        .set('confTxOnDevice', true);
+      .set('confTxOnDevice', true);
     expect(ledgerHocReducer(state, ledgerConfirmTxOnDevice())).toEqual(expected);
   });
 
   it('should handle LEDGER_CONFIRM_TX_ON_DEVICE_DONE action correctly', () => {
     const testState = state
-        .set('confTxOnDevice', true);
+      .set('confTxOnDevice', true);
     const expected = state
-        .set('confTxOnDevice', false);
+      .set('confTxOnDevice', false);
     expect(ledgerHocReducer(testState, ledgerConfirmTxOnDeviceDone())).toEqual(expected);
   });
 });

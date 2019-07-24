@@ -70,10 +70,10 @@ export const getBreakdown = (balances, supportedAssets) => {
   let formattedBalances = balances;
   if (balances.get('assets') && List.isList(balances.get('assets'))) {
     const assetsAsObj = balances
-        .get('assets')
-        .reduce((acc, asset) => acc
-          .set(asset.get('currency'), asset)
-          .setIn([asset.get('currency'), 'amount'], asset.getIn(['balance']))
+      .get('assets')
+      .reduce((acc, asset) => acc
+        .set(asset.get('currency'), asset)
+        .setIn([asset.get('currency'), 'amount'], asset.getIn(['balance']))
         , new Map());
     formattedBalances = balances.set('assets', assetsAsObj);
   }
@@ -146,10 +146,10 @@ export function deriveAddresses({ publicKey, chainCode, firstIndex, lastIndex })
  */
 export const isConnected = (wallet, ledgerInfo, trezorInfo) => {
   if
-    (
-      (wallet.type === 'lns' && ledgerInfo.id === wallet.deviceId) ||
+  (
+    (wallet.type === 'lns' && ledgerInfo.id === wallet.deviceId) ||
       (wallet.type === 'trezor' && trezorInfo.id === wallet.deviceId)
-    ) return true;
+  ) return true;
   return false;
 };
 

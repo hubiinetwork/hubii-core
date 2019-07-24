@@ -13,6 +13,7 @@ import { Modal } from 'components/ui/Modal';
 import NahmiiText from 'components/ui/NahmiiText';
 import Text from 'components/ui/Text';
 import ExportPrivateInfo from 'components/ExportPrivateInfo';
+import BlockieAvatar from 'components/BlockieAvatar';
 
 import WalletDetailPopoverContent from './WalletDetailPopoverContent';
 import AssetAmountBubble from './AssetAmountBubble';
@@ -187,7 +188,7 @@ export class WalletItemCard extends React.PureComponent {
               amount={trimDecimals(asset.balance, asset.currency, this.props.priceInfo.find((c) => isAddressMatch(c.currency, asset.currency)))}
             />
           </AssetWrapper>
-      ));
+        ));
     }
 
     let modal;
@@ -242,6 +243,7 @@ export class WalletItemCard extends React.PureComponent {
             }}
           >
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline' }}>
+              <BlockieAvatar style={{ width: '1rem', marginRight: '0.5rem' }} address={address} />
               <WalletName large>{name}</WalletName>
               <QuickAddressWrapper>
                 <QuickAddressText>

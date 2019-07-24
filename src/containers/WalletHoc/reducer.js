@@ -106,9 +106,9 @@ function walletHocReducer(state = initialState, action) {
         .set('progress', 0);
     case DECRYPT_WALLET_SUCCESS:
       return state
-          .setIn(['loading', 'decryptingWallet'], false)
-          .setIn(['inputs', 'password'], '')
-          .setIn(['wallets', findWalletIndex(state, action.address), 'decrypted'], fromJS(action.decryptedWallet));
+        .setIn(['loading', 'decryptingWallet'], false)
+        .setIn(['inputs', 'password'], '')
+        .setIn(['wallets', findWalletIndex(state, action.address), 'decrypted'], fromJS(action.decryptedWallet));
     case DECRYPT_WALLET_FAILURE:
       return state
         .setIn(['loading', 'decryptingWallet'], false)

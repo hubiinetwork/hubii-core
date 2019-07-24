@@ -77,7 +77,7 @@ const Transaction = (props) => {
                 </TransactionHistoryTime>
               </div>
             </HeaderWrapper>
-            }
+          }
         >
           <CollapsableContent>
             <div style={{ display: 'flex' }}>

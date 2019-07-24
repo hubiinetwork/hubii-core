@@ -107,12 +107,12 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
       prevProps.depositStatus.get('depositingEth')
       || prevProps.depositStatus.get('completingTokenDeposit');
     if
-      (
-        prevFinalDepositStage
+    (
+      prevFinalDepositStage
         && !depositStatus.get('depositingEth')
         && !depositStatus.get('completingTokenDeposit')
         && !depositStatus.get('error')
-        ) goWalletDetails(currentWalletWithInfo.get('address'));
+    ) goWalletDetails(currentWalletWithInfo.get('address'));
   }
 
   onFocusNumberInput(input) {
@@ -201,14 +201,14 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
           role="link"
           tabIndex={0}
           onClick={
-                    currentNetwork.provider._network.name === 'ropsten' ?
-                      () => shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletWithInfo.get('address')}`) :
-                      () => shell.openExternal(`https://etherscan.io/address/${currentWalletWithInfo.get('address')}`)
-                  }
+            currentNetwork.provider._network.name === 'ropsten' ?
+              () => shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletWithInfo.get('address')}`) :
+              () => shell.openExternal(`https://etherscan.io/address/${currentWalletWithInfo.get('address')}`)
+          }
         >
           {'Track progress on Etherscan'}
         </a>
-                  }
+        }
       </div>
     );
   }
@@ -303,8 +303,8 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
       usdValue: baseLayerEthBalance.balance.times(ethUsdValue),
     };
     const baseLayerEthBalanceAfterAmount = assetToDeposit.symbol === 'ETH'
-        ? baseLayerEthBalanceBefore.amount.minus(amountToDeposit).minus(transactionFee.amount)
-        : baseLayerEthBalanceBefore.amount.minus(transactionFee.amount);
+      ? baseLayerEthBalanceBefore.amount.minus(amountToDeposit).minus(transactionFee.amount)
+      : baseLayerEthBalanceBefore.amount.minus(transactionFee.amount);
     const baseLayerEthBalanceAfter = {
       amount: baseLayerEthBalanceAfterAmount,
       usdValue: baseLayerEthBalanceAfterAmount.times(ethUsdValue),
@@ -342,7 +342,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
                     <Option value={currency.symbol} key={currency.symbol}>
                       {currency.symbol}
                     </Option>
-                ))}
+                  ))}
                 </Select>
               </FormItem>
               <FormItem
@@ -437,7 +437,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
                 />
               </Row>
             </div>
-          }
+            }
             {assetToDeposit.symbol !== 'ETH' &&
             <div>
               <Row>
@@ -481,36 +481,36 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
                 />
               </Row>
             </div>
-          }
+            }
             <Row>
               {
-            isHardwareWallet(currentWalletWithInfo.get('type')) &&
-            <HWPromptWrapper>
-              <HWPromptContainer />
-            </HWPromptWrapper>
-            }
+                isHardwareWallet(currentWalletWithInfo.get('type')) &&
+                <HWPromptWrapper>
+                  <HWPromptContainer />
+                </HWPromptWrapper>
+              }
               {
-            TransferingStatus ?
-              (
-                <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }}>
-                  {TransferingStatus}
-                </div>
-              ) : (
-                <div style={{ width: 'fit-content' }}>
-                  <StyledButton
-                    type="primary"
-                    onClick={() => this.props.nahmiiDeposit(
-                  currentWalletWithInfo.get('address'),
-                  assetToDeposit.symbol,
-                  amountToDeposit,
-                  { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() }
-                  )}
-                    disabled={disableDepositButton}
-                  >
-                    <span>{formatMessage({ id: 'deposit' })}</span>
-                  </StyledButton>
-                </div>
-                )
+                TransferingStatus ?
+                  (
+                    <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }}>
+                      {TransferingStatus}
+                    </div>
+                  ) : (
+                    <div style={{ width: 'fit-content' }}>
+                      <StyledButton
+                        type="primary"
+                        onClick={() => this.props.nahmiiDeposit(
+                          currentWalletWithInfo.get('address'),
+                          assetToDeposit.symbol,
+                          amountToDeposit,
+                          { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() }
+                        )}
+                        disabled={disableDepositButton}
+                      >
+                        <span>{formatMessage({ id: 'deposit' })}</span>
+                      </StyledButton>
+                    </div>
+                  )
               }
             </Row>
             <SectionHeading style={{ marginTop: '2rem', maxWidth: '25rem' }}>

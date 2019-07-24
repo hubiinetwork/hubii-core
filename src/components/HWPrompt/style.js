@@ -52,7 +52,7 @@ export const Row = styled.div`
   border: ${(props) => props.active ?
     `0.3rem solid ${props.theme.palette.info};` :
     `0.15rem solid ${props.theme.palette.secondary5};`
-  };
+};
   color: ${(props) => props.active ? 'white' : `${props.theme.palette.secondary5}`};
   border-radius: ${(props) => {
     if (props.pos === 'top') {

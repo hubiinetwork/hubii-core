@@ -35,11 +35,11 @@ const generateList = (data, formatMessage, extraInfo = false) => {
           <Label>ETH</Label>
         </div>
         {
-        extraInfo &&
-        <Percentage>
-          <StyledNumericText value={0} type="fiat" />
-        </Percentage>
-      }
+          extraInfo &&
+          <Percentage>
+            <StyledNumericText value={0} type="fiat" />
+          </Percentage>
+        }
       </FlexItem>
     );
   }
@@ -58,14 +58,14 @@ const generateList = (data, formatMessage, extraInfo = false) => {
           </SelectableText>
         </div>
         {
-        extraInfo &&
-        <Percentage unknownPrice={unknownPrice}>
-          { unknownPrice
-            ? formatMessage({ id: 'missing_price' })
-            : <StyledText><StyledNumericText value={item.value} type="fiat" /> {`(${item.percentage > 1 ? item.percentage.toFixed(0) : '<1'}%)`}</StyledText>
-          }
-        </Percentage>
-      }
+          extraInfo &&
+          <Percentage unknownPrice={unknownPrice}>
+            { unknownPrice
+              ? formatMessage({ id: 'missing_price' })
+              : <StyledText><StyledNumericText value={item.value} type="fiat" /> {`(${item.percentage > 1 ? item.percentage.toFixed(0) : '<1'}%)`}</StyledText>
+            }
+          </Percentage>
+        }
       </FlexItem>
     );
   });
@@ -118,7 +118,7 @@ class BreakdownList extends React.PureComponent {
       </div>
     );
   }
-  }
+}
 
 BreakdownList.propTypes = {
   togglePie: PropTypes.func.isRequired,

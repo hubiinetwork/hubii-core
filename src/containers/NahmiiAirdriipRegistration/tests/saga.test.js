@@ -57,9 +57,9 @@ describe('register saga', () => {
           return next();
         },
       })
-    .put(notify('success', getIntl().formatMessage({ id: 'address_registered_successfully' })))
-    .put(registerationSuccess(address))
-    .run();
+      .put(notify('success', getIntl().formatMessage({ id: 'address_registered_successfully' })))
+      .put(registerationSuccess(address))
+      .run();
   });
   it('should correctly handle an encrypted wallet', () => {
     const testState = storeMock
@@ -89,9 +89,9 @@ describe('register saga', () => {
           return next();
         },
       })
-    .put(registerationFailed())
-    .put(notify('error', getIntl().formatMessage({ id: 'airdriip_registration_problem' }, { message: 'some error' })))
-    .run();
+      .put(registerationFailed())
+      .put(notify('error', getIntl().formatMessage({ id: 'airdriip_registration_problem' }, { message: 'some error' })))
+      .run();
   });
 });
 

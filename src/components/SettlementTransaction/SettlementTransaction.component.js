@@ -56,7 +56,7 @@ const SettlementTransaction = (props) => {
                 {moment(time).calendar()}
               </TransactionHistoryTime>
             </HeaderWrapper>
-            }
+          }
         >
           <CollapsableContent>
             <TransactionId

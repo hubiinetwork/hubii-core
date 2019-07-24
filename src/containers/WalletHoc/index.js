@@ -111,11 +111,11 @@ export function getComponentHOC(Component) {
                 delay={0}
                 size="large"
               />
-                ) : (
-                  <Button type="primary" onClick={this.decryptWallet} disabled={!this.state.password}>
-                    {formatMessage({ id: 'confirm' })}
-                  </Button>
-                )}
+            ) : (
+              <Button type="primary" onClick={this.decryptWallet} disabled={!this.state.password}>
+                {formatMessage({ id: 'confirm' })}
+              </Button>
+            )}
           </Modal>
         </div>
       );

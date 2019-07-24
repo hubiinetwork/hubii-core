@@ -103,7 +103,7 @@ export const CoreAddressRegistrationForm = (props) => (
           style={{ marginBottom: '2rem' }}
           passedDeviceType={props.currentWalletWithInfo.get('type')}
         />
-    )
+      )
     }
   </StartWrapper>
 );
@@ -158,10 +158,10 @@ export class NahmiiAirdriipRegistration extends React.Component {
     const disabledRegisterButton =
       store.get('stage') === 'register-imported'
       && (!walletReady(
-          currentWalletWithInfo.get('type'),
-          ledgerInfo,
-          trezorInfo
-        )
+        currentWalletWithInfo.get('type'),
+        ledgerInfo,
+        trezorInfo
+      )
       || addressRegistrationStatus !== 'unregistered');
 
     const registering = store.get('registering');
@@ -170,47 +170,47 @@ export class NahmiiAirdriipRegistration extends React.Component {
       <ScrollableContentWrapper>
         <OuterWrapper>
           {
-          currentNetwork.provider._network.chainId !== 1 &&
-          <NetworkWarning
-            message={intl.formatMessage({ id: 'warning' })}
-            description={intl.formatMessage({ id: 'airdriip_testnet_warning' })}
-            type="warning"
-            showIcon
-          />
-          }
-          {
-          store.get('stage') === 'start' && (
-            <Start changeStage={this.props.changeStage} intl={intl} />
-          )
-          }
-          {
-          store.get('stage') === 'register-imported' && (
-            <CoreAddressRegistrationForm
-              currentWalletWithInfo={currentWalletWithInfo}
-              showHwPrompt={addressRegistrationStatus === 'unregistered'}
-              wallets={wallets}
-              setCurrentWallet={this.props.setCurrentWallet}
-              intl={intl}
+            currentNetwork.provider._network.chainId !== 1 &&
+            <NetworkWarning
+              message={intl.formatMessage({ id: 'warning' })}
+              description={intl.formatMessage({ id: 'airdriip_testnet_warning' })}
+              type="warning"
+              showIcon
             />
-          )
           }
           {
-          store.get('stage') === 'register-arbitrary' && (
-            <ManualRegistrationForm
-              notify={this.props.notify}
-              changeManualAddress={this.props.changeManualAddress}
-              changeManualSignedMessage={this.props.changeManualSignedMessage}
-              addressValue={store.getIn(['manualRegistrationInfo', 'address'])}
-              signedMessageValue={store.getIn(['manualRegistrationInfo', 'signedMessage'])}
-              intl={intl}
-            />
-          )
+            store.get('stage') === 'start' && (
+              <Start changeStage={this.props.changeStage} intl={intl} />
+            )
           }
           {
-          registering && <Spin size="large" />
+            store.get('stage') === 'register-imported' && (
+              <CoreAddressRegistrationForm
+                currentWalletWithInfo={currentWalletWithInfo}
+                showHwPrompt={addressRegistrationStatus === 'unregistered'}
+                wallets={wallets}
+                setCurrentWallet={this.props.setCurrentWallet}
+                intl={intl}
+              />
+            )
           }
           {
-          store.get('stage') === 'register-imported'
+            store.get('stage') === 'register-arbitrary' && (
+              <ManualRegistrationForm
+                notify={this.props.notify}
+                changeManualAddress={this.props.changeManualAddress}
+                changeManualSignedMessage={this.props.changeManualSignedMessage}
+                addressValue={store.getIn(['manualRegistrationInfo', 'address'])}
+                signedMessageValue={store.getIn(['manualRegistrationInfo', 'signedMessage'])}
+                intl={intl}
+              />
+            )
+          }
+          {
+            registering && <Spin size="large" />
+          }
+          {
+            store.get('stage') === 'register-imported'
           && addressRegistrationStatus !== 'unregistered' &&
             <AirdriipRegistrationStatusUi
               loading={!addressRegistrationStatus}
@@ -219,24 +219,24 @@ export class NahmiiAirdriipRegistration extends React.Component {
             />
           }
           {
-          !registering && !(store.get('stage') === 'start') && (
-            <ButtonsWrapper>
-              <StyledButton
-                onClick={() => this.props.changeStage('start')}
-                style={{ width: '7rem' }}
-              >
-                {formatMessage({ id: 'back' })}
-              </StyledButton>
-              <StyledButton
-                type="primary"
-                disabled={disabledRegisterButton}
-                onClick={() => this.props.register()}
-              >
-                {formatMessage({ id: 'register_address' })}
-              </StyledButton>
-            </ButtonsWrapper>
-          )
-        }
+            !registering && !(store.get('stage') === 'start') && (
+              <ButtonsWrapper>
+                <StyledButton
+                  onClick={() => this.props.changeStage('start')}
+                  style={{ width: '7rem' }}
+                >
+                  {formatMessage({ id: 'back' })}
+                </StyledButton>
+                <StyledButton
+                  type="primary"
+                  disabled={disabledRegisterButton}
+                  onClick={() => this.props.register()}
+                >
+                  {formatMessage({ id: 'register_address' })}
+                </StyledButton>
+              </ButtonsWrapper>
+            )
+          }
         </OuterWrapper>
       </ScrollableContentWrapper>
     );

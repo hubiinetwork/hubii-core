@@ -38,43 +38,43 @@ export default class ExportPrivateInfo extends React.PureComponent {
         <TopHeading>Always keep a physical backup in a safe location</TopHeading>
         <TextPrimary>
           {
-              mnemonic ?
-                <div style={{ marginBottom: '0.5rem' }}>
-                  <SecondaryHeader large>
+            mnemonic ?
+              <div style={{ marginBottom: '0.5rem' }}>
+                <SecondaryHeader large>
                     Mnemonic
-                    <CopyToClipboard text={mnemonic} >
-                      <StyledIcon
-                        type="icon"
-                        icon="copy"
-                        size={'small'}
-                        onClick={() => this.showNotification('Mnemonic')}
-                        id="mnemonic"
-                      />
-                    </CopyToClipboard>
-                  </SecondaryHeader>
-                  <br />
-                  <Text>{mnemonic}</Text>
-                </div> :
-                <div style={{ marginBottom: '0.5rem' }}>
-                  <SecondaryHeader large>
+                  <CopyToClipboard text={mnemonic} >
+                    <StyledIcon
+                      type="icon"
+                      icon="copy"
+                      size={'small'}
+                      onClick={() => this.showNotification('Mnemonic')}
+                      id="mnemonic"
+                    />
+                  </CopyToClipboard>
+                </SecondaryHeader>
+                <br />
+                <Text>{mnemonic}</Text>
+              </div> :
+              <div style={{ marginBottom: '0.5rem' }}>
+                <SecondaryHeader large>
                     Mnemonic
-                  </SecondaryHeader>
-                  <br />
-                  <Text>This wallet was imported using a private key therefore does not have a mnemonic to export</Text>
-                </div>
-            }
+                </SecondaryHeader>
+                <br />
+                <Text>This wallet was imported using a private key therefore does not have a mnemonic to export</Text>
+              </div>
+          }
           <div>
             <SecondaryHeader large>
               Private key
-            <CopyToClipboard text={privateKey} >
-              <StyledIcon
-                type="icon"
-                icon="copy"
-                size={'small'}
-                onClick={() => this.showNotification('Private key')}
-                id="privateKey"
-              />
-            </CopyToClipboard>
+              <CopyToClipboard text={privateKey} >
+                <StyledIcon
+                  type="icon"
+                  icon="copy"
+                  size={'small'}
+                  onClick={() => this.showNotification('Private key')}
+                  id="privateKey"
+                />
+              </CopyToClipboard>
             </SecondaryHeader>
             <br />
             <Text>{privateKey}</Text>

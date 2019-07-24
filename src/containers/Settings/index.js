@@ -140,7 +140,7 @@ export class Settings extends React.PureComponent {
                   <Option value={localeKey} key={localeKey}>
                     {translationMessages[localeKey].language}
                   </Option>
-                  ))
+                ))
               }
             </Select>
           </SettingWrapper>
@@ -172,7 +172,7 @@ export class Settings extends React.PureComponent {
       </Wrapper>
     );
   }
-  }
+}
 
 Settings.propTypes = {
   onChangeNetwork: PropTypes.func.isRequired,

@@ -161,25 +161,25 @@ export class WalletsTransactions extends React.Component {
                 type={tx.type}
                 layer={tx.layer}
                 viewOnBlockExplorerClick={
-                currentNetwork.provider._network.name === 'ropsten' ?
-                  () => shell.openExternal(`https://ropsten.etherscan.io/tx/${tx.hash}`) :
-                  () => shell.openExternal(`https://etherscan.io/tx/${tx.hash}`)
-              }
+                  currentNetwork.provider._network.name === 'ropsten' ?
+                    () => shell.openExternal(`https://ropsten.etherscan.io/tx/${tx.hash}`) :
+                    () => shell.openExternal(`https://etherscan.io/tx/${tx.hash}`)
+                }
                 onChange={() => this.updateExpandedTx(`${tx.hash}${tx.type}${tx.symbol}${tx.id}`)}
                 defaultOpen={expandedTxs.has(`${tx.hash}${tx.type}${tx.symbol}${tx.id}`)}
               />
             ))
-          }
+            }
             {
-            filtered.size > 0 &&
-            <StyledPagination
-              total={filtered.size}
-              pageSize={10}
-              defaultCurrent={currentPage}
-              current={currentPage}
-              onChange={this.onPaginationChange}
-            />
-          }
+              filtered.size > 0 &&
+              <StyledPagination
+                total={filtered.size}
+                pageSize={10}
+                defaultCurrent={currentPage}
+                current={currentPage}
+                onChange={this.onPaginationChange}
+              />
+            }
             <Alert
               message={formatMessage({ id: 'where_my_transaction' })}
               description={
@@ -193,10 +193,10 @@ export class WalletsTransactions extends React.Component {
                     role="link"
                     tabIndex={0}
                     onClick={
-                    currentNetwork.provider._network.name === 'ropsten' ?
-                      () => shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletWithInfo.get('address')}`) :
-                      () => shell.openExternal(`https://etherscan.io/address/${currentWalletWithInfo.get('address')}`)
-                  }
+                      currentNetwork.provider._network.name === 'ropsten' ?
+                        () => shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletWithInfo.get('address')}`) :
+                        () => shell.openExternal(`https://etherscan.io/address/${currentWalletWithInfo.get('address')}`)
+                    }
                   >{formatMessage({ id: 'view_them_etherscan' })}</a>
                   <span>.</span>
                 </div>

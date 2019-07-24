@@ -54,9 +54,9 @@ const lnsPrompt = (ledgerInfo, { formatMessage }) => {
   // check if device is connected
   if (ledgerInfo.get('ethConnected')) {
     return singleRowMsg(
-        formatMessage({ id: 'hw_connected' }),
-        'check'
-      );
+      formatMessage({ id: 'hw_connected' }),
+      'check'
+    );
   }
 
   // check the error
@@ -84,8 +84,8 @@ const lnsPrompt = (ledgerInfo, { formatMessage }) => {
     stage = 'openApp';
   } else {
     return singleRowMsg(
-        formatMessage({ id: 'hw_connected' }),
-        'check'
+      formatMessage({ id: 'hw_connected' }),
+      'check'
     );
   }
   return (
@@ -122,24 +122,24 @@ const trezorPrompt = (trezorInfo, { formatMessage }) => {
   const error = trezorInfo.get('error');
   if (error && !error.includes('trezor_not_connected_error')) {
     return singleRowMsg(
-        formatMessage({ id: 'hw_unknown_error' }),
-        'exclamation-circle-o',
-        'orange'
-      );
+      formatMessage({ id: 'hw_unknown_error' }),
+      'exclamation-circle-o',
+      'orange'
+    );
   }
 
-    // device connection is good
+  // device connection is good
   if (trezorInfo.get('status') === 'connected') {
     return singleRowMsg(
-        formatMessage({ id: 'hw_connected' }),
-        'check'
-      );
+      formatMessage({ id: 'hw_connected' }),
+      'check'
+    );
   }
 
-    // trezor needs to be connected
+  // trezor needs to be connected
   return singleRowMsg(
-      formatMessage({ id: 'trezor_connect_unlock' })
-    );
+    formatMessage({ id: 'trezor_connect_unlock' })
+  );
 };
 
 class HWPrompt extends React.Component { // eslint-disable-line react/prefer-stateless-function
