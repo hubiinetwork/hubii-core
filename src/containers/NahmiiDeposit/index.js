@@ -32,6 +32,7 @@ import SectionHeading from 'components/ui/SectionHeading';
 import Input from 'components/ui/Input';
 import Select, { Option } from 'components/ui/Select';
 import TransferDescriptionItem from 'components/TransferDescriptionItem';
+import AgreementButton from 'components/AgreementButton';
 import HWPromptContainer from 'containers/HWPromptContainer';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import { makeSelectGasStatistics } from 'containers/EthOperationsHoc/selectors';
@@ -53,7 +54,6 @@ import {
   StyledNumericText,
   StyledCol,
   StyledSpin,
-  StyledButton,
   HWPromptWrapper,
   LoadingWrapper,
   NoTxPlaceholder,
@@ -497,7 +497,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
                     </div>
                   ) : (
                     <div style={{ width: 'fit-content' }}>
-                      <StyledButton
+                      <AgreementButton
                         type="primary"
                         onClick={() => this.props.nahmiiDeposit(
                           currentWalletWithInfo.get('address'),
@@ -508,7 +508,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
                         disabled={disableDepositButton}
                       >
                         <span>{formatMessage({ id: 'deposit' })}</span>
-                      </StyledButton>
+                      </AgreementButton>
                     </div>
                   )
               }

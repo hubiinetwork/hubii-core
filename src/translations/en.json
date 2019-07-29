@@ -295,5 +295,7 @@
     "challenge_period": "Challenge period",
     "settlement_qualified": "Settlement qualified",
     "withdrawable": "Withdrawable",
-    "synchronising_settlement_status": "Synchronising settlement status..."
+    "synchronising_settlement_status": "Synchronising settlement status...",
+    "i_agree": "I agree with the ",
+    "terms": "Terms & Conditions"
 }

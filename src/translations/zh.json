@@ -295,5 +295,7 @@
     "challenge_period": "结算验证中",
     "settlement_qualified": "结算验证成功",
     "withdrawable": "可取款",
-    "synchronising_settlement_status": "同步结算状态..."
+    "synchronising_settlement_status": "同步结算状态...",
+    "i_agree": "我同意",
+    "terms": "此条款"
 }

@@ -13,6 +13,7 @@ import NumericText from 'components/ui/NumericText';
 import SelectableText from 'components/ui/SelectableText';
 import TooltipText from 'components/ui/TooltipText';
 import BlockieAvatar from 'components/BlockieAvatar';
+import AgreementButton from 'components/AgreementButton';
 
 import {
   StyledCol,
@@ -215,9 +216,14 @@ class TransferDescription extends React.PureComponent {
           }
           {
             !this.props.transfering &&
+            layer === 'baseLayer' ?
               <StyledButton type="primary" onClick={onSend} disabled={disableSendButton}>
                 {formatMessage({ id: 'send' })}
               </StyledButton>
+              :
+              <AgreementButton type="primary" onClick={onSend} disabled={disableSendButton}>
+                {formatMessage({ id: 'send' })}
+              </AgreementButton>
           }
           {
             this.props.transfering &&
