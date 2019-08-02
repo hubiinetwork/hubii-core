@@ -140,21 +140,21 @@ describe('createWalletFromMnemonic saga', () => {
     describe('exceptions', () => {
       it('when mnemonic is invalid', () => {
         const invalidMnemonic = 'rubbish';
-        expectSaga(createWalletFromMnemonic, { name, invalidMnemonic, derivationPath, password })
-          .put(notify('error', 'import_wallet_failed_error'))
+        return expectSaga(createWalletFromMnemonic, { name, invalidMnemonic, derivationPath, password })
+          .put(notify('error', 'import_wallet_failed_error,message:invalid_param_error'))
           .put(createWalletFailed(new Error('invalid_param_error')))
           .run({ silenceTimeout: true });
       });
       it('when mnemonic is not given', () => expectSaga(createWalletFromMnemonic, { name, derivationPath, password })
-        .put(notify('error', 'import_wallet_failed_error'))
+        .put(notify('error', 'import_wallet_failed_error,message:invalid_param_error'))
         .put(createWalletFailed(new Error('invalid_param_error')))
         .run({ silenceTimeout: true }));
       it('when derivation path is not given', () => expectSaga(createWalletFromMnemonic, { name, mnemonic, password })
-        .put(notify('error', 'import_wallet_failed_error'))
+        .put(notify('error', 'import_wallet_failed_error,message:invalid_param_error'))
         .put(createWalletFailed(new Error('invalid_param_error')))
         .run({ silenceTimeout: true }));
       it('when password is not given', () => expectSaga(createWalletFromMnemonic, { name, mnemonic, derivationPath })
-        .put(notify('error', 'import_wallet_failed_error'))
+        .put(notify('error', 'import_wallet_failed_error,message:invalid_param_error'))
         .put(createWalletFailed(new Error('invalid_param_error')))
         .run({ silenceTimeout: true }));
     });
@@ -186,15 +186,15 @@ describe('createWalletFromMnemonic saga', () => {
     );
     describe('exceptions', () => {
       it('when private key is invalid', () => expectSaga(createWalletFromPrivateKey, { privateKeyMock: null, name, password: pwd })
-        .put(notify('error', 'import_wallet_failed_error'))
+        .put(notify('error', 'import_wallet_failed_error,message:invalid_param_error'))
         .put(createWalletFailed(new Error('invalid_param_error')))
         .run({ silenceTimeout: true }));
       it('when address is not given', () => expectSaga(createWalletFromPrivateKey, { privateKeyMock, address: null, password: pwd })
-        .put(notify('error', 'import_wallet_failed_error'))
+        .put(notify('error', 'import_wallet_failed_error,message:invalid_param_error'))
         .put(createWalletFailed(new Error('invalid_param_error')))
         .run({ silenceTimeout: true }));
       it('when password is not given', () => expectSaga(createWalletFromPrivateKey, { privateKeyMock, name, password: null })
-        .put(notify('error', 'import_wallet_failed_error'))
+        .put(notify('error', 'import_wallet_failed_error,message:invalid_param_error'))
         .put(createWalletFailed(new Error('invalid_param_error')))
         .run({ silenceTimeout: true }));
     });
@@ -242,19 +242,19 @@ describe('createWalletFromMnemonic saga', () => {
 
     describe('exceptions', () => {
       it('when name param is not provided', () => expectSaga(createWalletFromAddress, { address })
-        .put(notify('error', 'add_watch_address_error'))
+        .put(notify('error', 'add_watch_address_error,message:invalid_param_error'))
         .put(createWalletFailed(new Error('invalid_param_error')))
         .run({ silenceTimeout: true }));
 
       it('when address param is not provided', () => expectSaga(createWalletFromAddress, { name })
-        .put(notify('error', 'add_watch_address_error'))
+        .put(notify('error', 'add_watch_address_error,message:invalid_param_error'))
         .put(createWalletFailed(new Error('invalid_param_error')))
         .run({ silenceTimeout: true }));
 
-      it('when address is in valid', () => {
+      it('when address is invalid', () => {
         const invalidAddress = '0x1dkdkdkd';
         return expectSaga(createWalletFromAddress, { name, address: invalidAddress })
-          .put(notify('error', 'add_watch_address_error'))
+          .put(notify('error', 'add_watch_address_error,message:invalid_address'))
           .put(createWalletFailed(new Error('invalid_address')))
           .run({ silenceTimeout: true });
       });
@@ -289,7 +289,7 @@ describe('CREATE_WALLET_SUCCESS', () => {
     newWallet.name = 'new name';
     return expectSaga(hookNewWalletCreated, { newWallet })
       .withReducer(withReducer, fromJS(storeState))
-      .put(notify('error', 'wallet_address_exist_error'))
+      .put(notify('error', 'wallet_address_exist_error,address:0x01'))
       .run({ silenceTimeout: true })
       .then((result) => {
         const wallets = result.storeState.getIn(['walletHoc', 'wallets']);
@@ -309,7 +309,7 @@ describe('CREATE_WALLET_SUCCESS', () => {
     newWallet.address = '0x02';
     return expectSaga(hookNewWalletCreated, { newWallet })
       .withReducer(withReducer, fromJS(storeState))
-      .put(notify('error', 'wallet_name_exist_error'))
+      .put(notify('error', 'wallet_name_exist_error,name:name'))
       .run({ silenceTimeout: true })
       .then((result) => {
         const wallets = result.storeState.getIn(['walletHoc', 'wallets']);
@@ -347,7 +347,7 @@ describe('update wallet properties', () => {
       const newWalletName = 'Name2';
       return expectSaga(updateWalletName, { newWalletName, address: existWallets[0].address })
         .withReducer(withReducer, fromJS(storeState))
-        .put(notify('error', 'update_wallet_name_error'))
+        .put(notify('error', 'update_wallet_name_error,message:wallet_name_exist_error,name:Name2'))
         .run({ silenceTimeout: true })
         .then((result) => {
           const wallets = result.storeState.getIn(['walletHoc', 'wallets']);
@@ -359,7 +359,7 @@ describe('update wallet properties', () => {
       const newWalletName = 'new name';
       return expectSaga(updateWalletName, { newWalletName, address: '0x03' })
         .withReducer(withReducer, fromJS(storeState))
-        .put(notify('error', 'update_wallet_name_error'))
+        .put(notify('error', 'update_wallet_name_error,message:invalid_address'))
         .run({ silenceTimeout: true })
         .then((result) => {
           const wallets = result.storeState.getIn(['walletHoc', 'wallets']);
@@ -991,7 +991,7 @@ describe('decryptSuccessHook saga', () => {
 
 describe('decryptFailedHook saga', () => {
   it('should dispatch correct notify action', () => expectSaga(decryptFailedHook, { error: new Error('some msg') })
-    .put(notify('error', 'unlock_wallet_failed_error'))
+    .put(notify('error', 'unlock_wallet_failed_error,message:some msg'))
     .run()
   );
 });
