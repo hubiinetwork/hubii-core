@@ -508,17 +508,17 @@ export function* startChallenge({ stageAmount, currency, options }) {
     yield put(actions.startRequiredChallengesSuccess(nahmiiWallet.address, currency));
   } catch (e) {
     let errorMessage = logErrorMsg(e);
-    if (errorMessage.match(/gas.*required.*exceeds/i) || errorMessage.match(/out.*of.*gas/i)) {
-      errorMessage = getIntl().formatMessage({ id: 'gas_limit_too_low' });
-    } else if (errorMessage.match(/balance.*not.*synchronised/i)) {
-      errorMessage = getIntl().formatMessage({ id: 'nahmii_settlement_lock_start_challenge' });
-    } else if (errorMessage.match(/settlement.*disabled.*transaction.*confirmed/i)) {
-      errorMessage = getIntl().formatMessage({ id: 'nahmii_settlement_lock_start_challenge' });
-    } else if (errorMessage.match(/settlements.*currently.*disabled/i)) {
-      errorMessage = getIntl().formatMessage({ id: 'settlements_disabled' });
-    } else {
-      errorMessage = getIntl().formatMessage({ id: errorMessage });
-    }
+    [
+      [/gas.*required.*exceeds/i, 'gas_limit_too_low'],
+      [/out.*of.*gas/i, 'gas_limit_too_low'],
+      [/balance.*not.*synchronised/i, 'nahmii_settlement_lock_start_challenge'],
+      [/settlement.*disabled.*transaction.*confirmed/i, 'nahmii_settlement_lock_start_challenge'],
+      [/settlements.*currently.*disabled/i, 'settlements_disabled'],
+    ].forEach(([regex, messageId]) => {
+      if (logErrorMsg(e).match(regex)) {
+        errorMessage = getIntl().formatMessage({ id: messageId });
+      }
+    });
 
     yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: errorMessage })));
     yield put(actions.startChallengeError(walletDetails.address, currency));
