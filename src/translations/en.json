@@ -294,6 +294,7 @@
     "start_challenge": "Start settlement",
     "challenge_period": "Challenge period",
     "settlement_qualified": "Settlement qualified",
+    "settlements_disabled": "Settlements are currently disabled",
     "withdrawable": "Withdrawable",
     "synchronising_settlement_status": "Synchronising settlement status...",
     "i_agree": "I agree with the ",

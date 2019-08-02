@@ -512,8 +512,10 @@ export function* startChallenge({ stageAmount, currency, options }) {
       errorMessage = getIntl().formatMessage({ id: 'gas_limit_too_low' });
     } else if (errorMessage.match(/balance.*not.*synchronised/i)) {
       errorMessage = getIntl().formatMessage({ id: 'nahmii_settlement_lock_start_challenge' });
-    } else if (errorMessage.match(/settlement.*disabled/i)) {
+    } else if (errorMessage.match(/settlement.*disabled.*transaction.*confirmed/i)) {
       errorMessage = getIntl().formatMessage({ id: 'nahmii_settlement_lock_start_challenge' });
+    } else if (errorMessage.match(/settlements.*currently.*disabled/i)) {
+      errorMessage = getIntl().formatMessage({ id: 'settlements_disabled' });
     } else {
       errorMessage = getIntl().formatMessage({ id: errorMessage });
     }

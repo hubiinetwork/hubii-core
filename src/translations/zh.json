@@ -294,6 +294,7 @@
     "start_challenge": "开始结算",
     "challenge_period": "结算验证中",
     "settlement_qualified": "结算验证成功",
+    "settlements_disabled": "当前结算功能被临时禁止",
     "withdrawable": "可取款",
     "synchronising_settlement_status": "同步结算状态...",
     "i_agree": "我同意",
