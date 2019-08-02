@@ -42,7 +42,6 @@ import saga from './saga';
 import {
   StartWrapper,
   StyledButton,
-  StyledButtonTall,
   OuterWrapper,
   ButtonsWrapper,
   PrimaryHeading,
@@ -64,21 +63,8 @@ export const Start = (props) => (
       {props.intl.formatMessage({ id: 'thanks_for_interest_airdriip' })}
     </PrimaryHeading>
     <SecondaryHeading>
-      {props.intl.formatMessage({ id: 'has_address_been_imported_airdriip' })}
+      {props.intl.formatMessage({ id: 'airdriip_disabled' })}
     </SecondaryHeading>
-    <ButtonsWrapper>
-      <StyledButtonTall onClick={() => props.changeStage('register-arbitrary')}>
-        <div>{props.intl.formatMessage({ id: 'no' })}</div>
-        <div>{props.intl.formatMessage({ id: 'airdriip_advanced' })}</div>
-      </StyledButtonTall>
-      <StyledButtonTall
-        type="primary"
-        onClick={() => props.changeStage('register-imported')}
-      >
-        <div>{props.intl.formatMessage({ id: 'yes' })}</div>
-        <div>{props.intl.formatMessage({ id: 'one_click_registration' })}</div>
-      </StyledButtonTall>
-    </ButtonsWrapper>
   </StartWrapper>
 );
 
@@ -276,7 +262,6 @@ ManualRegistrationForm.propTypes = {
 };
 
 Start.propTypes = {
-  changeStage: PropTypes.func.isRequired,
   intl: PropTypes.object.isRequired,
 };
 

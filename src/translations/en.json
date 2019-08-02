@@ -184,6 +184,7 @@
     "signature_hex_string": "Signature hex string",
     "thanks_for_interest_airdriip": "Thank you for your interest in the nahmii airdriip!",
     "has_address_been_imported_airdriip": "Has the address you intend to register been imported into hubii core?",
+    "airdriip_disabled": "The airdriip registration has been stopped. The last effective date for registration was 30/06/2019. The wallets registered after the last effective date won't be eligible for receiving airdriips.",
     "yes": "Yes",
     "no": "No",
     "one_click_registration": "(one-click-registration)",

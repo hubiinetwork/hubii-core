@@ -184,6 +184,7 @@
     "signature_hex_string": "签名字符串",
     "thanks_for_interest_airdriip": "感谢参与我们的空投!",
     "has_address_been_imported_airdriip": "用于注册的钱包地址是否已经导入 hubii core?",
+    "airdriip_disabled": "我们的空投注册已经截止。注册截止日期为 30/06/2019。在此截止日期之后进行注册的钱包将不能获得空投。",
     "yes": "确认",
     "no": "取消",
     "one_click_registration": "(一键注册)",
