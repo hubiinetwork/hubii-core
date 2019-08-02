@@ -15,9 +15,6 @@ import {
 import {
   ethOperationsHocMock,
 } from 'containers/EthOperationsHoc/tests/mocks/selectors';
-import {
-  nahmiiAirdriipRegistrationMock,
-} from 'containers/NahmiiAirdriipRegistration/tests/mocks/selectors';
 
 export const storeMock = fromJS({
   app: appMock,
@@ -25,5 +22,4 @@ export const storeMock = fromJS({
   hubiiApiHoc: hubiiApiHocMock,
   walletHoc: walletHocMock,
   ethOperationsHoc: ethOperationsHocMock,
-  nahmiiAirdriipRegistration: nahmiiAirdriipRegistrationMock,
 });
