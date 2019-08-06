@@ -215,15 +215,14 @@ class TransferDescription extends React.PureComponent {
             </HWPromptWrapper>
           }
           {
-            !this.props.transfering &&
-            layer === 'baseLayer' ?
+            !this.props.transfering && (layer === 'baseLayer' ?
               <StyledButton type="primary" onClick={onSend} disabled={disableSendButton}>
                 {formatMessage({ id: 'send' })}
               </StyledButton>
               :
               <AgreementButton type="primary" onClick={onSend} disabled={disableSendButton}>
                 {formatMessage({ id: 'send' })}
-              </AgreementButton>
+              </AgreementButton>)
           }
           {
             this.props.transfering &&
