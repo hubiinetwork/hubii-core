@@ -27,7 +27,7 @@ export const loadedEmptyBalanceState = fromJS({
 
 export const loadedErroredBalanceState = loadedEmptyBalanceState
   .setIn(
-    ['staged', 'error'],
+    ['available', 'error'],
     'someerror'
   );
 
