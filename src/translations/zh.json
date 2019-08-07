@@ -184,6 +184,7 @@
     "signature_hex_string": "签名字符串",
     "thanks_for_interest_airdriip": "感谢参与我们的空投!",
     "has_address_been_imported_airdriip": "用于注册的钱包地址是否已经导入 hubii core?",
+    "airdriip_disabled": "ETH 持有者将不能再接受 NII 空投，此变动从2019年8月生效。因此，在 hubii core 上的空投注册功能已经被关闭。",
     "yes": "确认",
     "no": "取消",
     "one_click_registration": "(一键注册)",
@@ -294,6 +295,9 @@
     "start_challenge": "开始结算",
     "challenge_period": "结算验证中",
     "settlement_qualified": "结算验证成功",
+    "settlements_disabled": "当前结算功能被临时禁止",
     "withdrawable": "可取款",
-    "synchronising_settlement_status": "同步结算状态..."
+    "synchronising_settlement_status": "同步结算状态...",
+    "i_agree": "我同意",
+    "terms": "此条款"
 }

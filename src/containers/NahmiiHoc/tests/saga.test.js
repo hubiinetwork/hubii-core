@@ -132,7 +132,7 @@ describe('nahmiiHocSaga', () => {
         .put({ type: 'ACTION1' })
         .put({ type: 'ACTION2' })
         .put(actions.nahmiiPaymentError(errorMock))
-        .put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: errorMock.message })))
+        .put(notify('error', 'send_transaction_failed_message_error,message:some error'))
         .run({ silenceTimeout: true });
     });
     it('should dispatch correct actions on failed payment registration', () => {
@@ -164,7 +164,7 @@ describe('nahmiiHocSaga', () => {
         .put({ type: 'ACTION1' })
         .put({ type: 'ACTION2' })
         .put(actions.nahmiiPaymentError(errorMock))
-        .put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: errorMock.message })))
+        .put(notify('error', 'send_transaction_failed_message_error,message:some error registering payment'))
         .run({ silenceTimeout: true });
     });
     it('should dispatch correct actions on insufficient funds error', () => {
@@ -196,7 +196,7 @@ describe('nahmiiHocSaga', () => {
         .put({ type: 'ACTION1' })
         .put({ type: 'ACTION2' })
         .put(actions.nahmiiPaymentError(errorMock))
-        .put(notify('error', getIntl().formatMessage({ id: 'nahmii_transfer_insufficient_funds_error' }, { minimumBalance: errorMock.minimumBalance })))
+        .put(notify('error', 'nahmii_transfer_insufficient_funds_error,minimumBalance:0.01'))
         .run({ silenceTimeout: true });
     });
     it('should dispatch correct actions on payment lock errors when the transaction is in requesting status', () => {
@@ -209,7 +209,7 @@ describe('nahmiiHocSaga', () => {
             .setIn(['nahmiiHoc', 'ongoingChallenges', walletAddress, currency.ct, 'status'], 'requesting')
         )
         .put(actions.nahmiiPaymentError(error))
-        .put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_transfer' })))
+        .put(notify('error', 'nahmii_settlement_lock_transfer'))
         .run({ silenceTimeout: true });
     });
     it('should dispatch correct actions on payment lock errors when the transaction is in mining status', () => {
@@ -222,7 +222,7 @@ describe('nahmiiHocSaga', () => {
             .setIn(['nahmiiHoc', 'newSettlementPendingTxs', walletAddress, currency.ct, 'hash1'], {})
         )
         .put(actions.nahmiiPaymentError(error))
-        .put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_transfer' })))
+        .put(notify('error', 'nahmii_settlement_lock_transfer'))
         .run({ silenceTimeout: true });
     });
     it('should dispatch correct actions on payment lock errors when off-chain balance is not yet synchronised with the contracts', () => {
@@ -238,7 +238,7 @@ describe('nahmiiHocSaga', () => {
           },
         })
         .put(actions.nahmiiPaymentError(error))
-        .put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_transfer' })))
+        .put(notify('error', 'nahmii_settlement_lock_transfer'))
         .run({ silenceTimeout: true });
     });
   });
@@ -547,36 +547,6 @@ describe('nahmiiHocSaga', () => {
       }
       );
 
-      it('should correctly update store when failed to get required challenges', () => {
-        const fakeError = new Error('error');
-
-        return expectSaga(startChallenge, { stageAmount, address: signerMock.address, currency, txReceipt: fakeTxReceipts[0], options })
-          .withReducer(withReducer, storeMock)
-          .provide({
-            call(effect, next) {
-              if (effect.fn.name.includes('getRequiredChallengesForIntendedStageAmount')) {
-                throw fakeError;
-              }
-              if (effect.fn === getSdkWalletSigner) {
-                return [
-                  signerMock,
-                  { type: 'ACTION1' },
-                  { type: 'ACTION2' },
-                ];
-              }
-              return next();
-            },
-          })
-          .put(actions.startChallengeError(signerMock.address, currency))
-          .not.put(actions.startRequiredChallengesSuccess(signerMock.address, currency))
-          .run({ silenceTimeout: true })
-          .then((result) => {
-            const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
-            expect(status).toEqual('failed');
-          });
-      }
-      );
-
       it('should correctly update store when failed to mine transaction', () => {
         const requiredChallenges = [{ type: 'payment-driip' }];
         const failedTx = { status: 0, transactionHash: fakeTxReceipts[0].transactionHash };
@@ -652,9 +622,42 @@ describe('nahmiiHocSaga', () => {
           },
         })
         .put(actions.startChallengeError(signerMock.address, currency))
-        .put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' })))
+        .put(notify('error', 'send_transaction_failed_message_error,message:nahmii_settlement_lock_start_challenge'))
         .run({ silenceTimeout: true })
       );
+
+      [
+        ['balance has not been synchronised', 'send_transaction_failed_message_error,message:nahmii_settlement_lock_start_challenge'],
+        ['New settlement is disabled until the last settlement transaction is confirmed.', 'send_transaction_failed_message_error,message:nahmii_settlement_lock_start_challenge'],
+        ['Settlements are currently disabled.', 'send_transaction_failed_message_error,message:settlements_disabled'],
+      ].forEach(([error, expectedMessage]) => {
+        it(`should update store and show corresponding error message for error "${error}" when failed to get required challenges`, () => expectSaga(startChallenge, { stageAmount, address: signerMock.address, currency, txReceipt: fakeTxReceipts[0], options })
+          .withReducer(withReducer, storeMock)
+          .provide({
+            call(effect, next) {
+              if (effect.fn.name.includes('getRequiredChallengesForIntendedStageAmount')) {
+                throw new Error(error);
+              }
+              if (effect.fn === getSdkWalletSigner) {
+                return [
+                  signerMock,
+                  { type: 'ACTION1' },
+                  { type: 'ACTION2' },
+                ];
+              }
+              return next();
+            },
+          })
+          .put(notify('error', expectedMessage))
+          .put(actions.startChallengeError(signerMock.address, currency))
+          .not.put(actions.startRequiredChallengesSuccess(signerMock.address, currency))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
+            expect(status).toEqual('failed');
+          })
+        );
+      });
     });
     describe('#settle', () => {
       it('should dispatch correct actions when wallet is encrypted', () => expectSaga(settle, { address: signerMock.address, currency, options })

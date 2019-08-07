@@ -631,13 +631,13 @@ ShallowWrapper {
                     },
                     nahmiiAvailable: Immutable.Map {
                         loading: false,
-                        error: null,
+                        error: true,
                         assets: Immutable.List [
                         ],
                         total: Immutable.Map {
+                            usd: "0",
                             eth: "0",
                             btc: "0",
-                            usd: "0",
                         },
                     },
                     nahmiiStaging: Immutable.Map {
@@ -653,13 +653,13 @@ ShallowWrapper {
                     },
                     nahmiiStaged: Immutable.Map {
                         loading: false,
-                        error: true,
+                        error: null,
                         assets: Immutable.List [
                         ],
                         total: Immutable.Map {
-                            usd: "0",
                             eth: "0",
                             btc: "0",
+                            usd: "0",
                         },
                     },
                     nahmiiCombined: Immutable.Map {
@@ -1354,7 +1354,7 @@ ShallowWrapper {
                                             },
                                             "nahmiiAvailable": Object {
                                               "assets": Array [],
-                                              "error": null,
+                                              "error": true,
                                               "loading": false,
                                               "total": Object {
                                                 "btc": "0",
@@ -1374,7 +1374,7 @@ ShallowWrapper {
                                             },
                                             "nahmiiStaged": Object {
                                               "assets": Array [],
-                                              "error": true,
+                                              "error": null,
                                               "loading": false,
                                               "total": Object {
                                                 "btc": "0",
@@ -2051,7 +2051,7 @@ ShallowWrapper {
                                                     },
                                                     "nahmiiAvailable": Object {
                                                       "assets": Array [],
-                                                      "error": null,
+                                                      "error": true,
                                                       "loading": false,
                                                       "total": Object {
                                                         "btc": "0",
@@ -2071,7 +2071,7 @@ ShallowWrapper {
                                                     },
                                                     "nahmiiStaged": Object {
                                                       "assets": Array [],
-                                                      "error": true,
+                                                      "error": null,
                                                       "loading": false,
                                                       "total": Object {
                                                         "btc": "0",
@@ -2748,7 +2748,7 @@ ShallowWrapper {
                                                     },
                                                     "nahmiiAvailable": Object {
                                                       "assets": Array [],
-                                                      "error": null,
+                                                      "error": true,
                                                       "loading": false,
                                                       "total": Object {
                                                         "btc": "0",
@@ -2768,7 +2768,7 @@ ShallowWrapper {
                                                     },
                                                     "nahmiiStaged": Object {
                                                       "assets": Array [],
-                                                      "error": true,
+                                                      "error": null,
                                                       "loading": false,
                                                       "total": Object {
                                                         "btc": "0",
@@ -3437,7 +3437,7 @@ ShallowWrapper {
                       },
                       "nahmiiAvailable": Object {
                         "assets": Array [],
-                        "error": null,
+                        "error": true,
                         "loading": false,
                         "total": Object {
                           "btc": "0",
@@ -3457,7 +3457,7 @@ ShallowWrapper {
                       },
                       "nahmiiStaged": Object {
                         "assets": Array [],
-                        "error": true,
+                        "error": null,
                         "loading": false,
                         "total": Object {
                           "btc": "0",
@@ -4158,7 +4158,7 @@ ShallowWrapper {
                                                       },
                                                       "nahmiiAvailable": Object {
                                                         "assets": Array [],
-                                                        "error": null,
+                                                        "error": true,
                                                         "loading": false,
                                                         "total": Object {
                                                           "btc": "0",
@@ -4178,7 +4178,7 @@ ShallowWrapper {
                                                       },
                                                       "nahmiiStaged": Object {
                                                         "assets": Array [],
-                                                        "error": true,
+                                                        "error": null,
                                                         "loading": false,
                                                         "total": Object {
                                                           "btc": "0",
@@ -4855,7 +4855,7 @@ ShallowWrapper {
                                                             },
                                                             "nahmiiAvailable": Object {
                                                               "assets": Array [],
-                                                              "error": null,
+                                                              "error": true,
                                                               "loading": false,
                                                               "total": Object {
                                                                 "btc": "0",
@@ -4875,7 +4875,7 @@ ShallowWrapper {
                                                             },
                                                             "nahmiiStaged": Object {
                                                               "assets": Array [],
-                                                              "error": true,
+                                                              "error": null,
                                                               "loading": false,
                                                               "total": Object {
                                                                 "btc": "0",
@@ -5552,7 +5552,7 @@ ShallowWrapper {
                                                           },
                                                           "nahmiiAvailable": Object {
                                                             "assets": Array [],
-                                                            "error": null,
+                                                            "error": true,
                                                             "loading": false,
                                                             "total": Object {
                                                               "btc": "0",
@@ -5572,7 +5572,7 @@ ShallowWrapper {
                                                           },
                                                           "nahmiiStaged": Object {
                                                             "assets": Array [],
-                                                            "error": true,
+                                                            "error": null,
                                                             "loading": false,
                                                             "total": Object {
                                                               "btc": "0",
@@ -6241,7 +6241,7 @@ ShallowWrapper {
                         },
                         "nahmiiAvailable": Object {
                           "assets": Array [],
-                          "error": null,
+                          "error": true,
                           "loading": false,
                           "total": Object {
                             "btc": "0",
@@ -6261,7 +6261,7 @@ ShallowWrapper {
                         },
                         "nahmiiStaged": Object {
                           "assets": Array [],
-                          "error": true,
+                          "error": null,
                           "loading": false,
                           "total": Object {
                             "btc": "0",
@@ -7112,13 +7112,13 @@ ShallowWrapper {
                     },
                     nahmiiAvailable: Immutable.Map {
                         loading: false,
-                        error: null,
+                        error: true,
                         assets: Immutable.List [
                         ],
                         total: Immutable.Map {
+                            usd: "0",
                             eth: "0",
                             btc: "0",
-                            usd: "0",
                         },
                     },
                     nahmiiStaging: Immutable.Map {
@@ -7134,13 +7134,13 @@ ShallowWrapper {
                     },
                     nahmiiStaged: Immutable.Map {
                         loading: false,
-                        error: true,
+                        error: null,
                         assets: Immutable.List [
                         ],
                         total: Immutable.Map {
-                            usd: "0",
                             eth: "0",
                             btc: "0",
+                            usd: "0",
                         },
                     },
                     nahmiiCombined: Immutable.Map {
@@ -7835,7 +7835,7 @@ ShallowWrapper {
                                             },
                                             "nahmiiAvailable": Object {
                                               "assets": Array [],
-                                              "error": null,
+                                              "error": true,
                                               "loading": false,
                                               "total": Object {
                                                 "btc": "0",
@@ -7855,7 +7855,7 @@ ShallowWrapper {
                                             },
                                             "nahmiiStaged": Object {
                                               "assets": Array [],
-                                              "error": true,
+                                              "error": null,
                                               "loading": false,
                                               "total": Object {
                                                 "btc": "0",
@@ -8532,7 +8532,7 @@ ShallowWrapper {
                                                     },
                                                     "nahmiiAvailable": Object {
                                                       "assets": Array [],
-                                                      "error": null,
+                                                      "error": true,
                                                       "loading": false,
                                                       "total": Object {
                                                         "btc": "0",
@@ -8552,7 +8552,7 @@ ShallowWrapper {
                                                     },
                                                     "nahmiiStaged": Object {
                                                       "assets": Array [],
-                                                      "error": true,
+                                                      "error": null,
                                                       "loading": false,
                                                       "total": Object {
                                                         "btc": "0",
@@ -9229,7 +9229,7 @@ ShallowWrapper {
                                                     },
                                                     "nahmiiAvailable": Object {
                                                       "assets": Array [],
-                                                      "error": null,
+                                                      "error": true,
                                                       "loading": false,
                                                       "total": Object {
                                                         "btc": "0",
@@ -9249,7 +9249,7 @@ ShallowWrapper {
                                                     },
                                                     "nahmiiStaged": Object {
                                                       "assets": Array [],
-                                                      "error": true,
+                                                      "error": null,
                                                       "loading": false,
                                                       "total": Object {
                                                         "btc": "0",
@@ -9918,7 +9918,7 @@ ShallowWrapper {
                       },
                       "nahmiiAvailable": Object {
                         "assets": Array [],
-                        "error": null,
+                        "error": true,
                         "loading": false,
                         "total": Object {
                           "btc": "0",
@@ -9938,7 +9938,7 @@ ShallowWrapper {
                       },
                       "nahmiiStaged": Object {
                         "assets": Array [],
-                        "error": true,
+                        "error": null,
                         "loading": false,
                         "total": Object {
                           "btc": "0",
@@ -10639,7 +10639,7 @@ ShallowWrapper {
                                                       },
                                                       "nahmiiAvailable": Object {
                                                         "assets": Array [],
-                                                        "error": null,
+                                                        "error": true,
                                                         "loading": false,
                                                         "total": Object {
                                                           "btc": "0",
@@ -10659,7 +10659,7 @@ ShallowWrapper {
                                                       },
                                                       "nahmiiStaged": Object {
                                                         "assets": Array [],
-                                                        "error": true,
+                                                        "error": null,
                                                         "loading": false,
                                                         "total": Object {
                                                           "btc": "0",
@@ -11336,7 +11336,7 @@ ShallowWrapper {
                                                             },
                                                             "nahmiiAvailable": Object {
                                                               "assets": Array [],
-                                                              "error": null,
+                                                              "error": true,
                                                               "loading": false,
                                                               "total": Object {
                                                                 "btc": "0",
@@ -11356,7 +11356,7 @@ ShallowWrapper {
                                                             },
                                                             "nahmiiStaged": Object {
                                                               "assets": Array [],
-                                                              "error": true,
+                                                              "error": null,
                                                               "loading": false,
                                                               "total": Object {
                                                                 "btc": "0",
@@ -12033,7 +12033,7 @@ ShallowWrapper {
                                                           },
                                                           "nahmiiAvailable": Object {
                                                             "assets": Array [],
-                                                            "error": null,
+                                                            "error": true,
                                                             "loading": false,
                                                             "total": Object {
                                                               "btc": "0",
@@ -12053,7 +12053,7 @@ ShallowWrapper {
                                                           },
                                                           "nahmiiStaged": Object {
                                                             "assets": Array [],
-                                                            "error": true,
+                                                            "error": null,
                                                             "loading": false,
                                                             "total": Object {
                                                               "btc": "0",
@@ -12722,7 +12722,7 @@ ShallowWrapper {
                         },
                         "nahmiiAvailable": Object {
                           "assets": Array [],
-                          "error": null,
+                          "error": true,
                           "loading": false,
                           "total": Object {
                             "btc": "0",
@@ -12742,7 +12742,7 @@ ShallowWrapper {
                         },
                         "nahmiiStaged": Object {
                           "assets": Array [],
-                          "error": true,
+                          "error": null,
                           "loading": false,
                           "total": Object {
                             "btc": "0",
@@ -18079,13 +18079,13 @@ ShallowWrapper {
                     },
                     nahmiiAvailable: Immutable.Map {
                         loading: false,
-                        error: null,
+                        error: true,
                         assets: Immutable.List [
                         ],
                         total: Immutable.Map {
+                            usd: "0",
                             eth: "0",
                             btc: "0",
-                            usd: "0",
                         },
                     },
                     nahmiiStaging: Immutable.Map {
@@ -18101,13 +18101,13 @@ ShallowWrapper {
                     },
                     nahmiiStaged: Immutable.Map {
                         loading: false,
-                        error: true,
+                        error: null,
                         assets: Immutable.List [
                         ],
                         total: Immutable.Map {
-                            usd: "0",
                             eth: "0",
                             btc: "0",
+                            usd: "0",
                         },
                     },
                     nahmiiCombined: Immutable.Map {
@@ -18802,7 +18802,7 @@ ShallowWrapper {
                                             },
                                             "nahmiiAvailable": Object {
                                               "assets": Array [],
-                                              "error": null,
+                                              "error": true,
                                               "loading": false,
                                               "total": Object {
                                                 "btc": "0",
@@ -18822,7 +18822,7 @@ ShallowWrapper {
                                             },
                                             "nahmiiStaged": Object {
                                               "assets": Array [],
-                                              "error": true,
+                                              "error": null,
                                               "loading": false,
                                               "total": Object {
                                                 "btc": "0",
@@ -19663,7 +19663,7 @@ ShallowWrapper {
                                                     },
                                                     "nahmiiAvailable": Object {
                                                       "assets": Array [],
-                                                      "error": null,
+                                                      "error": true,
                                                       "loading": false,
                                                       "total": Object {
                                                         "btc": "0",
@@ -19683,7 +19683,7 @@ ShallowWrapper {
                                                     },
                                                     "nahmiiStaged": Object {
                                                       "assets": Array [],
-                                                      "error": true,
+                                                      "error": null,
                                                       "loading": false,
                                                       "total": Object {
                                                         "btc": "0",
@@ -20524,7 +20524,7 @@ ShallowWrapper {
                                                     },
                                                     "nahmiiAvailable": Object {
                                                       "assets": Array [],
-                                                      "error": null,
+                                                      "error": true,
                                                       "loading": false,
                                                       "total": Object {
                                                         "btc": "0",
@@ -20544,7 +20544,7 @@ ShallowWrapper {
                                                     },
                                                     "nahmiiStaged": Object {
                                                       "assets": Array [],
-                                                      "error": true,
+                                                      "error": null,
                                                       "loading": false,
                                                       "total": Object {
                                                         "btc": "0",
@@ -21213,7 +21213,7 @@ ShallowWrapper {
                       },
                       "nahmiiAvailable": Object {
                         "assets": Array [],
-                        "error": null,
+                        "error": true,
                         "loading": false,
                         "total": Object {
                           "btc": "0",
@@ -21233,7 +21233,7 @@ ShallowWrapper {
                       },
                       "nahmiiStaged": Object {
                         "assets": Array [],
-                        "error": true,
+                        "error": null,
                         "loading": false,
                         "total": Object {
                           "btc": "0",
@@ -22442,7 +22442,7 @@ ShallowWrapper {
                                                       },
                                                       "nahmiiAvailable": Object {
                                                         "assets": Array [],
-                                                        "error": null,
+                                                        "error": true,
                                                         "loading": false,
                                                         "total": Object {
                                                           "btc": "0",
@@ -22462,7 +22462,7 @@ ShallowWrapper {
                                                       },
                                                       "nahmiiStaged": Object {
                                                         "assets": Array [],
-                                                        "error": true,
+                                                        "error": null,
                                                         "loading": false,
                                                         "total": Object {
                                                           "btc": "0",
@@ -23303,7 +23303,7 @@ ShallowWrapper {
                                                             },
                                                             "nahmiiAvailable": Object {
                                                               "assets": Array [],
-                                                              "error": null,
+                                                              "error": true,
                                                               "loading": false,
                                                               "total": Object {
                                                                 "btc": "0",
@@ -23323,7 +23323,7 @@ ShallowWrapper {
                                                             },
                                                             "nahmiiStaged": Object {
                                                               "assets": Array [],
-                                                              "error": true,
+                                                              "error": null,
                                                               "loading": false,
                                                               "total": Object {
                                                                 "btc": "0",
@@ -24164,7 +24164,7 @@ ShallowWrapper {
                                                           },
                                                           "nahmiiAvailable": Object {
                                                             "assets": Array [],
-                                                            "error": null,
+                                                            "error": true,
                                                             "loading": false,
                                                             "total": Object {
                                                               "btc": "0",
@@ -24184,7 +24184,7 @@ ShallowWrapper {
                                                           },
                                                           "nahmiiStaged": Object {
                                                             "assets": Array [],
-                                                            "error": true,
+                                                            "error": null,
                                                             "loading": false,
                                                             "total": Object {
                                                               "btc": "0",
@@ -24853,7 +24853,7 @@ ShallowWrapper {
                         },
                         "nahmiiAvailable": Object {
                           "assets": Array [],
-                          "error": null,
+                          "error": true,
                           "loading": false,
                           "total": Object {
                             "btc": "0",
@@ -24873,7 +24873,7 @@ ShallowWrapper {
                         },
                         "nahmiiStaged": Object {
                           "assets": Array [],
-                          "error": true,
+                          "error": null,
                           "loading": false,
                           "total": Object {
                             "btc": "0",
@@ -26214,13 +26214,13 @@ ShallowWrapper {
                     },
                     nahmiiAvailable: Immutable.Map {
                         loading: false,
-                        error: null,
+                        error: true,
                         assets: Immutable.List [
                         ],
                         total: Immutable.Map {
+                            usd: "0",
                             eth: "0",
                             btc: "0",
-                            usd: "0",
                         },
                     },
                     nahmiiStaging: Immutable.Map {
@@ -26236,13 +26236,13 @@ ShallowWrapper {
                     },
                     nahmiiStaged: Immutable.Map {
                         loading: false,
-                        error: true,
+                        error: null,
                         assets: Immutable.List [
                         ],
                         total: Immutable.Map {
-                            usd: "0",
                             eth: "0",
                             btc: "0",
+                            usd: "0",
                         },
                     },
                     nahmiiCombined: Immutable.Map {
@@ -26937,7 +26937,7 @@ ShallowWrapper {
                                             },
                                             "nahmiiAvailable": Object {
                                               "assets": Array [],
-                                              "error": null,
+                                              "error": true,
                                               "loading": false,
                                               "total": Object {
                                                 "btc": "0",
@@ -26957,7 +26957,7 @@ ShallowWrapper {
                                             },
                                             "nahmiiStaged": Object {
                                               "assets": Array [],
-                                              "error": true,
+                                              "error": null,
                                               "loading": false,
                                               "total": Object {
                                                 "btc": "0",
@@ -27744,7 +27744,7 @@ ShallowWrapper {
                                                     },
                                                     "nahmiiAvailable": Object {
                                                       "assets": Array [],
-                                                      "error": null,
+                                                      "error": true,
                                                       "loading": false,
                                                       "total": Object {
                                                         "btc": "0",
@@ -27764,7 +27764,7 @@ ShallowWrapper {
                                                     },
                                                     "nahmiiStaged": Object {
                                                       "assets": Array [],
-                                                      "error": true,
+                                                      "error": null,
                                                       "loading": false,
                                                       "total": Object {
                                                         "btc": "0",
@@ -28551,7 +28551,7 @@ ShallowWrapper {
                                                     },
                                                     "nahmiiAvailable": Object {
                                                       "assets": Array [],
-                                                      "error": null,
+                                                      "error": true,
                                                       "loading": false,
                                                       "total": Object {
                                                         "btc": "0",
@@ -28571,7 +28571,7 @@ ShallowWrapper {
                                                     },
                                                     "nahmiiStaged": Object {
                                                       "assets": Array [],
-                                                      "error": true,
+                                                      "error": null,
                                                       "loading": false,
                                                       "total": Object {
                                                         "btc": "0",
@@ -29240,7 +29240,7 @@ ShallowWrapper {
                       },
                       "nahmiiAvailable": Object {
                         "assets": Array [],
-                        "error": null,
+                        "error": true,
                         "loading": false,
                         "total": Object {
                           "btc": "0",
@@ -29260,7 +29260,7 @@ ShallowWrapper {
                       },
                       "nahmiiStaged": Object {
                         "assets": Array [],
-                        "error": true,
+                        "error": null,
                         "loading": false,
                         "total": Object {
                           "btc": "0",
@@ -30307,7 +30307,7 @@ ShallowWrapper {
                                                       },
                                                       "nahmiiAvailable": Object {
                                                         "assets": Array [],
-                                                        "error": null,
+                                                        "error": true,
                                                         "loading": false,
                                                         "total": Object {
                                                           "btc": "0",
@@ -30327,7 +30327,7 @@ ShallowWrapper {
                                                       },
                                                       "nahmiiStaged": Object {
                                                         "assets": Array [],
-                                                        "error": true,
+                                                        "error": null,
                                                         "loading": false,
                                                         "total": Object {
                                                           "btc": "0",
@@ -31114,7 +31114,7 @@ ShallowWrapper {
                                                             },
                                                             "nahmiiAvailable": Object {
                                                               "assets": Array [],
-                                                              "error": null,
+                                                              "error": true,
                                                               "loading": false,
                                                               "total": Object {
                                                                 "btc": "0",
@@ -31134,7 +31134,7 @@ ShallowWrapper {
                                                             },
                                                             "nahmiiStaged": Object {
                                                               "assets": Array [],
-                                                              "error": true,
+                                                              "error": null,
                                                               "loading": false,
                                                               "total": Object {
                                                                 "btc": "0",
@@ -31921,7 +31921,7 @@ ShallowWrapper {
                                                           },
                                                           "nahmiiAvailable": Object {
                                                             "assets": Array [],
-                                                            "error": null,
+                                                            "error": true,
                                                             "loading": false,
                                                             "total": Object {
                                                               "btc": "0",
@@ -31941,7 +31941,7 @@ ShallowWrapper {
                                                           },
                                                           "nahmiiStaged": Object {
                                                             "assets": Array [],
-                                                            "error": true,
+                                                            "error": null,
                                                             "loading": false,
                                                             "total": Object {
                                                               "btc": "0",
@@ -32610,7 +32610,7 @@ ShallowWrapper {
                         },
                         "nahmiiAvailable": Object {
                           "assets": Array [],
-                          "error": null,
+                          "error": true,
                           "loading": false,
                           "total": Object {
                             "btc": "0",
@@ -32630,7 +32630,7 @@ ShallowWrapper {
                         },
                         "nahmiiStaged": Object {
                           "assets": Array [],
-                          "error": true,
+                          "error": null,
                           "loading": false,
                           "total": Object {
                             "btc": "0",
@@ -33809,13 +33809,13 @@ ShallowWrapper {
                     },
                     nahmiiAvailable: Immutable.Map {
                         loading: false,
-                        error: null,
+                        error: true,
                         assets: Immutable.List [
                         ],
                         total: Immutable.Map {
+                            usd: "0",
                             eth: "0",
                             btc: "0",
-                            usd: "0",
                         },
                     },
                     nahmiiStaging: Immutable.Map {
@@ -33831,13 +33831,13 @@ ShallowWrapper {
                     },
                     nahmiiStaged: Immutable.Map {
                         loading: false,
-                        error: true,
+                        error: null,
                         assets: Immutable.List [
                         ],
                         total: Immutable.Map {
-                            usd: "0",
                             eth: "0",
                             btc: "0",
+                            usd: "0",
                         },
                     },
                     nahmiiCombined: Immutable.Map {
@@ -34532,7 +34532,7 @@ ShallowWrapper {
                                             },
                                             "nahmiiAvailable": Object {
                                               "assets": Array [],
-                                              "error": null,
+                                              "error": true,
                                               "loading": false,
                                               "total": Object {
                                                 "btc": "0",
@@ -34552,7 +34552,7 @@ ShallowWrapper {
                                             },
                                             "nahmiiStaged": Object {
                                               "assets": Array [],
-                                              "error": true,
+                                              "error": null,
                                               "loading": false,
                                               "total": Object {
                                                 "btc": "0",
@@ -35339,7 +35339,7 @@ ShallowWrapper {
                                                     },
                                                     "nahmiiAvailable": Object {
                                                       "assets": Array [],
-                                                      "error": null,
+                                                      "error": true,
                                                       "loading": false,
                                                       "total": Object {
                                                         "btc": "0",
@@ -35359,7 +35359,7 @@ ShallowWrapper {
                                                     },
                                                     "nahmiiStaged": Object {
                                                       "assets": Array [],
-                                                      "error": true,
+                                                      "error": null,
                                                       "loading": false,
                                                       "total": Object {
                                                         "btc": "0",
@@ -36146,7 +36146,7 @@ ShallowWrapper {
                                                     },
                                                     "nahmiiAvailable": Object {
                                                       "assets": Array [],
-                                                      "error": null,
+                                                      "error": true,
                                                       "loading": false,
                                                       "total": Object {
                                                         "btc": "0",
@@ -36166,7 +36166,7 @@ ShallowWrapper {
                                                     },
                                                     "nahmiiStaged": Object {
                                                       "assets": Array [],
-                                                      "error": true,
+                                                      "error": null,
                                                       "loading": false,
                                                       "total": Object {
                                                         "btc": "0",
@@ -36835,7 +36835,7 @@ ShallowWrapper {
                       },
                       "nahmiiAvailable": Object {
                         "assets": Array [],
-                        "error": null,
+                        "error": true,
                         "loading": false,
                         "total": Object {
                           "btc": "0",
@@ -36855,7 +36855,7 @@ ShallowWrapper {
                       },
                       "nahmiiStaged": Object {
                         "assets": Array [],
-                        "error": true,
+                        "error": null,
                         "loading": false,
                         "total": Object {
                           "btc": "0",
@@ -37902,7 +37902,7 @@ ShallowWrapper {
                                                       },
                                                       "nahmiiAvailable": Object {
                                                         "assets": Array [],
-                                                        "error": null,
+                                                        "error": true,
                                                         "loading": false,
                                                         "total": Object {
                                                           "btc": "0",
@@ -37922,7 +37922,7 @@ ShallowWrapper {
                                                       },
                                                       "nahmiiStaged": Object {
                                                         "assets": Array [],
-                                                        "error": true,
+                                                        "error": null,
                                                         "loading": false,
                                                         "total": Object {
                                                           "btc": "0",
@@ -38709,7 +38709,7 @@ ShallowWrapper {
                                                             },
                                                             "nahmiiAvailable": Object {
                                                               "assets": Array [],
-                                                              "error": null,
+                                                              "error": true,
                                                               "loading": false,
                                                               "total": Object {
                                                                 "btc": "0",
@@ -38729,7 +38729,7 @@ ShallowWrapper {
                                                             },
                                                             "nahmiiStaged": Object {
                                                               "assets": Array [],
-                                                              "error": true,
+                                                              "error": null,
                                                               "loading": false,
                                                               "total": Object {
                                                                 "btc": "0",
@@ -39516,7 +39516,7 @@ ShallowWrapper {
                                                           },
                                                           "nahmiiAvailable": Object {
                                                             "assets": Array [],
-                                                            "error": null,
+                                                            "error": true,
                                                             "loading": false,
                                                             "total": Object {
                                                               "btc": "0",
@@ -39536,7 +39536,7 @@ ShallowWrapper {
                                                           },
                                                           "nahmiiStaged": Object {
                                                             "assets": Array [],
-                                                            "error": true,
+                                                            "error": null,
                                                             "loading": false,
                                                             "total": Object {
                                                               "btc": "0",
@@ -40205,7 +40205,7 @@ ShallowWrapper {
                         },
                         "nahmiiAvailable": Object {
                           "assets": Array [],
-                          "error": null,
+                          "error": true,
                           "loading": false,
                           "total": Object {
                             "btc": "0",
@@ -40225,7 +40225,7 @@ ShallowWrapper {
                         },
                         "nahmiiStaged": Object {
                           "assets": Array [],
-                          "error": true,
+                          "error": null,
                           "loading": false,
                           "total": Object {
                             "btc": "0",

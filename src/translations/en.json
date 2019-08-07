@@ -184,6 +184,7 @@
     "signature_hex_string": "Signature hex string",
     "thanks_for_interest_airdriip": "Thank you for your interest in the nahmii airdriip!",
     "has_address_been_imported_airdriip": "Has the address you intend to register been imported into hubii core?",
+    "airdriip_disabled": "Effective August 2019, ETH token holders will no longer receive NII tokens as part of the nahmii airdriip. Registration using hubii core has therefore been disabled.",
     "yes": "Yes",
     "no": "No",
     "one_click_registration": "(one-click-registration)",
@@ -294,6 +295,9 @@
     "start_challenge": "Start settlement",
     "challenge_period": "Challenge period",
     "settlement_qualified": "Settlement qualified",
+    "settlements_disabled": "Settlements are currently disabled",
     "withdrawable": "Withdrawable",
-    "synchronising_settlement_status": "Synchronising settlement status..."
+    "synchronising_settlement_status": "Synchronising settlement status...",
+    "i_agree": "I agree with the ",
+    "terms": "Terms & Conditions"
 }

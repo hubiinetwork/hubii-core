@@ -965,7 +965,7 @@ ShallowWrapper {
                                         <Row
                                                   gutter={0}
                                         >
-                                                  <style__StyledButton
+                                                  <AgreementButton
                                                             className="withdraw-btn"
                                                             disabled={true}
                                                             onClick={[Function]}
@@ -976,7 +976,7 @@ ShallowWrapper {
                                                             >
                                                                       withdraw
                                                             </style__StyledText>
-                                                  </style__StyledButton>
+                                                  </AgreementButton>
                                         </Row>
                               </div>
                               <style__HWPromptWrapper>
@@ -1324,7 +1324,7 @@ ShallowWrapper {
                                     <Row
                                                 gutter={0}
                                     >
-                                                <style__StyledButton
+                                                <AgreementButton
                                                             className="withdraw-btn"
                                                             disabled={true}
                                                             onClick={[Function]}
@@ -1335,7 +1335,7 @@ ShallowWrapper {
                                                             >
                                                                         withdraw
                                                             </style__StyledText>
-                                                </style__StyledButton>
+                                                </AgreementButton>
                                     </Row>
                         </div>
                         <style__HWPromptWrapper>
@@ -1663,7 +1663,7 @@ ShallowWrapper {
                                 <Row
                                                 gutter={0}
                                 >
-                                                <style__StyledButton
+                                                <AgreementButton
                                                                 className="withdraw-btn"
                                                                 disabled={true}
                                                                 onClick={[Function]}
@@ -1674,7 +1674,7 @@ ShallowWrapper {
                                                                 >
                                                                                 withdraw
                                                                 </style__StyledText>
-                                                </style__StyledButton>
+                                                </AgreementButton>
                                 </Row>
                 </div>
                 <style__HWPromptWrapper>
@@ -2269,7 +2269,7 @@ ShallowWrapper {
                     <Row
                                         gutter={0}
                     >
-                                        <style__StyledButton
+                                        <AgreementButton
                                                             className="withdraw-btn"
                                                             disabled={true}
                                                             onClick={[Function]}
@@ -2280,7 +2280,7 @@ ShallowWrapper {
                                                             >
                                                                                 withdraw
                                                             </style__StyledText>
-                                        </style__StyledButton>
+                                        </AgreementButton>
                     </Row>
 </div>,
                   <style__HWPromptWrapper>
@@ -2513,7 +2513,7 @@ ShallowWrapper {
                       <Row
                         gutter={0}
 >
-                        <style__StyledButton
+                        <AgreementButton
                                                 className="withdraw-btn"
                                                 disabled={true}
                                                 onClick={[Function]}
@@ -2524,7 +2524,7 @@ ShallowWrapper {
                                                 >
                                                                         withdraw
                                                 </style__StyledText>
-                        </style__StyledButton>
+                        </AgreementButton>
 </Row>,
                     ],
                     "className": "withdraw-review",
@@ -3166,7 +3166,7 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "children": <style__StyledButton
+                        "children": <AgreementButton
                           className="withdraw-btn"
                           disabled={true}
                           onClick={[Function]}
@@ -3177,7 +3177,7 @@ ShallowWrapper {
                           >
                                                     withdraw
                           </style__StyledText>
-</style__StyledButton>,
+</AgreementButton>,
                         "gutter": 0,
                       },
                       "ref": null,
@@ -3613,7 +3613,7 @@ ShallowWrapper {
                                                 <Row
                                                             gutter={0}
                                                 >
-                                                            <style__StyledButton
+                                                            <AgreementButton
                                                                         className="withdraw-btn"
                                                                         disabled={true}
                                                                         onClick={[Function]}
@@ -3624,7 +3624,7 @@ ShallowWrapper {
                                                                         >
                                                                                     withdraw
                                                                         </style__StyledText>
-                                                            </style__StyledButton>
+                                                            </AgreementButton>
                                                 </Row>
                                     </div>
                                     <style__HWPromptWrapper>
@@ -3972,7 +3972,7 @@ ShallowWrapper {
                                           <Row
                                                         gutter={0}
                                           >
-                                                        <style__StyledButton
+                                                        <AgreementButton
                                                                       className="withdraw-btn"
                                                                       disabled={true}
                                                                       onClick={[Function]}
@@ -3983,7 +3983,7 @@ ShallowWrapper {
                                                                       >
                                                                                     withdraw
                                                                       </style__StyledText>
-                                                        </style__StyledButton>
+                                                        </AgreementButton>
                                           </Row>
                             </div>
                             <style__HWPromptWrapper>
@@ -4311,7 +4311,7 @@ ShallowWrapper {
                                     <Row
                                                       gutter={0}
                                     >
-                                                      <style__StyledButton
+                                                      <AgreementButton
                                                                         className="withdraw-btn"
                                                                         disabled={true}
                                                                         onClick={[Function]}
@@ -4322,7 +4322,7 @@ ShallowWrapper {
                                                                         >
                                                                                           withdraw
                                                                         </style__StyledText>
-                                                      </style__StyledButton>
+                                                      </AgreementButton>
                                     </Row>
                   </div>
                   <style__HWPromptWrapper>
@@ -4917,7 +4917,7 @@ ShallowWrapper {
                       <Row
                                             gutter={0}
                       >
-                                            <style__StyledButton
+                                            <AgreementButton
                                                                   className="withdraw-btn"
                                                                   disabled={true}
                                                                   onClick={[Function]}
@@ -4928,7 +4928,7 @@ ShallowWrapper {
                                                                   >
                                                                                         withdraw
                                                                   </style__StyledText>
-                                            </style__StyledButton>
+                                            </AgreementButton>
                       </Row>
 </div>,
                     <style__HWPromptWrapper>
@@ -5161,7 +5161,7 @@ ShallowWrapper {
                         <Row
                           gutter={0}
 >
-                          <style__StyledButton
+                          <AgreementButton
                                                     className="withdraw-btn"
                                                     disabled={true}
                                                     onClick={[Function]}
@@ -5172,7 +5172,7 @@ ShallowWrapper {
                                                     >
                                                                               withdraw
                                                     </style__StyledText>
-                          </style__StyledButton>
+                          </AgreementButton>
 </Row>,
                       ],
                       "className": "withdraw-review",
@@ -5814,7 +5814,7 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "class",
                         "props": Object {
-                          "children": <style__StyledButton
+                          "children": <AgreementButton
                             className="withdraw-btn"
                             disabled={true}
                             onClick={[Function]}
@@ -5825,7 +5825,7 @@ ShallowWrapper {
                             >
                                                         withdraw
                             </style__StyledText>
-</style__StyledButton>,
+</AgreementButton>,
                           "gutter": 0,
                         },
                         "ref": null,

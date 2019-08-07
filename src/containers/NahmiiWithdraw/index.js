@@ -33,6 +33,7 @@ import Input from 'components/ui/Input';
 import Select, { Option } from 'components/ui/Select';
 import TransferDescriptionItem from 'components/TransferDescriptionItem';
 import GasOptions from 'components/GasOptions';
+import AgreementButton from 'components/AgreementButton';
 import HWPromptContainer from 'containers/HWPromptContainer';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import {
@@ -333,7 +334,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     const { formatMessage } = intl;
     if (ongoingChallenges.get('loading') === true || settleableChallenges.get('loading') === true) {
       return (
-        <span>
+        <span style={{ alignSelf: 'center' }}>
           <Text large>{formatMessage({ id: 'synchronising_settlement_status' })}</Text>
           <Icon style={{ color: 'white', fontSize: '1.5rem', marginLeft: '1rem' }} type="loading" />
         </span>
@@ -783,9 +784,9 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                                     {TxStatus}
                                   </div>
                                 ) : (
-                                  <StyledButton className="challenge-btn" onClick={() => this.startChallenge(requiredSettlementAmount, assetToWithdraw)} disabled={disableSettleButton}>
+                                  <AgreementButton className="challenge-btn" onClick={() => this.startChallenge(requiredSettlementAmount, assetToWithdraw)} disabled={disableSettleButton}>
                                     {formatMessage({ id: 'settle_balance' })}
-                                  </StyledButton>
+                                  </AgreementButton>
                                 )
                             }
                           </Row>
@@ -920,14 +921,14 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                                     {TxStatus}
                                   </div>
                                 ) : (
-                                  <StyledButton
+                                  <AgreementButton
                                     type="primary"
                                     className="withdraw-btn"
                                     onClick={() => this.withdraw(amountToWithdraw, assetToWithdraw)}
                                     disabled={disableWithdrawButton}
                                   >
                                     <StyledText capitalize>{formatMessage({ id: 'withdraw' })}</StyledText>
-                                  </StyledButton>
+                                  </AgreementButton>
                                 )
                             }
                           </Row>
