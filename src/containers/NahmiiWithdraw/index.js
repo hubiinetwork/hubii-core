@@ -334,7 +334,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     const { formatMessage } = intl;
     if (ongoingChallenges.get('loading') === true || settleableChallenges.get('loading') === true) {
       return (
-        <span>
+        <span style={{ alignSelf: 'center' }}>
           <Text large>{formatMessage({ id: 'synchronising_settlement_status' })}</Text>
           <Icon style={{ color: 'white', fontSize: '1.5rem', marginLeft: '1rem' }} type="loading" />
         </span>
