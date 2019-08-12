@@ -9688,9 +9688,9 @@ mute-stream@0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
 
-nahmii-contract-abstractions-ropsten@3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/nahmii-contract-abstractions-ropsten/-/nahmii-contract-abstractions-ropsten-3.1.1.tgz#042b9d49f6459801b00beff810c33d4bfa78b8f4"
+nahmii-contract-abstractions-ropsten@3.1.3:
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/nahmii-contract-abstractions-ropsten/-/nahmii-contract-abstractions-ropsten-3.1.3.tgz#ee0f605923df8d1c301f2644ead78d21c5308db0"
   dependencies:
     glob "^7.1.4"
 
@@ -9704,14 +9704,14 @@ nahmii-ethereum-address@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/nahmii-ethereum-address/-/nahmii-ethereum-address-2.0.1.tgz#7b31f04d5748cb58c63312b96d7a51bb4ceab6f2"
 
-nahmii-sdk@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/nahmii-sdk/-/nahmii-sdk-3.0.0.tgz#9e5173f76852051b14586f1713267a4b2bdc232b"
+nahmii-sdk@3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/nahmii-sdk/-/nahmii-sdk-3.0.2.tgz#efb35ebfd4506b5ce0454256c51e409d86565e1a"
   dependencies:
     ethereumjs-util "^6.1.0"
     lodash.get "^4.4.2"
     nahmii-contract-abstractions "2.0.1"
-    nahmii-contract-abstractions-ropsten "3.1.1"
+    nahmii-contract-abstractions-ropsten "3.1.3"
     socket.io-client "^2.2.0"
     superagent "^5.1.0"
     uuid "^3.3.2"
