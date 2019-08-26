@@ -52,6 +52,7 @@ import {
   NAHMII_APPROVE_TOKEN_DEPOSIT,
   NAHMII_COMPLETE_TOKEN_DEPOSIT,
   MAKE_NAHMII_PAYMENT,
+  MAKE_NAHMII_PAYMENT_SUCCESS,
   START_CHALLENGE,
   START_CHALLENGE_SUCCESS,
   SETTLE,
@@ -733,7 +734,6 @@ export function* challengeStatusOrcestrator() {
   try {
     while (true) { // eslint-disable-line no-constant-condition
       yield requestToken();
-
       const network = yield select(makeSelectCurrentNetwork());
       const wallets = yield select(makeSelectWallets());
       const allTasks = yield all([
@@ -754,7 +754,7 @@ export function* challengeStatusOrcestrator() {
       const ONE_MINUTE_IN_MS = 60 * 1000;
       yield race({
         timer: call(delay, ONE_MINUTE_IN_MS),
-        override: take([CHANGE_NETWORK, ADD_NEW_WALLET]),
+        override: take([CHANGE_NETWORK, ADD_NEW_WALLET, MAKE_NAHMII_PAYMENT_SUCCESS]),
       });
       if (allTasks.length > 0) {
         yield cancel(...allTasks);
