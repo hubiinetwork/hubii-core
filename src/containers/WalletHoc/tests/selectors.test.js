@@ -1,6 +1,7 @@
 import { fromJS } from 'immutable';
 
 import { storeMock } from 'mocks/store';
+import { referenceCurrencies } from 'utils/wallet';
 
 import {
   supportedAssetsLoadingMock,
@@ -226,6 +227,20 @@ describe('makeSelectWalletsWithInfo', () => {
     const wallet = walletsWithInfo.find((w) => w.get('address') === currentWalletSoftwareMock.get('address'));
     expect(wallet.getIn(['balances', 'baseLayer', 'error'])).toEqual(true);
   });
+
+  it('should set values to 0 if there are no prices for the currencies', () => {
+    const mockedState = storeMock
+      .deleteIn(['hubiiApiHoc', 'transactions', currentWalletSoftwareMock.get('address')])
+      .setIn(['hubiiApiHoc', 'prices', 'assets'], fromJS([]));
+
+    const walletsWithInfo = walletsWithInfoSelector(mockedState);
+    const wallet = walletsWithInfo.find((w) => w.get('address') === currentWalletSoftwareMock.get('address'));
+    wallet.get('balances').valueSeq().forEach((balance) => {
+      referenceCurrencies.forEach((currency) => {
+        expect(balance.getIn(['total', currency]).toString()).toEqual('0');
+      });
+    });
+  });
 });
 
 describe('makeSelectTotalBalances', () => {
@@ -261,5 +276,16 @@ describe('makeSelectTotalBalances', () => {
       .setIn(['hubiiApiHoc', 'prices'], pricesErrorMock);
     const expected = totalBalancesErrorMock;
     expect(totalBalancesSelector(mockedState)).toEqual(expected);
+  });
+
+  it('should set values to 0 if there are no prices for the currencies', () => {
+    const mockedState = storeMock
+      .deleteIn(['hubiiApiHoc', 'transactions', currentWalletSoftwareMock.get('address')])
+      .setIn(['hubiiApiHoc', 'prices', 'assets'], fromJS([]));
+
+    const result = totalBalancesSelector(mockedState);
+    result.valueSeq().forEach((balance) => {
+      expect(balance.getIn(['total', 'usd']).toString()).toEqual('0');
+    });
   });
 });

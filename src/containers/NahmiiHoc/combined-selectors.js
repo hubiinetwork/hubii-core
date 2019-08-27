@@ -65,6 +65,17 @@ const requiredDataLoading = (supportedAssets, prices, walletBalances) => (
   || walletBalances.get('loading')
 );
 
+const findPriceInfo = (prices, currency) => {
+  const priceInfo = prices
+    .get('assets')
+    .find((p) => p.get('currency') === currency);
+
+  if (priceInfo) {
+    return priceInfo;
+  }
+  return referenceCurrencies.reduce((result, referenceCurrency) => result.set(referenceCurrency, new BigNumber('0')), fromJS({}));
+};
+
 // given that the two arrays are already sorted we can use a greedy
 // approach to go through each array and track the oldest element,
 // each time adding it to a new merged array.
@@ -169,7 +180,6 @@ const makeSelectWalletsWithInfo = () => createSelector(
         } else {
           walletBalances = walletBalances.set('assets', walletBalances.get('assets').reduce((result, asset) => {
             let walletAsset = asset;
-
             const supportedAssetInfo = supportedAssets
               .get('assets')
               .find((a) => a.get('currency') === asset.get('currency'));
@@ -177,9 +187,7 @@ const makeSelectWalletsWithInfo = () => createSelector(
             // ignore unsupported assets
             if (!supportedAssetInfo) return result;
 
-            const priceInfo = prices
-              .get('assets')
-              .find((p) => p.get('currency') === asset.get('currency'));
+            const priceInfo = findPriceInfo(prices, asset.get('currency'));
 
             // Remove redundant value
             walletAsset = walletAsset.delete('address');
@@ -321,7 +329,7 @@ const makeSelectTotalBalances = () => createSelector(
           const prevAmount = totalBalances.getIn([label, 'assets', currency, 'amount']) || new BigNumber('0');
           const nextAmount = prevAmount.plus(thisBalance);
 
-          const price = prices.get('assets').find((p) => p.get('currency') === balance.get('currency')).get('usd');
+          const price = findPriceInfo(prices, balance.get('currency')).get('usd');
           totalBalances = totalBalances.setIn([label, 'assets', currency], fromJS({ amount: nextAmount, value: { usd: nextAmount.times(price) } }));
         });
       });
@@ -329,7 +337,7 @@ const makeSelectTotalBalances = () => createSelector(
       // Calculate total USD value for the balance type
       totalBalances.getIn([label, 'assets']).keySeq().forEach((currency) => {
         const amount = totalBalances.getIn([label, 'assets', currency, 'amount']);
-        const price = prices.get('assets').find((p) => p.get('currency') === currency).get('usd');
+        const price = findPriceInfo(prices, currency).get('usd');
         const value = amount.times(price);
 
         const prevAmount = totalBalances.getIn([label, 'total', 'usd']) || new BigNumber('0');
