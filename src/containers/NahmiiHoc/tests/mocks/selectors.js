@@ -270,13 +270,13 @@ export const balances = balanceState
 
 // makeSelectDepositStatus
 export const depositStatusNone = fromJS({
-  depositingEth: false,
+  depositing: false,
   approvingTokenDeposit: false,
   completingTokenDeposit: false,
   error: null,
 });
 
-export const depositStatusEth = depositStatusNone.set('depositingEth', true);
+export const depositStatusEth = depositStatusNone.set('depositing', true);
 export const depositStatusApproving = depositStatusNone.set(
   'approvingTokenDeposit',
   true

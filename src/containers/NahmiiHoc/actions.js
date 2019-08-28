@@ -94,28 +94,35 @@ export function nahmiiDepositEth(address, amount, options) {
   };
 }
 
-export function nahmiiDepositEthSuccess() {
+export function nahmiiDepositEthSuccess(address) {
   return {
     type: NAHMII_DEPOSIT_ETH_SUCCESS,
+    address,
   };
 }
 
-export function nahmiiApproveTokenDepositSuccess() {
+export function nahmiiApproveTokenDepositSuccess(address, symbol) {
   return {
     type: NAHMII_APPROVE_TOKEN_DEPOSIT_SUCCESS,
+    address,
+    symbol,
   };
 }
 
-export function nahmiiCompleteTokenDepositSuccess() {
+export function nahmiiCompleteTokenDepositSuccess(address, symbol) {
   return {
     type: NAHMII_COMPLETE_TOKEN_DEPOSIT_SUCCESS,
+    address,
+    symbol,
   };
 }
 
-export function nahmiiDepositFailed(errorMessage) {
+export function nahmiiDepositFailed(address, symbol, errorMessage) {
   return {
     type: NAHMII_DEPOSIT_FAILED,
     error: errorMessage,
+    address,
+    symbol,
   };
 }
 
