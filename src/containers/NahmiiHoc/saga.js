@@ -82,7 +82,11 @@ export function* deposit({ address, symbol, amount, options }) {
           action.address === address &&
           action.symbol === symbol
         ),
-        approvalFailed: take(NAHMII_DEPOSIT_FAILED),
+        approvalFailed: take((action) =>
+          action.type === NAHMII_DEPOSIT_FAILED &&
+          action.address === address &&
+          action.symbol === symbol
+        ),
       });
       if (approvalSuccess) {
         yield put(actions.nahmiiCompleteTokenDeposit(address, symbol, amount, options));

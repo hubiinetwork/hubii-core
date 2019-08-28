@@ -344,8 +344,9 @@ describe('nahmiiHocSaga', () => {
           return expectSaga(deposit, { address, symbol, amount, options })
             .withReducer(withReducer, storeMock)
             .put(actions.nahmiiApproveTokenDeposit(address, symbol, amount, options))
+            .not.put(actions.nahmiiCompleteTokenDeposit(address, symbol, amount, options))
             .dispatch(actions.nahmiiDepositFailed(address, symbol, error))
-            .run({ silenceTimeout: true })
+            .run(false)
             .then((result) => {
               const depositStatus = result.storeState.getIn(['nahmiiHoc', 'depositStatus', address, symbol]);
               expect(depositStatus.get('depositing')).toEqual(false);
