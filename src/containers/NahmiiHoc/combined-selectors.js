@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { fromJS, List } from 'immutable';
 import BigNumber from 'bignumber.js';
-import { referenceCurrencies } from 'utils/wallet';
+import { referenceCurrencies, isAddressMatch } from 'utils/wallet';
 
 /**
  * Selectors adding nahmii state to other sources
@@ -68,7 +68,7 @@ const requiredDataLoading = (supportedAssets, prices, walletBalances) => (
 const findPriceInfo = (prices, currency) => {
   const priceInfo = prices
     .get('assets')
-    .find((p) => p.get('currency') === currency);
+    .find((p) => isAddressMatch(p.get('currency'), currency));
 
   if (priceInfo) {
     return priceInfo;
