@@ -40,6 +40,9 @@ export const findWalletIndex = (state, address, scopedFatalError = fatalError) =
  * Trims the amount of decimals on 'amount' so that it is accurate up to 0.01 usd equivilent value
  */
 export const trimDecimals = (amount, currency, currencyPrices) => {
+  if (!currencyPrices) {
+    return '0';
+  }
   // check to see if this currency is a test token, in which case give it an arbitrary price of $100
   const usdPrice = currencyPrices.usd === '0' ? '100' : currencyPrices.usd;
 

@@ -8,6 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import { fromJS } from 'immutable';
 import { shell } from 'electron';
 import { Row, Icon } from 'antd';
 import { getAbsolutePath, assetImageFallback } from 'utils/electron';
@@ -101,20 +102,6 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
     this.generateTransferingStatus = this.generateTransferingStatus.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
-    const { depositStatus, goWalletDetails, currentWalletWithInfo } = this.props;
-    const prevFinalDepositStage =
-      prevProps.depositStatus.get('depositingEth')
-      || prevProps.depositStatus.get('completingTokenDeposit');
-    if
-    (
-      prevFinalDepositStage
-        && !depositStatus.get('depositingEth')
-        && !depositStatus.get('completingTokenDeposit')
-        && !depositStatus.get('error')
-    ) goWalletDetails(currentWalletWithInfo.get('address'));
-  }
-
   onFocusNumberInput(input) {
     if (this.state[input] === '0') {
       this.setState({ [input]: '' });
@@ -129,6 +116,13 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
 
   onGasChange(fee, gasLimit, gasPriceGwei) {
     this.setState({ gasLimit: gasLimit.toNumber(), gasPriceGwei });
+  }
+
+  getDepositStatusForWalletCurrency() {
+    const { assetToDeposit } = this.state;
+    const { depositStatus, currentWalletWithInfo } = this.props;
+    const depositStatusForWalletCurrency = depositStatus.getIn([currentWalletWithInfo.get('address'), assetToDeposit.symbol]);
+    return depositStatusForWalletCurrency || fromJS({});
   }
 
   handleAssetChange(newSymbol) {
@@ -179,14 +173,15 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
     this.setState({ amountToDepositInput: value });
   }
 
-  generateTransferingStatus(depositStatus, ledgerNanoSInfo, trezorInfo) {
+  generateTransferingStatus(ledgerNanoSInfo, trezorInfo) {
     const { currentWalletWithInfo, currentNetwork, intl } = this.props;
     const { formatMessage } = intl;
+    const depositStatusForWalletCurrency = this.getDepositStatusForWalletCurrency();
     const confOnDevice = ledgerNanoSInfo.get('confTxOnDevice') || trezorInfo.get('confTxOnDevice');
     let ratio;
-    if (depositStatus.get('depositingEth')) ratio = '1/1';
-    if (depositStatus.get('approvingTokenDeposit')) ratio = '1/2';
-    if (depositStatus.get('completingTokenDeposit')) ratio = '2/2';
+    if (depositStatusForWalletCurrency.get('depositing')) ratio = '1/1';
+    if (depositStatusForWalletCurrency.get('approvingTokenDeposit')) ratio = '1/2';
+    if (depositStatusForWalletCurrency.get('completingTokenDeposit')) ratio = '2/2';
     if (!ratio) return null;
     const transferingText =
       `${formatMessage({ id: 'waiting_for_deposit_to_be' }, { ratio })} ${confOnDevice ? formatMessage({ id: 'signed' }) : `${formatMessage({ id: 'mined' })}...`}`;
@@ -227,7 +222,6 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
       gasStatistics,
       intl,
       supportedAssets,
-      depositStatus,
       ledgerNanoSInfo,
       trezorInfo,
     } = this.props;
@@ -317,7 +311,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
       baseLayerBalAfterAmt.isNegative() ||
       baseLayerEthBalanceAfterAmount.isNegative() ||
       !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
-    const TransferingStatus = this.generateTransferingStatus(depositStatus, ledgerNanoSInfo, trezorInfo);
+    const TransferingStatus = this.generateTransferingStatus(ledgerNanoSInfo, trezorInfo);
     return (
       <ScrollableContentWrapper>
         <div style={{ display: 'flex', flex: '1', flexWrap: 'wrap', marginTop: '0.5rem' }}>
@@ -533,7 +527,6 @@ NahmiiDeposit.propTypes = {
   currentNetwork: PropTypes.object.isRequired,
   nahmiiDeposit: PropTypes.func.isRequired,
   intl: PropTypes.object.isRequired,
-  goWalletDetails: PropTypes.func.isRequired,
   gasStatistics: PropTypes.object.isRequired,
 };
 

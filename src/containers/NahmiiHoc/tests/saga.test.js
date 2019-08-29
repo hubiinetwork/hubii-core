@@ -12,6 +12,10 @@ import {
   loadBalances,
   makePayment,
   getSdkWalletSigner,
+  deposit,
+  depositEth,
+  approveTokenDeposit,
+  completeTokenDeposit,
   startChallenge,
   settle,
   withdraw,
@@ -26,6 +30,11 @@ import nahmiiHocReducer from '../reducer';
 
 describe('nahmiiHocSaga', () => {
   const withReducer = (state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action));
+  const signerMock = {
+    signMessage: () => {},
+    signTransaction: () => {},
+    address: storeMock.getIn(['walletHoc', 'currentWallet', 'address']),
+  };
 
   describe('loadBalances', () => {
     const ct = '0x1';
@@ -57,11 +66,6 @@ describe('nahmiiHocSaga', () => {
     let monetaryAmount;
     let recipient;
     let walletOverride;
-    const signerMock = {
-      signMessage: () => {},
-      signTransaction: () => {},
-      address: '0x0000000000000000000000000000000000000001',
-    };
     beforeEach(() => {
       monetaryAmount = nahmii.MonetaryAmount.from('1000', '0x0000000000000000000000000000000000000000');
       recipient = '0x0000000000000000000000000000000000000001';
@@ -242,17 +246,221 @@ describe('nahmiiHocSaga', () => {
         .run({ silenceTimeout: true });
     });
   });
+  describe('deposit', () => {
+    const amount = 1;
+    const address = storeMock.getIn(['walletHoc', 'currentWallet', 'address']);
+    const options = {};
+    describe('ETH', () => {
+      const symbol = 'ETH';
+      describe('#deposit()', () => {
+        it('should update ETH deposit status to true when NAHMII_DEPOSIT_ETH action is triggered', () => expectSaga(deposit, { address, symbol, amount, options })
+          .withReducer(withReducer, storeMock)
+          .put(actions.nahmiiDepositEth(address, amount, options))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const depositStatus = result.storeState.getIn(['nahmiiHoc', 'depositStatus', address, 'ETH']);
+            expect(depositStatus.get('depositing')).toEqual(true);
+            expect(depositStatus.get('error')).toEqual(null);
+          })
+        );
+      });
+
+      describe('#depositEth()', () => {
+        it('should update ETH deposit status to true when NAHMII_DEPOSIT_ETH_SUCCESS action is triggered', () => expectSaga(depositEth, { address, amount, options })
+          .withReducer(withReducer, storeMock)
+          .provide({
+            call(effect) {
+              if (effect.fn === getSdkWalletSigner) {
+                return [
+                  signerMock,
+                  { type: 'ACTION1' },
+                  { type: 'ACTION2' },
+                ];
+              }
+              if (effect.fn.name === 'bound depositEth') {
+                return 'hash';
+              }
+              return null;
+            },
+          })
+          .put(actions.nahmiiDepositEthSuccess(address))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const depositStatus = result.storeState.getIn(['nahmiiHoc', 'depositStatus', address, 'ETH']);
+            expect(depositStatus.get('depositing')).toEqual(false);
+            expect(depositStatus.get('error')).toEqual(null);
+          })
+        );
+        it('should update error status when NAHMII_DEPOSIT_FAILED action is triggered', () => {
+          const err = new Error('err');
+          return expectSaga(depositEth, { address, amount, options })
+            .withReducer(withReducer, storeMock)
+            .provide({
+              call(effect) {
+                if (effect.fn === getSdkWalletSigner) {
+                  throw err;
+                }
+              },
+            })
+            .put(actions.nahmiiDepositFailed(address, 'ETH', `An error occured: ${err.message}`))
+            .run({ silenceTimeout: true })
+            .then((result) => {
+              const depositStatus = result.storeState.getIn(['nahmiiHoc', 'depositStatus', address, 'ETH']);
+              expect(depositStatus.get('depositing')).toEqual(false);
+              expect(depositStatus.get('error')).toEqual(`An error occured: ${err.message}`);
+            });
+        }
+        );
+      });
+    });
+    describe('token', () => {
+      const symbol = 'TTT';
+      describe('#deposit()', () => {
+        it('should update approvingTokenDeposit to true when NAHMII_APPROVE_TOKEN_DEPOSIT action is triggered', () => expectSaga(deposit, { address, symbol, amount, options })
+          .withReducer(withReducer, storeMock)
+          .put(actions.nahmiiApproveTokenDeposit(address, symbol, amount, options))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const depositStatus = result.storeState.getIn(['nahmiiHoc', 'depositStatus', address, symbol]);
+            expect(depositStatus.get('approvingTokenDeposit')).toEqual(true);
+            expect(depositStatus.get('error')).toEqual(null);
+          })
+        );
+        it('should update completingTokenDeposit to true when NAHMII_COMPLETE_TOKEN_DEPOSIT action is triggered', () => expectSaga(deposit, { address, symbol, amount, options })
+          .withReducer(withReducer, storeMock)
+          .put(actions.nahmiiApproveTokenDeposit(address, symbol, amount, options))
+          .put(actions.nahmiiCompleteTokenDeposit(address, symbol, amount, options))
+          .dispatch(actions.nahmiiApproveTokenDepositSuccess(address, symbol))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const depositStatus = result.storeState.getIn(['nahmiiHoc', 'depositStatus', address, symbol]);
+            expect(depositStatus.get('approvingTokenDeposit')).toEqual(false);
+            expect(depositStatus.get('completingTokenDeposit')).toEqual(true);
+            expect(depositStatus.get('error')).toEqual(null);
+          })
+        );
+        it('should update error when NAHMII_DEPOSIT_FAILED action is triggered', () => {
+          const error = new Error();
+          return expectSaga(deposit, { address, symbol, amount, options })
+            .withReducer(withReducer, storeMock)
+            .put(actions.nahmiiApproveTokenDeposit(address, symbol, amount, options))
+            .not.put(actions.nahmiiCompleteTokenDeposit(address, symbol, amount, options))
+            .dispatch(actions.nahmiiDepositFailed(address, symbol, error))
+            .run(false)
+            .then((result) => {
+              const depositStatus = result.storeState.getIn(['nahmiiHoc', 'depositStatus', address, symbol]);
+              expect(depositStatus.get('depositing')).toEqual(false);
+              expect(depositStatus.get('approvingTokenDeposit')).toEqual(false);
+              expect(depositStatus.get('completingTokenDeposit')).toEqual(false);
+              expect(depositStatus.get('error')).toEqual(error);
+            });
+        }
+        );
+      });
+      describe('#approveTokenDeposit()', () => {
+        it('should update token deposit status to true when NAHMII_APPROVE_TOKEN_DEPOSIT_SUCCESS action is triggered', () => expectSaga(approveTokenDeposit, { address, symbol, amount, options })
+          .withReducer(withReducer, storeMock)
+          .provide({
+            call(effect) {
+              if (effect.fn === getSdkWalletSigner) {
+                return [
+                  signerMock,
+                  { type: 'ACTION1' },
+                  { type: 'ACTION2' },
+                ];
+              }
+              if (effect.fn.name === 'bound approveTokenDeposit') {
+                return 'hash';
+              }
+              return null;
+            },
+          })
+          .put(actions.nahmiiApproveTokenDepositSuccess(address, symbol))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const depositStatus = result.storeState.getIn(['nahmiiHoc', 'depositStatus', address, symbol]);
+            expect(depositStatus.get('approvingTokenDeposit')).toEqual(false);
+            expect(depositStatus.get('error')).toEqual(null);
+          })
+        );
+        it('should update error status when NAHMII_DEPOSIT_FAILED action is triggered', () => {
+          const err = new Error('err');
+          return expectSaga(approveTokenDeposit, { address, symbol, amount, options })
+            .withReducer(withReducer, storeMock)
+            .provide({
+              call(effect) {
+                if (effect.fn === getSdkWalletSigner) {
+                  throw err;
+                }
+              },
+            })
+            .put(actions.nahmiiDepositFailed(address, symbol, `An error occured: ${err.message}`))
+            .run({ silenceTimeout: true })
+            .then((result) => {
+              const depositStatus = result.storeState.getIn(['nahmiiHoc', 'depositStatus', address, symbol]);
+              expect(depositStatus.get('approvingTokenDeposit')).toEqual(false);
+              expect(depositStatus.get('completingTokenDeposit')).toEqual(false);
+              expect(depositStatus.get('error')).toEqual(`An error occured: ${err.message}`);
+            });
+        }
+        );
+      });
+      describe('#completeTokenDeposit()', () => {
+        it('should update token deposit status to true when NAHMII_COMPLETE_TOKEN_DEPOSIT_SUCCESS action is triggered', () => expectSaga(completeTokenDeposit, { address, symbol, amount, options })
+          .withReducer(withReducer, storeMock)
+          .provide({
+            call(effect) {
+              if (effect.fn === getSdkWalletSigner) {
+                return [
+                  signerMock,
+                  { type: 'ACTION1' },
+                  { type: 'ACTION2' },
+                ];
+              }
+              if (effect.fn.name === 'bound completeTokenDeposit') {
+                return 'hash';
+              }
+              return null;
+            },
+          })
+          .put(actions.nahmiiCompleteTokenDepositSuccess(address, symbol))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const depositStatus = result.storeState.getIn(['nahmiiHoc', 'depositStatus', address, symbol]);
+            expect(depositStatus.get('completingTokenDeposit')).toEqual(false);
+            expect(depositStatus.get('error')).toEqual(null);
+          })
+        );
+        it('should update error status when NAHMII_DEPOSIT_FAILED action is triggered', () => {
+          const err = new Error('err');
+          return expectSaga(completeTokenDeposit, { address, symbol, amount, options })
+            .withReducer(withReducer, storeMock)
+            .provide({
+              call(effect) {
+                if (effect.fn === getSdkWalletSigner) {
+                  throw err;
+                }
+              },
+            })
+            .put(actions.nahmiiDepositFailed(address, symbol, `An error occured: ${err.message}`))
+            .run({ silenceTimeout: true })
+            .then((result) => {
+              const depositStatus = result.storeState.getIn(['nahmiiHoc', 'depositStatus', address, symbol]);
+              expect(depositStatus.get('approvingTokenDeposit')).toEqual(false);
+              expect(depositStatus.get('completingTokenDeposit')).toEqual(false);
+              expect(depositStatus.get('error')).toEqual(`An error occured: ${err.message}`);
+            });
+        }
+        );
+      });
+    });
+  });
   describe('settlement operations', () => {
     const options = { gasLimit: 1, gasPrice: 1 };
     const currency = '0x0000000000000000000000000000000000000001';
     const stageAmount = new BigNumber(10000000000000000000000);
     const fakeTxs = [{ chainId: 3, hash: 'hash1' }, { chainId: 3, hash: 'hash2' }];
     const fakeTxReceipts = [{ transactionHash: 'hash1', status: 1 }, { transactionHash: 'hash2', status: 1 }];
-    const signerMock = {
-      signMessage: () => {},
-      signTransaction: () => {},
-      address: storeMock.getIn(['walletHoc', 'currentWallet', 'address']),
-    };
 
     describe('load settlement states', () => {
       describe('#loadOngoingChallenges', () => {

@@ -53,12 +53,7 @@ export const initialState = fromJS({
   receipts: {},
   transactions: {},
   selectedCurrency: '0x0000000000000000000000000000000000000000',
-  depositStatus: {
-    depositingEth: false,
-    approvingTokenDeposit: false,
-    completingTokenDeposit: false,
-    error: null,
-  },
+  depositStatus: {},
   ongoingChallenges: {},
   settleableChallenges: {},
   withdrawals: {},
@@ -71,34 +66,34 @@ function nahmiiHocReducer(state = initialState, action) {
       return state.set('selectedCurrency', action.currencyAddress);
     case NAHMII_DEPOSIT_ETH:
       return state
-        .setIn(['depositStatus', 'depositingEth'], true)
-        .setIn(['depositStatus', 'error'], null);
+        .setIn(['depositStatus', action.address, 'ETH', 'depositing'], true)
+        .setIn(['depositStatus', action.address, 'ETH', 'error'], null);
     case NAHMII_DEPOSIT_ETH_SUCCESS:
       return state
-        .setIn(['depositStatus', 'depositingEth'], false)
-        .setIn(['depositStatus', 'error'], null);
+        .setIn(['depositStatus', action.address, 'ETH', 'depositing'], false)
+        .setIn(['depositStatus', action.address, 'ETH', 'error'], null);
     case NAHMII_APPROVE_TOKEN_DEPOSIT:
       return state
-        .setIn(['depositStatus', 'approvingTokenDeposit'], true)
-        .setIn(['depositStatus', 'error'], null);
+        .setIn(['depositStatus', action.address, action.symbol, 'approvingTokenDeposit'], true)
+        .setIn(['depositStatus', action.address, action.symbol, 'error'], null);
     case NAHMII_APPROVE_TOKEN_DEPOSIT_SUCCESS:
       return state
-        .setIn(['depositStatus', 'approvingTokenDeposit'], false)
-        .setIn(['depositStatus', 'error'], null);
+        .setIn(['depositStatus', action.address, action.symbol, 'approvingTokenDeposit'], false)
+        .setIn(['depositStatus', action.address, action.symbol, 'error'], null);
     case NAHMII_COMPLETE_TOKEN_DEPOSIT:
       return state
-        .setIn(['depositStatus', 'completingTokenDeposit'], true)
-        .setIn(['depositStatus', 'error'], null);
+        .setIn(['depositStatus', action.address, action.symbol, 'completingTokenDeposit'], true)
+        .setIn(['depositStatus', action.address, action.symbol, 'error'], null);
     case NAHMII_COMPLETE_TOKEN_DEPOSIT_SUCCESS:
       return state
-        .setIn(['depositStatus', 'completingTokenDeposit'], false)
-        .setIn(['depositStatus', 'error'], null);
+        .setIn(['depositStatus', action.address, action.symbol, 'completingTokenDeposit'], false)
+        .setIn(['depositStatus', action.address, action.symbol, 'error'], null);
     case NAHMII_DEPOSIT_FAILED:
       return state
-        .setIn(['depositStatus', 'depositingEth'], false)
-        .setIn(['depositStatus', 'approvingTokenDeposit'], false)
-        .setIn(['depositStatus', 'completingTokenDeposit'], false)
-        .setIn(['depositStatus', 'error'], action.error);
+        .setIn(['depositStatus', action.address, action.symbol, 'depositing'], false)
+        .setIn(['depositStatus', action.address, action.symbol, 'approvingTokenDeposit'], false)
+        .setIn(['depositStatus', action.address, action.symbol, 'completingTokenDeposit'], false)
+        .setIn(['depositStatus', action.address, action.symbol, 'error'], action.error);
     case LOAD_NAHMII_BALANCES_SUCCESS:
       return state
         .setIn(['balances', action.address, 'available', 'loading'], false)

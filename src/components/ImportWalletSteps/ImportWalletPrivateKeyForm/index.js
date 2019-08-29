@@ -109,7 +109,7 @@ class ImportWalletPrivateKeyForm extends React.Component {
                     validator: this.validatePrivateKey,
                   },
                 ],
-              })(<ModalFormInput disabled={loading} />)}
+              })(<ModalFormInput type="password" disabled={loading} />)}
             </ModalFormItem>
             <ModalFormItem
               label={

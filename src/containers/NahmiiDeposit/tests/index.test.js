@@ -37,6 +37,7 @@ import { NahmiiDeposit } from '../index';
 
 describe('<NahmiiDeposit />', () => {
   let props;
+  const address = walletsWithInfoMock.get(0).get('address');
   beforeEach(() => {
     props = {
       currentWalletWithInfo: walletsWithInfoMock.get(0),
@@ -46,7 +47,9 @@ describe('<NahmiiDeposit />', () => {
       goWalletDetails: () => {},
       intl,
       currentNetwork: currentNetworkMock,
-      depositStatus: depositStatusNone,
+      depositStatus: fromJS({
+        [address]: { ETH: depositStatusNone },
+      }),
       ledgerNanoSInfo: ledgerHocDisconnectedMock,
       trezorInfo: trezorHocDisconnectedMock,
       gasStatistics: fromJS({}),
@@ -105,7 +108,7 @@ describe('<NahmiiDeposit />', () => {
     const wrapper = shallow(
       <NahmiiDeposit
         {...props}
-        depositStatus={depositStatusEth}
+        depositStatus={props.depositStatus.setIn([address, 'ETH'], depositStatusEth)}
       />
     );
     expect(wrapper).toMatchSnapshot();
@@ -115,7 +118,7 @@ describe('<NahmiiDeposit />', () => {
     const wrapper = shallow(
       <NahmiiDeposit
         {...props}
-        depositStatus={depositStatusApproving}
+        depositStatus={props.depositStatus.setIn([address, 'ETH'], depositStatusApproving)}
       />
     );
     expect(wrapper).toMatchSnapshot();
@@ -125,17 +128,17 @@ describe('<NahmiiDeposit />', () => {
     const wrapper = shallow(
       <NahmiiDeposit
         {...props}
-        depositStatus={depositStatusCompleting}
+        depositStatus={props.depositStatus.setIn([address, 'ETH'], depositStatusCompleting)}
       />
     );
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should render correctly when depositstatus is errored', () => {
+  it('should render correctly when deposit status is errored', () => {
     const wrapper = shallow(
       <NahmiiDeposit
         {...props}
-        depositStatus={depositStatusError}
+        depositStatus={props.depositStatus.setIn([address, 'ETH'], depositStatusError)}
       />
     );
     expect(wrapper).toMatchSnapshot();

@@ -2,7 +2,7 @@ import { fromJS } from 'immutable';
 
 
 import { changeNetwork } from 'containers/App/actions';
-import nahmiiHocReducer from '../reducer';
+import nahmiiHocReducer, { initialState } from '../reducer';
 import {
   loadBalancesSuccess,
   loadStagedBalancesSuccess,
@@ -12,23 +12,7 @@ import {
 describe('nahmiiHocReducer', () => {
   let state;
   beforeEach(() => {
-    state = fromJS({
-      wallets: {},
-      balances: {},
-      receipts: {},
-      transactions: {},
-      selectedCurrency: '0x0000000000000000000000000000000000000000',
-      depositStatus: {
-        depositingEth: false,
-        approvingTokenDeposit: false,
-        completingTokenDeposit: false,
-        error: null,
-      },
-      ongoingChallenges: {},
-      settleableChallenges: {},
-      withdrawals: {},
-      newSettlementPendingTxs: {},
-    });
+    state = initialState;
   });
 
   it('returns the initial state', () => {

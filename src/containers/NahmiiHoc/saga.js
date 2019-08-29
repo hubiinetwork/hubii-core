@@ -52,6 +52,7 @@ import {
   NAHMII_APPROVE_TOKEN_DEPOSIT,
   NAHMII_COMPLETE_TOKEN_DEPOSIT,
   MAKE_NAHMII_PAYMENT,
+  MAKE_NAHMII_PAYMENT_SUCCESS,
   START_CHALLENGE,
   START_CHALLENGE_SUCCESS,
   SETTLE,
@@ -76,15 +77,23 @@ export function* deposit({ address, symbol, amount, options }) {
     } else {
       yield put(actions.nahmiiApproveTokenDeposit(address, symbol, amount, options));
       const { approvalSuccess } = yield race({
-        approvalSuccess: take(NAHMII_APPROVE_TOKEN_DEPOSIT_SUCCESS),
-        approvalFailed: take(NAHMII_DEPOSIT_FAILED),
+        approvalSuccess: take((action) =>
+          action.type === NAHMII_APPROVE_TOKEN_DEPOSIT_SUCCESS &&
+          action.address === address &&
+          action.symbol === symbol
+        ),
+        approvalFailed: take((action) =>
+          action.type === NAHMII_DEPOSIT_FAILED &&
+          action.address === address &&
+          action.symbol === symbol
+        ),
       });
       if (approvalSuccess) {
         yield put(actions.nahmiiCompleteTokenDeposit(address, symbol, amount, options));
       }
     }
   } catch (e) {
-    yield put(actions.nahmiiDepositFailed(`An error occured: ${e.message}`));
+    yield put(actions.nahmiiDepositFailed(address, symbol, `An error occured: ${e.message}`));
   }
 }
 
@@ -98,15 +107,15 @@ export function* depositEth({ address, amount, options }) {
     [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, wallet);
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
     if (confOnDevice) yield put(confOnDevice);
-    const { hash } = yield call(() => nahmiiWallet.depositEth(amount.toFixed(), options));
+    const { hash } = yield call(nahmiiWallet.depositEth.bind(nahmiiWallet), amount.toFixed(), options);
     if (confOnDeviceDone) yield put(confOnDeviceDone);
-    yield call(() => nahmiiProvider.getTransactionConfirmation(hash));
-    yield put(actions.nahmiiDepositEthSuccess());
+    yield call(nahmiiProvider.getTransactionConfirmation.bind(nahmiiProvider), hash);
+    yield put(actions.nahmiiDepositEthSuccess(address));
     yield put(notify('success', getIntl().formatMessage({ id: 'deposit_success' })));
   } catch (e) {
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
-    yield put(actions.nahmiiDepositFailed(`An error occured: ${e.message}`));
+    yield put(actions.nahmiiDepositFailed(address, 'ETH', `An error occured: ${e.message}`));
   }
 }
 
@@ -120,14 +129,14 @@ export function* approveTokenDeposit({ address, symbol, amount, options }) {
     [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, wallet);
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
     if (confOnDevice) yield put(confOnDevice);
-    const { hash } = yield call(() => nahmiiWallet.approveTokenDeposit(amount.toFixed(), symbol, options));
+    const { hash } = yield call(nahmiiWallet.approveTokenDeposit.bind(nahmiiWallet), amount.toFixed(), symbol, options);
     if (confOnDeviceDone) yield put(confOnDeviceDone);
-    yield call(() => nahmiiProvider.getTransactionConfirmation(hash));
-    yield put(actions.nahmiiApproveTokenDepositSuccess());
+    yield call(nahmiiProvider.getTransactionConfirmation.bind(nahmiiProvider), hash);
+    yield put(actions.nahmiiApproveTokenDepositSuccess(address, symbol));
   } catch (e) {
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
-    yield put(actions.nahmiiDepositFailed(`An error occured: ${e.message}`));
+    yield put(actions.nahmiiDepositFailed(address, symbol, `An error occured: ${e.message}`));
   }
 }
 
@@ -141,15 +150,15 @@ export function* completeTokenDeposit({ address, symbol, amount, options }) {
     [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, wallet);
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
     if (confOnDevice) yield put(confOnDevice);
-    const { hash } = yield call(() => nahmiiWallet.completeTokenDeposit(amount.toFixed(), symbol, options));
+    const { hash } = yield call(nahmiiWallet.completeTokenDeposit.bind(nahmiiWallet), amount.toFixed(), symbol, options);
     if (confOnDeviceDone) yield put(confOnDeviceDone);
-    yield call(() => nahmiiProvider.getTransactionConfirmation(hash));
-    yield put(actions.nahmiiCompleteTokenDepositSuccess());
+    yield call(nahmiiProvider.getTransactionConfirmation.bind(nahmiiProvider), hash);
+    yield put(actions.nahmiiCompleteTokenDepositSuccess(address, symbol));
     yield put(notify('success', getIntl().formatMessage({ id: 'deposit_success' })));
   } catch (e) {
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
-    yield put(actions.nahmiiDepositFailed(`An error occured: ${e.message}`));
+    yield put(actions.nahmiiDepositFailed(address, symbol, `An error occured: ${e.message}`));
   }
 }
 
@@ -733,7 +742,6 @@ export function* challengeStatusOrcestrator() {
   try {
     while (true) { // eslint-disable-line no-constant-condition
       yield requestToken();
-
       const network = yield select(makeSelectCurrentNetwork());
       const wallets = yield select(makeSelectWallets());
       const allTasks = yield all([
@@ -754,7 +762,7 @@ export function* challengeStatusOrcestrator() {
       const ONE_MINUTE_IN_MS = 60 * 1000;
       yield race({
         timer: call(delay, ONE_MINUTE_IN_MS),
-        override: take([CHANGE_NETWORK, ADD_NEW_WALLET]),
+        override: take([CHANGE_NETWORK, ADD_NEW_WALLET, MAKE_NAHMII_PAYMENT_SUCCESS]),
       });
       if (allTasks.length > 0) {
         yield cancel(...allTasks);
@@ -822,10 +830,10 @@ export default function* listen() {
   yield takeLatest(INIT_NETWORK_ACTIVITY, challengeStatusOrcestrator);
   yield takeLatest(INIT_NETWORK_ACTIVITY, processPendingSettlementTransactions);
   yield takeLatest(CHANGE_NETWORK, processPendingSettlementTransactions);
-  yield takeLatest(NAHMII_DEPOSIT, deposit);
-  yield takeLatest(NAHMII_DEPOSIT_ETH, depositEth);
-  yield takeLatest(NAHMII_APPROVE_TOKEN_DEPOSIT, approveTokenDeposit);
-  yield takeLatest(NAHMII_COMPLETE_TOKEN_DEPOSIT, completeTokenDeposit);
+  yield takeEvery(NAHMII_DEPOSIT, deposit);
+  yield takeEvery(NAHMII_DEPOSIT_ETH, depositEth);
+  yield takeEvery(NAHMII_APPROVE_TOKEN_DEPOSIT, approveTokenDeposit);
+  yield takeEvery(NAHMII_COMPLETE_TOKEN_DEPOSIT, completeTokenDeposit);
   yield takeEvery(MAKE_NAHMII_PAYMENT, makePayment);
   yield takeEvery(START_CHALLENGE, startChallenge);
   yield takeEvery(SETTLE, settle);
