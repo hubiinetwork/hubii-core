@@ -12,6 +12,8 @@ import {
   LOAD_NAHMII_BALANCES_SUCCESS,
 } from 'containers/NahmiiHoc/constants';
 
+import { LOAD_TRANSACTIONS_ERROR } from 'containers/HubiiApiHoc/constants';
+
 import root, { handleError, errorSuccessPairs } from '../saga';
 import { networkFailure, networkReconnected } from '../actions';
 
@@ -36,6 +38,17 @@ describe('handleError saga', () => {
       })
       .not.put(networkFailure(LOAD_NAHMII_BALANCES_ERROR))
       .not.put(networkReconnected(LOAD_NAHMII_BALANCES_ERROR))
+      .run()
+  );
+
+  it('skip 429 error for transaction API', () =>
+    expectSaga(handleError, { type: LOAD_TRANSACTIONS_ERROR, error: new Error('Too Many Request') })
+      .provide({
+        race: () => ({ timeout: true }),
+        take: () => {},
+      })
+      .not.put(networkFailure(LOAD_TRANSACTIONS_ERROR))
+      .not.put(networkReconnected(LOAD_TRANSACTIONS_ERROR))
       .run()
   );
 });
