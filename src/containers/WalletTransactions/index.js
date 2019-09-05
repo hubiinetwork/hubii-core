@@ -7,6 +7,8 @@ import { compose } from 'redux';
 import { injectIntl } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import BigNumber from 'bignumber.js';
+import { NahmiiContract } from 'nahmii-sdk';
+import { isAddressMatch } from 'utils/wallet';
 
 import Breakdown from 'components/BreakdownPie';
 import SectionHeading from 'components/ui/SectionHeading';
@@ -91,6 +93,9 @@ export class WalletsTransactions extends React.Component {
     const { formatMessage } = intl;
     const start = (currentPage - 1) * 10;
     const end = start + 10;
+
+    const clientFundContract = new NahmiiContract('ClientFund', currentNetwork.provider);
+
     let filtered = currentWalletWithInfo.getIn(['transactions', 'transactions']);
     if (filter !== 'all') {
       filtered = currentWalletWithInfo
@@ -105,9 +110,16 @@ export class WalletsTransactions extends React.Component {
           .find((a) => a.get('currency') === tx.get('currency'));
         const txFiatValue = assetPrices ? new BigNumber(tx.get('decimalAmount')).times(assetPrices.get('usd')).toString() : 0;
         const confirmations = ((blockHeight.get('height') - tx.getIn(['block', 'number'])) + 1).toString();
+
+        let type = tx.get('type');
+        if (type === 'sent' && isAddressMatch(tx.get('counterpartyAddress'), clientFundContract.address)) {
+          type = 'deposit';
+        }
+
         return tx
           .set('fiatValue', txFiatValue)
-          .set('confirmations', confirmations);
+          .set('confirmations', confirmations)
+          .set('type', type);
       })
       .toJS();
 

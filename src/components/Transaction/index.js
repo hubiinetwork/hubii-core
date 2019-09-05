@@ -61,7 +61,8 @@ const Transaction = (props) => {
                 type={type === 'received' ? 'download' : 'upload'}
               />
               <TypeText>
-                {type === 'received' ? formatMessage({ id: 'received' }) : formatMessage({ id: 'sent' })}
+                {type === 'deposit' && <NahmiiText style={{ marginRight: '0.5rem' }} />}
+                {formatMessage({ id: type })}
               </TypeText>
               <SelectableText>
                 <Amount maxDecimalPlaces={18} value={amount.toString()} /> {symbol}
