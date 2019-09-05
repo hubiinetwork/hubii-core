@@ -987,7 +987,7 @@ ShallowWrapper {
                                         type="upload"
                                 />
                                 <style__TypeText>
-                                        sent
+                                        recieved
                                 </style__TypeText>
                                 <SelectableText>
                                         <style__Amount
@@ -1076,7 +1076,7 @@ ShallowWrapper {
                                         type="upload"
                               />
                               <style__TypeText>
-                                        sent
+                                        recieved
                               </style__TypeText>
                               <SelectableText>
                                         <style__Amount
@@ -1200,7 +1200,7 @@ ShallowWrapper {
                         type="upload"
             />
             <style__TypeText>
-                        sent
+                        recieved
             </style__TypeText>
             <SelectableText>
                         <style__Amount
@@ -1445,7 +1445,7 @@ ShallowWrapper {
                                                   type="upload"
                                         />
                                         <style__TypeText>
-                                                  sent
+                                                  recieved
                                         </style__TypeText>
                                         <SelectableText>
                                                   <style__Amount
@@ -1534,7 +1534,7 @@ ShallowWrapper {
                                                 type="upload"
                                     />
                                     <style__TypeText>
-                                                sent
+                                                recieved
                                     </style__TypeText>
                                     <SelectableText>
                                                 <style__Amount
@@ -1658,7 +1658,7 @@ ShallowWrapper {
                             type="upload"
               />
               <style__TypeText>
-                            sent
+                            recieved
               </style__TypeText>
               <SelectableText>
                             <style__Amount
@@ -2899,7 +2899,7 @@ ShallowWrapper {
                                         type="upload"
                                 />
                                 <style__TypeText>
-                                        sent
+                                        nahmii
                                 </style__TypeText>
                                 <SelectableText>
                                         <style__Amount
@@ -2988,7 +2988,7 @@ ShallowWrapper {
                                         type="upload"
                               />
                               <style__TypeText>
-                                        sent
+                                        nahmii
                               </style__TypeText>
                               <SelectableText>
                                         <style__Amount
@@ -3112,7 +3112,7 @@ ShallowWrapper {
                         type="upload"
             />
             <style__TypeText>
-                        sent
+                        nahmii
             </style__TypeText>
             <SelectableText>
                         <style__Amount
@@ -3357,7 +3357,7 @@ ShallowWrapper {
                                                   type="upload"
                                         />
                                         <style__TypeText>
-                                                  sent
+                                                  nahmii
                                         </style__TypeText>
                                         <SelectableText>
                                                   <style__Amount
@@ -3446,7 +3446,7 @@ ShallowWrapper {
                                                 type="upload"
                                     />
                                     <style__TypeText>
-                                                sent
+                                                nahmii
                                     </style__TypeText>
                                     <SelectableText>
                                                 <style__Amount
@@ -3570,7 +3570,7 @@ ShallowWrapper {
                             type="upload"
               />
               <style__TypeText>
-                            sent
+                            nahmii
               </style__TypeText>
               <SelectableText>
                             <style__Amount
