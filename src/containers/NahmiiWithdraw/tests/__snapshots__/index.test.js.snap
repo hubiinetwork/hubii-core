@@ -996,6 +996,39 @@ ShallowWrapper {
                     }
           />
 </style__BottomWrapper>,
+        <Modal__Modal
+          destroyOnClose={true}
+          footer={null}
+          maskClosable={true}
+          onCancel={[Function]}
+          style={
+                    Object {
+                              "marginTop": "1.43rem",
+                            }
+          }
+          visible={false}
+          width="41.79rem"
+>
+          <style__ModalTitleWrapper>
+                    low_gas_price_warning_title
+          </style__ModalTitleWrapper>
+          <style__ModalContainer>
+                    low_gas_price_warning_content {"gas_price":10,"average":10}
+          </style__ModalContainer>
+          <style__ModalButtonWrapper>
+                    <style__StyledButton
+                              onClick={[Function]}
+                    >
+                              continue
+                    </style__StyledButton>
+                    <style__StyledButton
+                              onClick={[Function]}
+                              type="primary"
+                    >
+                              update_gas_price
+                    </style__StyledButton>
+          </style__ModalButtonWrapper>
+</Modal__Modal>,
       ],
     },
     "ref": null,
@@ -3277,6 +3310,118 @@ ShallowWrapper {
         },
         "type": [Function],
       },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <style__ModalTitleWrapper>
+              low_gas_price_warning_title
+</style__ModalTitleWrapper>,
+            <style__ModalContainer>
+              low_gas_price_warning_content {"gas_price":10,"average":10}
+</style__ModalContainer>,
+            <style__ModalButtonWrapper>
+              <style__StyledButton
+                            onClick={[Function]}
+              >
+                            continue
+              </style__StyledButton>
+              <style__StyledButton
+                            onClick={[Function]}
+                            type="primary"
+              >
+                            update_gas_price
+              </style__StyledButton>
+</style__ModalButtonWrapper>,
+          ],
+          "destroyOnClose": true,
+          "footer": null,
+          "maskClosable": true,
+          "onCancel": [Function],
+          "style": Object {
+            "marginTop": "1.43rem",
+          },
+          "visible": false,
+          "width": "41.79rem",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "low_gas_price_warning_title",
+            },
+            "ref": null,
+            "rendered": "low_gas_price_warning_title",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "low_gas_price_warning_content {\\"gas_price\\":10,\\"average\\":10}",
+            },
+            "ref": null,
+            "rendered": "low_gas_price_warning_content {\\"gas_price\\":10,\\"average\\":10}",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <style__StyledButton
+                  onClick={[Function]}
+>
+                  continue
+</style__StyledButton>,
+                <style__StyledButton
+                  onClick={[Function]}
+                  type="primary"
+>
+                  update_gas_price
+</style__StyledButton>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "continue",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "continue",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "update_gas_price",
+                  "onClick": [Function],
+                  "type": "primary",
+                },
+                "ref": null,
+                "rendered": "update_gas_price",
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
     ],
     "type": [Function],
   },
@@ -3644,6 +3789,39 @@ ShallowWrapper {
                         }
             />
 </style__BottomWrapper>,
+          <Modal__Modal
+            destroyOnClose={true}
+            footer={null}
+            maskClosable={true}
+            onCancel={[Function]}
+            style={
+                        Object {
+                                    "marginTop": "1.43rem",
+                                  }
+            }
+            visible={false}
+            width="41.79rem"
+>
+            <style__ModalTitleWrapper>
+                        low_gas_price_warning_title
+            </style__ModalTitleWrapper>
+            <style__ModalContainer>
+                        low_gas_price_warning_content {"gas_price":10,"average":10}
+            </style__ModalContainer>
+            <style__ModalButtonWrapper>
+                        <style__StyledButton
+                                    onClick={[Function]}
+                        >
+                                    continue
+                        </style__StyledButton>
+                        <style__StyledButton
+                                    onClick={[Function]}
+                                    type="primary"
+                        >
+                                    update_gas_price
+                        </style__StyledButton>
+            </style__ModalButtonWrapper>
+</Modal__Modal>,
         ],
       },
       "ref": null,
@@ -5923,6 +6101,118 @@ ShallowWrapper {
             "rendered": null,
             "type": "div",
           },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <style__ModalTitleWrapper>
+                low_gas_price_warning_title
+</style__ModalTitleWrapper>,
+              <style__ModalContainer>
+                low_gas_price_warning_content {"gas_price":10,"average":10}
+</style__ModalContainer>,
+              <style__ModalButtonWrapper>
+                <style__StyledButton
+                                onClick={[Function]}
+                >
+                                continue
+                </style__StyledButton>
+                <style__StyledButton
+                                onClick={[Function]}
+                                type="primary"
+                >
+                                update_gas_price
+                </style__StyledButton>
+</style__ModalButtonWrapper>,
+            ],
+            "destroyOnClose": true,
+            "footer": null,
+            "maskClosable": true,
+            "onCancel": [Function],
+            "style": Object {
+              "marginTop": "1.43rem",
+            },
+            "visible": false,
+            "width": "41.79rem",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "low_gas_price_warning_title",
+              },
+              "ref": null,
+              "rendered": "low_gas_price_warning_title",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "low_gas_price_warning_content {\\"gas_price\\":10,\\"average\\":10}",
+              },
+              "ref": null,
+              "rendered": "low_gas_price_warning_content {\\"gas_price\\":10,\\"average\\":10}",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <style__StyledButton
+                    onClick={[Function]}
+>
+                    continue
+</style__StyledButton>,
+                  <style__StyledButton
+                    onClick={[Function]}
+                    type="primary"
+>
+                    update_gas_price
+</style__StyledButton>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "continue",
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": "continue",
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "update_gas_price",
+                    "onClick": [Function],
+                    "type": "primary",
+                  },
+                  "ref": null,
+                  "rendered": "update_gas_price",
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+          ],
           "type": [Function],
         },
       ],

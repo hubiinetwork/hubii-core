@@ -31,6 +31,7 @@ import SelectableText from 'components/ui/SelectableText';
 import TooltipText from 'components/ui/TooltipText';
 import Input from 'components/ui/Input';
 import Select, { Option } from 'components/ui/Select';
+import { Modal } from 'components/ui/Modal';
 import TransferDescriptionItem from 'components/TransferDescriptionItem';
 import GasOptions from 'components/GasOptions';
 import AgreementButton from 'components/AgreementButton';
@@ -74,6 +75,9 @@ import {
   SettlementWarning,
   ScrollableContentWrapper,
   StyledSteps,
+  ModalTitleWrapper,
+  ModalButtonWrapper,
+  ModalContainer,
 } from './style';
 
 const Step = Steps.Step;
@@ -111,6 +115,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       gasLimit: 2000000,
       gasLimitInput: '2000000',
       addContactModalVisibility: false,
+      showGasPriceConfirmModal: false,
     };
     this.onFocusNumberInput = this.onFocusNumberInput.bind(this);
     this.onBlurNumberInput = this.onBlurNumberInput.bind(this);
@@ -119,7 +124,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     this.handleAssetChange = this.handleAssetChange.bind(this);
     this.generateTxStatus = this.generateTxStatus.bind(this);
     this.getRequiredSettlementAmount = this.getRequiredSettlementAmount.bind(this);
-    this.startChallenge = this.startChallenge.bind(this);
+    this.handleStartSettlement = this.handleStartSettlement.bind(this);
+    this.startSettlement = this.startSettlement.bind(this);
     this.settle = this.settle.bind(this);
     this.withdraw = this.withdraw.bind(this);
 
@@ -190,13 +196,33 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     this.props.settle(currentWalletWithInfo.get('address'), currency, options);
   }
 
-  startChallenge(stageAmount, assetToWithdraw) {
+  getSuggestedGasPrice = () => {
+    const { gasStatistics } = this.props;
+    const estimate = gasStatistics.get('estimate');
+    const suggestedGasPrice = estimate ? parseFloat(estimate.average / 10) : 10;
+    return suggestedGasPrice;
+  }
+
+  startSettlement(stageAmount, assetToWithdraw) {
     const { currentWalletWithInfo } = this.props;
     const { assetToWithdrawMaxDecimals, gasLimit, gasPriceGwei } = this.state;
+
     const currency = this.getCurrencyAddress(assetToWithdraw.currency);
     const stageAmountBN = stageAmount.times(new BigNumber(10).pow(assetToWithdrawMaxDecimals));
     const options = { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() || null };
     this.props.startChallenge(currentWalletWithInfo.get('address'), currency, stageAmountBN, options);
+  }
+
+  handleStartSettlement(stageAmount, assetToWithdraw) {
+    const { gasPriceGwei } = this.state;
+    const suggestedGasPrice = this.getSuggestedGasPrice();
+
+    if (gasPriceGwei.toNumber() < suggestedGasPrice) {
+      this.setState({ showGasPriceConfirmModal: true });
+      return;
+    }
+
+    this.startSettlement(stageAmount, assetToWithdraw);
   }
 
   withdraw(amountToWithdraw, assetToWithdraw) {
@@ -784,7 +810,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                                     {TxStatus}
                                   </div>
                                 ) : (
-                                  <AgreementButton className="challenge-btn" onClick={() => this.startChallenge(requiredSettlementAmount, assetToWithdraw)} disabled={disableSettleButton}>
+                                  <AgreementButton className="challenge-btn" onClick={() => this.handleStartSettlement(requiredSettlementAmount, assetToWithdraw)} disabled={disableSettleButton}>
                                     {formatMessage({ id: 'settle_balance' })}
                                   </AgreementButton>
                                 )
@@ -950,6 +976,38 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
             {this.renderSteppers()}
           </div>
         </BottomWrapper>
+        <Modal
+          footer={null}
+          width={'41.79rem'}
+          maskClosable
+          style={{ marginTop: '1.43rem' }}
+          visible={this.state.showGasPriceConfirmModal}
+          onCancel={() => this.setState({ showGasPriceConfirmModal: false })}
+          destroyOnClose
+        >
+          <ModalTitleWrapper>
+            {formatMessage({ id: 'low_gas_price_warning_title' })}
+          </ModalTitleWrapper>
+          <ModalContainer>
+            {formatMessage({ id: 'low_gas_price_warning_content' }, {
+              gas_price: gasPriceGwei.toNumber(),
+              average: this.getSuggestedGasPrice(),
+            })}
+          </ModalContainer>
+          <ModalButtonWrapper>
+            <StyledButton
+              onClick={() => {
+                this.setState({ showGasPriceConfirmModal: false });
+                this.startSettlement(requiredSettlementAmount, assetToWithdraw);
+              }}
+            >
+              {formatMessage({ id: 'continue' })}
+            </StyledButton>
+            <StyledButton type="primary" onClick={() => this.setState({ showGasPriceConfirmModal: false })}>
+              {formatMessage({ id: 'update_gas_price' })}
+            </StyledButton>
+          </ModalButtonWrapper>
+        </Modal>
       </ContentWrapper>
     );
   }
