@@ -125,3 +125,33 @@ export const StyledSteps = styled(Steps)`
     color: ${({ theme }) => theme.palette.info1};
   }
 `;
+
+export const ModalTitleWrapper = styled.div`
+  font-size: 1.6rem;
+  margin: 0 2rem;
+  text-align: center;
+  color: ${({ theme }) => theme.palette.light};
+  font-weight: 400;
+`;
+
+export const ModalContainer = styled.div`
+  overflow-x: hidden;
+  max-height: 400px;
+  padding: 2rem 0;
+  h1 {
+    color: ${({ theme }) => theme.palette.light};
+  }
+  h2 {
+    color: ${({ theme }) => theme.palette.light};
+  }
+  h3 {
+    color: ${({ theme }) => theme.palette.light};
+  }
+`;
+
+export const ModalButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: ${(props) => props.loading ? '1.79rem' : '3.57rem'};
+  margin-bottom: 1.86rem;
+`;

@@ -80,16 +80,11 @@ describe('makeSelectReceipts', () => {
         receiptsSelector(storeMock.setIn(['nahmiiHoc', 'receipts', address, 'receipts'], null))
       ).toEqual(receiptsLoaded.setIn([address, 'receipts'], null));
     });
-    it('should update the cache when the current receipts state has initialised array value', () => {
-      expect(
-        receiptsSelector(storeMock.setIn(['nahmiiHoc', 'receipts', address, 'receipts'], []))
-      ).toEqual(receiptsLoaded.setIn([address, 'receipts'], []));
-    });
   });
 
   describe('when previous receipts state has initialised', () => {
-    const store = storeMock.setIn(['nahmiiHoc', 'receipts', address, 'receipts'], fromJS([{}]));
-    const txs = receiptsLoaded.setIn([address, 'receipts'], fromJS([{}]));
+    const store = storeMock.setIn(['nahmiiHoc', 'receipts', address, 'receipts'], fromJS([{ created: '2018' }]));
+    const txs = receiptsLoaded.setIn([address, 'receipts'], fromJS([{ created: '2018' }]));
     beforeEach(() => {
       expect(
         receiptsSelector(store)
@@ -98,11 +93,16 @@ describe('makeSelectReceipts', () => {
     describe('should update the cache', () => {
       it('when the size of receipts array is different from previous state', () => {
         expect(receiptsSelector(
-          store.updateIn(['nahmiiHoc', 'receipts', address, 'receipts'], (arr) => arr.push({}))
-        )).toEqual(txs.updateIn([address, 'receipts'], (arr) => arr.push({})));
+          store.updateIn(['nahmiiHoc', 'receipts', address, 'receipts'], (arr) => arr.push(fromJS({ created: '2019' })))
+        )).toEqual(txs.updateIn([address, 'receipts'], (arr) => arr.push(fromJS({ created: '2019' }))));
       });
     });
     describe('should not update the cache', () => {
+      it('when the last created property is the same', () => {
+        expect(receiptsSelector(
+          store.updateIn(['nahmiiHoc', 'receipts', address, 'receipts'], (arr) => arr.push(fromJS({ created: '2018' })))
+        )).toEqual(txs);
+      });
       it('even when the loading state is changed', () => {
         expect(txs.getIn([address, 'loading'])).toEqual(false);
         expect(receiptsSelector(

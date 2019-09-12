@@ -43,7 +43,11 @@ export const errorSuccessPairs = {
   [LOAD_PRICES_ERROR]: LOAD_PRICES_SUCCESS,
 };
 
-export function* handleError({ type }) {
+export function* handleError({ type, error }) {
+  if (type === LOAD_TRANSACTIONS_ERROR && error.message.match(/too many request/i)) {
+    return;
+  }
+
   const successType = errorSuccessPairs[type];
   const { timeout } = yield race({
     timeout: call(delay, 5000),

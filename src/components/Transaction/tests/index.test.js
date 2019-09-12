@@ -31,7 +31,7 @@ describe('<Transaction />', () => {
     const wrapper = shallow(
       <Transaction
         {...props}
-        type="recieved"
+        type="received"
       />);
     expect(wrapper).toMatchSnapshot();
   });
@@ -49,7 +49,7 @@ describe('<Transaction />', () => {
     const wrapper = shallow(
       <Transaction
         {...props}
-        type={'nahmii'}
+        layer={'nahmii'}
       />);
     expect(wrapper).toMatchSnapshot();
   });

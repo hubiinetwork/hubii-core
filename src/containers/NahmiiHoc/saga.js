@@ -5,7 +5,7 @@ import { utils } from 'ethers';
 import { all, fork, takeEvery, takeLatest, select, put, call, take, cancel, race } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import BigNumber from 'bignumber.js';
-import { requestWalletAPI, requestHardwareWalletAPI } from 'utils/request';
+import { requestHardwareWalletAPI } from 'utils/request';
 import rpcRequest from 'utils/rpcRequest';
 import { isAddressMatch } from 'utils/wallet';
 import { logErrorMsg } from 'utils/friendlyErrors';
@@ -707,26 +707,10 @@ export function* loadSettleableChallenges({ address, currency }, network, noPoll
   }
 }
 
-export function* loadReceipts({ address }, network) {
-  while (true) { // eslint-disable-line no-constant-condition
-    try {
-      const path = `trading/wallets/${address}/receipts?`;
-      let receipts = yield call((...args) => requestWalletAPI(...args), path, network);
-      receipts = receipts.map((r) => ({ ...r, operatorId: 0 }));
-      yield put(actions.loadReceiptsSuccess(address, receipts));
-    } catch (err) {
-      yield put(actions.loadReceiptsError(address));
-    } finally {
-      const TWENTY_SEC_IN_MS = 1000 * 20;
-      yield delay(TWENTY_SEC_IN_MS);
-    }
-  }
-}
-
 export function* loadWalletReceipts({ address }, network) {
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      const receipts = yield call(network.nahmiiProvider.getWalletReceipts.bind(network.nahmiiProvider), address);
+      const receipts = yield call(network.nahmiiProvider.getWalletReceipts.bind(network.nahmiiProvider), address, null, 1000);
       yield put(actions.loadReceiptsSuccess(address, receipts));
     } catch (e) {
       yield put(actions.loadReceiptsError(address, e));
