@@ -23,17 +23,13 @@ export const createReceiptsSelector = createSelectorCreator(
   (previousArray, currentArray) => {
     let changed = false;
     currentArray.keySeq().forEach((address) => {
-      const previousReceipts = previousArray.getIn([address, 'receipts']);
-      const currentReceipts = currentArray.getIn([address, 'receipts']);
+      const previousReceipts = previousArray.getIn([address, 'receipts']) || fromJS([]);
+      const currentReceipts = currentArray.getIn([address, 'receipts']) || fromJS([]);
 
-      if (!currentReceipts && !previousReceipts) {
-        return;
-      }
+      const previousLastCreated = previousReceipts.getIn([previousReceipts.size - 1, 'created']);
+      const currentLastCreated = currentReceipts.getIn([currentReceipts.size - 1, 'created']);
 
-      if (
-        (!previousReceipts && currentReceipts) ||
-        (previousReceipts.size !== currentReceipts.size)
-      ) {
+      if (previousLastCreated !== currentLastCreated) {
         changed = true;
       }
     });
