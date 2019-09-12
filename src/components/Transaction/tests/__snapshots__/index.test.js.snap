@@ -956,7 +956,7 @@ ShallowWrapper {
     onChange={[Function]}
     symbol="UKG"
     time={1995-01-09T04:19:09.000Z}
-    type="recieved"
+    type="received"
     viewOnBlockExplorerClick={[Function]}
 />,
   Symbol(enzyme.__renderer__): Object {
@@ -984,10 +984,10 @@ ShallowWrapper {
                                         src="/public/images/assets/UKG.svg"
                                 />
                                 <style__TypeIcon
-                                        type="upload"
+                                        type="download"
                                 />
                                 <style__TypeText>
-                                        recieved
+                                        received
                                 </style__TypeText>
                                 <SelectableText>
                                         <style__Amount
@@ -1025,7 +1025,7 @@ ShallowWrapper {
                                 }
                         >
                                 <style__SubtitleText>
-                                        to:
+                                        from:
                                 </style__SubtitleText>
                                 <style__SelectableGreenText>
                                         0x00
@@ -1073,10 +1073,10 @@ ShallowWrapper {
                                         src="/public/images/assets/UKG.svg"
                               />
                               <style__TypeIcon
-                                        type="upload"
+                                        type="download"
                               />
                               <style__TypeText>
-                                        recieved
+                                        received
                               </style__TypeText>
                               <SelectableText>
                                         <style__Amount
@@ -1114,7 +1114,7 @@ ShallowWrapper {
                               }
                     >
                               <style__SubtitleText>
-                                        to:
+                                        from:
                               </style__SubtitleText>
                               <style__SelectableGreenText>
                                         0x00
@@ -1162,7 +1162,7 @@ ShallowWrapper {
                         }
             >
                         <style__SubtitleText>
-                                    to:
+                                    from:
                         </style__SubtitleText>
                         <style__SelectableGreenText>
                                     0x00
@@ -1197,10 +1197,10 @@ ShallowWrapper {
                         src="/public/images/assets/UKG.svg"
             />
             <style__TypeIcon
-                        type="upload"
+                        type="download"
             />
             <style__TypeText>
-                        recieved
+                        received
             </style__TypeText>
             <SelectableText>
                         <style__Amount
@@ -1243,7 +1243,7 @@ ShallowWrapper {
                 }
 >
                 <style__SubtitleText>
-                                to:
+                                from:
                 </style__SubtitleText>
                 <style__SelectableGreenText>
                                 0x00
@@ -1283,7 +1283,7 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   <style__SubtitleText>
-                    to:
+                    from:
 </style__SubtitleText>,
                   <style__SelectableGreenText>
                     0x00
@@ -1302,13 +1302,13 @@ ShallowWrapper {
                   "props": Object {
                     "children": Array [
                       false,
-                      "to:",
+                      "from:",
                     ],
                   },
                   "ref": null,
                   "rendered": Array [
                     false,
-                    "to:",
+                    "from:",
                   ],
                   "type": [Function],
                 },
@@ -1442,10 +1442,10 @@ ShallowWrapper {
                                                   src="/public/images/assets/UKG.svg"
                                         />
                                         <style__TypeIcon
-                                                  type="upload"
+                                                  type="download"
                                         />
                                         <style__TypeText>
-                                                  recieved
+                                                  received
                                         </style__TypeText>
                                         <SelectableText>
                                                   <style__Amount
@@ -1483,7 +1483,7 @@ ShallowWrapper {
                                         }
                               >
                                         <style__SubtitleText>
-                                                  to:
+                                                  from:
                                         </style__SubtitleText>
                                         <style__SelectableGreenText>
                                                   0x00
@@ -1531,10 +1531,10 @@ ShallowWrapper {
                                                 src="/public/images/assets/UKG.svg"
                                     />
                                     <style__TypeIcon
-                                                type="upload"
+                                                type="download"
                                     />
                                     <style__TypeText>
-                                                recieved
+                                                received
                                     </style__TypeText>
                                     <SelectableText>
                                                 <style__Amount
@@ -1572,7 +1572,7 @@ ShallowWrapper {
                                     }
                         >
                                     <style__SubtitleText>
-                                                to:
+                                                from:
                                     </style__SubtitleText>
                                     <style__SelectableGreenText>
                                                 0x00
@@ -1620,7 +1620,7 @@ ShallowWrapper {
                             }
               >
                             <style__SubtitleText>
-                                          to:
+                                          from:
                             </style__SubtitleText>
                             <style__SelectableGreenText>
                                           0x00
@@ -1655,10 +1655,10 @@ ShallowWrapper {
                             src="/public/images/assets/UKG.svg"
               />
               <style__TypeIcon
-                            type="upload"
+                            type="download"
               />
               <style__TypeText>
-                            recieved
+                            received
               </style__TypeText>
               <SelectableText>
                             <style__Amount
@@ -1701,7 +1701,7 @@ ShallowWrapper {
                   }
 >
                   <style__SubtitleText>
-                                    to:
+                                    from:
                   </style__SubtitleText>
                   <style__SelectableGreenText>
                                     0x00
@@ -1741,7 +1741,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <style__SubtitleText>
-                      to:
+                      from:
 </style__SubtitleText>,
                     <style__SelectableGreenText>
                       0x00
@@ -1760,13 +1760,13 @@ ShallowWrapper {
                     "props": Object {
                       "children": Array [
                         false,
-                        "to:",
+                        "from:",
                       ],
                     },
                     "ref": null,
                     "rendered": Array [
                       false,
-                      "to:",
+                      "from:",
                     ],
                     "type": [Function],
                   },
@@ -2864,11 +2864,11 @@ ShallowWrapper {
             "formatNumber": [Function],
           }
     }
-    layer="baseLayer"
+    layer="nahmii"
     onChange={[Function]}
     symbol="UKG"
     time={1995-01-09T04:19:09.000Z}
-    type="nahmii"
+    type="sent"
     viewOnBlockExplorerClick={[Function]}
 />,
   Symbol(enzyme.__renderer__): Object {
@@ -2899,7 +2899,7 @@ ShallowWrapper {
                                         type="upload"
                                 />
                                 <style__TypeText>
-                                        nahmii
+                                        sent
                                 </style__TypeText>
                                 <SelectableText>
                                         <style__Amount
@@ -2920,6 +2920,13 @@ ShallowWrapper {
                                                       }
                                         }
                                 >
+                                        <Unknown
+                                                style={
+                                                        Object {
+                                                                "marginRight": "0.5rem",
+                                                              }
+                                                }
+                                        />
                                         <style__TransactionHistoryTime>
                                                 01/09/1995
                                         </style__TransactionHistoryTime>
@@ -2950,20 +2957,14 @@ ShallowWrapper {
                                               }
                                 }
                         >
-                                <div>
-                                        <style__SubtitleText>
-                                                confirmations
-                                                :
-                                        </style__SubtitleText>
-                                        <style__GreenTextWrapper>
-                                                204
-                                        </style__GreenTextWrapper>
-                                </div>
+                                <style__GreenTextWrapper>
+                                        confirmed
+                                </style__GreenTextWrapper>
                         </div>
                         <style__TransactionId
-                                onClick={[Function]}
+                                disabled={true}
                         >
-                                view_etherscan
+                                view_nahmii_explorer
                         </style__TransactionId>
                 </style__CollapsableContent>
         </style__DetailPanel>
@@ -2988,7 +2989,7 @@ ShallowWrapper {
                                         type="upload"
                               />
                               <style__TypeText>
-                                        nahmii
+                                        sent
                               </style__TypeText>
                               <SelectableText>
                                         <style__Amount
@@ -3009,6 +3010,13 @@ ShallowWrapper {
                                                           }
                                         }
                               >
+                                        <Unknown
+                                                  style={
+                                                            Object {
+                                                                      "marginRight": "0.5rem",
+                                                                    }
+                                                  }
+                                        />
                                         <style__TransactionHistoryTime>
                                                   01/09/1995
                                         </style__TransactionHistoryTime>
@@ -3039,20 +3047,14 @@ ShallowWrapper {
                                                 }
                               }
                     >
-                              <div>
-                                        <style__SubtitleText>
-                                                  confirmations
-                                                  :
-                                        </style__SubtitleText>
-                                        <style__GreenTextWrapper>
-                                                  204
-                                        </style__GreenTextWrapper>
-                              </div>
+                              <style__GreenTextWrapper>
+                                        confirmed
+                              </style__GreenTextWrapper>
                     </div>
                     <style__TransactionId
-                              onClick={[Function]}
+                              disabled={true}
                     >
-                              view_etherscan
+                              view_nahmii_explorer
                     </style__TransactionId>
           </style__CollapsableContent>
 </style__DetailPanel>,
@@ -3087,20 +3089,14 @@ ShallowWrapper {
                                               }
                         }
             >
-                        <div>
-                                    <style__SubtitleText>
-                                                confirmations
-                                                :
-                                    </style__SubtitleText>
-                                    <style__GreenTextWrapper>
-                                                204
-                                    </style__GreenTextWrapper>
-                        </div>
+                        <style__GreenTextWrapper>
+                                    confirmed
+                        </style__GreenTextWrapper>
             </div>
             <style__TransactionId
-                        onClick={[Function]}
+                        disabled={true}
             >
-                        view_etherscan
+                        view_nahmii_explorer
             </style__TransactionId>
 </style__CollapsableContent>,
           "header": <style__HeaderWrapper>
@@ -3112,7 +3108,7 @@ ShallowWrapper {
                         type="upload"
             />
             <style__TypeText>
-                        nahmii
+                        sent
             </style__TypeText>
             <SelectableText>
                         <style__Amount
@@ -3133,6 +3129,13 @@ ShallowWrapper {
                                               }
                         }
             >
+                        <Unknown
+                                    style={
+                                                Object {
+                                                            "marginRight": "0.5rem",
+                                                          }
+                                    }
+                        />
                         <style__TransactionHistoryTime>
                                     01/09/1995
                         </style__TransactionHistoryTime>
@@ -3168,22 +3171,16 @@ ShallowWrapper {
                                               }
                 }
 >
-                <div>
-                                <style__SubtitleText>
-                                                confirmations
-                                                :
-                                </style__SubtitleText>
-                                <style__GreenTextWrapper>
-                                                204
-                                </style__GreenTextWrapper>
-                </div>
+                <style__GreenTextWrapper>
+                                confirmed
+                </style__GreenTextWrapper>
 </div>,
-              <style__TransactionId
-                onClick={[Function]}
->
-                view_etherscan
-</style__TransactionId>,
               false,
+              <style__TransactionId
+                disabled={true}
+>
+                view_nahmii_explorer
+</style__TransactionId>,
             ],
           },
           "ref": null,
@@ -3244,16 +3241,10 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  <div>
-                    <style__SubtitleText>
-                                        confirmations
-                                        :
-                    </style__SubtitleText>
-                    <style__GreenTextWrapper>
-                                        204
-                    </style__GreenTextWrapper>
-</div>,
                   false,
+                  <style__GreenTextWrapper>
+                    confirmed
+</style__GreenTextWrapper>,
                 ],
                 "style": Object {
                   "display": "flex",
@@ -3261,71 +3252,34 @@ ShallowWrapper {
               },
               "ref": null,
               "rendered": Array [
+                false,
                 Object {
                   "instance": null,
                   "key": undefined,
-                  "nodeType": "host",
+                  "nodeType": "class",
                   "props": Object {
-                    "children": Array [
-                      <style__SubtitleText>
-                        confirmations
-                        :
-</style__SubtitleText>,
-                      <style__GreenTextWrapper>
-                        204
-</style__GreenTextWrapper>,
-                    ],
+                    "children": "confirmed",
                   },
                   "ref": null,
-                  "rendered": Array [
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "children": Array [
-                          "confirmations",
-                          ":",
-                        ],
-                      },
-                      "ref": null,
-                      "rendered": Array [
-                        "confirmations",
-                        ":",
-                      ],
-                      "type": [Function],
-                    },
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "children": "204",
-                      },
-                      "ref": null,
-                      "rendered": "204",
-                      "type": [Function],
-                    },
-                  ],
-                  "type": "div",
+                  "rendered": "confirmed",
+                  "type": [Function],
                 },
-                false,
               ],
               "type": "div",
             },
+            false,
             Object {
               "instance": null,
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "view_etherscan",
-                "onClick": [Function],
+                "children": "view_nahmii_explorer",
+                "disabled": true,
               },
               "ref": null,
-              "rendered": "view_etherscan",
+              "rendered": "view_nahmii_explorer",
               "type": [Function],
             },
-            false,
           ],
           "type": [Function],
         },
@@ -3357,7 +3311,7 @@ ShallowWrapper {
                                                   type="upload"
                                         />
                                         <style__TypeText>
-                                                  nahmii
+                                                  sent
                                         </style__TypeText>
                                         <SelectableText>
                                                   <style__Amount
@@ -3378,6 +3332,13 @@ ShallowWrapper {
                                                                     }
                                                   }
                                         >
+                                                  <Unknown
+                                                            style={
+                                                                      Object {
+                                                                                "marginRight": "0.5rem",
+                                                                              }
+                                                            }
+                                                  />
                                                   <style__TransactionHistoryTime>
                                                             01/09/1995
                                                   </style__TransactionHistoryTime>
@@ -3408,20 +3369,14 @@ ShallowWrapper {
                                                           }
                                         }
                               >
-                                        <div>
-                                                  <style__SubtitleText>
-                                                            confirmations
-                                                            :
-                                                  </style__SubtitleText>
-                                                  <style__GreenTextWrapper>
-                                                            204
-                                                  </style__GreenTextWrapper>
-                                        </div>
+                                        <style__GreenTextWrapper>
+                                                  confirmed
+                                        </style__GreenTextWrapper>
                               </div>
                               <style__TransactionId
-                                        onClick={[Function]}
+                                        disabled={true}
                               >
-                                        view_etherscan
+                                        view_nahmii_explorer
                               </style__TransactionId>
                     </style__CollapsableContent>
           </style__DetailPanel>
@@ -3446,7 +3401,7 @@ ShallowWrapper {
                                                 type="upload"
                                     />
                                     <style__TypeText>
-                                                nahmii
+                                                sent
                                     </style__TypeText>
                                     <SelectableText>
                                                 <style__Amount
@@ -3467,6 +3422,13 @@ ShallowWrapper {
                                                                       }
                                                 }
                                     >
+                                                <Unknown
+                                                            style={
+                                                                        Object {
+                                                                                    "marginRight": "0.5rem",
+                                                                                  }
+                                                            }
+                                                />
                                                 <style__TransactionHistoryTime>
                                                             01/09/1995
                                                 </style__TransactionHistoryTime>
@@ -3497,20 +3459,14 @@ ShallowWrapper {
                                                           }
                                     }
                         >
-                                    <div>
-                                                <style__SubtitleText>
-                                                            confirmations
-                                                            :
-                                                </style__SubtitleText>
-                                                <style__GreenTextWrapper>
-                                                            204
-                                                </style__GreenTextWrapper>
-                                    </div>
+                                    <style__GreenTextWrapper>
+                                                confirmed
+                                    </style__GreenTextWrapper>
                         </div>
                         <style__TransactionId
-                                    onClick={[Function]}
+                                    disabled={true}
                         >
-                                    view_etherscan
+                                    view_nahmii_explorer
                         </style__TransactionId>
             </style__CollapsableContent>
 </style__DetailPanel>,
@@ -3545,20 +3501,14 @@ ShallowWrapper {
                                                       }
                             }
               >
-                            <div>
-                                          <style__SubtitleText>
-                                                        confirmations
-                                                        :
-                                          </style__SubtitleText>
-                                          <style__GreenTextWrapper>
-                                                        204
-                                          </style__GreenTextWrapper>
-                            </div>
+                            <style__GreenTextWrapper>
+                                          confirmed
+                            </style__GreenTextWrapper>
               </div>
               <style__TransactionId
-                            onClick={[Function]}
+                            disabled={true}
               >
-                            view_etherscan
+                            view_nahmii_explorer
               </style__TransactionId>
 </style__CollapsableContent>,
             "header": <style__HeaderWrapper>
@@ -3570,7 +3520,7 @@ ShallowWrapper {
                             type="upload"
               />
               <style__TypeText>
-                            nahmii
+                            sent
               </style__TypeText>
               <SelectableText>
                             <style__Amount
@@ -3591,6 +3541,13 @@ ShallowWrapper {
                                                       }
                             }
               >
+                            <Unknown
+                                          style={
+                                                        Object {
+                                                                      "marginRight": "0.5rem",
+                                                                    }
+                                          }
+                            />
                             <style__TransactionHistoryTime>
                                           01/09/1995
                             </style__TransactionHistoryTime>
@@ -3626,22 +3583,16 @@ ShallowWrapper {
                                                     }
                   }
 >
-                  <div>
-                                    <style__SubtitleText>
-                                                      confirmations
-                                                      :
-                                    </style__SubtitleText>
-                                    <style__GreenTextWrapper>
-                                                      204
-                                    </style__GreenTextWrapper>
-                  </div>
+                  <style__GreenTextWrapper>
+                                    confirmed
+                  </style__GreenTextWrapper>
 </div>,
-                <style__TransactionId
-                  onClick={[Function]}
->
-                  view_etherscan
-</style__TransactionId>,
                 false,
+                <style__TransactionId
+                  disabled={true}
+>
+                  view_nahmii_explorer
+</style__TransactionId>,
               ],
             },
             "ref": null,
@@ -3702,16 +3653,10 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": Array [
-                    <div>
-                      <style__SubtitleText>
-                                            confirmations
-                                            :
-                      </style__SubtitleText>
-                      <style__GreenTextWrapper>
-                                            204
-                      </style__GreenTextWrapper>
-</div>,
                     false,
+                    <style__GreenTextWrapper>
+                      confirmed
+</style__GreenTextWrapper>,
                   ],
                   "style": Object {
                     "display": "flex",
@@ -3719,71 +3664,34 @@ ShallowWrapper {
                 },
                 "ref": null,
                 "rendered": Array [
+                  false,
                   Object {
                     "instance": null,
                     "key": undefined,
-                    "nodeType": "host",
+                    "nodeType": "class",
                     "props": Object {
-                      "children": Array [
-                        <style__SubtitleText>
-                          confirmations
-                          :
-</style__SubtitleText>,
-                        <style__GreenTextWrapper>
-                          204
-</style__GreenTextWrapper>,
-                      ],
+                      "children": "confirmed",
                     },
                     "ref": null,
-                    "rendered": Array [
-                      Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "class",
-                        "props": Object {
-                          "children": Array [
-                            "confirmations",
-                            ":",
-                          ],
-                        },
-                        "ref": null,
-                        "rendered": Array [
-                          "confirmations",
-                          ":",
-                        ],
-                        "type": [Function],
-                      },
-                      Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "class",
-                        "props": Object {
-                          "children": "204",
-                        },
-                        "ref": null,
-                        "rendered": "204",
-                        "type": [Function],
-                      },
-                    ],
-                    "type": "div",
+                    "rendered": "confirmed",
+                    "type": [Function],
                   },
-                  false,
                 ],
                 "type": "div",
               },
+              false,
               Object {
                 "instance": null,
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "view_etherscan",
-                  "onClick": [Function],
+                  "children": "view_nahmii_explorer",
+                  "disabled": true,
                 },
                 "ref": null,
-                "rendered": "view_etherscan",
+                "rendered": "view_nahmii_explorer",
                 "type": [Function],
               },
-              false,
             ],
             "type": [Function],
           },
