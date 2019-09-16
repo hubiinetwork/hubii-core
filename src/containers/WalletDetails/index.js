@@ -37,10 +37,7 @@ export class WalletDetails extends React.PureComponent {
     super(props);
     this.onHomeClick = this.onHomeClick.bind(this);
     this.onTabsChange = this.onTabsChange.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.setCurrentWallet(this.props.match.params.address);
+    this.props.setCurrentWallet(props.match.params.address);
   }
 
   onHomeClick() {

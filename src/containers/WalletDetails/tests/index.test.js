@@ -33,18 +33,16 @@ describe('WalletDetails', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  describe('#componentDidMount', () => {
-    it('should call the initWalletsDetails action', () => {
-      dom = shallow(
-        <WalletDetails
-          {...props}
-          setCurrentWallet={setCurrentWalletSpy}
-        />
-      );
-      const instance = dom.instance();
-      instance.componentDidMount();
-      expect(setCurrentWalletSpy).toBeCalledWith(props.match.params.address);
-    });
+  it('should call the initWalletsDetails action', () => {
+    dom = shallow(
+      <WalletDetails
+        {...props}
+        setCurrentWallet={setCurrentWalletSpy}
+      />
+    );
+    // const instance = dom.instance();
+    // instance.componentDidMount();
+    expect(setCurrentWalletSpy).toBeCalledWith(props.match.params.address);
   });
   describe('#onHomeClick', () => {
     it('should push history path', () => {

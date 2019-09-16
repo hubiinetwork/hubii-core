@@ -150,23 +150,10 @@ const makeSelectWalletsWithInfo = () => createSelector(
   makeSelectNahmiiBalances(),
   makeSelectPrices(),
   makeSelectSupportedAssets(),
-  makeSelectCombinedTransactions(),
-  (wallets, baseLayerBalances, nahmiiBalances, prices, supportedAssets, transactions) => {
+  (wallets, baseLayerBalances, nahmiiBalances, prices, supportedAssets) => {
     const walletsWithInfo = wallets.map((wallet) => {
       let walletWithInfo = wallet;
-      const walletAddress = wallet.get('address');
       let walletBalances;
-      let walletTransactions;
-
-      // Add wallet transactions
-      if (!transactions.get(walletAddress) || transactions.getIn([walletAddress, 'loading'])) {
-        walletTransactions = fromJS({ loading: true, error: null, transactions: [] });
-      } else if (transactions.getIn([walletAddress, 'error'])) {
-        walletTransactions = fromJS({ loading: false, error: true, transactions: transactions.getIn([walletAddress, 'transactions']) || [] });
-      } else {
-        walletTransactions = fromJS({ loading: false, error: null, transactions: transactions.getIn([walletAddress, 'transactions']) });
-      }
-      walletWithInfo = walletWithInfo.set('transactions', walletTransactions);
 
       balanceTypes(baseLayerBalances, nahmiiBalances).forEach(({ label, key, balances }) => {
         // Have all information needed to construct walletWithInfo balance
