@@ -103,7 +103,13 @@ export function getComponentHOC(Component) {
               label={<FormItemLabel>{formatMessage({ id: 'enter_password_proceed' })}</FormItemLabel>}
               colon={false}
             >
-              <Input value={this.state.password} onChange={this.onPasswordChange} type="password" onKeyPress={(e) => this.handleKeyPress(e)} />
+              <Input
+                value={this.state.password}
+                onChange={this.onPasswordChange}
+                type="password"
+                onKeyPress={(e) => this.handleKeyPress(e)}
+                disabled={loading}
+              />
             </FormItem>
 
             {loading ? (
