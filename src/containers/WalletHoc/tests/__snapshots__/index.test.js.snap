@@ -817,6 +817,7 @@ ShallowWrapper {
                     }
           >
                     <Input
+                              autoFocus={true}
                               disabled={false}
                               onChange={[Function]}
                               onKeyPress={[Function]}
@@ -1240,6 +1241,7 @@ ShallowWrapper {
               }
 >
               <Input
+                            autoFocus={true}
                             disabled={false}
                             onChange={[Function]}
                             onKeyPress={[Function]}
@@ -1273,6 +1275,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": <Input
+                autoFocus={true}
                 disabled={false}
                 onChange={[Function]}
                 onKeyPress={[Function]}
@@ -1290,6 +1293,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
+                "autoFocus": true,
                 "disabled": false,
                 "onChange": [Function],
                 "onKeyPress": [Function],
@@ -1740,6 +1744,7 @@ ShallowWrapper {
                         }
             >
                         <Input
+                                    autoFocus={true}
                                     disabled={false}
                                     onChange={[Function]}
                                     onKeyPress={[Function]}
@@ -2163,6 +2168,7 @@ ShallowWrapper {
                 }
 >
                 <Input
+                                autoFocus={true}
                                 disabled={false}
                                 onChange={[Function]}
                                 onKeyPress={[Function]}
@@ -2196,6 +2202,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": <Input
+                  autoFocus={true}
                   disabled={false}
                   onChange={[Function]}
                   onKeyPress={[Function]}
@@ -2213,6 +2220,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
+                  "autoFocus": true,
                   "disabled": false,
                   "onChange": [Function],
                   "onKeyPress": [Function],
@@ -3073,6 +3081,7 @@ ShallowWrapper {
                     }
           >
                     <Input
+                              autoFocus={true}
                               disabled={true}
                               onChange={[Function]}
                               onKeyPress={[Function]}
@@ -3493,6 +3502,7 @@ ShallowWrapper {
               }
 >
               <Input
+                            autoFocus={true}
                             disabled={true}
                             onChange={[Function]}
                             onKeyPress={[Function]}
@@ -3523,6 +3533,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": <Input
+                autoFocus={true}
                 disabled={true}
                 onChange={[Function]}
                 onKeyPress={[Function]}
@@ -3540,6 +3551,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
+                "autoFocus": true,
                 "disabled": true,
                 "onChange": [Function],
                 "onKeyPress": [Function],
@@ -3988,6 +4000,7 @@ ShallowWrapper {
                         }
             >
                         <Input
+                                    autoFocus={true}
                                     disabled={true}
                                     onChange={[Function]}
                                     onKeyPress={[Function]}
@@ -4408,6 +4421,7 @@ ShallowWrapper {
                 }
 >
                 <Input
+                                autoFocus={true}
                                 disabled={true}
                                 onChange={[Function]}
                                 onKeyPress={[Function]}
@@ -4438,6 +4452,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": <Input
+                  autoFocus={true}
                   disabled={true}
                   onChange={[Function]}
                   onKeyPress={[Function]}
@@ -4455,6 +4470,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
+                  "autoFocus": true,
                   "disabled": true,
                   "onChange": [Function],
                   "onKeyPress": [Function],

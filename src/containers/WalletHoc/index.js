@@ -109,6 +109,7 @@ export function getComponentHOC(Component) {
                 type="password"
                 onKeyPress={(e) => this.handleKeyPress(e)}
                 disabled={loading}
+                autoFocus
               />
             </FormItem>
 
