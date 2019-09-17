@@ -138,31 +138,6 @@ describe('makeSelectWalletsWithInfo', () => {
     expect(walletsWithInfoSelector(storeMock)).toEqual(expected);
   });
 
-  it('should set wallets tx to loading if it doesnt exist yet in tx state', () => {
-    const mockedState = storeMock
-      .deleteIn(['hubiiApiHoc', 'transactions', currentWalletSoftwareMock.get('address')]);
-    const walletsWithInfo = walletsWithInfoSelector(mockedState);
-    const wallet = walletsWithInfo.find((w) => w.get('address') === currentWalletSoftwareMock.get('address'));
-    expect(wallet.getIn(['transactions', 'loading'])).toEqual(true);
-  });
-
-  it('should set wallets tx to loading if it\'s tx are in loading state', () => {
-    const mockedState = storeMock
-      .setIn(['hubiiApiHoc', 'transactions', currentWalletSoftwareMock.get('address'), 'loading'], true);
-    const walletsWithInfo = walletsWithInfoSelector(mockedState);
-    const wallet = walletsWithInfo.find((w) => w.get('address') === currentWalletSoftwareMock.get('address'));
-    expect(wallet.getIn(['transactions', 'loading'])).toEqual(true);
-  });
-
-  it('should set wallets tx to error if it\'s tx are in error state and its not already in loading state', () => {
-    const mockedState = storeMock
-      .setIn(['hubiiApiHoc', 'transactions', currentWalletSoftwareMock.get('address'), 'loading'], false)
-      .setIn(['hubiiApiHoc', 'transactions', currentWalletSoftwareMock.get('address'), 'error'], true);
-    const walletsWithInfo = walletsWithInfoSelector(mockedState);
-    const wallet = walletsWithInfo.find((w) => w.get('address') === currentWalletSoftwareMock.get('address'));
-    expect(wallet.getIn(['transactions', 'error'])).toEqual(true);
-  });
-
   it('should set wallets balances to loading if supportedAssets is loading and its balance isnt errored', () => {
     const mockedState = storeMock
       .setIn(['hubiiApiHoc', 'supportedAssets'], supportedAssetsLoadingMock);

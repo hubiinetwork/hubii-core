@@ -26,8 +26,8 @@ export const createReceiptsSelector = createSelectorCreator(
       const previousReceipts = previousArray.getIn([address, 'receipts']) || fromJS([]);
       const currentReceipts = currentArray.getIn([address, 'receipts']) || fromJS([]);
 
-      const previousLastCreated = previousReceipts.getIn([previousReceipts.size - 1, 'created']);
-      const currentLastCreated = currentReceipts.getIn([currentReceipts.size - 1, 'created']);
+      const previousLastCreated = previousReceipts.getIn([0, 'created']);
+      const currentLastCreated = currentReceipts.getIn([0, 'created']);
 
       if (previousLastCreated !== currentLastCreated) {
         changed = true;

@@ -93,14 +93,14 @@ describe('makeSelectReceipts', () => {
     describe('should update the cache', () => {
       it('when the size of receipts array is different from previous state', () => {
         expect(receiptsSelector(
-          store.updateIn(['nahmiiHoc', 'receipts', address, 'receipts'], (arr) => arr.push(fromJS({ created: '2019' })))
-        )).toEqual(txs.updateIn([address, 'receipts'], (arr) => arr.push(fromJS({ created: '2019' }))));
+          store.updateIn(['nahmiiHoc', 'receipts', address, 'receipts'], (arr) => arr.unshift(fromJS({ created: '2019' })))
+        )).toEqual(txs.updateIn([address, 'receipts'], (arr) => arr.unshift(fromJS({ created: '2019' }))));
       });
     });
     describe('should not update the cache', () => {
       it('when the last created property is the same', () => {
         expect(receiptsSelector(
-          store.updateIn(['nahmiiHoc', 'receipts', address, 'receipts'], (arr) => arr.push(fromJS({ created: '2018' })))
+          store.updateIn(['nahmiiHoc', 'receipts', address, 'receipts'], (arr) => arr.unshift(fromJS({ created: '2018' })))
         )).toEqual(txs);
       });
       it('even when the loading state is changed', () => {

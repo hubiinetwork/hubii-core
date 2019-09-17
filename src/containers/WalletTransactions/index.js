@@ -19,6 +19,7 @@ import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 
 import {
   makeSelectCurrentWalletWithInfo,
+  makeSelectCombinedTransactions,
 } from 'containers/NahmiiHoc/combined-selectors';
 
 import {
@@ -56,8 +57,8 @@ export class WalletsTransactions extends React.Component {
     // Fix this by only updating only when required.
     if
     (
-      (this.props.currentWalletWithInfo.getIn(['transactions', 'transactions']).size !==
-      nextProps.currentWalletWithInfo.getIn(['transactions', 'transactions']).size) ||
+      (this.props.combinedTransactions.getIn([this.props.currentWalletWithInfo.get('address'), 'transactions', 0, 'created']) !==
+      nextProps.combinedTransactions.getIn([this.props.currentWalletWithInfo.get('address'), 'transactions', 0, 'created'])) ||
       this.state.currentPage !== nextState.currentPage ||
       this.props.blockHeight.get('height') !== nextProps.blockHeight.get('height') ||
       (this.state.filter !== nextState.filter)
@@ -88,21 +89,39 @@ export class WalletsTransactions extends React.Component {
 
 
   render() {
-    const { currentWalletWithInfo, supportedAssets, prices, currentNetwork, blockHeight, intl } = this.props;
+    const { currentWalletWithInfo, combinedTransactions, supportedAssets, prices, currentNetwork, blockHeight, intl } = this.props;
     const { expandedTxs, currentPage, filter } = this.state;
     const { formatMessage } = intl;
     const start = (currentPage - 1) * 10;
     const end = start + 10;
+    const walletTransactions = combinedTransactions.get(currentWalletWithInfo.get('address'));
+
+    if
+    (
+      currentWalletWithInfo.getIn(['balances', 'baseLayer', 'loading']) ||
+      supportedAssets.get('loading') ||
+      !walletTransactions.get('transactions')
+    ) {
+      return (
+        <LoadingWrapper>
+          <StyledSpin size="large" tip={formatMessage({ id: 'synchronising' })}></StyledSpin>
+        </LoadingWrapper>
+      );
+    }
+    if (walletTransactions.get('transactions').size === 0) {
+      if (walletTransactions.get('error')) {
+        return <NoTxPlaceholder>{ formatMessage({ id: 'fetch_transactions_error' }) }</NoTxPlaceholder>;
+      }
+      return <NoTxPlaceholder>{ formatMessage({ id: 'no_transaction_history' }) }</NoTxPlaceholder>;
+    }
 
     const clientFundContract = new NahmiiContract('ClientFund', currentNetwork.provider);
 
-    let filtered = currentWalletWithInfo.getIn(['transactions', 'transactions']);
+    let filteredTxs = walletTransactions.get('transactions');
     if (filter !== 'all') {
-      filtered = currentWalletWithInfo
-        .getIn(['transactions', 'transactions'])
-        .filter((t) => t.get('layer') === filter);
+      filteredTxs = filteredTxs.filter((t) => t.get('layer') === filter);
     }
-    const txToShow = filtered
+    const txToShow = filteredTxs
       .slice(start, end)
       .map((tx) => {
         const assetPrices = prices
@@ -123,28 +142,6 @@ export class WalletsTransactions extends React.Component {
       })
       .toJS();
 
-    if
-    (
-      currentWalletWithInfo.getIn(['balances', 'baseLayer', 'loading']) ||
-      supportedAssets.get('loading') ||
-      currentWalletWithInfo.getIn(['transactions', 'loading'])
-    ) {
-      return (
-        <LoadingWrapper>
-          <StyledSpin size="large" tip={formatMessage({ id: 'synchronising' })}></StyledSpin>
-        </LoadingWrapper>
-      );
-    }
-    if
-    (
-      currentWalletWithInfo.getIn(['transactions', 'error']) &&
-      (currentWalletWithInfo.getIn(['transactions', 'transactions']).size === 0)
-    ) {
-      return <NoTxPlaceholder>{ formatMessage({ id: 'fetch_transactions_error' }) }</NoTxPlaceholder>;
-    }
-    if (currentWalletWithInfo.getIn(['transactions', 'transactions']).size === 0) {
-      return <NoTxPlaceholder>{ formatMessage({ id: 'no_transaction_history' }) }</NoTxPlaceholder>;
-    }
     return (
       <ScrollableContentWrapper>
         <OuterWrapper>
@@ -183,9 +180,9 @@ export class WalletsTransactions extends React.Component {
             ))
             }
             {
-              filtered.size > 0 &&
+              filteredTxs.size > 0 &&
               <StyledPagination
-                total={filtered.size}
+                total={filteredTxs.size}
                 pageSize={10}
                 defaultCurrent={currentPage}
                 current={currentPage}
@@ -235,6 +232,7 @@ export class WalletsTransactions extends React.Component {
 
 WalletsTransactions.propTypes = {
   currentWalletWithInfo: PropTypes.object.isRequired,
+  combinedTransactions: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,
   prices: PropTypes.object.isRequired,
   blockHeight: PropTypes.object.isRequired,
@@ -244,6 +242,7 @@ WalletsTransactions.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
+  combinedTransactions: makeSelectCombinedTransactions(),
   supportedAssets: makeSelectSupportedAssets(),
   prices: makeSelectPrices(),
   blockHeight: makeSelectBlockHeight(),
