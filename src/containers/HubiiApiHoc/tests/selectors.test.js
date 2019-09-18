@@ -6,8 +6,7 @@ import {
   transactionsWithInfoMock,
   balancesMock,
   supportedAssetsLoadedMock,
-  supportedAssetsLoadingMock,
-  supportedAssetsErrorMock,
+  supportedAssetsNullMock,
   pricesLoadedMock,
 } from './mocks/selectors';
 
@@ -106,17 +105,10 @@ describe('makeSelectTransactionsWithInfo', () => {
     expect(transactionsWithInfoSelector(storeMock)).toEqual(expected);
   });
 
-  it('should mark add tx as loading when supportedAssets loading', () => {
+  it('should mark add tx as loading when supportedAssets has null assets property', () => {
     const mockedState = storeMock
-      .setIn(['hubiiApiHoc', 'supportedAssets'], supportedAssetsLoadingMock);
-    const expected = transactionsMock.map((a) => a.set('loading', true));
-    expect(transactionsWithInfoSelector(mockedState)).toEqual(expected);
-  });
-
-  it('should mark add tx as loading when supportedAssets errored', () => {
-    const mockedState = storeMock
-      .setIn(['hubiiApiHoc', 'supportedAssets'], supportedAssetsErrorMock);
-    const expected = transactionsMock.map((a) => a.set('loading', true));
+      .setIn(['hubiiApiHoc', 'supportedAssets'], supportedAssetsNullMock);
+    const expected = transactionsMock.map((a) => a.set('loading', true).set('transactions', fromJS([])));
     expect(transactionsWithInfoSelector(mockedState)).toEqual(expected);
   });
 });

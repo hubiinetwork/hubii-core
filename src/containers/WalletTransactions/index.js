@@ -99,7 +99,7 @@ export class WalletsTransactions extends React.Component {
     if
     (
       currentWalletWithInfo.getIn(['balances', 'baseLayer', 'loading']) ||
-      supportedAssets.get('loading') ||
+      !walletTransactions ||
       !walletTransactions.get('transactions')
     ) {
       return (
