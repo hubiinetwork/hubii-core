@@ -525,7 +525,7 @@ ShallowWrapper {
                                                   />
                                         </Form__FormItem>
                                         <GasOptions
-                                                  defaultGasLimit={2000000}
+                                                  defaultGasLimit={3000000}
                                                   defaultGasPrice={10}
                                                   defaultOption="average"
                                                   gasStatistics={undefined}
@@ -610,7 +610,7 @@ ShallowWrapper {
                                                                       <SelectableText>
                                                                                 <NumericText
                                                                                           maxDecimalPlaces={18}
-                                                                                          value="0.02"
+                                                                                          value="0.03"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -619,7 +619,7 @@ ShallowWrapper {
                                                             subtitle={
                                                                       <NumericText
                                                                                 type="fiat"
-                                                                                value="8.24"
+                                                                                value="12.36"
                                                                       />
                                                             }
                                                   />
@@ -678,7 +678,7 @@ ShallowWrapper {
                                                                       <SelectableText>
                                                                                 <NumericText
                                                                                           maxDecimalPlaces={18}
-                                                                                          value="0.178937"
+                                                                                          value="0.168937"
                                                                                 />
                                                                                  
                                                                                 ETH
@@ -687,7 +687,7 @@ ShallowWrapper {
                                                             subtitle={
                                                                       <NumericText
                                                                                 type="fiat"
-                                                                                value="73.722044"
+                                                                                value="69.602044"
                                                                       />
                                                             }
                                                   />
@@ -917,7 +917,7 @@ ShallowWrapper {
                                                 />
                                     </Form__FormItem>
                                     <GasOptions
-                                                defaultGasLimit={2000000}
+                                                defaultGasLimit={3000000}
                                                 defaultGasPrice={10}
                                                 defaultOption="average"
                                                 gasStatistics={undefined}
@@ -1002,7 +1002,7 @@ ShallowWrapper {
                                                                         <SelectableText>
                                                                                     <NumericText
                                                                                                 maxDecimalPlaces={18}
-                                                                                                value="0.02"
+                                                                                                value="0.03"
                                                                                     />
                                                                                      
                                                                                     ETH
@@ -1011,7 +1011,7 @@ ShallowWrapper {
                                                             subtitle={
                                                                         <NumericText
                                                                                     type="fiat"
-                                                                                    value="8.24"
+                                                                                    value="12.36"
                                                                         />
                                                             }
                                                 />
@@ -1070,7 +1070,7 @@ ShallowWrapper {
                                                                         <SelectableText>
                                                                                     <NumericText
                                                                                                 maxDecimalPlaces={18}
-                                                                                                value="0.178937"
+                                                                                                value="0.168937"
                                                                                     />
                                                                                      
                                                                                     ETH
@@ -1079,7 +1079,7 @@ ShallowWrapper {
                                                             subtitle={
                                                                         <NumericText
                                                                                     type="fiat"
-                                                                                    value="73.722044"
+                                                                                    value="69.602044"
                                                                         />
                                                             }
                                                 />
@@ -1256,7 +1256,7 @@ ShallowWrapper {
                                                 />
                                 </Form__FormItem>
                                 <GasOptions
-                                                defaultGasLimit={2000000}
+                                                defaultGasLimit={3000000}
                                                 defaultGasPrice={10}
                                                 defaultOption="average"
                                                 gasStatistics={undefined}
@@ -1341,7 +1341,7 @@ ShallowWrapper {
                                                                                 <SelectableText>
                                                                                                 <NumericText
                                                                                                                 maxDecimalPlaces={18}
-                                                                                                                value="0.02"
+                                                                                                                value="0.03"
                                                                                                 />
                                                                                                  
                                                                                                 ETH
@@ -1350,7 +1350,7 @@ ShallowWrapper {
                                                                 subtitle={
                                                                                 <NumericText
                                                                                                 type="fiat"
-                                                                                                value="8.24"
+                                                                                                value="12.36"
                                                                                 />
                                                                 }
                                                 />
@@ -1409,7 +1409,7 @@ ShallowWrapper {
                                                                                 <SelectableText>
                                                                                                 <NumericText
                                                                                                                 maxDecimalPlaces={18}
-                                                                                                                value="0.178937"
+                                                                                                                value="0.168937"
                                                                                                 />
                                                                                                  
                                                                                                 ETH
@@ -1418,7 +1418,7 @@ ShallowWrapper {
                                                                 subtitle={
                                                                                 <NumericText
                                                                                                 type="fiat"
-                                                                                                value="73.722044"
+                                                                                                value="69.602044"
                                                                                 />
                                                                 }
                                                 />
@@ -1589,7 +1589,7 @@ ShallowWrapper {
                                     />
                   </Form__FormItem>
                   <GasOptions
-                                    defaultGasLimit={2000000}
+                                    defaultGasLimit={3000000}
                                     defaultGasPrice={10}
                                     defaultOption="average"
                                     gasStatistics={undefined}
@@ -1678,7 +1678,7 @@ ShallowWrapper {
 </Form__FormItem>,
                     false,
                     <GasOptions
-                      defaultGasLimit={2000000}
+                      defaultGasLimit={3000000}
                       defaultGasPrice={10}
                       defaultOption="average"
                       gasStatistics={undefined}
@@ -1852,7 +1852,7 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "class",
                     "props": Object {
-                      "defaultGasLimit": 2000000,
+                      "defaultGasLimit": 3000000,
                       "defaultGasPrice": 10,
                       "defaultOption": "average",
                       "gasStatistics": undefined,
@@ -1947,7 +1947,7 @@ ShallowWrapper {
                                                                                 <SelectableText>
                                                                                                     <NumericText
                                                                                                                         maxDecimalPlaces={18}
-                                                                                                                        value="0.02"
+                                                                                                                        value="0.03"
                                                                                                     />
                                                                                                      
                                                                                                     ETH
@@ -1956,7 +1956,7 @@ ShallowWrapper {
                                                             subtitle={
                                                                                 <NumericText
                                                                                                     type="fiat"
-                                                                                                    value="8.24"
+                                                                                                    value="12.36"
                                                                                 />
                                                             }
                                         />
@@ -2015,7 +2015,7 @@ ShallowWrapper {
                                                                                 <SelectableText>
                                                                                                     <NumericText
                                                                                                                         maxDecimalPlaces={18}
-                                                                                                                        value="0.178937"
+                                                                                                                        value="0.168937"
                                                                                                     />
                                                                                                      
                                                                                                     ETH
@@ -2024,7 +2024,7 @@ ShallowWrapper {
                                                             subtitle={
                                                                                 <NumericText
                                                                                                     type="fiat"
-                                                                                                    value="73.722044"
+                                                                                                    value="69.602044"
                                                                                 />
                                                             }
                                         />
@@ -2190,7 +2190,7 @@ ShallowWrapper {
                                                                         <SelectableText>
                                                                                                 <NumericText
                                                                                                                         maxDecimalPlaces={18}
-                                                                                                                        value="0.02"
+                                                                                                                        value="0.03"
                                                                                                 />
                                                                                                  
                                                                                                 ETH
@@ -2199,7 +2199,7 @@ ShallowWrapper {
                                                 subtitle={
                                                                         <NumericText
                                                                                                 type="fiat"
-                                                                                                value="8.24"
+                                                                                                value="12.36"
                                                                         />
                                                 }
                         />
@@ -2258,7 +2258,7 @@ ShallowWrapper {
                                                                         <SelectableText>
                                                                                                 <NumericText
                                                                                                                         maxDecimalPlaces={18}
-                                                                                                                        value="0.178937"
+                                                                                                                        value="0.168937"
                                                                                                 />
                                                                                                  
                                                                                                 ETH
@@ -2267,7 +2267,7 @@ ShallowWrapper {
                                                 subtitle={
                                                                         <NumericText
                                                                                                 type="fiat"
-                                                                                                value="73.722044"
+                                                                                                value="69.602044"
                                                                         />
                                                 }
                         />
@@ -2516,7 +2516,7 @@ ShallowWrapper {
                                                     <SelectableText>
                                                                               <NumericText
                                                                                                         maxDecimalPlaces={18}
-                                                                                                        value="0.02"
+                                                                                                        value="0.03"
                                                                               />
                                                                                
                                                                               ETH
@@ -2525,7 +2525,7 @@ ShallowWrapper {
                           subtitle={
                                                     <NumericText
                                                                               type="fiat"
-                                                                              value="8.24"
+                                                                              value="12.36"
                                                     />
                           }
 />,
@@ -2540,14 +2540,14 @@ ShallowWrapper {
                           "main": <SelectableText>
                             <NumericText
                                                         maxDecimalPlaces={18}
-                                                        value="0.02"
+                                                        value="0.03"
                             />
                              
                             ETH
 </SelectableText>,
                           "subtitle": <NumericText
                             type="fiat"
-                            value="8.24"
+                            value="12.36"
 />,
                         },
                         "ref": null,
@@ -2693,7 +2693,7 @@ ShallowWrapper {
                                                     <SelectableText>
                                                                               <NumericText
                                                                                                         maxDecimalPlaces={18}
-                                                                                                        value="0.178937"
+                                                                                                        value="0.168937"
                                                                               />
                                                                                
                                                                               ETH
@@ -2702,7 +2702,7 @@ ShallowWrapper {
                           subtitle={
                                                     <NumericText
                                                                               type="fiat"
-                                                                              value="73.722044"
+                                                                              value="69.602044"
                                                     />
                           }
 />,
@@ -2718,14 +2718,14 @@ ShallowWrapper {
                           "main": <SelectableText>
                             <NumericText
                                                         maxDecimalPlaces={18}
-                                                        value="0.178937"
+                                                        value="0.168937"
                             />
                              
                             ETH
 </SelectableText>,
                           "subtitle": <NumericText
                             type="fiat"
-                            value="73.722044"
+                            value="69.602044"
 />,
                         },
                         "ref": null,
@@ -3318,7 +3318,7 @@ ShallowWrapper {
                                                             />
                                                 </Form__FormItem>
                                                 <GasOptions
-                                                            defaultGasLimit={2000000}
+                                                            defaultGasLimit={3000000}
                                                             defaultGasPrice={10}
                                                             defaultOption="average"
                                                             gasStatistics={undefined}
@@ -3403,7 +3403,7 @@ ShallowWrapper {
                                                                                     <SelectableText>
                                                                                                 <NumericText
                                                                                                             maxDecimalPlaces={18}
-                                                                                                            value="0.02"
+                                                                                                            value="0.03"
                                                                                                 />
                                                                                                  
                                                                                                 ETH
@@ -3412,7 +3412,7 @@ ShallowWrapper {
                                                                         subtitle={
                                                                                     <NumericText
                                                                                                 type="fiat"
-                                                                                                value="8.24"
+                                                                                                value="12.36"
                                                                                     />
                                                                         }
                                                             />
@@ -3471,7 +3471,7 @@ ShallowWrapper {
                                                                                     <SelectableText>
                                                                                                 <NumericText
                                                                                                             maxDecimalPlaces={18}
-                                                                                                            value="0.178937"
+                                                                                                            value="0.168937"
                                                                                                 />
                                                                                                  
                                                                                                 ETH
@@ -3480,7 +3480,7 @@ ShallowWrapper {
                                                                         subtitle={
                                                                                     <NumericText
                                                                                                 type="fiat"
-                                                                                                value="73.722044"
+                                                                                                value="69.602044"
                                                                                     />
                                                                         }
                                                             />
@@ -3710,7 +3710,7 @@ ShallowWrapper {
                                                         />
                                           </Form__FormItem>
                                           <GasOptions
-                                                        defaultGasLimit={2000000}
+                                                        defaultGasLimit={3000000}
                                                         defaultGasPrice={10}
                                                         defaultOption="average"
                                                         gasStatistics={undefined}
@@ -3795,7 +3795,7 @@ ShallowWrapper {
                                                                                     <SelectableText>
                                                                                                   <NumericText
                                                                                                                 maxDecimalPlaces={18}
-                                                                                                                value="0.02"
+                                                                                                                value="0.03"
                                                                                                   />
                                                                                                    
                                                                                                   ETH
@@ -3804,7 +3804,7 @@ ShallowWrapper {
                                                                       subtitle={
                                                                                     <NumericText
                                                                                                   type="fiat"
-                                                                                                  value="8.24"
+                                                                                                  value="12.36"
                                                                                     />
                                                                       }
                                                         />
@@ -3863,7 +3863,7 @@ ShallowWrapper {
                                                                                     <SelectableText>
                                                                                                   <NumericText
                                                                                                                 maxDecimalPlaces={18}
-                                                                                                                value="0.178937"
+                                                                                                                value="0.168937"
                                                                                                   />
                                                                                                    
                                                                                                   ETH
@@ -3872,7 +3872,7 @@ ShallowWrapper {
                                                                       subtitle={
                                                                                     <NumericText
                                                                                                   type="fiat"
-                                                                                                  value="73.722044"
+                                                                                                  value="69.602044"
                                                                                     />
                                                                       }
                                                         />
@@ -4049,7 +4049,7 @@ ShallowWrapper {
                                                       />
                                     </Form__FormItem>
                                     <GasOptions
-                                                      defaultGasLimit={2000000}
+                                                      defaultGasLimit={3000000}
                                                       defaultGasPrice={10}
                                                       defaultOption="average"
                                                       gasStatistics={undefined}
@@ -4134,7 +4134,7 @@ ShallowWrapper {
                                                                                           <SelectableText>
                                                                                                             <NumericText
                                                                                                                               maxDecimalPlaces={18}
-                                                                                                                              value="0.02"
+                                                                                                                              value="0.03"
                                                                                                             />
                                                                                                              
                                                                                                             ETH
@@ -4143,7 +4143,7 @@ ShallowWrapper {
                                                                         subtitle={
                                                                                           <NumericText
                                                                                                             type="fiat"
-                                                                                                            value="8.24"
+                                                                                                            value="12.36"
                                                                                           />
                                                                         }
                                                       />
@@ -4202,7 +4202,7 @@ ShallowWrapper {
                                                                                           <SelectableText>
                                                                                                             <NumericText
                                                                                                                               maxDecimalPlaces={18}
-                                                                                                                              value="0.178937"
+                                                                                                                              value="0.168937"
                                                                                                             />
                                                                                                              
                                                                                                             ETH
@@ -4211,7 +4211,7 @@ ShallowWrapper {
                                                                         subtitle={
                                                                                           <NumericText
                                                                                                             type="fiat"
-                                                                                                            value="73.722044"
+                                                                                                            value="69.602044"
                                                                                           />
                                                                         }
                                                       />
@@ -4382,7 +4382,7 @@ ShallowWrapper {
                                         />
                     </Form__FormItem>
                     <GasOptions
-                                        defaultGasLimit={2000000}
+                                        defaultGasLimit={3000000}
                                         defaultGasPrice={10}
                                         defaultOption="average"
                                         gasStatistics={undefined}
@@ -4471,7 +4471,7 @@ ShallowWrapper {
 </Form__FormItem>,
                       false,
                       <GasOptions
-                        defaultGasLimit={2000000}
+                        defaultGasLimit={3000000}
                         defaultGasPrice={10}
                         defaultOption="average"
                         gasStatistics={undefined}
@@ -4645,7 +4645,7 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "defaultGasLimit": 2000000,
+                        "defaultGasLimit": 3000000,
                         "defaultGasPrice": 10,
                         "defaultOption": "average",
                         "gasStatistics": undefined,
@@ -4740,7 +4740,7 @@ ShallowWrapper {
                                                                                         <SelectableText>
                                                                                                               <NumericText
                                                                                                                                     maxDecimalPlaces={18}
-                                                                                                                                    value="0.02"
+                                                                                                                                    value="0.03"
                                                                                                               />
                                                                                                                
                                                                                                               ETH
@@ -4749,7 +4749,7 @@ ShallowWrapper {
                                                                   subtitle={
                                                                                         <NumericText
                                                                                                               type="fiat"
-                                                                                                              value="8.24"
+                                                                                                              value="12.36"
                                                                                         />
                                                                   }
                                             />
@@ -4808,7 +4808,7 @@ ShallowWrapper {
                                                                                         <SelectableText>
                                                                                                               <NumericText
                                                                                                                                     maxDecimalPlaces={18}
-                                                                                                                                    value="0.178937"
+                                                                                                                                    value="0.168937"
                                                                                                               />
                                                                                                                
                                                                                                               ETH
@@ -4817,7 +4817,7 @@ ShallowWrapper {
                                                                   subtitle={
                                                                                         <NumericText
                                                                                                               type="fiat"
-                                                                                                              value="73.722044"
+                                                                                                              value="69.602044"
                                                                                         />
                                                                   }
                                             />
@@ -4983,7 +4983,7 @@ ShallowWrapper {
                                                                               <SelectableText>
                                                                                                         <NumericText
                                                                                                                                   maxDecimalPlaces={18}
-                                                                                                                                  value="0.02"
+                                                                                                                                  value="0.03"
                                                                                                         />
                                                                                                          
                                                                                                         ETH
@@ -4992,7 +4992,7 @@ ShallowWrapper {
                                                     subtitle={
                                                                               <NumericText
                                                                                                         type="fiat"
-                                                                                                        value="8.24"
+                                                                                                        value="12.36"
                                                                               />
                                                     }
                           />
@@ -5051,7 +5051,7 @@ ShallowWrapper {
                                                                               <SelectableText>
                                                                                                         <NumericText
                                                                                                                                   maxDecimalPlaces={18}
-                                                                                                                                  value="0.178937"
+                                                                                                                                  value="0.168937"
                                                                                                         />
                                                                                                          
                                                                                                         ETH
@@ -5060,7 +5060,7 @@ ShallowWrapper {
                                                     subtitle={
                                                                               <NumericText
                                                                                                         type="fiat"
-                                                                                                        value="73.722044"
+                                                                                                        value="69.602044"
                                                                               />
                                                     }
                           />
@@ -5309,7 +5309,7 @@ ShallowWrapper {
                                                         <SelectableText>
                                                                                     <NumericText
                                                                                                                 maxDecimalPlaces={18}
-                                                                                                                value="0.02"
+                                                                                                                value="0.03"
                                                                                     />
                                                                                      
                                                                                     ETH
@@ -5318,7 +5318,7 @@ ShallowWrapper {
                             subtitle={
                                                         <NumericText
                                                                                     type="fiat"
-                                                                                    value="8.24"
+                                                                                    value="12.36"
                                                         />
                             }
 />,
@@ -5333,14 +5333,14 @@ ShallowWrapper {
                             "main": <SelectableText>
                               <NumericText
                                                             maxDecimalPlaces={18}
-                                                            value="0.02"
+                                                            value="0.03"
                               />
                                
                               ETH
 </SelectableText>,
                             "subtitle": <NumericText
                               type="fiat"
-                              value="8.24"
+                              value="12.36"
 />,
                           },
                           "ref": null,
@@ -5486,7 +5486,7 @@ ShallowWrapper {
                                                         <SelectableText>
                                                                                     <NumericText
                                                                                                                 maxDecimalPlaces={18}
-                                                                                                                value="0.178937"
+                                                                                                                value="0.168937"
                                                                                     />
                                                                                      
                                                                                     ETH
@@ -5495,7 +5495,7 @@ ShallowWrapper {
                             subtitle={
                                                         <NumericText
                                                                                     type="fiat"
-                                                                                    value="73.722044"
+                                                                                    value="69.602044"
                                                         />
                             }
 />,
@@ -5511,14 +5511,14 @@ ShallowWrapper {
                             "main": <SelectableText>
                               <NumericText
                                                             maxDecimalPlaces={18}
-                                                            value="0.178937"
+                                                            value="0.168937"
                               />
                                
                               ETH
 </SelectableText>,
                             "subtitle": <NumericText
                               type="fiat"
-                              value="73.722044"
+                              value="69.602044"
 />,
                           },
                           "ref": null,

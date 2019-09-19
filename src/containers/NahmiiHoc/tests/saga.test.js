@@ -115,7 +115,7 @@ describe('nahmiiHocSaga', () => {
           expect(disposeListener.mock.calls.length).toEqual(0);
         });
     });
-    it('should trigger cancelListenReceiptEvent action when CHANGE_NETWORK is triggered', () => {
+    it('should trigger close the event channel when CHANGE_NETWORK is triggered', () => {
       const disposeListener = jest.fn();
       return expectSaga(listenReceiptEvent)
         .withReducer(withReducer, storeMock)
