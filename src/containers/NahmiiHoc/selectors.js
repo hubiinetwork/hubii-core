@@ -117,6 +117,11 @@ const makeSelectReceiptsWithInfo = () => createSelector(
           receiptWithInfo.get('updated')
         );
 
+        receiptWithInfo = receiptWithInfo.set(
+          'hash',
+          receiptWithInfo.getIn(['seals', 'operator', 'hash'])
+        );
+
         return result.push(receiptWithInfo);
       }, new List());
 

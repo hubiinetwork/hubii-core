@@ -46,6 +46,7 @@ import {
   LOAD_NAHMII_RECEIPTS_ERROR,
   SETTLE_ALL_CHALLENGES_SUCCESS,
   RELOAD_SETTLEMENT_STATES,
+  NEW_RECEIPT_RECEIVED,
 } from './constants';
 
 export function setSelectedWalletCurrency(currencyAddress) {
@@ -432,6 +433,18 @@ export function loadReceiptsError(address, error) {
     type: LOAD_NAHMII_RECEIPTS_ERROR,
     address,
     error,
+  };
+}
+
+export function newReceiptReceived(address, receipt) {
+  return {
+    type: NEW_RECEIPT_RECEIVED,
+    address,
+    receipt: {
+      ...receipt,
+      created: new Date().toISOString(),
+      updated: new Date().toISOString(),
+    },
   };
 }
 

@@ -1,4 +1,5 @@
 import { expectSaga } from 'redux-saga-test-plan';
+import { eventChannel } from 'redux-saga';
 import { fromJS } from 'immutable';
 import nahmii from 'nahmii-sdk';
 import { storeMock } from 'mocks/store';
@@ -6,7 +7,7 @@ import { currentNetworkMock } from 'containers/App/tests/mocks/selectors';
 import { getIntl } from 'utils/localisation';
 import BigNumber from 'bignumber.js';
 import { showDecryptWalletModal } from 'containers/WalletHoc/actions';
-import { notify } from 'containers/App/actions';
+import { notify, changeNetwork } from 'containers/App/actions';
 import * as actions from '../actions';
 import {
   loadBalances,
@@ -25,6 +26,7 @@ import {
   reloadSettlementStatesHook,
   processTx,
   processPendingSettlementTransactions,
+  listenReceiptEvent,
 } from '../saga';
 import nahmiiHocReducer from '../reducer';
 
@@ -61,6 +63,83 @@ describe('nahmiiHocSaga', () => {
       })
       .put(actions.loadBalancesError(address))
       .run({ silenceTimeout: true }));
+  });
+  describe.only('#listenReceiptEvent()', () => {
+    const currency = '0x0000000000000000000000000000000000000000';
+    const receipt = new nahmii.Receipt(nahmii.Payment.from({
+      amount: '1',
+      currency: {
+        ct: currency,
+        id: 0,
+      },
+      sender: {
+        wallet: storeMock.getIn(['walletHoc', 'wallets', 0, 'address']),
+      },
+      recipient: {
+        wallet: storeMock.getIn(['walletHoc', 'wallets', 1, 'address']),
+      },
+    }));
+
+    it('should trigger receivedNewReceipt action when an receipt comes from the event API', () => {
+      const disposeListener = jest.fn();
+      return expectSaga(listenReceiptEvent)
+        .withReducer(withReducer, storeMock)
+        .provide({
+          call(effect) {
+            if (effect.fn.name === 'receiptEventChannel') {
+              return eventChannel((emitter) => {
+                setTimeout(() => {
+                  emitter(receipt);
+                }, 100);
+                return () => {
+                  disposeListener();
+                };
+              });
+            }
+            return true;
+          },
+        })
+        .put(actions.newReceiptReceived(receipt.sender, receipt.toJSON()))
+        .put(actions.newReceiptReceived(receipt.recipient, receipt.toJSON()))
+        .run({ silenceTimeout: true })
+        .then((result) => {
+          const state = result.storeState;
+          const receiptsByWallet1 = state.getIn(['nahmiiHoc', 'receipts', storeMock.getIn(['walletHoc', 'wallets', 0, 'address']), 'receipts']);
+          expect(receiptsByWallet1).toEqual(
+            storeMock
+              .getIn(['nahmiiHoc', 'receipts', storeMock.getIn(['walletHoc', 'wallets', 0, 'address']), 'receipts'])
+              .unshift(fromJS({ ...receipt.toJSON(), created: new Date().toISOString(), updated: new Date().toISOString() }))
+          );
+          const receiptsByWallet2 = state.getIn(['nahmiiHoc', 'receipts', storeMock.getIn(['walletHoc', 'wallets', 1, 'address']), 'receipts']);
+          expect(receiptsByWallet2).toEqual(fromJS([{ ...receipt.toJSON(), created: new Date().toISOString(), updated: new Date().toISOString() }]));
+          expect(disposeListener.mock.calls.length).toEqual(0);
+        });
+    });
+    it('should trigger close the event channel when CHANGE_NETWORK is triggered', () => {
+      const disposeListener = jest.fn();
+      return expectSaga(listenReceiptEvent)
+        .withReducer(withReducer, storeMock)
+        .provide({
+          call(effect) {
+            if (effect.fn.name === 'receiptEventChannel') {
+              return eventChannel((emitter) => {
+                setTimeout(() => {
+                  emitter(receipt);
+                }, 100);
+                return () => {
+                  disposeListener();
+                };
+              });
+            }
+            return true;
+          },
+        })
+        .dispatch(changeNetwork())
+        .run({ silenceTimeout: true })
+        .then(() => {
+          expect(disposeListener).toBeCalled();
+        });
+    });
   });
   describe('makePayment', () => {
     let monetaryAmount;

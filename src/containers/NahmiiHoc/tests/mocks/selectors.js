@@ -215,6 +215,10 @@ export const receiptsWithInfo = receiptsLoaded
     true
   )
   .setIn(
+    ['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 1, 'hash'],
+    receiptsLoaded.getIn(['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 1, 'seals', 'operator', 'hash'])
+  )
+  .setIn(
     ['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 0, 'type'],
     'received'
   )
@@ -249,6 +253,10 @@ export const receiptsWithInfo = receiptsLoaded
   .setIn(
     ['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 0, 'confirmed'],
     true
+  )
+  .setIn(
+    ['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 0, 'hash'],
+    receiptsLoaded.getIn(['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 0, 'seals', 'operator', 'hash'])
   );
 
 // makeSelectNahmiiBalances

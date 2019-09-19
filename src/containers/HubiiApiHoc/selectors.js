@@ -73,12 +73,10 @@ const makeSelectTransactionsWithInfo = () => createSelector(
   (transactions, supportedAssets) => {
     // set all address's transactions to loading if don't have all required information
     let transactionsWithInfo = transactions;
-    if
-    (
-      supportedAssets.get('loading') ||
-      supportedAssets.get('error')
-    ) {
-      transactionsWithInfo = transactionsWithInfo.map((address) => address.set('loading', true));
+    if (!supportedAssets.get('assets')) {
+      transactionsWithInfo = transactionsWithInfo.map(
+        (address) => address.set('loading', true).set('transactions', fromJS([]))
+      );
       return transactionsWithInfo;
     }
 

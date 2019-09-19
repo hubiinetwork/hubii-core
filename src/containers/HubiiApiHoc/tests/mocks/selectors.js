@@ -216,6 +216,12 @@ export const supportedAssetsErrorMock = fromJS({
   assets: [],
 });
 
+export const supportedAssetsNullMock = fromJS({
+  loading: false,
+  error: true,
+  assets: null,
+});
+
 
 // selectHubiiApiHocDomain
 export const hubiiApiHocMock = fromJS({
