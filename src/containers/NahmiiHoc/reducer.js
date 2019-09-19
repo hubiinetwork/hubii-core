@@ -45,6 +45,7 @@ import {
   LOAD_SETTLEABLE_CHALLENGES_SUCCESS,
   LOAD_SETTLEABLE_CHALLENGES_ERROR,
   RELOAD_SETTLEMENT_STATES,
+  NEW_RECEIPT_RECEIVED,
 } from './constants';
 
 export const initialState = fromJS({
@@ -210,7 +211,13 @@ function nahmiiHocReducer(state = initialState, action) {
       return state
         .setIn(['receipts', action.address, 'loading'], false)
         .setIn(['receipts', action.address, 'error'], action.error)
-        .setIn(['receipts', action.address, 'receipts'], fromJS([]));
+        .setIn(['receipts', action.address, 'receipts'], state.getIn(['receipts', action.address, 'receipts']) || fromJS([]));
+    case NEW_RECEIPT_RECEIVED:
+      return state
+        .setIn(['receipts', action.address, 'receipts'],
+          state.getIn(['receipts', action.address, 'receipts']) ?
+            state.getIn(['receipts', action.address, 'receipts']).unshift(fromJS(action.receipt)) :
+            fromJS([action.receipt]));
     case CHANGE_NETWORK:
       return state
         .set('balances', initialState.get('balances'))

@@ -3,7 +3,7 @@ import BalanceTrackerContract from 'nahmii-sdk/lib/wallet/balance-tracker-contra
 import DriipSettlementChallengeContract from 'nahmii-sdk/lib/settlement/driip-settlement-challenge-contract';
 import { utils } from 'ethers';
 import { all, fork, takeEvery, takeLatest, select, put, call, take, cancel, race } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
+import { delay, eventChannel } from 'redux-saga';
 import BigNumber from 'bignumber.js';
 import { requestHardwareWalletAPI } from 'utils/request';
 import rpcRequest from 'utils/rpcRequest';
@@ -707,17 +707,56 @@ export function* loadSettleableChallenges({ address, currency }, network, noPoll
   }
 }
 
-export function* loadWalletReceipts({ address }, network) {
-  while (true) { // eslint-disable-line no-constant-condition
-    try {
-      const receipts = yield call(network.nahmiiProvider.getWalletReceipts.bind(network.nahmiiProvider), address, null, 1000);
-      yield put(actions.loadReceiptsSuccess(address, receipts));
-    } catch (e) {
-      yield put(actions.loadReceiptsError(address, e));
-    } finally {
-      const FIVE_SEC_IN_MS = 1000 * 5;
-      yield delay(FIVE_SEC_IN_MS);
+export const receiptEventChannel = (nahmiiEventProvider) => eventChannel((emit) => {
+  nahmiiEventProvider.onNewReceipt((receipt) => {
+    emit(receipt);
+  });
+  return () => {
+    nahmiiEventProvider.dispose();
+  };
+});
+
+export function* listenReceiptEvent() {
+  const network = yield select(makeSelectCurrentNetwork());
+  const nahmiiEventProvider = yield nahmii.NahmiiEventProvider.from(network.nahmiiProvider);
+  const channel = yield call(receiptEventChannel, nahmiiEventProvider);
+  while (true) {
+    const [receipt, changedNetwork] = yield race([
+      take(channel),
+      take(CHANGE_NETWORK),
+    ]);
+
+    if (changedNetwork) {
+      channel.close();
+      return;
     }
+
+    const wallets = yield select(makeSelectWallets());
+    for (const wallet of wallets) {
+      if (
+        isAddressMatch(receipt.sender, wallet.get('address')) ||
+        isAddressMatch(receipt.recipient, wallet.get('address'))
+      ) {
+        yield put(actions.newReceiptReceived(wallet.get('address'), receipt.toJSON()));
+      }
+    }
+  }
+}
+
+export function* loadWalletReceipts({ address }, network) {
+  try {
+    const receipts = yield call(network.nahmiiProvider.getWalletReceipts.bind(network.nahmiiProvider), address, null, 1000);
+    yield put(actions.loadReceiptsSuccess(address, receipts));
+  } catch (e) {
+    yield put(actions.loadReceiptsError(address, e));
+  }
+}
+
+export function* loadAllWalletReceipts() {
+  const network = yield select(makeSelectCurrentNetwork());
+  const wallets = yield select(makeSelectWallets());
+  for (const wallet of wallets) {
+    yield fork(loadWalletReceipts, { address: wallet.get('address') }, network);
   }
 }
 
@@ -731,7 +770,7 @@ export function* challengeStatusOrcestrator() {
       const allTasks = yield all([
         ...wallets.map((wallet) => fork(loadBalances, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadStagedBalances, { address: wallet.get('address') }, network)),
-        ...wallets.map((wallet) => fork(loadWalletReceipts, { address: wallet.get('address') }, network)),
+        // ...wallets.map((wallet) => fork(loadWalletReceipts, { address: wallet.get('address') }, network)),
       ]);
 
       const currentWalletAddress = (yield select(makeSelectCurrentWallet())).get('address');
@@ -813,6 +852,10 @@ export function* processPendingSettlementTransactions() {
 export default function* listen() {
   yield takeLatest(INIT_NETWORK_ACTIVITY, challengeStatusOrcestrator);
   yield takeLatest(INIT_NETWORK_ACTIVITY, processPendingSettlementTransactions);
+  yield takeLatest(INIT_NETWORK_ACTIVITY, listenReceiptEvent);
+  yield takeLatest(INIT_NETWORK_ACTIVITY, loadAllWalletReceipts);
+  yield takeLatest(CHANGE_NETWORK, listenReceiptEvent);
+  yield takeLatest(CHANGE_NETWORK, loadAllWalletReceipts);
   yield takeLatest(CHANGE_NETWORK, processPendingSettlementTransactions);
   yield takeEvery(NAHMII_DEPOSIT, deposit);
   yield takeEvery(NAHMII_DEPOSIT_ETH, depositEth);
