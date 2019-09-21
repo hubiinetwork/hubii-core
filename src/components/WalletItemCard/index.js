@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
-import { trimDecimals, isHardwareWallet, isAddressMatch } from 'utils/wallet';
+import { isHardwareWallet } from 'utils/wallet';
 import { formatFiat } from 'utils/numberFormats';
 import WalletStatusIndicator from 'components/WalletStatusIndicator';
 import DeletionModal from 'components/DeletionModal';
@@ -166,7 +166,7 @@ export class WalletItemCard extends React.PureComponent {
         <AssetWrapper key={asset.currency}>
           <AssetAmountBubble
             name={asset.symbol}
-            amount={trimDecimals(asset.balance, asset.currency, this.props.priceInfo.find((c) => isAddressMatch(c.currency, asset.currency)))}
+            amount={asset.balance.toString()}
           />
         </AssetWrapper>
       ));
@@ -185,7 +185,7 @@ export class WalletItemCard extends React.PureComponent {
           <AssetWrapper key={asset.currency}>
             <AssetAmountBubble
               name={asset.symbol}
-              amount={trimDecimals(asset.balance, asset.currency, this.props.priceInfo.find((c) => isAddressMatch(c.currency, asset.currency)))}
+              amount={asset.balance.toString()}
             />
           </AssetWrapper>
         ));
@@ -378,7 +378,6 @@ WalletItemCard.propTypes = {
   isDecrypted: PropTypes.bool.isRequired,
   mnemonic: PropTypes.string,
   privateKey: PropTypes.string,
-  priceInfo: PropTypes.arrayOf(PropTypes.object),
   intl: PropTypes.object,
 };
 
