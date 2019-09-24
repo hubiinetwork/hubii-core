@@ -64,6 +64,7 @@ import {
 
 function waitForTransaction(provider, ...args) { return provider.waitForTransaction(...args); }
 function getTransactionReceipt(provider, ...args) { return provider.getTransactionReceipt(...args); }
+function getTransactionCount(provider, ...args) { return provider.getTransactionCount(...args); }
 
 export function* deposit({ address, symbol, amount, options }) {
   try {
@@ -827,6 +828,11 @@ export function* reloadSettlementStates({ address, currency }) {
 
 export function* wrapProcessTxForNewSettlements(nahmiiProvider, tx, address, currency) {
   try {
+    const latestNonce = yield call(getTransactionCount, nahmiiProvider, address);
+    if (tx.nonce <= latestNonce) {
+      yield put(actions.loadTxReceiptForPaymentChallengeError(address, currency, { transactionHash: tx.hash }));
+      throw new Error(getIntl().formatMessage({ id: 'settlement_tx_override' }));
+    }
     yield processTx('start-challenge', nahmiiProvider, tx, address, currency);
   } catch (error) {
     const errorMessage = logErrorMsg(error);
