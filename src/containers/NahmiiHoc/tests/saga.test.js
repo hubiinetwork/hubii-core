@@ -1429,11 +1429,15 @@ describe('nahmiiHocSaga', () => {
           .provide({
             call(effect, next) {
               if (effect.fn.name === 'getTransactionCount') {
-                return 1;
+                return 2;
+              }
+              if (effect.fn.name === 'getTransactionReceipt') {
+                return null;
               }
               return next();
             },
           })
+          .put(actions.loadTxReceiptForPaymentChallengeError(signerMock.address, currency, { transactionHash: fakeTxsWithTimestamp[0].hash }))
           .put(actions.startChallengeError(signerMock.address, currency))
           .run({ silenceTimeout: true })
           .then((result) => {

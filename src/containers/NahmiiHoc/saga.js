@@ -828,10 +828,13 @@ export function* reloadSettlementStates({ address, currency }) {
 
 export function* wrapProcessTxForNewSettlements(nahmiiProvider, tx, address, currency) {
   try {
-    const latestNonce = yield call(getTransactionCount, nahmiiProvider, address);
-    if (tx.nonce <= latestNonce) {
-      yield put(actions.loadTxReceiptForPaymentChallengeError(address, currency, { transactionHash: tx.hash }));
-      throw new Error(getIntl().formatMessage({ id: 'settlement_tx_override' }));
+    const txCount = yield call(getTransactionCount, nahmiiProvider, address);
+    if (tx.nonce < txCount) {
+      const txReceipt = yield call(getTransactionReceipt, nahmiiProvider, tx.hash);
+      if (!txReceipt) {
+        yield put(actions.loadTxReceiptForPaymentChallengeError(address, currency, { transactionHash: tx.hash }));
+        throw new Error(getIntl().formatMessage({ id: 'settlement_tx_override' }));
+      }
     }
     yield processTx('start-challenge', nahmiiProvider, tx, address, currency);
   } catch (error) {
