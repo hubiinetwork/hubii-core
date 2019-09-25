@@ -36,38 +36,6 @@ export const findWalletIndex = (state, address, scopedFatalError = fatalError) =
   }
 };
 
-/*
- * Trims the amount of decimals on 'amount' so that it is accurate up to 0.01 usd equivilent value
- */
-export const trimDecimals = (amount, currency, currencyPrices) => {
-  if (!currencyPrices) {
-    return '0';
-  }
-  // check to see if this currency is a test token, in which case give it an arbitrary price of $100
-  const usdPrice = currencyPrices.usd === '0' ? '100' : currencyPrices.usd;
-
-  // find what 0.01 usd is in the relevant currency. force ratio to be a decimal.
-  let ratio = new BigNumber(0.01).dividedBy(usdPrice).toString();
-  if (!ratio.includes('.')) ratio += '0.0001';
-  const ratioSplitByDot = ratio.split('.');
-  const amountSplitByDot = amount.toString().split('.');
-
-  // check to see if the amount was a whole value, in which case just return as there is no need for decimal alteration
-  if (amountSplitByDot.length === 1) {
-    return amount.toString();
-  }
-
-  // otherwise, find how many 0's there are after the decimal place on the ratio + 1, and minus that with the length of the
-  // number of digits after the decimal place on the ratio.
-  let decimalPlacement = (ratioSplitByDot[1].toString().length - parseFloat(ratioSplitByDot[1]).toString().length) + 1;
-  let trimmedAmount = `${amountSplitByDot[0]}.${amountSplitByDot[1].substr(0, decimalPlacement)}`;
-  while (new BigNumber(trimmedAmount).eq('0')) {
-    decimalPlacement += 1;
-    trimmedAmount = `${amountSplitByDot[0]}.${amountSplitByDot[1].substr(0, decimalPlacement)}`;
-  }
-  return new BigNumber(trimmedAmount).toString(); // remove any trailing 0s and return
-};
-
 export const getBreakdown = (balances, supportedAssets) => {
   // convert balances to Map if they're in array form
   let formattedBalances = balances;
@@ -93,11 +61,7 @@ export const getBreakdown = (balances, supportedAssets) => {
     return ({
       label: getCurrencySymbol(supportedAssets, asset),
       value: usdValue.toString(),
-      amount: trimDecimals(
-        amount,
-        asset,
-        { usd: usdValue.div(amount).toString() }
-      ),
+      amount: amount.toString(),
       percentage,
       color: supportedAssets.get('assets').find((a) => a.get('currency') === asset).get('color'),
     });

@@ -64,7 +64,7 @@ describe('nahmiiHocSaga', () => {
       .put(actions.loadBalancesError(address))
       .run({ silenceTimeout: true }));
   });
-  describe.only('#listenReceiptEvent()', () => {
+  describe('#listenReceiptEvent()', () => {
     const currency = '0x0000000000000000000000000000000000000000';
     const receipt = new nahmii.Receipt(nahmii.Payment.from({
       amount: '1',
@@ -538,7 +538,7 @@ describe('nahmiiHocSaga', () => {
     const options = { gasLimit: 1, gasPrice: 1 };
     const currency = '0x0000000000000000000000000000000000000001';
     const stageAmount = new BigNumber(10000000000000000000000);
-    const fakeTxs = [{ chainId: 3, hash: 'hash1' }, { chainId: 3, hash: 'hash2' }];
+    const fakeTxs = [{ chainId: 3, hash: 'hash1', nonce: 1 }, { chainId: 3, hash: 'hash2', nonce: 2 }];
     const fakeTxReceipts = [{ transactionHash: 'hash1', status: 1 }, { transactionHash: 'hash2', status: 1 }];
 
     describe('load settlement states', () => {
@@ -1328,6 +1328,9 @@ describe('nahmiiHocSaga', () => {
           )
           .provide({
             call(effect, next) {
+              if (effect.fn.name === 'getTransactionCount') {
+                return 0;
+              }
               if (effect.fn.name === 'waitForTransaction') {
                 return new Promise((resolve) => {
                   setTimeout(() => {
@@ -1358,6 +1361,9 @@ describe('nahmiiHocSaga', () => {
             )
             .provide({
               call(effect, next) {
+                if (effect.fn.name === 'getTransactionCount') {
+                  return 0;
+                }
                 if (effect.fn.name === 'waitForTransaction') {
                   return new Promise((resolve) => {
                     setTimeout(() => {
@@ -1391,6 +1397,9 @@ describe('nahmiiHocSaga', () => {
             )
             .provide({
               call(effect, next) {
+                if (effect.fn.name === 'getTransactionCount') {
+                  return 0;
+                }
                 if (effect.fn.name === 'waitForTransaction') {
                   return { transactionHash: fakeTxsWithTimestamp[0].hash };
                 }
@@ -1411,6 +1420,32 @@ describe('nahmiiHocSaga', () => {
               expect(tx).toEqual(undefined);
             });
         });
+        it('should remove pending tx from store if pending tx has been overridden', () => expectSaga(processPendingSettlementTransactions)
+          .withReducer(
+            withReducer,
+            storeMock.setIn(
+              ['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency, fakeTxsWithTimestamp[0].hash], fromJS(fakeTxsWithTimestamp[0]))
+          )
+          .provide({
+            call(effect, next) {
+              if (effect.fn.name === 'getTransactionCount') {
+                return 2;
+              }
+              if (effect.fn.name === 'getTransactionReceipt') {
+                return null;
+              }
+              return next();
+            },
+          })
+          .put(actions.loadTxReceiptForPaymentChallengeError(signerMock.address, currency, { transactionHash: fakeTxsWithTimestamp[0].hash }))
+          .put(actions.startChallengeError(signerMock.address, currency))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
+            const tx = result.storeState.getIn(['nahmiiHoc', 'newSettlementPendingTxs', signerMock.address, currency, fakeTxsWithTimestamp[0].hash]);
+            expect(status).toEqual('failed');
+            expect(tx).toEqual(undefined);
+          }));
         it('should not remove pending tx from store when the error is not caused by mining failure', () => expectSaga(processPendingSettlementTransactions)
           .withReducer(
             withReducer,
@@ -1419,6 +1454,9 @@ describe('nahmiiHocSaga', () => {
           )
           .provide({
             call(effect, next) {
+              if (effect.fn.name === 'getTransactionCount') {
+                return 0;
+              }
               if (effect.fn.name === 'waitForTransaction') {
                 throw new Error();
               }
