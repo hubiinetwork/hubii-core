@@ -304,5 +304,6 @@
     "withdrawable": "Withdrawable",
     "synchronising_settlement_status": "Synchronising settlement status...",
     "i_agree": "I agree with the ",
-    "terms": "Terms & Conditions"
+    "terms": "Terms & Conditions",
+    "confirm_nahmii_recipient": "Please make sure the recipient can use nahmii."
 }
