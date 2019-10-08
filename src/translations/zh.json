@@ -304,5 +304,6 @@
     "withdrawable": "可取款",
     "synchronising_settlement_status": "同步结算状态...",
     "i_agree": "我同意",
-    "terms": "此条款"
+    "terms": "此条款",
+    "confirm_nahmii_recipient": "请确认收款方可以使用 nahmii"
 }

@@ -357,7 +357,7 @@ export class TransferForm extends React.PureComponent {
                 </Select>
               </FormItem>
               <FormItem
-                label={<FormItemLabel>{formatMessage({ id: 'select_recipient' })}</FormItemLabel>}
+                label={<FormItemLabel>{formatMessage({ id: 'select_recipient' })} {layer === 'nahmii' && `(${formatMessage({ id: 'confirm_nahmii_recipient' })})`}</FormItemLabel>}
                 colon={false}
                 help={
                   this.props.recipients.find((recipient) => isAddressMatch(recipient.address, address)) ?
