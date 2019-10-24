@@ -11226,10 +11226,10 @@ mute-stream@0.0.7:
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
   integrity sha1-MHXOk7whuPq0PhvE2n6BFe0ee6s=
 
-nahmii-contract-abstractions-ropsten@3.1.5:
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/nahmii-contract-abstractions-ropsten/-/nahmii-contract-abstractions-ropsten-3.1.5.tgz#8755544a5a78b59c457cab9622d6cdaa9a73c61b"
-  integrity sha512-YuzglrjYziIQ7tg/Anf+1tuD621uqQNFM+MgoVlWE/Nq5Z/Co1Oy5M4WA+NY9vzzEhL/H8sWnfO895thGgw8hg==
+nahmii-contract-abstractions-ropsten@3.1.6:
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/nahmii-contract-abstractions-ropsten/-/nahmii-contract-abstractions-ropsten-3.1.6.tgz#e5c0c74fdd6ba69d2ec11234653d917dbfe39181"
+  integrity sha512-E0v5M/7+4U5GTJclrOi08wXBiJZ7oxpK2qIjfbm+ZUUhsDaR7psIlSn47642+WySN/DcnyYCf1rRkRechSt1Wg==
   dependencies:
     glob "^7.1.4"
 
@@ -11245,15 +11245,15 @@ nahmii-ethereum-address@^2.0.1:
   resolved "https://registry.yarnpkg.com/nahmii-ethereum-address/-/nahmii-ethereum-address-2.0.1.tgz#7b31f04d5748cb58c63312b96d7a51bb4ceab6f2"
   integrity sha512-+7kwiPd5PEabU2VhMODpx1NYNvyxmvV13mWq+Iu9OVxLDwXaAk/0yRlEXYCTwaSBH/yM0ROobINCmJUCo9RONg==
 
-nahmii-sdk@3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/nahmii-sdk/-/nahmii-sdk-3.2.0.tgz#5f603968fe230621b9c3fdf745a39b2199c59612"
-  integrity sha512-1On3ZsO1Orh4V351G4Ui8SHTruOD4ifdtCn5erlu0un7nUt1mPdKRRbbWFrXii5OedplXcrbBB2rGl972NsTyQ==
+nahmii-sdk@3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/nahmii-sdk/-/nahmii-sdk-3.2.1.tgz#1a677df540e7e76baad9619c500b8da3c4a5aaf8"
+  integrity sha512-ahpyeG6liVAdYd+5Hl2pdptxC9BvtEW523oQEwyIt4020X/lINvVXZgqBG2w1MJimSJSlaye+kaev56KtfzFig==
   dependencies:
     ethereumjs-util "^6.1.0"
     lodash.get "^4.4.2"
     nahmii-contract-abstractions "2.1.4"
-    nahmii-contract-abstractions-ropsten "3.1.5"
+    nahmii-contract-abstractions-ropsten "3.1.6"
     socket.io-client "^2.2.0"
     superagent "^5.1.0"
     uuid "^3.3.2"
