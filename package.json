@@ -1,6 +1,6 @@
 {
   "name": "hubii-core",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "author": {
     "name": "hubii",
     "email": "info@hubii.com",
@@ -15,7 +15,6 @@
     "files": [
       "build/**/*"
     ],
-    "afterSign": "./internals/scripts/after-sign-hook.js",
     "publish": [
       {
         "provider": "github",
@@ -378,7 +377,7 @@
     "electron": "2.0.10",
     "electron-builder": "21.2.0",
     "electron-devtools-installer": "2.2.4",
-    "electron-rebuild": "1.7.3",
+    "electron-rebuild": "1.8.6",
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
     "eslint": "4.18.2",
