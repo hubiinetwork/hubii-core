@@ -4,7 +4,7 @@ const electronNotarize = require('electron-notarize');
 
 async function notarize(params) {
   // Only notarize the app on Mac OS only.
-  if (process.platform !== 'darwin') {
+  if (params.electronPlatformName !== 'darwin') {
     return;
   }
   // eslint-disable-next-line no-console
