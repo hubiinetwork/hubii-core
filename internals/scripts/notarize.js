@@ -12,7 +12,6 @@ const electronNotarize = require('electron-notarize');
     throw new Error(`Cannot find application at: ${appPath}`);
   }
 
-  // eslint-disable-next-line no-console
   console.log(`Notarizing ${appId} found at ${appPath}`);
 
   try {
@@ -26,6 +25,5 @@ const electronNotarize = require('electron-notarize');
     console.error(error);
   }
 
-  // eslint-disable-next-line no-console
   console.log(`Done notarizing ${appId}`);
 })();
