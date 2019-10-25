@@ -91,7 +91,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
       assetToDepositMaxDecimals,
       amountToDepositInputRegex,
       gasPriceGwei: new BigNumber('10'),
-      gasLimit: 600000,
+      gasLimit: 800000,
       addContactModalVisibility: false,
     };
     this.onFocusNumberInput = this.onFocusNumberInput.bind(this);
