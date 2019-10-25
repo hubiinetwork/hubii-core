@@ -30,6 +30,7 @@
   },
   "scripts": {
     "release": "electron-builder -m -p always",
+    "notarize": "./internals/scripts/notarize.js",
     "electron-dev": "concurrently --kill-others \"cross-env NODE_ENV=development yarn electron-compile --watch\" \"cross-env BROWSER=none TARGET=electron yarn start-web\" \"wait-on http://localhost:3000 && yarn electron --ignore-certificate-errors\"",
     "preelectron-dev": "electron-rebuild --force --module_dir . -w node-hid",
     "electron": "electron .",

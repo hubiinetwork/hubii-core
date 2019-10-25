@@ -1,19 +1,13 @@
+#!/usr/bin/env node
 const fs = require('fs');
 const path = require('path');
 const electronNotarize = require('electron-notarize');
 
-async function notarize(params) {
-  // Only notarize the app on Mac OS only.
-  if (params.electronPlatformName !== 'darwin') {
-    return;
-  }
-  // eslint-disable-next-line no-console
-  console.log('afterSign hook triggered', params);
-
+(async () => {
   // Same appId in electron-builder.
   const appId = process.env.npm_package_build_appId;
 
-  const appPath = path.join(params.appOutDir, `${params.packager.appInfo.productFilename}.app`);
+  const appPath = path.join(process.cwd(), 'dist/mac', `${process.env.npm_package_name}.app`);
   if (!fs.existsSync(appPath)) {
     throw new Error(`Cannot find application at: ${appPath}`);
   }
@@ -34,6 +28,4 @@ async function notarize(params) {
 
   // eslint-disable-next-line no-console
   console.log(`Done notarizing ${appId}`);
-}
-
-module.exports = notarize;
+})();
