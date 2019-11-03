@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { fromJS } from 'immutable';
 import BigNumber from 'bignumber.js';
-import nahmii from 'nahmii-sdk';
 import { intl } from 'jest/__mocks__/react-intl';
 import { currentNetworkMock } from 'containers/App/tests/mocks/selectors';
 import {
@@ -17,8 +16,7 @@ import {
 } from 'containers/TrezorHoc/tests/mocks/selectors';
 
 import {
-  ongoingChallengesNone,
-  settleableChallengesNone,
+  settlementsNone,
   withdrawalsNone,
 } from 'containers/NahmiiHoc/tests/mocks/selectors';
 
@@ -42,8 +40,7 @@ describe('<NahmiiWithdraw />', () => {
       currentWalletWithInfo: walletsWithInfoMock.get(0),
       prices: pricesLoadedMock,
       supportedAssets: supportedAssetsLoadedMock,
-      ongoingChallenges: ongoingChallengesNone,
-      settleableChallenges: settleableChallengesNone,
+      settlements: settlementsNone,
       withdrawals: withdrawalsNone,
       intl,
       currentNetwork: currentNetworkMock,
@@ -52,8 +49,8 @@ describe('<NahmiiWithdraw />', () => {
       nahmiiWithdraw: () => {},
       goWalletDetails: () => {},
       setSelectedWalletCurrency: () => {},
-      startChallenge: () => {},
       settle: () => {},
+      stage: () => {},
       withdraw: () => {},
       gasStatistics: fromJS({}),
     };
@@ -68,14 +65,14 @@ describe('<NahmiiWithdraw />', () => {
   });
 
   describe('display notice for settlement actions', () => {
-    describe('when there are settleable challenges', () => {
-      it('should render notice for settleable challenges and hide the withdrawal actions', () => {
+    describe('when there are stageable settlements', () => {
+      it('renders notice and hide the withdrawal actions', () => {
         const wrapper = shallow(
           <NahmiiWithdraw
             {...props}
-            settleableChallenges={settleableChallengesNone.set('details', [
-              { intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
-              { intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
+            settlements={settlementsNone.set('details', [
+              { isStageable: true, stageAmount: 100 },
+              { isStageable: true, stageAmount: 100 },
             ])}
           />
         );
@@ -90,9 +87,9 @@ describe('<NahmiiWithdraw />', () => {
   });
 
   describe('stepper for settlement process', () => {
-    ['payment-driip', 'null'].forEach((t) => {
+    ['payment', 'onchain-balance'].forEach((t) => {
       describe(t, () => {
-        it('should hide the stepper graph when there are no ongoing/settleable challenges or invalid settlements', () => {
+        it('should hide the stepper graph when there are no ongoing/settleable settlements or invalid settlements', () => {
           const wrapper = shallow(
             <NahmiiWithdraw
               {...props}
@@ -101,36 +98,36 @@ describe('<NahmiiWithdraw />', () => {
           const stepsNode = wrapper.find('style__StyledSteps');
           expect(stepsNode.length).toEqual(0);
         });
-        it('should update the stepper graph to stage 1 when there is a ongoing driip challenge', () => {
+        it('should update the stepper graph to stage 1 when there is a ongoing payment settlement', () => {
           const wrapper = shallow(
             <NahmiiWithdraw
               {...props}
-              ongoingChallenges={ongoingChallengesNone.set('details', [
-                { type: t, expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
+              settlements={settlementsNone.set('details', [
+                { type: t, isOngoing: true, expirationTime: 1, stageAmount: '100' },
               ])}
             />
           );
           const stepsNode = wrapper.find('style__StyledSteps');
           expect(stepsNode.props().current).toEqual(1);
         });
-        it('should update the stepper graph to stage 2 when there is a settleable driip challenge', () => {
+        it('should update the stepper graph to stage 2 when there is a settleable driip settlement', () => {
           const wrapper = shallow(
             <NahmiiWithdraw
               {...props}
-              settleableChallenges={settleableChallengesNone.set('details', [
-                { type: t, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
+              settlements={settlementsNone.set('details', [
+                { type: t, isStageable: true, stageAmount: '100' },
               ])}
             />
           );
           const stepsNode = wrapper.find('style__StyledSteps');
           expect(stepsNode.props().current).toEqual(2);
         });
-        it('should update the stepper graph to stage 3 when the invalid settlement reason is "can not replay"', () => {
+        it('should update the stepper graph to stage 3 when the settlement is terminated', () => {
           const wrapper = shallow(
             <NahmiiWithdraw
               {...props}
-              settleableChallenges={settleableChallengesNone.set('invalidReasons', [
-                { type: t, reasons: [new Error('The settlement can not be replayed')] },
+              settlements={settlementsNone.set('details', [
+                { type: t, isTerminated: true },
               ])}
             />
           );
@@ -145,38 +142,34 @@ describe('<NahmiiWithdraw />', () => {
       const wrapper = shallow(
         <NahmiiWithdraw
           {...props}
-          ongoingChallenges={ongoingChallengesNone.set('details', [
-            { type: 'payment-driip', expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
-            { type: 'null', expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
-          ])}
-          settleableChallenges={settleableChallengesNone.set('details', [
-            { type: 'payment-driip', intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
-            { type: 'null', intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
+          settlements={settlementsNone.set('details', [
+            { type: 'payment', isStageable: true, stageAmount: '100' },
+            { type: 'onchain-balance', isOngoing: true, stageAmount: '100' },
           ])}
         />
       );
       const stepsNode = wrapper.find('style__StyledSteps');
-      expect(stepsNode.find('Step').get(0).props.description).toEqual('intended_stage_amount {"amount":"4e-16","symbol":"ETH"}');
+      expect(stepsNode.find('Step').get(0).props.description).toEqual('intended_stage_amount {"amount":"2e-16","symbol":"ETH"}');
     });
     it('should aggregate and display the max expiration time in the stepper', () => {
       const wrapper = shallow(
         <NahmiiWithdraw
           {...props}
-          ongoingChallenges={ongoingChallengesNone.set('details', [
-            { type: 'payment-driip', expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
-            { type: 'null', expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
+          settlements={settlementsNone.set('details', [
+            { type: 'payment', isOngoing: true, expirationTime: 1, stageAmount: '100' },
+            { type: 'onchain-balance', isOngoing: true, expirationTime: 1000000, stageAmount: '100' },
           ])}
         />
       );
       const stepsNode = wrapper.find('style__StyledSteps');
-      expect(stepsNode.find('Step').get(1).props.description).toEqual('expiration_time {"endtime":"Thu, Jan 1, 1970 1:00 AM"}');
+      expect(stepsNode.find('Step').get(1).props.description).toEqual('expiration_time {"endtime":"Thu, Jan 1, 1970 1:16 AM"}');
     });
-    it('should display max withdrawable amount in the stepper even when there is an ongoing challenge', () => {
+    it('should display max withdrawable amount in the stepper even when there is an ongoing settlement', () => {
       const wrapper = shallow(
         <NahmiiWithdraw
           {...props}
-          ongoingChallenges={ongoingChallengesNone.set('details', [
-            { type: 'null', expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
+          settlements={settlementsNone.set('details', [
+            { type: 'onchain-balance', isOngoing: true, expirationTime: 1, stageAmount: '100' },
           ])}
           currentWalletWithInfo={walletsWithInfoMock
             .get(0)
@@ -188,18 +181,15 @@ describe('<NahmiiWithdraw />', () => {
       expect(stepsNode.find('Step').get(3).props.description).toEqual('withdrawable_amount {"amount":"3","symbol":"ETH"}');
     });
     [
-      [true, true, true],
-      [true, false, true],
-      [false, true, true],
-      [false, false, false],
-      [undefined, undefined, false],
-    ].forEach(([loadingOngoingChallenges, loadingSettleableChallenges, expectedLoadingIcon]) => {
-      it(`In stepper section, loading icon is being displayed: ${expectedLoadingIcon}; when loading ongoing challengs: ${loadingOngoingChallenges}; when loading settleable challenges: ${loadingSettleableChallenges}`, () => {
+      [true, true],
+      [false, false],
+      [undefined, false],
+    ].forEach(([loadingSettlements, expectedLoadingIcon]) => {
+      it(`displays loading icon: ${expectedLoadingIcon}, when loading settlements: ${loadingSettlements}`, () => {
         const wrapper = shallow(
           <NahmiiWithdraw
             {...props}
-            ongoingChallenges={ongoingChallengesNone.set('loading', loadingOngoingChallenges)}
-            settleableChallenges={settleableChallengesNone.set('loading', loadingSettleableChallenges)}
+            settlements={settlementsNone.set('loading', loadingSettlements)}
           />
         );
         const iconNode = wrapper.find('style__BottomWrapper Icon');
@@ -210,22 +200,19 @@ describe('<NahmiiWithdraw />', () => {
       {
         describe: 'should always render the later stage',
         props: {
-          ongoingChallenges: ongoingChallengesNone.set('details', [
-            { type: 'null', expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
-          ]),
-          settleableChallenges: settleableChallengesNone.set('invalidReasons', [
-            { type: 'payment-driip', reasons: [new Error('The settlement can not be replayed')] },
+          settlements: settlementsNone.set('details', [
+            { type: 'onchain-balance', isOngoing: true, expirationTime: 1, stageAmount: '100' },
+            { type: 'payment', isTerminated: true },
           ]),
         },
         expect: { step: 1 },
       },
       {
-        describe: 'should render the step for the later settlement',
+        describe: 'should render the step for the active settlement',
         props: {
-          settleableChallenges: settleableChallengesNone.set('details', [
-            { type: 'null', intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
-          ]).set('invalidReasons', [
-            { type: 'payment-driip', reasons: [new Error('The settlement can not be replayed')] },
+          settlements: settlementsNone.set('details', [
+            { type: 'onchain-balance', isStageable: true, stageAmount: '100' },
+            { type: 'payment', isTerminated: true },
           ]),
         },
         expect: { step: 2 },
@@ -233,12 +220,21 @@ describe('<NahmiiWithdraw />', () => {
       {
         describe: 'should render the same step if all settlements at the same step',
         props: {
-          settleableChallenges: settleableChallengesNone.set('details', [
-            { type: 'null', intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
-            { type: 'payment-driip', intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
+          settlements: settlementsNone.set('details', [
+            { type: 'onchain-balance', isStageable: true, stageAmount: '100' },
+            { type: 'payment', isStageable: true, stageAmount: '100' },
           ]),
         },
         expect: { step: 2 },
+      },
+      {
+        describe: 'should render the last step',
+        props: {
+          settlements: settlementsNone.set('details', [
+            { type: 'onchain-balance', isTerminated: true, stageAmount: '100' },
+          ]),
+        },
+        expect: { step: 3 },
       },
     ].forEach((t) => {
       it(t.describe, () => {
@@ -359,9 +355,9 @@ describe('<NahmiiWithdraw />', () => {
   });
 
   describe('notice element for withdrawal/settlement statuses', () => {
-    describe('start challenge', () => {
+    describe('start settlement', () => {
       const getProps = (status) => ({
-        ongoingChallenges: ongoingChallengesNone.set('status', status),
+        settlements: settlementsNone.setIn(['settling', 'status'], status),
         currentWalletWithInfo:
             walletsWithInfoMock
               .get(0)
@@ -504,7 +500,7 @@ describe('<NahmiiWithdraw />', () => {
         });
         expect(wrapper.find('.withdraw-input').props().value).toEqual('1');
         wrapper.setProps({
-          ongoingChallenges: ongoingChallengesNone.set('status', 'success'),
+          settlements: settlementsNone.setIn(['settling', 'status'], 'success'),
         });
         expect(wrapper.find('.withdraw-input').props().value).toEqual('0');
       });
@@ -522,10 +518,10 @@ describe('<NahmiiWithdraw />', () => {
           const wrapper = shallow(
             <NahmiiWithdraw
               {...props}
-              settleableChallenges={settleableChallengesNone.set('details', [
-                { intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
-                { intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
-              ]).set('status', t.status)}
+              settlements={settlementsNone.set('details', [
+                { stageAmount: '100', isStageable: true },
+                { stageAmount: '100', isStageable: true },
+              ]).setIn(['staging', 'status'], t.status)}
               ledgerNanoSInfo={ledgerHocDisconnectedMock.set('confTxOnDevice', t.confOnDevice)}
             />
           );
@@ -544,10 +540,10 @@ describe('<NahmiiWithdraw />', () => {
           const wrapper = shallow(
             <NahmiiWithdraw
               {...props}
-              settleableChallenges={settleableChallengesNone.set('details', [
-                { intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
-                { intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
-              ]).set('status', t)}
+              settlements={settlementsNone.set('details', [
+                { stageAmount: '100', isStageable: true },
+                { stageAmount: '100', isStageable: true },
+              ]).setIn(['staging', 'status'], t)}
             />
           );
           const noticeNode = wrapper.find('style__SettlementWarning');
@@ -572,10 +568,10 @@ describe('<NahmiiWithdraw />', () => {
         });
         expect(wrapper.find('.withdraw-input').props().value).toEqual('1');
         wrapper.setProps({
-          settleableChallenges: settleableChallengesNone.set('details', [
-            { intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
-            { intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
-          ]).set('status', 'success'),
+          settlements: settlementsNone.set('details', [
+            { isStageable: true, stageAmount: '100' },
+            { isStageable: true, stageAmount: '100' },
+          ]).setIn(['staging', 'status'], 'success'),
         });
         expect(wrapper.find('.withdraw-input').props().value).toEqual('0');
       });

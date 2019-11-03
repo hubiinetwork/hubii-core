@@ -45,8 +45,7 @@ import { makeSelectLedgerHoc } from 'containers/LedgerHoc/selectors';
 import { makeSelectTrezorHoc } from 'containers/TrezorHoc/selectors';
 import { makeSelectGasStatistics } from 'containers/EthOperationsHoc/selectors';
 import {
-  makeSelectOngoingChallengesForCurrentWalletCurrency,
-  makeSelectSettleableChallengesForCurrentWalletCurrency,
+  makeSelectSettlementsForCurrentWalletCurrency,
   makeSelectWithdrawalsForCurrentWalletCurrency,
 } from 'containers/NahmiiHoc/selectors';
 import {
@@ -54,8 +53,8 @@ import {
 } from 'containers/NahmiiHoc/combined-selectors';
 import {
   setSelectedWalletCurrency,
-  startChallenge,
   settle,
+  stage,
   withdraw,
 } from 'containers/NahmiiHoc/actions';
 import { injectIntl } from 'react-intl';
@@ -126,7 +125,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     this.getRequiredSettlementAmount = this.getRequiredSettlementAmount.bind(this);
     this.handleStartSettlement = this.handleStartSettlement.bind(this);
     this.startSettlement = this.startSettlement.bind(this);
-    this.settle = this.settle.bind(this);
+    this.stage = this.stage.bind(this);
     this.withdraw = this.withdraw.bind(this);
 
     props.setSelectedWalletCurrency(assetToWithdraw.currency);
@@ -142,10 +141,14 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       assetToWithdraw.balance = asset.balance;
     }
 
-    for (let type of ['ongoingChallenges', 'settleableChallenges', 'withdrawals']) { // eslint-disable-line
-      const currentChallengeTxStatus = this.props[type].get('status');
-      const prevChallengeTxStatus = prevProps[type].get('status');
-      if (currentChallengeTxStatus === 'success' && prevChallengeTxStatus !== 'success') {
+    for (const [type, path] of [
+      ['settlements', ['settling', 'status']],
+      ['settlements', ['staging', 'status']],
+      ['withdrawals', ['status']],
+    ]) {
+      const currentTxStatus = this.props[type].getIn(path);
+      const prevTxStatus = prevProps[type].getIn(path);
+      if (currentTxStatus === 'success' && prevTxStatus !== 'success') {
         this.setState({ amountToWithdrawInput: '0', amountToWithdraw: new BigNumber('0') }); // eslint-disable-line
       }
     }
@@ -179,21 +182,13 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
   }
 
   getMaxExpirationTime() {
-    const { ongoingChallenges } = this.props;
-    const maxExpirationTime = ongoingChallenges.get('details').reduce((max, challenge) => {
-      const { expirationTime } = challenge;
+    const { settlements } = this.props;
+    const maxExpirationTime = settlements.get('details').filter((s) => s.isOngoing).reduce((max, settlement) => {
+      const { expirationTime } = settlement;
       return max > expirationTime ? max : expirationTime;
     }, 0);
 
     return maxExpirationTime;
-  }
-
-  settle(assetToWithdraw) {
-    const { currentWalletWithInfo } = this.props;
-    const { gasLimit, gasPriceGwei } = this.state;
-    const currency = this.getCurrencyAddress(assetToWithdraw.currency);
-    const options = { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() || null };
-    this.props.settle(currentWalletWithInfo.get('address'), currency, options);
   }
 
   getSuggestedGasPrice = () => {
@@ -203,6 +198,14 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     return suggestedGasPrice;
   }
 
+  stage(assetToWithdraw) {
+    const { currentWalletWithInfo } = this.props;
+    const { gasLimit, gasPriceGwei } = this.state;
+    const currency = this.getCurrencyAddress(assetToWithdraw.currency);
+    const options = { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() || null };
+    this.props.stage(currentWalletWithInfo.get('address'), currency, options);
+  }
+
   startSettlement(stageAmount, assetToWithdraw) {
     const { currentWalletWithInfo } = this.props;
     const { assetToWithdrawMaxDecimals, gasLimit, gasPriceGwei } = this.state;
@@ -210,7 +213,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     const currency = this.getCurrencyAddress(assetToWithdraw.currency);
     const stageAmountBN = stageAmount.times(new BigNumber(10).pow(assetToWithdrawMaxDecimals));
     const options = { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() || null };
-    this.props.startChallenge(currentWalletWithInfo.get('address'), currency, stageAmountBN, options);
+    this.props.settle(currentWalletWithInfo.get('address'), currency, stageAmountBN, options);
   }
 
   handleStartSettlement(stageAmount, assetToWithdraw) {
@@ -288,8 +291,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     const {
       currentWalletWithInfo,
       withdrawals,
-      ongoingChallenges,
-      settleableChallenges,
+      settlements,
       currentNetwork,
       intl,
       ledgerNanoSInfo,
@@ -297,17 +299,20 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     } = this.props;
     const { formatMessage } = intl;
     const confOnDevice = ledgerNanoSInfo.get('confTxOnDevice') || trezorInfo.get('confTxOnDevice');
+    const settling = settlements.get('settling');
+    const staging = settlements.get('staging');
     let status;
     let type;
-    const activities = [withdrawals, ongoingChallenges, settleableChallenges];
+
+    const activities = [withdrawals, settling, staging];
     for (const activity of activities) { //eslint-disable-line
       if (activity.get('status') === 'requesting') status = 'requesting';
       if (activity.get('status') === 'mining') status = 'mining';
       if (activity.get('status') === 'receipt') status = 'mining';
 
       if (status && activity === withdrawals) type = 'withdraw';
-      if (status && activity === ongoingChallenges) type = 'start_challenge';
-      if (status && activity === settleableChallenges) type = 'confirm_settle';
+      if (status && activity === settling) type = 'start_challenge';
+      if (status && activity === staging) type = 'confirm_settle';
 
       if (status) break;
     }
@@ -352,13 +357,12 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       assetToWithdrawMaxDecimals,
     } = this.state;
     const {
-      ongoingChallenges,
-      settleableChallenges,
+      settlements,
       currentWalletWithInfo,
       intl,
     } = this.props;
     const { formatMessage } = intl;
-    if (ongoingChallenges.get('loading') === true || settleableChallenges.get('loading') === true) {
+    if (settlements.get('loading') === true) {
       return (
         <span style={{ alignSelf: 'center' }}>
           <Text large>{formatMessage({ id: 'synchronising_settlement_status' })}</Text>
@@ -366,26 +370,22 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
         </span>
       );
     }
-    const steppers = ['payment-driip', 'null'].map((type) => {
-      const paymentDriipOngoingChallenge = ongoingChallenges.get('details').find((challenge) => challenge.type === type);
-      const paymentDriipSettleableChallenge = settleableChallenges.get('details').find((challenge) => challenge.type === type);
-      const invalidPaymentDriipSettlement = settleableChallenges.get('invalidReasons').find((challenge) => challenge.type === type);
+    const steppers = ['payment', 'onchain-balance'].map((type) => {
+      const hasOngoing = settlements.get('details').some((s) => s.isOngoing && s.type === type);
+      const hasStageable = settlements.get('details').some((s) => s.isStageable && s.type === type);
+      const hasTerminated = settlements.get('details').some((s) => s.isTerminated && s.type === type);
 
       let currentStage = 0;
-      if (paymentDriipOngoingChallenge) {
+      if (hasOngoing) {
         currentStage = 1;
       }
 
-      if (paymentDriipSettleableChallenge) {
+      if (hasStageable) {
         currentStage = 2;
       }
 
-      if (invalidPaymentDriipSettlement) {
-        invalidPaymentDriipSettlement.reasons.forEach((reason) => {
-          if (reason.message.match(/.*can.*not.*replay/)) {
-            currentStage = 3;
-          }
-        });
+      if (hasTerminated) {
+        currentStage = 3;
       }
 
       return { type, currentStage };
@@ -397,10 +397,9 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       return null;
     }
     const maxExpirationTime = this.getMaxExpirationTime();
-    const totalStagingAmountBN = ongoingChallenges.get('details').concat(settleableChallenges.get('details')).reduce((sum, challenge) => {
-      const { intendedStageAmount } = challenge;
-      const { amount } = intendedStageAmount.toJSON();
-      return sum.plus(new BigNumber(amount));
+    const totalStagingAmountBN = settlements.get('details').filter((s) => !s.isTerminated).reduce((sum, settlement) => {
+      const { stageAmount } = settlement;
+      return sum.plus(new BigNumber(stageAmount));
     }, new BigNumber(0));
     const totalStagingAmount = totalStagingAmountBN.div(new BigNumber(10).pow(assetToWithdrawMaxDecimals));
 
@@ -456,7 +455,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       supportedAssets,
       ledgerNanoSInfo,
       trezorInfo,
-      settleableChallenges,
+      settlements,
     } = this.props;
     const { formatMessage } = intl;
 
@@ -480,6 +479,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     ) {
       return <NoTxPlaceholder>{formatMessage({ id: 'connection_problem' })}</NoTxPlaceholder>;
     }
+
+    const stageableSettlements = settlements.get('details').filter((s) => s.isStageable);
 
     const baseLayerAssets = currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
     const nahmiiCombinedAssets = currentWalletWithInfo.getIn(['balances', 'nahmiiCombined', 'assets']).toJS();
@@ -561,13 +562,12 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       amount: nahmiiBalanceAfterStagingAmt,
       usdValue: nahmiiBalanceAfterStagingAmt.times(assetToWithdrawUsdValue),
     };
-    const totalSettleableStageAmountBN = settleableChallenges.get('details').reduce((sum, challenge) => {
-      const { amount } = challenge.intendedStageAmount.toJSON();
-      const intendedStageAmount = new BigNumber(amount);
+    const totalStageableAmountBN = stageableSettlements.reduce((sum, settlement) => {
+      const intendedStageAmount = new BigNumber(settlement.stageAmount.toString());
       return sum.plus(intendedStageAmount);
     }, new BigNumber(0));
 
-    const totalSettleableStageAmount = totalSettleableStageAmountBN.div(new BigNumber(10).pow(assetToWithdrawMaxDecimals));
+    const totalStageableAmount = totalStageableAmountBN.div(new BigNumber(10).pow(assetToWithdrawMaxDecimals));
 
     const walletType = currentWalletWithInfo.get('type');
     const disableWithdrawButton =
@@ -665,7 +665,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
             </div>
             <div style={{ flex: '0.5', minWidth: '34rem', marginBottom: '3rem' }}>
               {
-                settleableChallenges.get('details').length > 0 ?
+                stageableSettlements.length > 0 ?
                   (
                     <div>
                       <div>
@@ -712,7 +712,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                         description={
                           <div>
                             <div>
-                              {formatMessage({ id: 'settlement_period_ended_notice' }, { symbol: assetToWithdraw.symbol, intended_stage_amount: totalSettleableStageAmount, tx_count: settleableChallenges.get('details').length })}
+                              {formatMessage({ id: 'settlement_period_ended_notice' }, { symbol: assetToWithdraw.symbol, intended_stage_amount: totalStageableAmount, tx_count: stageableSettlements.length })}
                             </div>
                             {
                               TxStatus ?
@@ -721,7 +721,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                                     {TxStatus}
                                   </div>
                                 ) : (
-                                  <StyledButton className="confirm-btn" onClick={() => this.settle(assetToWithdraw)} disabled={disableConfirmSettleButton}>
+                                  <StyledButton className="confirm-btn" onClick={() => this.stage(assetToWithdraw)} disabled={disableConfirmSettleButton}>
                                     {formatMessage({ id: 'confirm_settlement' })}
                                   </StyledButton>
                                 )
@@ -1021,12 +1021,11 @@ NahmiiWithdraw.propTypes = {
   supportedAssets: PropTypes.object.isRequired,
   currentNetwork: PropTypes.object.isRequired,
   intl: PropTypes.object.isRequired,
-  ongoingChallenges: PropTypes.object.isRequired,
-  settleableChallenges: PropTypes.object.isRequired,
+  settlements: PropTypes.object.isRequired,
   withdrawals: PropTypes.object.isRequired,
   setSelectedWalletCurrency: PropTypes.func.isRequired,
-  startChallenge: PropTypes.func.isRequired,
   settle: PropTypes.func.isRequired,
+  stage: PropTypes.func.isRequired,
   withdraw: PropTypes.func.isRequired,
   gasStatistics: PropTypes.object.isRequired,
 };
@@ -1038,16 +1037,15 @@ const mapStateToProps = createStructuredSelector({
   prices: makeSelectPrices(),
   supportedAssets: makeSelectSupportedAssets(),
   currentNetwork: makeSelectCurrentNetwork(),
-  ongoingChallenges: makeSelectOngoingChallengesForCurrentWalletCurrency(),
-  settleableChallenges: makeSelectSettleableChallengesForCurrentWalletCurrency(),
+  settlements: makeSelectSettlementsForCurrentWalletCurrency(),
   withdrawals: makeSelectWithdrawalsForCurrentWalletCurrency(),
   gasStatistics: makeSelectGasStatistics(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    startChallenge: (...args) => dispatch(startChallenge(...args)),
     settle: (...args) => dispatch(settle(...args)),
+    stage: (...args) => dispatch(stage(...args)),
     withdraw: (...args) => dispatch(withdraw(...args)),
     goWalletDetails: (address) => dispatch(push(`/wallet/${address}/overview`)),
     setSelectedWalletCurrency: (...args) => dispatch(setSelectedWalletCurrency(...args)),
