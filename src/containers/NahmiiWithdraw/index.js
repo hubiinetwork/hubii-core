@@ -58,6 +58,7 @@ import {
   withdraw,
 } from 'containers/NahmiiHoc/actions';
 import { injectIntl } from 'react-intl';
+import { fromJS } from 'immutable';
 
 import {
   ContentWrapper,
@@ -183,8 +184,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
 
   getMaxExpirationTime() {
     const { settlements } = this.props;
-    const maxExpirationTime = settlements.get('details').filter((s) => s.isOngoing).reduce((max, settlement) => {
-      const { expirationTime } = settlement;
+    const maxExpirationTime = settlements.get('details').filter((s) => s.get('isOngoing')).reduce((max, settlement) => {
+      const { expirationTime } = settlement.toJSON();
       return max > expirationTime ? max : expirationTime;
     }, 0);
 
@@ -299,8 +300,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     } = this.props;
     const { formatMessage } = intl;
     const confOnDevice = ledgerNanoSInfo.get('confTxOnDevice') || trezorInfo.get('confTxOnDevice');
-    const settling = settlements.get('settling');
-    const staging = settlements.get('staging');
+    const settling = settlements.get('settling') || fromJS({});
+    const staging = settlements.get('staging') || fromJS({});
     let status;
     let type;
 
@@ -370,10 +371,12 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
         </span>
       );
     }
+
     const steppers = ['payment', 'onchain-balance'].map((type) => {
-      const hasOngoing = settlements.get('details').some((s) => s.isOngoing && s.type === type);
-      const hasStageable = settlements.get('details').some((s) => s.isStageable && s.type === type);
-      const hasTerminated = settlements.get('details').some((s) => s.isTerminated && s.type === type);
+      const settlementsByType = settlements.get('details').filter((s) => s.get('type') === type);
+      const hasOngoing = settlementsByType.some((s) => s.get('isOngoing'));
+      const hasStageable = settlementsByType.some((s) => s.get('isStageable'));
+      const hasTerminated = settlementsByType.some((s) => s.get('isTerminated'));
 
       let currentStage = 0;
       if (hasOngoing) {
@@ -392,13 +395,12 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     });
 
     const stepper = steppers.filter((s) => s.currentStage !== 0).sort((a, b) => a.currentStage - b.currentStage)[0];
-
     if (!stepper) {
       return null;
     }
     const maxExpirationTime = this.getMaxExpirationTime();
-    const totalStagingAmountBN = settlements.get('details').filter((s) => !s.isTerminated).reduce((sum, settlement) => {
-      const { stageAmount } = settlement;
+    const totalStagingAmountBN = settlements.get('details').filter((s) => !s.get('isTerminated')).reduce((sum, settlement) => {
+      const { stageAmount } = settlement.toJSON();
       return sum.plus(new BigNumber(stageAmount));
     }, new BigNumber(0));
     const totalStagingAmount = totalStagingAmountBN.div(new BigNumber(10).pow(assetToWithdrawMaxDecimals));
@@ -480,7 +482,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       return <NoTxPlaceholder>{formatMessage({ id: 'connection_problem' })}</NoTxPlaceholder>;
     }
 
-    const stageableSettlements = settlements.get('details').filter((s) => s.isStageable);
+    const stageableSettlements = settlements.get('details').filter((s) => s.get('isStageable'));
 
     const baseLayerAssets = currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
     const nahmiiCombinedAssets = currentWalletWithInfo.getIn(['balances', 'nahmiiCombined', 'assets']).toJS();
@@ -563,7 +565,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       usdValue: nahmiiBalanceAfterStagingAmt.times(assetToWithdrawUsdValue),
     };
     const totalStageableAmountBN = stageableSettlements.reduce((sum, settlement) => {
-      const intendedStageAmount = new BigNumber(settlement.stageAmount.toString());
+      const intendedStageAmount = new BigNumber(settlement.get('stageAmount'));
       return sum.plus(intendedStageAmount);
     }, new BigNumber(0));
 
@@ -665,7 +667,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
             </div>
             <div style={{ flex: '0.5', minWidth: '34rem', marginBottom: '3rem' }}>
               {
-                stageableSettlements.length > 0 ?
+                stageableSettlements.size > 0 ?
                   (
                     <div>
                       <div>
@@ -712,7 +714,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                         description={
                           <div>
                             <div>
-                              {formatMessage({ id: 'settlement_period_ended_notice' }, { symbol: assetToWithdraw.symbol, intended_stage_amount: totalStageableAmount, tx_count: stageableSettlements.length })}
+                              {formatMessage({ id: 'settlement_period_ended_notice' }, { symbol: assetToWithdraw.symbol, intended_stage_amount: totalStageableAmount, tx_count: stageableSettlements.size })}
                             </div>
                             {
                               TxStatus ?

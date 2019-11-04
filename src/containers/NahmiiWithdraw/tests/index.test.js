@@ -70,10 +70,10 @@ describe('<NahmiiWithdraw />', () => {
         const wrapper = shallow(
           <NahmiiWithdraw
             {...props}
-            settlements={settlementsNone.set('details', [
+            settlements={settlementsNone.set('details', fromJS([
               { isStageable: true, stageAmount: 100 },
               { isStageable: true, stageAmount: 100 },
-            ])}
+            ]))}
           />
         );
         const noticeNode = wrapper.find('style__SettlementWarning');
@@ -102,9 +102,9 @@ describe('<NahmiiWithdraw />', () => {
           const wrapper = shallow(
             <NahmiiWithdraw
               {...props}
-              settlements={settlementsNone.set('details', [
+              settlements={settlementsNone.set('details', fromJS([
                 { type: t, isOngoing: true, expirationTime: 1, stageAmount: '100' },
-              ])}
+              ]))}
             />
           );
           const stepsNode = wrapper.find('style__StyledSteps');
@@ -114,9 +114,9 @@ describe('<NahmiiWithdraw />', () => {
           const wrapper = shallow(
             <NahmiiWithdraw
               {...props}
-              settlements={settlementsNone.set('details', [
+              settlements={settlementsNone.set('details', fromJS([
                 { type: t, isStageable: true, stageAmount: '100' },
-              ])}
+              ]))}
             />
           );
           const stepsNode = wrapper.find('style__StyledSteps');
@@ -126,9 +126,9 @@ describe('<NahmiiWithdraw />', () => {
           const wrapper = shallow(
             <NahmiiWithdraw
               {...props}
-              settlements={settlementsNone.set('details', [
+              settlements={settlementsNone.set('details', fromJS([
                 { type: t, isTerminated: true },
-              ])}
+              ]))}
             />
           );
           const stepsNode = wrapper.find('style__StyledSteps');
@@ -142,10 +142,10 @@ describe('<NahmiiWithdraw />', () => {
       const wrapper = shallow(
         <NahmiiWithdraw
           {...props}
-          settlements={settlementsNone.set('details', [
+          settlements={settlementsNone.set('details', fromJS([
             { type: 'payment', isStageable: true, stageAmount: '100' },
             { type: 'onchain-balance', isOngoing: true, stageAmount: '100' },
-          ])}
+          ]))}
         />
       );
       const stepsNode = wrapper.find('style__StyledSteps');
@@ -155,10 +155,10 @@ describe('<NahmiiWithdraw />', () => {
       const wrapper = shallow(
         <NahmiiWithdraw
           {...props}
-          settlements={settlementsNone.set('details', [
+          settlements={settlementsNone.set('details', fromJS([
             { type: 'payment', isOngoing: true, expirationTime: 1, stageAmount: '100' },
             { type: 'onchain-balance', isOngoing: true, expirationTime: 1000000, stageAmount: '100' },
-          ])}
+          ]))}
         />
       );
       const stepsNode = wrapper.find('style__StyledSteps');
@@ -168,9 +168,9 @@ describe('<NahmiiWithdraw />', () => {
       const wrapper = shallow(
         <NahmiiWithdraw
           {...props}
-          settlements={settlementsNone.set('details', [
+          settlements={settlementsNone.set('details', fromJS([
             { type: 'onchain-balance', isOngoing: true, expirationTime: 1, stageAmount: '100' },
-          ])}
+          ]))}
           currentWalletWithInfo={walletsWithInfoMock
             .get(0)
             .setIn(['balances', 'nahmiiStaged', 'assets'], fromJS([{ balance: new BigNumber(3), symbol: 'ETH', currency: '0x0000000000000000000000000000000000000000' }]))
@@ -200,39 +200,39 @@ describe('<NahmiiWithdraw />', () => {
       {
         describe: 'should always render the later stage',
         props: {
-          settlements: settlementsNone.set('details', [
+          settlements: settlementsNone.set('details', fromJS([
             { type: 'onchain-balance', isOngoing: true, expirationTime: 1, stageAmount: '100' },
             { type: 'payment', isTerminated: true },
-          ]),
+          ])),
         },
         expect: { step: 1 },
       },
       {
         describe: 'should render the step for the active settlement',
         props: {
-          settlements: settlementsNone.set('details', [
+          settlements: settlementsNone.set('details', fromJS([
             { type: 'onchain-balance', isStageable: true, stageAmount: '100' },
             { type: 'payment', isTerminated: true },
-          ]),
+          ])),
         },
         expect: { step: 2 },
       },
       {
         describe: 'should render the same step if all settlements at the same step',
         props: {
-          settlements: settlementsNone.set('details', [
+          settlements: settlementsNone.set('details', fromJS([
             { type: 'onchain-balance', isStageable: true, stageAmount: '100' },
             { type: 'payment', isStageable: true, stageAmount: '100' },
-          ]),
+          ])),
         },
         expect: { step: 2 },
       },
       {
         describe: 'should render the last step',
         props: {
-          settlements: settlementsNone.set('details', [
+          settlements: settlementsNone.set('details', fromJS([
             { type: 'onchain-balance', isTerminated: true, stageAmount: '100' },
-          ]),
+          ])),
         },
         expect: { step: 3 },
       },
@@ -518,10 +518,10 @@ describe('<NahmiiWithdraw />', () => {
           const wrapper = shallow(
             <NahmiiWithdraw
               {...props}
-              settlements={settlementsNone.set('details', [
+              settlements={settlementsNone.set('details', fromJS([
                 { stageAmount: '100', isStageable: true },
                 { stageAmount: '100', isStageable: true },
-              ]).setIn(['staging', 'status'], t.status)}
+              ])).setIn(['staging', 'status'], t.status)}
               ledgerNanoSInfo={ledgerHocDisconnectedMock.set('confTxOnDevice', t.confOnDevice)}
             />
           );
@@ -540,10 +540,10 @@ describe('<NahmiiWithdraw />', () => {
           const wrapper = shallow(
             <NahmiiWithdraw
               {...props}
-              settlements={settlementsNone.set('details', [
+              settlements={settlementsNone.set('details', fromJS([
                 { stageAmount: '100', isStageable: true },
                 { stageAmount: '100', isStageable: true },
-              ]).setIn(['staging', 'status'], t)}
+              ])).setIn(['staging', 'status'], t)}
             />
           );
           const noticeNode = wrapper.find('style__SettlementWarning');
@@ -568,10 +568,10 @@ describe('<NahmiiWithdraw />', () => {
         });
         expect(wrapper.find('.withdraw-input').props().value).toEqual('1');
         wrapper.setProps({
-          settlements: settlementsNone.set('details', [
+          settlements: settlementsNone.set('details', fromJS([
             { isStageable: true, stageAmount: '100' },
             { isStageable: true, stageAmount: '100' },
-          ]).setIn(['staging', 'status'], 'success'),
+          ])).setIn(['staging', 'status'], 'success'),
         });
         expect(wrapper.find('.withdraw-input').props().value).toEqual('0');
       });
