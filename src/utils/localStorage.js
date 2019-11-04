@@ -2,7 +2,6 @@ import { fromJS } from 'immutable';
 
 import { initialState as walletHocInitialState } from 'containers/WalletHoc/reducer';
 import { initialState as contactsInitialState } from 'containers/ContactBook/reducer';
-import { initialState as nahmiiHocInitialState } from 'containers/NahmiiHoc/reducer';
 
 export const loadState = () => {
   try {
@@ -84,13 +83,6 @@ export const filterPersistedState = (state) => {
    */
   persistedState = persistedState
     .set('language', state.get('language'));
-
-  /**
-   * Store block heights at which the challenges attempted
-   */
-  persistedState = persistedState.set('nahmiiHoc', nahmiiHocInitialState);
-  persistedState = persistedState
-    .setIn(['nahmiiHoc', 'newSettlementPendingTxs'], state.getIn(['nahmiiHoc', 'newSettlementPendingTxs']));
 
   return persistedState;
 };

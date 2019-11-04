@@ -20,8 +20,6 @@ import { makeSelectSupportedAssets } from 'containers/HubiiApiHoc/selectors';
 import {
   makeSelectWalletCurrency,
   makeSelectSettlementsForCurrentWalletCurrency,
-  makeSelectNewSettlementPendingTxsList,
-  makeSelectHasSettlementPendingTxsByWalletCurrency,
 } from 'containers/NahmiiHoc/selectors';
 import { makeSelectCurrentWalletWithInfo } from 'containers/NahmiiHoc/combined-selectors';
 import { makeSelectTrezorHoc } from 'containers/TrezorHoc/selectors';
@@ -62,7 +60,6 @@ import {
 
 function waitForTransaction(provider, ...args) { return provider.waitForTransaction(...args); }
 function getTransactionReceipt(provider, ...args) { return provider.getTransactionReceipt(...args); }
-function getTransactionCount(provider, ...args) { return provider.getTransactionCount(...args); }
 
 export function* deposit({ address, symbol, amount, options }) {
   try {
@@ -191,8 +188,6 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
     yield put(actions.nahmiiPaymentError(e));
     if (e instanceof nahmii.InsufficientFundsError) {
       yield put(notify('error', getIntl().formatMessage({ id: 'nahmii_transfer_insufficient_funds_error' }, { minimumBalance: e.minimumBalance })));
-    } else if (e.message.match(/payment.*locked/i)) {
-      yield put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_transfer' })));
     } else {
       yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
     }
@@ -467,11 +462,6 @@ export function* settle({ stageAmount, currency, options }) {
       yield put(showDecryptWalletModal(actions.settle(walletDetails.address, currency, stageAmount, options)));
       yield put(actions.settleError(walletDetails.address, currency));
       return;
-    }
-
-    const hasPendingTx = yield select(makeSelectHasSettlementPendingTxsByWalletCurrency(walletDetails.address, currency));
-    if (hasPendingTx) {
-      throw new Error('New settlement is disabled until the last settlement transaction is confirmed.');
     }
 
     const network = yield select(makeSelectCurrentNetwork());
@@ -788,38 +778,6 @@ export function* reloadSettlementStates({ address, currency }) {
     fork(loadStagedBalances, { address }, network, true),
     fork(loadSettlements, { address, currency }, network, true),
   ]);
-}
-
-export function* wrapProcessTxForNewSettlements(nahmiiProvider, tx, address, currency) {
-  try {
-    const txCount = yield call(getTransactionCount, nahmiiProvider, address);
-    if (tx.nonce < txCount) {
-      const txReceipt = yield call(getTransactionReceipt, nahmiiProvider, tx.hash);
-      if (!txReceipt) {
-        yield put(actions.loadTxReceiptForSettlementError(address, currency, { transactionHash: tx.hash }));
-        throw new Error(getIntl().formatMessage({ id: 'settlement_tx_override' }));
-      }
-    }
-    yield processTx('settle', nahmiiProvider, tx, address, currency);
-  } catch (error) {
-    const errorMessage = logErrorMsg(error);
-    yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: errorMessage })));
-    yield put(actions.settleError(address, currency));
-  }
-}
-
-export function* processPendingSettlementTransactions() {
-  const { nahmiiProvider } = yield select(makeSelectCurrentNetwork());
-  const settlementPendingTxs = yield select(makeSelectNewSettlementPendingTxsList());
-  const pendingTxs = [];
-  for (const pendingTx of settlementPendingTxs) {
-    const { address, currency, tx } = pendingTx;
-    if (tx && tx.chainId === nahmiiProvider.network.chainId) {
-      pendingTxs.push({ address, currency, tx });
-    }
-  }
-
-  yield all(pendingTxs.map(({ tx, address, currency }) => fork(wrapProcessTxForNewSettlements, nahmiiProvider, tx, address, currency)));
 }
 
 export default function* listen() {
