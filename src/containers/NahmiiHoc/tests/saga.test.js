@@ -588,7 +588,7 @@ describe('nahmiiHocSaga', () => {
       describe('when successful', () => {
         describe('when starts one new settlement', () => {
           beforeEach(() => {
-            requiredSettlements = [{ toJSON: () => ({ type: 'payment' }), settle: () => {} }];
+            requiredSettlements = [{ toJSON: () => ({ type: 'payment' }), start: () => {} }];
           });
           it('updates store', () => expectSaga(settle, { stageAmount, address: signerMock.address, currency, txReceipt: fakeTxReceipts[0], options })
             .withReducer(withReducer, storeMock)
@@ -599,7 +599,7 @@ describe('nahmiiHocSaga', () => {
                   expect(amount).toEqual(stageAmount.toFixed());
                   return requiredSettlements;
                 }
-                if (effect.fn.name.includes('settle')) {
+                if (effect.fn.name.includes('start')) {
                   return fakeTxs[0];
                 }
                 if (effect.fn.name === 'waitForTransaction') {
@@ -631,8 +631,8 @@ describe('nahmiiHocSaga', () => {
         describe('when starts more than one settlement', () => {
           beforeEach(() => {
             requiredSettlements = [
-              { toJSON: () => ({ type: 'payment' }), settle: () => {} },
-              { toJSON: () => ({ type: 'onchain-balance' }), settle: () => {} },
+              { toJSON: () => ({ type: 'payment' }), start: () => {} },
+              { toJSON: () => ({ type: 'onchain-balance' }), start: () => {} },
             ];
           });
           it('updates store', () => {
@@ -644,7 +644,7 @@ describe('nahmiiHocSaga', () => {
                   if (effect.fn.name.includes('calculateRequiredSettlements')) {
                     return requiredSettlements;
                   }
-                  if (effect.fn.name.includes('settle')) {
+                  if (effect.fn.name.includes('start')) {
                     return fakeTxs[startedChallenges];
                   }
                   if (effect.fn.name === 'waitForTransaction') {
@@ -685,8 +685,8 @@ describe('nahmiiHocSaga', () => {
         describe('when failed one of the required settlement', () => {
           beforeEach(() => {
             requiredSettlements = [
-              { toJSON: () => ({ type: 'payment' }), settle: () => {} },
-              { toJSON: () => ({ type: 'onchain-balance' }), settle: () => {} },
+              { toJSON: () => ({ type: 'payment' }), start: () => {} },
+              { toJSON: () => ({ type: 'onchain-balance' }), start: () => {} },
             ];
             failedTxReceipt = { transactionHash: 'hash2', status: 0 };
           });
@@ -699,7 +699,7 @@ describe('nahmiiHocSaga', () => {
                   if (effect.fn.name.includes('calculateRequiredSettlements')) {
                     return requiredSettlements;
                   }
-                  if (effect.fn.name.includes('settle')) {
+                  if (effect.fn.name.includes('start')) {
                     return fakeTxs[startedChallenges];
                   }
                   if (effect.fn.name === 'waitForTransaction') {
@@ -745,7 +745,7 @@ describe('nahmiiHocSaga', () => {
                   if (effect.fn.name.includes('calculateRequiredSettlements')) {
                     return requiredSettlements;
                   }
-                  if (effect.fn.name.includes('settle')) {
+                  if (effect.fn.name.includes('start')) {
                     return fakeTxs[0];
                   }
                   if (effect.fn.name === 'waitForTransaction') {

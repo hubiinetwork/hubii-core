@@ -305,5 +305,6 @@
     "synchronising_settlement_status": "同步结算状态...",
     "i_agree": "我同意",
     "terms": "此条款",
-    "confirm_nahmii_recipient": "请确认收款方可以使用 nahmii"
+    "confirm_nahmii_recipient": "请确认收款方可以使用 nahmii",
+    "unable_settle": "无法请求新的结算，请确定此前的结算是否已经完成。"
 }

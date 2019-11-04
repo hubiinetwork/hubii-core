@@ -484,6 +484,7 @@ export function* settle({ stageAmount, currency, options }) {
     yield put(notify('info', getIntl().formatMessage({ id: 'checks_before_settling' })));
 
     const requiredSettlements = yield call(settlementFactory.calculateRequiredSettlements.bind(settlementFactory), nahmiiWallet.address, _stageAmount);
+
     if (!requiredSettlements.length) {
       yield put(notify('error', getIntl().formatMessage({ id: 'unable_start_challenges' })));
       yield put(actions.settleError(walletDetails.address, currency));
@@ -494,7 +495,7 @@ export function* settle({ stageAmount, currency, options }) {
     for (let i = 0; i < requiredSettlements.length; i += 1) {
       const requiredSettlement = requiredSettlements[i];
       if (confOnDevice) yield put(confOnDevice);
-      const tx = yield call(requiredSettlement.settle.bind(requiredSettlement), nahmiiWallet, { gasLimit, gasPrice });
+      const tx = yield call(requiredSettlement.start.bind(requiredSettlement), nahmiiWallet, { gasLimit, gasPrice });
       if (confOnDeviceDone) yield put(confOnDeviceDone);
       yield processTx('settle', nahmiiProvider, tx, nahmiiWallet.address, currency);
     }
@@ -505,6 +506,7 @@ export function* settle({ stageAmount, currency, options }) {
     [
       [/gas.*required.*exceeds/i, 'gas_limit_too_low'],
       [/out.*of.*gas/i, 'gas_limit_too_low'],
+      [/cover.*full.*amount/i, 'unable_settle'],
       [/settlements.*currently.*disabled/i, 'settlements_disabled'],
     ].forEach(([regex, messageId]) => {
       if (logErrorMsg(e).match(regex)) {
@@ -544,7 +546,7 @@ export function* stage({ address, currency, options }) {
     for (let i = 0; i < stageableSettlements.length; i += 1) {
       if (confOnDevice) yield put(confOnDevice);
       const stageableSettlement = stageableSettlements[i];
-      const tx = yield call(stageableSettlement.stage.bind(settlementFactory), nahmiiWallet, { gasLimit, gasPrice });
+      const tx = yield call(stageableSettlement.stage.bind(stageableSettlement), nahmiiWallet, { gasLimit, gasPrice });
       if (confOnDeviceDone) yield put(confOnDeviceDone);
       yield processTx('stage', nahmiiProvider, tx, walletDetails.address, currency);
     }

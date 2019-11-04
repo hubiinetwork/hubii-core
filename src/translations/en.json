@@ -305,5 +305,6 @@
     "synchronising_settlement_status": "Synchronising settlement status...",
     "i_agree": "I agree with the ",
     "terms": "Terms & Conditions",
-    "confirm_nahmii_recipient": "Please make sure the recipient can use nahmii."
+    "confirm_nahmii_recipient": "Please make sure the recipient can use nahmii.",
+    "unable_settle": "Unable to start new settlement, please make sure the previous settlements are all completed."
 }
