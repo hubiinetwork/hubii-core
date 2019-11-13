@@ -255,8 +255,6 @@
     "nahmii_payments": "nahmii payment integration coming soon",
     "nahmii_transfer_insufficient_funds_error": "Failed to transfer: Please make sure the nahmii balance of this token is not less than {minimumBalance} after the transfer.",
     "insufficient_ether_fund": "Insufficient Ether balance.",
-    "nahmii_settlement_lock_transfer": "Payments for this currency are currently locked while your settlement request is being confirmed. This could last for several minutes.",
-    "nahmii_settlement_lock_start_challenge": "New settlement for this currency is disabled while your last settlement requests are being processed. This could last several minutes.",
     "select_asset_to_withdraw": "Select an asset to withdraw",
     "withdraw": "withdraw",
     "settle_balance": "Settle balance",
@@ -300,10 +298,10 @@
     "challenge_period": "Challenge period",
     "settlement_qualified": "Settlement qualified",
     "settlements_disabled": "Settlements are currently disabled",
-    "settlement_tx_override": "The settlement transaction has been overridden (canceled).",
     "withdrawable": "Withdrawable",
     "synchronising_settlement_status": "Synchronising settlement status...",
     "i_agree": "I agree with the ",
     "terms": "Terms & Conditions",
-    "confirm_nahmii_recipient": "Please make sure the recipient can use nahmii."
+    "confirm_nahmii_recipient": "Please make sure the recipient can use nahmii.",
+    "unable_settle": "Unable to start new settlement, please make sure the previous settlements are all completed."
 }

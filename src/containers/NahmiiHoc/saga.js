@@ -19,11 +19,7 @@ import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import { makeSelectSupportedAssets } from 'containers/HubiiApiHoc/selectors';
 import {
   makeSelectWalletCurrency,
-  makeSelectOngoingChallenges,
-  makeSelectOngoingChallengesForCurrentWalletCurrency,
-  makeSelectSettleableChallengesForCurrentWalletCurrency,
-  makeSelectNewSettlementPendingTxsList,
-  makeSelectHasSettlementPendingTxsByWalletCurrency,
+  makeSelectSettlementsForCurrentWalletCurrency,
 } from 'containers/NahmiiHoc/selectors';
 import { makeSelectCurrentWalletWithInfo } from 'containers/NahmiiHoc/combined-selectors';
 import { makeSelectTrezorHoc } from 'containers/TrezorHoc/selectors';
@@ -53,10 +49,10 @@ import {
   NAHMII_COMPLETE_TOKEN_DEPOSIT,
   MAKE_NAHMII_PAYMENT,
   MAKE_NAHMII_PAYMENT_SUCCESS,
-  START_CHALLENGE,
-  START_CHALLENGE_SUCCESS,
   SETTLE,
   SETTLE_SUCCESS,
+  STAGE,
+  STAGE_SUCCESS,
   WITHDRAW,
   WITHDRAW_SUCCESS,
   RELOAD_SETTLEMENT_STATES,
@@ -64,7 +60,6 @@ import {
 
 function waitForTransaction(provider, ...args) { return provider.waitForTransaction(...args); }
 function getTransactionReceipt(provider, ...args) { return provider.getTransactionReceipt(...args); }
-function getTransactionCount(provider, ...args) { return provider.getTransactionCount(...args); }
 
 export function* deposit({ address, symbol, amount, options }) {
   try {
@@ -176,21 +171,7 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
       return;
     }
 
-    const { currency } = monetaryAmount.toJSON();
     const { nahmiiProvider } = yield select(makeSelectCurrentNetwork());
-
-    const ongoingSettlements = yield select(makeSelectOngoingChallenges());
-    const ongoingSettlementStatus = ongoingSettlements.getIn([wallet.address, currency.ct, 'status']);
-    const hasPendingTx = yield select(makeSelectHasSettlementPendingTxsByWalletCurrency(wallet.address, currency.ct));
-    if (ongoingSettlementStatus === 'requesting' || hasPendingTx) {
-      throw new Error('Payment is locked until the settlement transaction is confirmed.');
-    }
-
-    const settlement = new nahmii.Settlement(nahmiiProvider);
-    const synced = yield call([settlement, 'hasOffchainSynchronised'], wallet.address, currency.ct);
-    if (!synced) {
-      throw new Error('Payment is locked until off-chain balance is synchronised.');
-    }
 
     [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, wallet);
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
@@ -207,8 +188,6 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
     yield put(actions.nahmiiPaymentError(e));
     if (e instanceof nahmii.InsufficientFundsError) {
       yield put(notify('error', getIntl().formatMessage({ id: 'nahmii_transfer_insufficient_funds_error' }, { minimumBalance: e.minimumBalance })));
-    } else if (e.message.match(/payment.*locked/i)) {
-      yield put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_transfer' })));
     } else {
       yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
     }
@@ -472,7 +451,7 @@ export function* loadStagedBalances({ address }, network, noPoll) {
   }
 }
 
-export function* startChallenge({ stageAmount, currency, options }) {
+export function* settle({ stageAmount, currency, options }) {
   let confOnDeviceDone;
   let confOnDevice;
   let signer;
@@ -480,14 +459,9 @@ export function* startChallenge({ stageAmount, currency, options }) {
   const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
   try {
     if (walletDetails.encrypted && !walletDetails.decrypted) {
-      yield put(showDecryptWalletModal(actions.startChallenge(walletDetails.address, currency, stageAmount, options)));
-      yield put(actions.startChallengeError(walletDetails.address, currency));
+      yield put(showDecryptWalletModal(actions.settle(walletDetails.address, currency, stageAmount, options)));
+      yield put(actions.settleError(walletDetails.address, currency));
       return;
-    }
-
-    const hasPendingTx = yield select(makeSelectHasSettlementPendingTxsByWalletCurrency(walletDetails.address, currency));
-    if (hasPendingTx) {
-      throw new Error('New settlement is disabled until the last settlement transaction is confirmed.');
     }
 
     const network = yield select(makeSelectCurrentNetwork());
@@ -496,33 +470,33 @@ export function* startChallenge({ stageAmount, currency, options }) {
     [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, walletDetails);
     const _stageAmount = nahmii.MonetaryAmount.from(stageAmount.toFixed(), currency, 0);
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
-    const settlement = new nahmii.Settlement(nahmiiProvider);
+    const settlementFactory = new nahmii.SettlementFactory(nahmiiProvider);
     yield put(notify('info', getIntl().formatMessage({ id: 'checks_before_settling' })));
 
-    const { requiredChallenges } = yield call(settlement.getRequiredChallengesForIntendedStageAmount.bind(settlement), _stageAmount, nahmiiWallet.address);
-    if (!requiredChallenges.length) {
+    const requiredSettlements = yield call(settlementFactory.calculateRequiredSettlements.bind(settlementFactory), nahmiiWallet.address, _stageAmount);
+
+    if (!requiredSettlements.length) {
       yield put(notify('error', getIntl().formatMessage({ id: 'unable_start_challenges' })));
-      yield put(actions.startChallengeError(walletDetails.address, currency));
+      yield put(actions.settleError(walletDetails.address, currency));
       return;
     }
 
     yield put(notify('info', getIntl().formatMessage({ id: 'requesting_settle' })));
-    for (let i = 0; i < requiredChallenges.length; i += 1) {
-      const requiredChallenge = requiredChallenges[i];
+    for (let i = 0; i < requiredSettlements.length; i += 1) {
+      const requiredSettlement = requiredSettlements[i];
       if (confOnDevice) yield put(confOnDevice);
-      const tx = yield call(settlement.startByRequiredChallenge.bind(settlement), requiredChallenge, nahmiiWallet, { gasLimit, gasPrice });
+      const tx = yield call(requiredSettlement.start.bind(requiredSettlement), nahmiiWallet, { gasLimit, gasPrice });
       if (confOnDeviceDone) yield put(confOnDeviceDone);
-      yield processTx('start-challenge', nahmiiProvider, tx, nahmiiWallet.address, currency);
+      yield processTx('settle', nahmiiProvider, tx, nahmiiWallet.address, currency);
     }
 
-    yield put(actions.startRequiredChallengesSuccess(nahmiiWallet.address, currency));
+    yield put(actions.startRequiredSettlementsSuccess(nahmiiWallet.address, currency));
   } catch (e) {
     let errorMessage = logErrorMsg(e);
     [
       [/gas.*required.*exceeds/i, 'gas_limit_too_low'],
       [/out.*of.*gas/i, 'gas_limit_too_low'],
-      [/balance.*not.*synchronised/i, 'nahmii_settlement_lock_start_challenge'],
-      [/settlement.*disabled.*transaction.*confirmed/i, 'nahmii_settlement_lock_start_challenge'],
+      [/cover.*full.*amount/i, 'unable_settle'],
       [/settlements.*currently.*disabled/i, 'settlements_disabled'],
     ].forEach(([regex, messageId]) => {
       if (logErrorMsg(e).match(regex)) {
@@ -531,13 +505,13 @@ export function* startChallenge({ stageAmount, currency, options }) {
     });
 
     yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: errorMessage })));
-    yield put(actions.startChallengeError(walletDetails.address, currency));
+    yield put(actions.settleError(walletDetails.address, currency));
   } finally {
     if (confOnDeviceDone) yield put(confOnDeviceDone);
   }
 }
 
-export function* settle({ address, currency, options }) {
+export function* stage({ address, currency, options }) {
   let confOnDeviceDone;
   let confOnDevice;
   let signer;
@@ -545,27 +519,29 @@ export function* settle({ address, currency, options }) {
   const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
   try {
     if (walletDetails.encrypted && !walletDetails.decrypted) {
-      yield put(showDecryptWalletModal(actions.settle(address, currency, options)));
-      yield put(actions.settleError(walletDetails.address, currency));
+      yield put(showDecryptWalletModal(actions.stage(address, currency, options)));
+      yield put(actions.stageError(walletDetails.address, currency));
       return;
     }
     const network = yield select(makeSelectCurrentNetwork());
     const { nahmiiProvider } = network;
     [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, walletDetails);
-    const settlement = new nahmii.Settlement(nahmiiProvider);
+    const settlementFactory = new nahmii.SettlementFactory(nahmiiProvider);
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
 
     yield put(notify('info', getIntl().formatMessage({ id: 'checks_before_confirming_settle' })));
-    const { settleableChallenges } = yield call(settlement.getSettleableChallenges.bind(settlement), nahmiiWallet.address, currency, 0);
-    for (let i = 0; i < settleableChallenges.length; i += 1) {
+    const settlements = yield call(settlementFactory.getAllSettlements.bind(settlementFactory), nahmiiWallet.address, currency);
+    const stageableSettlements = settlements.filter((s) => s.isStageable);
+
+    for (let i = 0; i < stageableSettlements.length; i += 1) {
       if (confOnDevice) yield put(confOnDevice);
-      const settleableChallenge = settleableChallenges[i];
-      const tx = yield call(settlement.settleBySettleableChallenge.bind(settlement), settleableChallenge, nahmiiWallet, { gasLimit, gasPrice });
+      const stageableSettlement = stageableSettlements[i];
+      const tx = yield call(stageableSettlement.stage.bind(stageableSettlement), nahmiiWallet, { gasLimit, gasPrice });
       if (confOnDeviceDone) yield put(confOnDeviceDone);
-      yield processTx('settle-payment', nahmiiProvider, tx, walletDetails.address, currency);
+      yield processTx('stage', nahmiiProvider, tx, walletDetails.address, currency);
     }
 
-    yield put(actions.settleAllChallengesSuccess(nahmiiWallet.address, currency));
+    yield put(actions.stageAllSettlementsSuccess(nahmiiWallet.address, currency));
   } catch (e) {
     let errorMessage = logErrorMsg(e);
     if (errorMessage.match(/gas.*required.*exceeds/i) || errorMessage.match(/out.*of.*gas/i)) {
@@ -576,7 +552,7 @@ export function* settle({ address, currency, options }) {
       errorMessage = getIntl().formatMessage({ id: errorMessage });
     }
     yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: errorMessage })));
-    yield put(actions.settleError(walletDetails.address, currency));
+    yield put(actions.stageError(walletDetails.address, currency));
   } finally {
     if (confOnDeviceDone) yield put(confOnDeviceDone);
   }
@@ -624,18 +600,18 @@ export function* processTx(type, provider, tx, address, currency) {
     loadTxRequestSuccess: () => {},
   };
 
-  if (type === 'start-challenge') {
-    actionTargets.success = actions.startChallengeSuccess;
-    actionTargets.error = actions.loadTxReceiptForPaymentChallengeError;
-    actionTargets.loadTxRequestSuccess = actions.loadTxRequestForPaymentChallengeSuccess;
-    actionTargets.loadTxReceiptSuccess = actions.loadTxReceiptForPaymentChallengeSuccess;
+  if (type === 'settle') {
+    actionTargets.success = actions.settleSuccess;
+    actionTargets.error = actions.loadTxReceiptForSettlementError;
+    actionTargets.loadTxRequestSuccess = actions.loadTxRequestForSettlingSuccess;
+    actionTargets.loadTxReceiptSuccess = actions.loadTxReceiptForSettlingSuccess;
     yield put(notify('info', getIntl().formatMessage({ id: 'starting_payment_challenge' })));
   }
 
-  if (type === 'settle-payment') {
-    actionTargets.success = actions.settleSuccess;
-    actionTargets.loadTxRequestSuccess = actions.loadTxRequestForSettlingSuccess;
-    actionTargets.loadTxReceiptSuccess = actions.loadTxReceiptForSettlingSuccess;
+  if (type === 'stage') {
+    actionTargets.success = actions.stageSuccess;
+    actionTargets.loadTxRequestSuccess = actions.loadTxRequestForStagingSuccess;
+    actionTargets.loadTxReceiptSuccess = actions.loadTxReceiptForStagingSuccess;
     yield put(notify('info', getIntl().formatMessage({ id: 'settling_payment' })));
   }
 
@@ -666,38 +642,19 @@ export function* processTx(type, provider, tx, address, currency) {
   }
 }
 
-export function* loadOngoingChallenges({ address, currency }, network, noPoll) {
+export function* loadSettlements({ address, currency }, network, noPoll) {
   while (true) { // eslint-disable-line no-constant-condition
     const { nahmiiProvider } = network;
     try {
-      const settlement = new nahmii.Settlement(nahmiiProvider);
-      const ongoingChallenges = yield call(() => settlement.getOngoingChallenges(address, currency, 0));
-      yield put(actions.loadOngoingChallengesSuccess(address, currency, ongoingChallenges));
-    } catch (err) {
-      yield put(actions.loadOngoingChallengesError(address, currency));
-    } finally {
-      const TWENTY_SEC_IN_MS = 1000 * 59;
-      yield delay(TWENTY_SEC_IN_MS);
-    }
-    if (noPoll) {
-      return;
-    }
-  }
-}
-
-export function* loadSettleableChallenges({ address, currency }, network, noPoll) {
-  while (true) { // eslint-disable-line no-constant-condition
-    const { nahmiiProvider } = network;
-    try {
-      const settlement = new nahmii.Settlement(nahmiiProvider);
-      const { settleableChallenges, invalidReasons } = yield call(() => settlement.getSettleableChallenges(address, currency, 0));
-      yield put(actions.loadSettleableChallengesSuccess(address, currency, settleableChallenges, invalidReasons));
+      const settlementFactory = new nahmii.SettlementFactory(nahmiiProvider);
+      const settlements = yield call(() => settlementFactory.getAllSettlements(address, currency));
+      yield put(actions.loadSettlementsSuccess(address, currency, settlements));
     } catch (err) {
       if (err.asStringified) {
         const nestedErrorMsg = err.asStringified();
         console.error(nestedErrorMsg);//eslint-disable-line
       }
-      yield put(actions.loadSettleableChallengesError(address, currency));
+      yield put(actions.loadSettlementsError(address, currency, err));
     } finally {
       const TWENTY_SEC_IN_MS = 1000 * 59;
       yield delay(TWENTY_SEC_IN_MS);
@@ -778,8 +735,7 @@ export function* challengeStatusOrcestrator() {
       const currencyAddress = yield select(makeSelectWalletCurrency());
       if (currentWalletAddress && currencyAddress) {
         yield all([
-          fork(loadOngoingChallenges, { address: currentWalletAddress, currency: currencyAddress }, network, true),
-          fork(loadSettleableChallenges, { address: currentWalletAddress, currency: currencyAddress }, network, true),
+          fork(loadSettlements, { address: currentWalletAddress, currency: currencyAddress }, network, true),
         ]);
       }
 
@@ -802,9 +758,8 @@ export function* challengeStatusOrcestrator() {
 }
 
 export function* changeNahmiiCurrency() {
-  const ongoingChallenges = yield select(makeSelectOngoingChallengesForCurrentWalletCurrency());
-  const settleableChallenges = yield select(makeSelectSettleableChallengesForCurrentWalletCurrency());
-  if (ongoingChallenges.get('loading') === undefined || settleableChallenges.get('loading') === undefined) {
+  const settlements = yield select(makeSelectSettlementsForCurrentWalletCurrency());
+  if (settlements.get('loading') === undefined) {
     const walletAddress = (yield select(makeSelectCurrentWallet())).get('address');
     const currencyAddress = yield select(makeSelectWalletCurrency());
     yield put(actions.reloadSettlementStates(walletAddress, currencyAddress));
@@ -821,61 +776,26 @@ export function* reloadSettlementStates({ address, currency }) {
   const network = yield select(makeSelectCurrentNetwork());
   yield all([
     fork(loadStagedBalances, { address }, network, true),
-    fork(loadOngoingChallenges, { address, currency }, network, true),
-    fork(loadSettleableChallenges, { address, currency }, network, true),
+    fork(loadSettlements, { address, currency }, network, true),
   ]);
-}
-
-export function* wrapProcessTxForNewSettlements(nahmiiProvider, tx, address, currency) {
-  try {
-    const txCount = yield call(getTransactionCount, nahmiiProvider, address);
-    if (tx.nonce < txCount) {
-      const txReceipt = yield call(getTransactionReceipt, nahmiiProvider, tx.hash);
-      if (!txReceipt) {
-        yield put(actions.loadTxReceiptForPaymentChallengeError(address, currency, { transactionHash: tx.hash }));
-        throw new Error(getIntl().formatMessage({ id: 'settlement_tx_override' }));
-      }
-    }
-    yield processTx('start-challenge', nahmiiProvider, tx, address, currency);
-  } catch (error) {
-    const errorMessage = logErrorMsg(error);
-    yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: errorMessage })));
-    yield put(actions.startChallengeError(address, currency));
-  }
-}
-
-export function* processPendingSettlementTransactions() {
-  const { nahmiiProvider } = yield select(makeSelectCurrentNetwork());
-  const settlementPendingTxs = yield select(makeSelectNewSettlementPendingTxsList());
-  const pendingTxs = [];
-  for (const pendingTx of settlementPendingTxs) {
-    const { address, currency, tx } = pendingTx;
-    if (tx && tx.chainId === nahmiiProvider.network.chainId) {
-      pendingTxs.push({ address, currency, tx });
-    }
-  }
-
-  yield all(pendingTxs.map(({ tx, address, currency }) => fork(wrapProcessTxForNewSettlements, nahmiiProvider, tx, address, currency)));
 }
 
 export default function* listen() {
   yield takeLatest(INIT_NETWORK_ACTIVITY, challengeStatusOrcestrator);
-  yield takeLatest(INIT_NETWORK_ACTIVITY, processPendingSettlementTransactions);
   yield takeLatest(INIT_NETWORK_ACTIVITY, listenReceiptEvent);
   yield takeLatest(INIT_NETWORK_ACTIVITY, loadAllWalletReceipts);
   yield takeLatest(CHANGE_NETWORK, listenReceiptEvent);
   yield takeLatest(CHANGE_NETWORK, loadAllWalletReceipts);
-  yield takeLatest(CHANGE_NETWORK, processPendingSettlementTransactions);
   yield takeEvery(NAHMII_DEPOSIT, deposit);
   yield takeEvery(NAHMII_DEPOSIT_ETH, depositEth);
   yield takeEvery(NAHMII_APPROVE_TOKEN_DEPOSIT, approveTokenDeposit);
   yield takeEvery(NAHMII_COMPLETE_TOKEN_DEPOSIT, completeTokenDeposit);
   yield takeEvery(MAKE_NAHMII_PAYMENT, makePayment);
-  yield takeEvery(START_CHALLENGE, startChallenge);
   yield takeEvery(SETTLE, settle);
+  yield takeEvery(STAGE, stage);
   yield takeEvery(WITHDRAW, withdraw);
-  yield takeEvery(START_CHALLENGE_SUCCESS, reloadSettlementStatesHook);
   yield takeEvery(SETTLE_SUCCESS, reloadSettlementStatesHook);
+  yield takeEvery(STAGE_SUCCESS, reloadSettlementStatesHook);
   yield takeEvery(WITHDRAW_SUCCESS, reloadSettlementStatesHook);
   yield takeEvery(SET_SELECTED_WALLET_CURRENCY, changeNahmiiCurrency);
   yield takeEvery(RELOAD_SETTLEMENT_STATES, reloadSettlementStates);

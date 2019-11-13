@@ -12,19 +12,17 @@ import {
   LOAD_NAHMII_BALANCES_SUCCESS,
   LOAD_NAHMII_STAGED_BALANCES_SUCCESS,
   LOAD_NAHMII_STAGING_BALANCES_SUCCESS,
-  START_CHALLENGE,
-  START_CHALLENGE_SUCCESS,
-  START_CHALLENGE_ERROR,
-  START_REQUIRED_CHALLENGES_SUCCESS,
-  LOAD_START_CHALLENGE_TX_REQUEST,
-  LOAD_START_CHALLENGE_TX_RECEIPT_SUCCESS,
-  LOAD_START_CHALLENGE_TX_RECEIPT_ERROR,
   SETTLE,
   SETTLE_SUCCESS,
   SETTLE_ERROR,
-  SETTLE_ALL_CHALLENGES_SUCCESS,
+  START_REQUIRED_SETTLEMENTS_SUCCESS,
   LOAD_SETTLE_TX_REQUEST,
-  LOAD_SETTLE_TX_RECEIPT_SUCCESS,
+  LOAD_SETTLE_RECEIPT_SUCCESS,
+  STAGE,
+  STAGE_ERROR,
+  STAGE_ALL_SETTLEMENTS_SUCCESS,
+  LOAD_STAGE_TX_REQUEST,
+  LOAD_STAGE_TX_RECEIPT_SUCCESS,
   WITHDRAW,
   WITHDRAW_SUCCESS,
   WITHDRAW_ERROR,
@@ -40,10 +38,8 @@ import {
   NAHMII_COMPLETE_TOKEN_DEPOSIT,
   NAHMII_COMPLETE_TOKEN_DEPOSIT_SUCCESS,
   NAHMII_DEPOSIT_FAILED,
-  LOAD_ONGOING_CHALLENGES_SUCCESS,
-  LOAD_ONGOING_CHALLENGES_ERROR,
-  LOAD_SETTLEABLE_CHALLENGES_SUCCESS,
-  LOAD_SETTLEABLE_CHALLENGES_ERROR,
+  LOAD_SETTLEMENTS_SUCCESS,
+  LOAD_SETTLEMENTS_ERROR,
   RELOAD_SETTLEMENT_STATES,
   NEW_RECEIPT_RECEIVED,
 } from './constants';
@@ -55,10 +51,8 @@ export const initialState = fromJS({
   transactions: {},
   selectedCurrency: '0x0000000000000000000000000000000000000000',
   depositStatus: {},
-  ongoingChallenges: {},
-  settleableChallenges: {},
+  settlements: {},
   withdrawals: {},
-  newSettlementPendingTxs: {},
 });
 
 function nahmiiHocReducer(state = initialState, action) {
@@ -110,75 +104,50 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['balances', action.address, 'staging', 'loading'], false)
         .setIn(['balances', action.address, 'staging', 'error'], null)
         .setIn(['balances', action.address, 'staging', 'assets'], fromJS(action.balances));
-    case LOAD_ONGOING_CHALLENGES_SUCCESS:
+    case LOAD_SETTLEMENTS_SUCCESS:
       return state
-        .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'loading'], false)
-        .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'details'], action.challenges);
-    case LOAD_ONGOING_CHALLENGES_ERROR:
+        .setIn(['settlements', action.address, action.currencyAddress, 'loading'], false)
+        .setIn(['settlements', action.address, action.currencyAddress, 'details'], fromJS(action.settlements.map((s) => s.toJSON())));
+    case LOAD_SETTLEMENTS_ERROR:
       return state
-        .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'details'], null);
-    case LOAD_SETTLEABLE_CHALLENGES_SUCCESS:
-      return state
-        .setIn(['settleableChallenges', action.address, action.currencyAddress, 'loading'], false)
-        .setIn(['settleableChallenges', action.address, action.currencyAddress, 'details'], action.challenges)
-        .setIn(['settleableChallenges', action.address, action.currencyAddress, 'invalidReasons'], action.invalidReasons);
-    case LOAD_SETTLEABLE_CHALLENGES_ERROR:
-      return state
-        .setIn(['settleableChallenges', action.address, action.currencyAddress, 'details'], null);
+        .setIn(['settlements', action.address, action.currencyAddress, 'details'], null);
     case RELOAD_SETTLEMENT_STATES:
       return state
-        .setIn(['ongoingChallenges', action.address, action.currency, 'loading'], true)
-        .setIn(['settleableChallenges', action.address, action.currency, 'loading'], true);
-    case START_CHALLENGE:
-      return state
-        .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'requesting');
-    case START_REQUIRED_CHALLENGES_SUCCESS:
-      return state
-        .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'success');
-    case START_CHALLENGE_SUCCESS:
-      return state
-        .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'success')
-        .setIn(['ongoingChallenges', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt)
-        .deleteIn(['newSettlementPendingTxs', action.address, action.currency, action.txReceipt.transactionHash]);
-    case START_CHALLENGE_ERROR:
-      return state
-        .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'failed');
-    case LOAD_START_CHALLENGE_TX_REQUEST:
-      return state
-        .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'mining')
-        .setIn(['ongoingChallenges', action.address, action.currency, 'transactions', action.txRequest.hash], action.txRequest)
-        .setIn(['newSettlementPendingTxs', action.address, action.currency, action.txRequest.hash], fromJS({
-          ...action.txRequest,
-          timestamp: action.txRequest.timestamp || new Date().getTime(),
-        }));
-    case LOAD_START_CHALLENGE_TX_RECEIPT_SUCCESS:
-      return state
-        .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'receipt')
-        .setIn(['ongoingChallenges', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt);
-    case LOAD_START_CHALLENGE_TX_RECEIPT_ERROR:
-      return state
-        .deleteIn(['newSettlementPendingTxs', action.address, action.currency, action.txReceipt.transactionHash]);
+        .setIn(['settlements', action.address, action.currency, 'loading'], true);
     case SETTLE:
       return state
-        .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'requesting');
-    case SETTLE_ALL_CHALLENGES_SUCCESS:
+        .setIn(['settlements', action.address, action.currency, 'settling', 'status'], 'requesting');
+    case START_REQUIRED_SETTLEMENTS_SUCCESS:
       return state
-        .setIn(['settleableChallenges', action.address, action.currency, 'details'], null)
-        .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'success');
+        .setIn(['settlements', action.address, action.currency, 'settling', 'status'], 'success');
     case SETTLE_SUCCESS:
       return state
-        .setIn(['settleableChallenges', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt);
+        .setIn(['settlements', action.address, action.currency, 'settling', 'status'], 'success');
     case SETTLE_ERROR:
       return state
-        .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'failed');
+        .setIn(['settlements', action.address, action.currency, 'settling', 'status'], 'failed');
     case LOAD_SETTLE_TX_REQUEST:
       return state
-        .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'mining')
-        .setIn(['settleableChallenges', action.address, action.currency, 'transactions', action.txRequest.hash], action.txRequest);
-    case LOAD_SETTLE_TX_RECEIPT_SUCCESS:
+        .setIn(['settlements', action.address, action.currency, 'settling', 'status'], 'mining');
+    case LOAD_SETTLE_RECEIPT_SUCCESS:
       return state
-        .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'receipt')
-        .setIn(['settleableChallenges', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt);
+        .setIn(['settlements', action.address, action.currency, 'settling', 'status'], 'receipt');
+    case STAGE:
+      return state
+        .setIn(['settlements', action.address, action.currency, 'staging', 'status'], 'requesting');
+    case STAGE_ALL_SETTLEMENTS_SUCCESS:
+      return state
+        .setIn(['settlements', action.address, action.currency, 'details'], null)
+        .setIn(['settlements', action.address, action.currency, 'staging', 'status'], 'success');
+    case STAGE_ERROR:
+      return state
+        .setIn(['settlements', action.address, action.currency, 'staging', 'status'], 'failed');
+    case LOAD_STAGE_TX_REQUEST:
+      return state
+        .setIn(['settlements', action.address, action.currency, 'staging', 'status'], 'mining');
+    case LOAD_STAGE_TX_RECEIPT_SUCCESS:
+      return state
+        .setIn(['settlements', action.address, action.currency, 'staging', 'status'], 'receipt');
     case WITHDRAW:
       return state
         .setIn(['withdrawals', action.address, action.currency, 'status'], 'requesting');
@@ -222,8 +191,7 @@ function nahmiiHocReducer(state = initialState, action) {
       return state
         .set('balances', initialState.get('balances'))
         .set('receipts', initialState.get('receipts'))
-        .set('ongoingChallenges', initialState.get('ongoingChallenges'))
-        .set('settleableChallenges', initialState.get('settleableChallenges'))
+        .set('settlements', initialState.get('settlements'))
         .set('withdrawals', initialState.get('withdrawals'));
     default:
       return state;

@@ -1,4 +1,3 @@
-import nahmii from 'nahmii-sdk';
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect';
 import { fromJS, List } from 'immutable';
 import BigNumber from 'bignumber.js';
@@ -157,40 +156,14 @@ const makeSelectSettleableChallenges = () => createSelector(
   (nahmiiHocDomain) => nahmiiHocDomain.get('settleableChallenges') || fromJS({})
 );
 
+const makeSelectSettlements = () => createSelector(
+  selectNahmiiHocDomain,
+  (nahmiiHocDomain) => nahmiiHocDomain.get('settlements') || fromJS({})
+);
+
 const makeSelectNewSettlementPendingTxs = () => createSelector(
   selectNahmiiHocDomain,
   (nahmiiHocDomain) => nahmiiHocDomain.get('newSettlementPendingTxs')
-);
-
-const makeSelectNewSettlementPendingTxsList = () => createSelector(
-  makeSelectNewSettlementPendingTxs(),
-  (newSettlementPendingTxs) => {
-    const pendingTxs = [];
-    if (!newSettlementPendingTxs) {
-      return pendingTxs;
-    }
-    const newSettlementPendingTxsJSON = newSettlementPendingTxs.toJS();
-    Object.keys(newSettlementPendingTxsJSON).forEach((address) => {
-      Object.keys(newSettlementPendingTxsJSON[address]).forEach((currency) => {
-        Object.keys(newSettlementPendingTxsJSON[address][currency]).forEach((txHash) => {
-          const pendingTx = newSettlementPendingTxsJSON[address][currency][txHash];
-          pendingTxs.push({ address, currency, tx: pendingTx });
-        });
-      });
-    });
-    return pendingTxs;
-  }
-);
-
-const makeSelectHasSettlementPendingTxsByWalletCurrency = (address, currency) => createSelector(
-  makeSelectNewSettlementPendingTxsList(),
-  (pendingTxs) => {
-    const matches = pendingTxs.filter((pendingTx) =>
-      nahmii.utils.caseInsensitiveCompare(pendingTx.address, address) &&
-      nahmii.utils.caseInsensitiveCompare(pendingTx.currency, currency)
-    );
-    return matches.length > 0;
-  }
 );
 
 const makeSelectWithdrawals = () => createSelector(
@@ -229,6 +202,20 @@ const makeSelectSettleableChallengesForCurrentWalletCurrency = () => createSelec
     }
     if (!challenges.get('invalidReasons')) {
       challenges = challenges.set('invalidReasons', []);
+    }
+    return challenges;
+  }
+);
+
+const makeSelectSettlementsForCurrentWalletCurrency = () => createSelector(
+  makeSelectSettlements(),
+  makeSelectCurrentWallet(),
+  makeSelectWalletCurrency(),
+  (settlements, currentWallet, selectedCurrency) => {
+    const address = currentWallet.get('address');
+    let challenges = settlements.getIn([address, selectedCurrency]) || fromJS({});
+    if (!challenges.get('details')) {
+      challenges = challenges.set('details', []);
     }
     return challenges;
   }
@@ -394,8 +381,7 @@ export {
   makeSelectOngoingChallenges,
   makeSelectOngoingChallengesForCurrentWalletCurrency,
   makeSelectSettleableChallengesForCurrentWalletCurrency,
+  makeSelectSettlementsForCurrentWalletCurrency,
   makeSelectWithdrawalsForCurrentWalletCurrency,
   makeSelectNewSettlementPendingTxs,
-  makeSelectNewSettlementPendingTxsList,
-  makeSelectHasSettlementPendingTxsByWalletCurrency,
 };

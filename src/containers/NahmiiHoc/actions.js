@@ -8,27 +8,26 @@ import {
   LOAD_NAHMII_STAGED_BALANCES_ERROR,
   LOAD_NAHMII_STAGING_BALANCES,
   LOAD_NAHMII_STAGING_BALANCES_SUCCESS,
-  START_CHALLENGE,
-  START_CHALLENGE_SUCCESS,
-  START_CHALLENGE_ERROR,
-  START_REQUIRED_CHALLENGES_SUCCESS,
-  LOAD_START_CHALLENGE_TX_REQUEST,
-  LOAD_START_CHALLENGE_TX_RECEIPT_SUCCESS,
-  LOAD_START_CHALLENGE_TX_RECEIPT_ERROR,
   SETTLE,
   SETTLE_SUCCESS,
   SETTLE_ERROR,
+  START_REQUIRED_SETTLEMENTS_SUCCESS,
   LOAD_SETTLE_TX_REQUEST,
-  LOAD_SETTLE_TX_RECEIPT_SUCCESS,
+  LOAD_SETTLE_RECEIPT_SUCCESS,
+  LOAD_SETTLE_TX_RECEIPT_ERROR,
+  STAGE,
+  STAGE_SUCCESS,
+  STAGE_ERROR,
+  LOAD_STAGE_TX_REQUEST,
+  LOAD_STAGE_TX_RECEIPT_SUCCESS,
   WITHDRAW,
   WITHDRAW_SUCCESS,
   WITHDRAW_ERROR,
   LOAD_WITHDRAW_TX_REQUEST,
   LOAD_WITHDRAW_TX_RECEIPT_SUCCESS,
-  LOAD_ONGOING_CHALLENGES_SUCCESS,
-  LOAD_ONGOING_CHALLENGES_ERROR,
-  LOAD_SETTLEABLE_CHALLENGES_SUCCESS,
-  LOAD_SETTLEABLE_CHALLENGES_ERROR,
+  LOAD_SETTLEMENTS,
+  LOAD_SETTLEMENTS_SUCCESS,
+  LOAD_SETTLEMENTS_ERROR,
   LOAD_NAHMII_STAGING_BALANCES_ERROR,
   NAHMII_DEPOSIT,
   NAHMII_DEPOSIT_ETH_SUCCESS,
@@ -44,7 +43,7 @@ import {
   LOAD_NAHMII_RECEIPTS,
   LOAD_NAHMII_RECEIPTS_SUCCESS,
   LOAD_NAHMII_RECEIPTS_ERROR,
-  SETTLE_ALL_CHALLENGES_SUCCESS,
+  STAGE_ALL_SETTLEMENTS_SUCCESS,
   RELOAD_SETTLEMENT_STATES,
   NEW_RECEIPT_RECEIVED,
 } from './constants';
@@ -216,73 +215,11 @@ export function loadStagingBalancesError(address) {
   };
 }
 
-export function startChallenge(address, currency, stageAmount, options) {
-  return {
-    type: START_CHALLENGE,
-    address,
-    stageAmount,
-    currency,
-    options,
-  };
-}
-
-export function startChallengeSuccess(address, txReceipt, currency) {
-  return {
-    type: START_CHALLENGE_SUCCESS,
-    address,
-    txReceipt,
-    currency,
-  };
-}
-
-export function startChallengeError(address, currency) {
-  return {
-    type: START_CHALLENGE_ERROR,
-    address,
-    currency,
-  };
-}
-
-export function startRequiredChallengesSuccess(address, currency) {
-  return {
-    type: START_REQUIRED_CHALLENGES_SUCCESS,
-    address,
-    currency,
-  };
-}
-
-export function loadTxRequestForPaymentChallengeSuccess(address, txRequest, currency, networkName) {
-  return {
-    type: LOAD_START_CHALLENGE_TX_REQUEST,
-    address,
-    txRequest,
-    currency,
-    networkName,
-  };
-}
-
-export function loadTxReceiptForPaymentChallengeSuccess(address, txReceipt, currency) {
-  return {
-    type: LOAD_START_CHALLENGE_TX_RECEIPT_SUCCESS,
-    address,
-    txReceipt,
-    currency,
-  };
-}
-
-export function loadTxReceiptForPaymentChallengeError(address, currency, txReceipt) {
-  return {
-    type: LOAD_START_CHALLENGE_TX_RECEIPT_ERROR,
-    address,
-    currency,
-    txReceipt,
-  };
-}
-
-export function settle(address, currency, options) {
+export function settle(address, currency, stageAmount, options) {
   return {
     type: SETTLE,
     address,
+    stageAmount,
     currency,
     options,
   };
@@ -305,9 +242,9 @@ export function settleError(address, currency) {
   };
 }
 
-export function settleAllChallengesSuccess(address, currency) {
+export function startRequiredSettlementsSuccess(address, currency) {
   return {
-    type: SETTLE_ALL_CHALLENGES_SUCCESS,
+    type: START_REQUIRED_SETTLEMENTS_SUCCESS,
     address,
     currency,
   };
@@ -325,7 +262,69 @@ export function loadTxRequestForSettlingSuccess(address, txRequest, currency, ne
 
 export function loadTxReceiptForSettlingSuccess(address, txReceipt, currency) {
   return {
-    type: LOAD_SETTLE_TX_RECEIPT_SUCCESS,
+    type: LOAD_SETTLE_RECEIPT_SUCCESS,
+    address,
+    txReceipt,
+    currency,
+  };
+}
+
+export function loadTxReceiptForSettlementError(address, currency, txReceipt) {
+  return {
+    type: LOAD_SETTLE_TX_RECEIPT_ERROR,
+    address,
+    currency,
+    txReceipt,
+  };
+}
+
+export function stage(address, currency, options) {
+  return {
+    type: STAGE,
+    address,
+    currency,
+    options,
+  };
+}
+
+export function stageSuccess(address, txReceipt, currency) {
+  return {
+    type: STAGE_SUCCESS,
+    address,
+    txReceipt,
+    currency,
+  };
+}
+
+export function stageError(address, currency) {
+  return {
+    type: STAGE_ERROR,
+    address,
+    currency,
+  };
+}
+
+export function stageAllSettlementsSuccess(address, currency) {
+  return {
+    type: STAGE_ALL_SETTLEMENTS_SUCCESS,
+    address,
+    currency,
+  };
+}
+
+export function loadTxRequestForStagingSuccess(address, txRequest, currency, networkName) {
+  return {
+    type: LOAD_STAGE_TX_REQUEST,
+    address,
+    txRequest,
+    currency,
+    networkName,
+  };
+}
+
+export function loadTxReceiptForStagingSuccess(address, txReceipt, currency) {
+  return {
+    type: LOAD_STAGE_TX_RECEIPT_SUCCESS,
     address,
     txReceipt,
     currency,
@@ -378,38 +377,30 @@ export function loadTxReceiptForWithdrawSuccess(address, txReceipt, currency) {
   };
 }
 
-export function loadOngoingChallengesSuccess(address, currencyAddress, challenges) {
-  return {
-    type: LOAD_ONGOING_CHALLENGES_SUCCESS,
-    address,
-    currencyAddress,
-    challenges,
-  };
-}
 
-export function loadOngoingChallengesError(address, currencyAddress) {
+export function loadSettlements(address, currencyAddress) {
   return {
-    type: LOAD_ONGOING_CHALLENGES_ERROR,
+    type: LOAD_SETTLEMENTS,
     address,
     currencyAddress,
   };
 }
 
-export function loadSettleableChallengesSuccess(address, currencyAddress, challenges, invalidReasons) {
+export function loadSettlementsSuccess(address, currencyAddress, settlements) {
   return {
-    type: LOAD_SETTLEABLE_CHALLENGES_SUCCESS,
+    type: LOAD_SETTLEMENTS_SUCCESS,
     address,
     currencyAddress,
-    challenges,
-    invalidReasons,
+    settlements,
   };
 }
 
-export function loadSettleableChallengesError(address, currencyAddress) {
+export function loadSettlementsError(address, currencyAddress, error) {
   return {
-    type: LOAD_SETTLEABLE_CHALLENGES_ERROR,
+    type: LOAD_SETTLEMENTS_ERROR,
     address,
     currencyAddress,
+    error,
   };
 }
 

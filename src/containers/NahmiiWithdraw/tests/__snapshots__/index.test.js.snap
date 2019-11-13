@@ -302,11 +302,6 @@ ShallowWrapper {
         }
     }
     nahmiiWithdraw={[Function]}
-    ongoingChallenges={
-        Immutable.Map {
-            details: Array [],
-        }
-    }
     prices={
         Immutable.Map {
             loading: false,
@@ -358,13 +353,16 @@ ShallowWrapper {
     }
     setSelectedWalletCurrency={[Function]}
     settle={[Function]}
-    settleableChallenges={
+    settlements={
         Immutable.Map {
             details: Array [],
-            invalidReasons: Array [],
+            settling: Immutable.Map {
+            },
+            staging: Immutable.Map {
+            },
         }
     }
-    startChallenge={[Function]}
+    stage={[Function]}
     supportedAssets={
         Immutable.Map {
             loading: false,

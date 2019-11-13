@@ -406,10 +406,6 @@ describe('decryptWallet saga', () => {
 
 it('sign transaction for eth payment', () => {
   const storeState = storeMock;
-  // create txn hash
-  // should save pending txn hash in store and localstorage
-  // listen for confirmation
-  // update pending txn in store
   let called = 0;
   return expectSaga(walletHoc)
     .provide({
@@ -431,10 +427,6 @@ it('sign transaction for eth payment', () => {
 });
 
 it('sign transaction for erc20 payment', () => {
-  // create txn hash
-  // should save pending txn hash in store and localstorage
-  // listen for confirmation
-  // update pending txn in store
   const storeState = {
     ethOperationsHoc: ethOperationsHocMock,
     app: appMock,
@@ -501,10 +493,6 @@ it('sign transaction for erc20 payment', () => {
 describe('payment transfer', () => {
   describe('software wallet', () => {
     it('sign transaction for eth payment', () => {
-      // create txn hash
-      // should save pending txn hash in store and localstorage
-      // listen for confirmation
-      // update pending txn in store
       let storeState = fromJS({
         ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
@@ -547,10 +535,6 @@ describe('payment transfer', () => {
         .run({ silenceTimeout: true });
     });
     it('sign transaction for erc20 payment', () => {
-      // create txn hash
-      // should save pending txn hash in store and localstorage
-      // listen for confirmation
-      // update pending txn in store
       const storeState = {
         ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
@@ -807,17 +791,6 @@ describe('payment transfer', () => {
         trezorHoc: trezorHocConnectedMock,
       });
       const nonce = 8;
-      // const rawTx = [
-      //   '0x08',
-      //   '0x7530',
-      //   '0x5208',
-      //   '0xbfdc0c8e54af5719872a2edef8e65c9f4a3eae88',
-      //   '0x2742',
-      //   '0x',
-      //   '0x03',
-      //   '0x',
-      //   '0x',
-      // ];
       const signedTx = {
         r: '0f7bfadeca8f4a9c022db1ce73b255ca0d3e293367b47231f161f20b91966095',
         s: '7fb01cb8c9e2f7fdd385e213d653a24436bea63c572c6f8993e4880a66457bbf',
