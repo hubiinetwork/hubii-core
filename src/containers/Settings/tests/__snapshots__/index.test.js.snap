@@ -24,7 +24,7 @@ ShallowWrapper {
               },
               "_pollingInterval": 4000,
               "connection": Object {
-                "url": "http://geth-ropsten.dev.hubii.net",
+                "url": "https://geth-ropsten.dev.hubii.net",
               },
               "ready": Promise {},
             },
@@ -46,7 +46,7 @@ ShallowWrapper {
               },
               "_pollingInterval": 4000,
               "connection": Object {
-                "url": "http://geth-ropsten.dev.hubii.net",
+                "url": "https://geth-ropsten.dev.hubii.net",
               },
               "ready": Promise {},
             },
@@ -206,7 +206,7 @@ ShallowWrapper {
                     },
                     "_pollingInterval": 4000,
                     "connection": Object {
-                      "url": "http://ethereum.hubii.com:8545",
+                      "url": "https://ethereum.hubii.com",
                     },
                     "ready": Promise {},
                   },
@@ -293,7 +293,7 @@ ShallowWrapper {
                     },
                     "_pollingInterval": 4000,
                     "connection": Object {
-                      "url": "http://geth-ropsten.dev.hubii.net",
+                      "url": "https://geth-ropsten.dev.hubii.net",
                     },
                     "ready": Promise {},
                   },
