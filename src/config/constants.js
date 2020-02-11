@@ -35,8 +35,8 @@ const trimmableWalletApiEndpoint = (endpoint) => (trimmed) => {
 const ROPSTEN_API_URL = 'https://api2.dev.hubii.net/';
 const MAINNET_API_URL = 'https://api.nahmii.io/';
 
-const ROPSTEN_NODE = 'http://geth-ropsten.dev.hubii.net';
-const MAINNET_NODE = 'http://ethereum.hubii.com:8545';
+const ROPSTEN_NODE = 'https://geth-ropsten.dev.hubii.net';
+const MAINNET_NODE = 'https://ethereum.hubii.com';
 
 const networks = {
   mainnet: {
