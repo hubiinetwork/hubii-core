@@ -77,7 +77,7 @@ class BreakdownList extends React.PureComponent {
       combinedBreakdown,
       baseLayerBreakdown,
       nahmiiAvailableBreakdown,
-      nahmiiActiveBreakdown,
+      nahmiiCombinedBreakdown,
       nahmiiStagedBreakdown,
       nahmiiStagingBreakdown,
       expandedAmount,
@@ -85,7 +85,7 @@ class BreakdownList extends React.PureComponent {
     const { formatMessage } = this.props.intl;
     const combinedBalanceList = generateList(combinedBreakdown, formatMessage, true);
     const baseLayerBalanceList = generateList(baseLayerBreakdown, formatMessage);
-    const nahmiiBalanceList = generateList(nahmiiActiveBreakdown, formatMessage);
+    const nahmiiBalanceList = generateList(nahmiiCombinedBreakdown, formatMessage);
     const nahmiiAvailableBalanceList = generateList(nahmiiAvailableBreakdown, formatMessage);
     const nahmiiStagingBalanceList = generateList(nahmiiStagingBreakdown, formatMessage);
     const nahmiiStagedBalanceList = generateList(nahmiiStagedBreakdown, formatMessage);
@@ -124,7 +124,7 @@ BreakdownList.propTypes = {
   togglePie: PropTypes.func.isRequired,
   expandedAmount: PropTypes.number.isRequired,
   combinedBreakdown: PropTypes.array.isRequired,
-  nahmiiActiveBreakdown: PropTypes.array.isRequired,
+  nahmiiCombinedBreakdown: PropTypes.array.isRequired,
   baseLayerBreakdown: PropTypes.array.isRequired,
   nahmiiAvailableBreakdown: PropTypes.array.isRequired,
   nahmiiStagingBreakdown: PropTypes.array.isRequired,
