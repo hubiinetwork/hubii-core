@@ -87,6 +87,27 @@ ShallowWrapper {
                     usd: "0",
                 },
             },
+            nahmiiActive: Immutable.Map {
+                assets: Immutable.Map {
+                    0x0000000000000000000000000000000000000000: Immutable.Map {
+                        value: Immutable.Map {
+                            usd: "82.4",
+                        },
+                        amount: "0.2",
+                    },
+                    0x583cbbb8a8443b38abcc0c956bece47340ea1367: Immutable.Map {
+                        value: Immutable.Map {
+                            usd: "0.13",
+                        },
+                        amount: "0.13",
+                    },
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "82.53",
+                },
+            },
             nahmiiCombined: Immutable.Map {
                 assets: Immutable.Map {
                     0x0000000000000000000000000000000000000000: Immutable.Map {
@@ -330,6 +351,27 @@ ShallowWrapper {
                 error: null,
                 total: Immutable.Map {
                     usd: "0",
+                },
+            },
+            nahmiiActive: Immutable.Map {
+                assets: Immutable.Map {
+                    0x0000000000000000000000000000000000000000: Immutable.Map {
+                        value: Immutable.Map {
+                            usd: "82.4",
+                        },
+                        amount: "0.2",
+                    },
+                    0x583cbbb8a8443b38abcc0c956bece47340ea1367: Immutable.Map {
+                        value: Immutable.Map {
+                            usd: "0.13",
+                        },
+                        amount: "0.13",
+                    },
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "82.53",
                 },
             },
             nahmiiCombined: Immutable.Map {
@@ -583,6 +625,15 @@ ShallowWrapper {
                     usd: "0",
                 },
             },
+            nahmiiActive: Immutable.Map {
+                assets: Immutable.Map {
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "0",
+                },
+            },
             nahmiiCombined: Immutable.Map {
                 assets: Immutable.Map {
                 },
@@ -805,6 +856,15 @@ ShallowWrapper {
                 assets: Immutable.Map {
                 },
                 loading: true,
+                error: null,
+                total: Immutable.Map {
+                    usd: "0",
+                },
+            },
+            nahmiiActive: Immutable.Map {
+                assets: Immutable.Map {
+                },
+                loading: false,
                 error: null,
                 total: Immutable.Map {
                     usd: "0",
@@ -1065,6 +1125,27 @@ ShallowWrapper {
                 error: null,
                 total: Immutable.Map {
                     usd: "0",
+                },
+            },
+            nahmiiActive: Immutable.Map {
+                assets: Immutable.Map {
+                    0x0000000000000000000000000000000000000000: Immutable.Map {
+                        value: Immutable.Map {
+                            usd: "82.4",
+                        },
+                        amount: "0.2",
+                    },
+                    0x583cbbb8a8443b38abcc0c956bece47340ea1367: Immutable.Map {
+                        value: Immutable.Map {
+                            usd: "0.13",
+                        },
+                        amount: "0.13",
+                    },
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "82.53",
                 },
             },
             nahmiiCombined: Immutable.Map {

@@ -236,11 +236,13 @@ const makeSelectWalletsWithInfo = () => createSelector(
         }, combined);
       };
 
-      const nahmiiCombined = calcCombinedBalances('baseLayer', 'nahmiiStaged');
+      const nahmiiCombined = calcCombinedBalances('baseLayer');
+      const nahmiiActive = calcCombinedBalances('baseLayer', 'nahmiiStaged');
       const combined = calcCombinedBalances('nahmiiStaged');
 
       walletWithInfo = walletWithInfo
         .setIn(['balances', 'nahmiiCombined'], nahmiiCombined)
+        .setIn(['balances', 'nahmiiActive'], nahmiiActive)
         .setIn(['balances', 'combined'], combined);
 
       return walletWithInfo;
@@ -357,7 +359,10 @@ const makeSelectTotalBalances = () => createSelector(
     totalBalances.forEach((balance, balanceType) => {
       balance.get('assets').forEach((assetDetails, asset) => {
         calcCombinedBalances(assetDetails, asset, 'combined');
-        if (balanceType !== 'baseLayer') calcCombinedBalances(assetDetails, asset, 'nahmiiCombined');
+        if (balanceType !== 'baseLayer') {
+          calcCombinedBalances(assetDetails, asset, 'nahmiiActive');
+          calcCombinedBalances(assetDetails, asset, 'nahmiiCombined');
+        }
       });
     });
     return totalBalances;
