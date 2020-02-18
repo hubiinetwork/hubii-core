@@ -120,7 +120,7 @@ class Breakdown extends React.Component {
                     combinedBreakdown={combinedBreakdown}
                     baseLayerBreakdown={getBreakdown(totalBalances.get('baseLayer'), supportedAssets)}
                     nahmiiAvailableBreakdown={getBreakdown(totalBalances.get('nahmiiAvailable'), supportedAssets)}
-                    nahmiiCombinedBreakdown={getBreakdown(totalBalances.get('nahmiiCombined'), supportedAssets)}
+                    nahmiiActiveBreakdown={getBreakdown(totalBalances.get('nahmiiActive'), supportedAssets)}
                     nahmiiStagingBreakdown={getBreakdown(totalBalances.get('nahmiiStaging'), supportedAssets)}
                     nahmiiStagedBreakdown={getBreakdown(totalBalances.get('nahmiiStaged'), supportedAssets)}
                   />

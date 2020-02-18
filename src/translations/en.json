@@ -290,7 +290,7 @@
     "waiting_for_withdraw_to_be": "Waiting for transaction to be",
     "nahmii_staged": "nahmii staged",
     "withdraw_exceeded_staged_amount": "Settlement needed",
-    "why_settlement_notes": "Currently the maximum immediate withdrawable amount(staged amount) is {staged_amount} {symbol}. In order to withdraw {withdraw_amount} {symbol}, it requires additional {required_stage_amout} {symbol} from nahmii balance to go through a settlement process. Once the settlement is started, the intended stage amount will be subtracted from the nahmii available balance, and will be added to the staged balance after the settlement is qualified.",
+    "why_settlement_notes": "Currently the maximum immediately withdrawable amount (staged amount) is {staged_amount} {symbol}. In order to withdraw {withdraw_amount} {symbol}, it requires an additional {required_stage_amout} {symbol} from nahmii balance to go through a settlement process. Once the settlement is started the intended stage amount will be subtracted from the nahmii available balance for it to be added to the staged balance after the settlement is qualified.",
     "intended_stage_amount": "{amount} {symbol}",
     "expiration_time": "Until {endtime}",
     "withdrawable_amount": "{amount} {symbol}",

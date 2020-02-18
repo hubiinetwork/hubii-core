@@ -66,6 +66,7 @@ export const totalBalAllEmpty = fromJS({
   nahmiiAvailable: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
   nahmiiStaging: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
   nahmiiStaged: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
+  nahmiiActive: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
   nahmiiCombined: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
   combined: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
 });
@@ -75,6 +76,7 @@ export const totalBalAllError = fromJS({
   nahmiiAvailable: { assets: {}, loading: false, error: true, total: { usd: new BigNumber('0') } },
   nahmiiStaging: { assets: {}, loading: false, error: true, total: { usd: new BigNumber('0') } },
   nahmiiStaged: { assets: {}, loading: false, error: true, total: { usd: new BigNumber('0') } },
+  nahmiiActive: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
   nahmiiCombined: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
   combined: { assets: {}, loading: false, error: true, total: { usd: new BigNumber('0') } },
 });
@@ -84,6 +86,7 @@ export const totalBallAllLoading = fromJS({
   nahmiiAvailable: { assets: {}, loading: true, error: null, total: { usd: new BigNumber('0') } },
   nahmiiStaging: { assets: {}, loading: true, error: null, total: { usd: new BigNumber('0') } },
   nahmiiStaged: { assets: {}, loading: true, error: null, total: { usd: new BigNumber('0') } },
+  nahmiiActive: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
   nahmiiCombined: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
   combined: { assets: {}, loading: true, error: null, total: { usd: new BigNumber('0') } },
 });

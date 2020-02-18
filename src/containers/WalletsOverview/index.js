@@ -57,7 +57,7 @@ import { WalletCardsCol } from './style';
 const SortableWallet = SortableElement((props) => {
   const connected = isConnected(props.wallet, props.ledgerNanoSInfo.toJS(), props.trezorInfo.toJS());
   const baseLayerBalance = props.wallet.balances.baseLayer;
-  const nahmiiBalance = props.wallet.balances.nahmiiCombined;
+  const nahmiiBalance = props.wallet.balances.nahmiiActive;
   return (
     <WalletCardsCol
       span={10}
