@@ -346,6 +346,19 @@ ShallowWrapper {
                     tab={
                               <span>
                                         <Icon
+                                                  type="area-chart"
+                                        />
+                                        <Unknown />
+                                         
+                                        claim_fees
+                              </span>
+                    }
+          />
+          <TabPane
+                    placeholder={null}
+                    tab={
+                              <span>
+                                        <Icon
                                                   type="shopping-cart"
                                         />
                                         buy_eth
@@ -372,6 +385,10 @@ ShallowWrapper {
         <Route
           component={[Function]}
           path="undefined/withdraw"
+/>,
+        <Route
+          component={[Function]}
+          path="undefined/claim-fees"
 />,
         false,
       ],
@@ -493,6 +510,19 @@ ShallowWrapper {
               tab={
                             <span>
                                           <Icon
+                                                        type="area-chart"
+                                          />
+                                          <Unknown />
+                                           
+                                          claim_fees
+                            </span>
+              }
+/>,
+            <TabPane
+              placeholder={null}
+              tab={
+                            <span>
+                                          <Icon
                                                         type="shopping-cart"
                                           />
                                           buy_eth
@@ -595,6 +625,25 @@ ShallowWrapper {
           },
           Object {
             "instance": null,
+            "key": "undefined/claim-fees",
+            "nodeType": "class",
+            "props": Object {
+              "placeholder": null,
+              "tab": <span>
+                <Icon
+                                type="area-chart"
+                />
+                <Unknown />
+                 
+                claim_fees
+</span>,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
             "key": "undefined/buyeth",
             "nodeType": "class",
             "props": Object {
@@ -668,6 +717,18 @@ ShallowWrapper {
         "props": Object {
           "component": [Function],
           "path": "undefined/withdraw",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "path": "undefined/claim-fees",
         },
         "ref": null,
         "rendered": null,
@@ -771,6 +832,19 @@ ShallowWrapper {
                         tab={
                                     <span>
                                                 <Icon
+                                                            type="area-chart"
+                                                />
+                                                <Unknown />
+                                                 
+                                                claim_fees
+                                    </span>
+                        }
+            />
+            <TabPane
+                        placeholder={null}
+                        tab={
+                                    <span>
+                                                <Icon
                                                             type="shopping-cart"
                                                 />
                                                 buy_eth
@@ -797,6 +871,10 @@ ShallowWrapper {
           <Route
             component={[Function]}
             path="undefined/withdraw"
+/>,
+          <Route
+            component={[Function]}
+            path="undefined/claim-fees"
 />,
           false,
         ],
@@ -918,6 +996,19 @@ ShallowWrapper {
                 tab={
                                 <span>
                                                 <Icon
+                                                                type="area-chart"
+                                                />
+                                                <Unknown />
+                                                 
+                                                claim_fees
+                                </span>
+                }
+/>,
+              <TabPane
+                placeholder={null}
+                tab={
+                                <span>
+                                                <Icon
                                                                 type="shopping-cart"
                                                 />
                                                 buy_eth
@@ -1020,6 +1111,25 @@ ShallowWrapper {
             },
             Object {
               "instance": null,
+              "key": "undefined/claim-fees",
+              "nodeType": "class",
+              "props": Object {
+                "placeholder": null,
+                "tab": <span>
+                  <Icon
+                                    type="area-chart"
+                  />
+                  <Unknown />
+                   
+                  claim_fees
+</span>,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
               "key": "undefined/buyeth",
               "nodeType": "class",
               "props": Object {
@@ -1093,6 +1203,18 @@ ShallowWrapper {
           "props": Object {
             "component": [Function],
             "path": "undefined/withdraw",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "path": "undefined/claim-fees",
           },
           "ref": null,
           "rendered": null,
