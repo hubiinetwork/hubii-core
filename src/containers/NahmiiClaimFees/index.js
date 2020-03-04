@@ -255,7 +255,7 @@ export class NahmiiClaimFees extends React.Component { // eslint-disable-line re
         <Row>
           <TransferDescriptionItem
             className="claimable-start-period"
-            main={<SelectableText>{startPeriod}</SelectableText>}
+            main={<SelectableText>{startPeriod + 1}</SelectableText>}
             subtitle={''}
           />
         </Row>
@@ -265,7 +265,7 @@ export class NahmiiClaimFees extends React.Component { // eslint-disable-line re
         <Row>
           <TransferDescriptionItem
             className="claimable-end-period"
-            main={<SelectableText>{endPeriod}</SelectableText>}
+            main={<SelectableText>{endPeriod + 1}</SelectableText>}
             subtitle={''}
           />
         </Row>
