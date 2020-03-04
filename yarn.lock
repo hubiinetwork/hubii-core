@@ -11331,10 +11331,10 @@ nahmii-ethereum-address@^2.0.1:
   resolved "https://registry.yarnpkg.com/nahmii-ethereum-address/-/nahmii-ethereum-address-2.0.1.tgz#7b31f04d5748cb58c63312b96d7a51bb4ceab6f2"
   integrity sha512-+7kwiPd5PEabU2VhMODpx1NYNvyxmvV13mWq+Iu9OVxLDwXaAk/0yRlEXYCTwaSBH/yM0ROobINCmJUCo9RONg==
 
-nahmii-sdk@4.3.1:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/nahmii-sdk/-/nahmii-sdk-4.3.1.tgz#695934e3822fc5037804c34d9660c00132d4ef24"
-  integrity sha512-+kU2fQPAvVCHPxSXznSBCGJXrHOxsNWBeTKNSJWXK/Awvw71dwBGFTTfjEkykSP+C1dh0Awnjt5VZ5QDglxKlw==
+nahmii-sdk@4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/nahmii-sdk/-/nahmii-sdk-4.4.0.tgz#684d4e90a3c9dd8d128c57be523b47b811e57b0c"
+  integrity sha512-+w8ArhgOfT2+t+F3Xs+WvpPBJKtql5RmzJVj8fGtP8DR4FcWXUjjnkrk5DEX3Zwz4NM1ALa+t+xBI71wycDiVg==
   dependencies:
     ethereumjs-util "^6.1.0"
     lodash.get "^4.4.2"

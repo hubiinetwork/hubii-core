@@ -171,6 +171,11 @@ const makeSelectWithdrawals = () => createSelector(
   (nahmiiHocDomain) => nahmiiHocDomain.get('withdrawals') || fromJS({})
 );
 
+const makeSelectClaimFees = () => createSelector(
+  selectNahmiiHocDomain,
+  (nahmiiHocDomain) => nahmiiHocDomain.get('claimFees') || fromJS({})
+);
+
 const makeSelectNahmiiSettlementTransactions = () => createSelector(
   selectNahmiiHocDomain,
   (nahmiiHocDomain) => nahmiiHocDomain.get('transactions') || fromJS({})
@@ -231,6 +236,17 @@ const makeSelectWithdrawalsForCurrentWalletCurrency = () => createSelector(
     if (!withdrawlsObj.get('details')) {
       withdrawlsObj = withdrawlsObj.set('details', []);
     }
+    return withdrawlsObj;
+  }
+);
+
+const makeSelectClaimFeesForCurrentWalletCurrency = () => createSelector(
+  makeSelectClaimFees(),
+  makeSelectCurrentWallet(),
+  makeSelectWalletCurrency(),
+  (claimFees, currentWallet, selectedCurrency) => {
+    const address = currentWallet.get('address');
+    const withdrawlsObj = claimFees.getIn([address, selectedCurrency]) || fromJS({});
     return withdrawlsObj;
   }
 );
@@ -383,5 +399,6 @@ export {
   makeSelectSettleableChallengesForCurrentWalletCurrency,
   makeSelectSettlementsForCurrentWalletCurrency,
   makeSelectWithdrawalsForCurrentWalletCurrency,
+  makeSelectClaimFeesForCurrentWalletCurrency,
   makeSelectNewSettlementPendingTxs,
 };

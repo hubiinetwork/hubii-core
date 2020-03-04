@@ -46,6 +46,22 @@ import {
   STAGE_ALL_SETTLEMENTS_SUCCESS,
   RELOAD_SETTLEMENT_STATES,
   NEW_RECEIPT_RECEIVED,
+  LOAD_CLAIMABLE_FEES,
+  LOAD_CLAIMABLE_FEES_SUCCESS,
+  LOAD_CLAIMABLE_FEES_ERROR,
+  CLAIM_FEES_FOR_ACCRUALS,
+  CLAIM_FEES_FOR_ACCRUALS_SUCCESS,
+  CLAIM_FEES_FOR_ACCRUALS_ERROR,
+  LOAD_CLAIMING_FEES_TX_REQUEST_SUCCESS,
+  LOAD_CLAIMING_FEES_TX_RECEIPT_SUCCESS,
+  LOAD_WITHDRAWABLE_FEES,
+  LOAD_WITHDRAWABLE_FEES_SUCCESS,
+  LOAD_WITHDRAWABLE_FEES_ERROR,
+  WITHDRAW_FEES,
+  WITHDRAW_FEES_SUCCESS,
+  WITHDRAW_FEES_ERROR,
+  LOAD_WITHDRAWING_FEES_TX_REQUEST_SUCCESS,
+  LOAD_WITHDRAWING_FEES_TX_RECEIPT_SUCCESS,
 } from './constants';
 
 export function setSelectedWalletCurrency(currencyAddress) {
@@ -443,6 +459,156 @@ export function reloadSettlementStates(address, currency) {
   return {
     type: RELOAD_SETTLEMENT_STATES,
     address,
+    currency,
+  };
+}
+
+export function loadClaimableFees(address, currency, startPeriod, endPeriod) {
+  return {
+    type: LOAD_CLAIMABLE_FEES,
+    address,
+    currency,
+    startPeriod,
+    endPeriod,
+  };
+}
+
+export function loadClaimableFeesSuccess(address, currency, startPeriod, endPeriod, amount) {
+  return {
+    type: LOAD_CLAIMABLE_FEES_SUCCESS,
+    address,
+    currency,
+    startPeriod,
+    endPeriod,
+    amount,
+  };
+}
+
+export function loadClaimableFeesError(address, currency, startPeriod, endPeriod, error) {
+  return {
+    type: LOAD_CLAIMABLE_FEES_ERROR,
+    address,
+    currency,
+    startPeriod,
+    endPeriod,
+    error,
+  };
+}
+
+export function claimFeesForAccruals(address, currency, startPeriod, endPeriod, options) {
+  return {
+    type: CLAIM_FEES_FOR_ACCRUALS,
+    address,
+    currency,
+    startPeriod,
+    endPeriod,
+    options,
+  };
+}
+
+export function claimFeesForAccrualsSuccess(address, txReceipt, currency) {
+  return {
+    type: CLAIM_FEES_FOR_ACCRUALS_SUCCESS,
+    address,
+    currency,
+    txReceipt,
+  };
+}
+
+export function claimFeesForAccrualsError(address, currency, error) {
+  return {
+    type: CLAIM_FEES_FOR_ACCRUALS_ERROR,
+    address,
+    currency,
+    error,
+  };
+}
+
+export function loadTxRequestForClaimingFeesSuccess(address, txRequest, currency) {
+  return {
+    type: LOAD_CLAIMING_FEES_TX_REQUEST_SUCCESS,
+    address,
+    txRequest,
+    currency,
+  };
+}
+
+export function loadTxReceiptForClaimingFeesSuccess(address, txReceipt, currency) {
+  return {
+    type: LOAD_CLAIMING_FEES_TX_RECEIPT_SUCCESS,
+    address,
+    txReceipt,
+    currency,
+  };
+}
+
+export function loadWithdrawableFees(address, currency) {
+  return {
+    type: LOAD_WITHDRAWABLE_FEES,
+    address,
+    currency,
+  };
+}
+
+export function loadWithdrawableFeesSuccess(address, currency, amount) {
+  return {
+    type: LOAD_WITHDRAWABLE_FEES_SUCCESS,
+    address,
+    currency,
+    amount,
+  };
+}
+
+export function loadWithdrawableFeesError(address, currency, error) {
+  return {
+    type: LOAD_WITHDRAWABLE_FEES_ERROR,
+    address,
+    currency,
+    error,
+  };
+}
+
+export function withdrawFees(address, currency, options) {
+  return {
+    type: WITHDRAW_FEES,
+    address,
+    currency,
+    options,
+  };
+}
+
+export function withdrawFeesSuccess(address, txReceipt, currency) {
+  return {
+    type: WITHDRAW_FEES_SUCCESS,
+    address,
+    currency,
+    txReceipt,
+  };
+}
+
+export function withdrawFeesError(address, currency, error) {
+  return {
+    type: WITHDRAW_FEES_ERROR,
+    address,
+    currency,
+    error,
+  };
+}
+
+export function loadTxRequestForWithdrawingFeesSuccess(address, txRequest, currency) {
+  return {
+    type: LOAD_WITHDRAWING_FEES_TX_REQUEST_SUCCESS,
+    address,
+    txRequest,
+    currency,
+  };
+}
+
+export function loadTxReceiptForWithdrawingFeesSuccess(address, txReceipt, currency) {
+  return {
+    type: LOAD_WITHDRAWING_FEES_TX_RECEIPT_SUCCESS,
+    address,
+    txReceipt,
     currency,
   };
 }

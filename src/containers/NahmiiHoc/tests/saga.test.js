@@ -24,6 +24,10 @@ import {
   loadSettlements,
   reloadSettlementStatesHook,
   listenReceiptEvent,
+  loadClaimableFees,
+  claimFeesForAccruals,
+  loadWithdrawableFees,
+  withdrawFees,
 } from '../saga';
 import nahmiiHocReducer from '../reducer';
 
@@ -1097,6 +1101,235 @@ describe('nahmiiHocSaga', () => {
           });
       }
       );
+    });
+  });
+  describe('claim fees', () => {
+    const options = { gasLimit: 1, gasPrice: 1 };
+    const currency = '0x0000000000000000000000000000000000000001';
+    const periods = [0];
+    const claimableBN = new BigNumber(1);
+    describe('#loadClaimableFees(wallet, currency, [startPeriod, endPeriod])', () => {
+      describe('when succeed loading', () => {
+        it('updates store', () => expectSaga(loadClaimableFees, { address: signerMock.address, currency })
+          .withReducer(withReducer, storeMock)
+          .provide({
+            call(effect, next) {
+              if (effect.fn.name.includes('claimableAccruals')) {
+                return periods;
+              }
+              if (effect.fn.name.includes('claimableFeesForAccruals')) {
+                return claimableBN;
+              }
+              return next();
+            },
+          })
+          .put(actions.loadClaimableFeesSuccess(signerMock.address, currency, periods[0], periods[periods.length - 1], claimableBN))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const loading = result.storeState.getIn(['nahmiiHoc', 'claimFees', signerMock.address, currency, 'claimable', 'loading']);
+            const amount = result.storeState.getIn(['nahmiiHoc', 'claimFees', signerMock.address, currency, 'claimable', 'amount']);
+            const startPeriod = result.storeState.getIn(['nahmiiHoc', 'claimFees', signerMock.address, currency, 'claimable', 'startPeriod']);
+            const endPeriod = result.storeState.getIn(['nahmiiHoc', 'claimFees', signerMock.address, currency, 'claimable', 'endPeriod']);
+            expect(loading).toEqual(false);
+            expect(amount).toEqual(claimableBN);
+            expect(startPeriod).toEqual(periods[0]);
+            expect(endPeriod).toEqual(periods[periods.length - 1]);
+          }));
+      });
+      describe('when failed loading', () => {
+        const error = new Error('err');
+        it('updates store', () => expectSaga(loadClaimableFees, { address: signerMock.address, currency })
+          .withReducer(withReducer, storeMock)
+          .provide({
+            call(effect, next) {
+              if (effect.fn.name.includes('claimableAccruals')) {
+                throw error;
+              }
+              return next();
+            },
+          })
+          .put(actions.loadClaimableFeesError(signerMock.address, currency, undefined, undefined, error))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const loading = result.storeState.getIn(['nahmiiHoc', 'claimFees', signerMock.address, currency, 'claimable', 'loading']);
+            const err = result.storeState.getIn(['nahmiiHoc', 'claimFees', signerMock.address, currency, 'claimable', 'error']);
+            expect(loading).toEqual(false);
+            expect(err).toEqual(error);
+          }));
+      });
+    });
+    describe('#claimFees()', () => {
+      const fakeTxs = [{ hash: 'hash' }];
+      const txReceipts = [{ transactionHash: 'hash', status: 1 }];
+      describe('when succeed claiming', () => {
+        const startPeriod = periods[0];
+        const endPeriod = periods[periods.length - 1];
+        it('updates store', () => expectSaga(claimFeesForAccruals, { address: signerMock.address, currency, startPeriod, endPeriod })
+          .withReducer(withReducer, storeMock)
+          .provide({
+            call(effect, next) {
+              const { fn, args } = effect;
+              if (fn.name.includes('claimFeesForAccruals') && args[2] === startPeriod && args[3] === endPeriod) {
+                return {};
+              }
+              if (fn.name === 'waitForTransaction') {
+                return fakeTxs[0];
+              }
+              if (fn.name === 'getTransactionReceipt') {
+                return txReceipts[0];
+              }
+              if (fn === getSdkWalletSigner) {
+                return [
+                  signerMock,
+                  { type: 'ACTION1' },
+                  { type: 'ACTION2' },
+                ];
+              }
+              return next();
+            },
+          })
+          .put(actions.claimFeesForAccrualsSuccess(signerMock.address, txReceipts[0], currency, options))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const status = result.storeState.getIn(['nahmiiHoc', 'claimFees', signerMock.address, currency, 'claiming', 'status']);
+            expect(status).toEqual('success');
+          }));
+      });
+      describe('when failed claiming', () => {
+        const error = new Error('err');
+        it('updates store', () => expectSaga(claimFeesForAccruals, { address: signerMock.address, currency })
+          .withReducer(withReducer, storeMock)
+          .provide({
+            call(effect, next) {
+              if (effect.fn.name.includes('claimFeesForAccruals')) {
+                throw error;
+              }
+              if (effect.fn === getSdkWalletSigner) {
+                return [
+                  signerMock,
+                  { type: 'ACTION1' },
+                  { type: 'ACTION2' },
+                ];
+              }
+              return next();
+            },
+          })
+          .put(actions.claimFeesForAccrualsError(signerMock.address, currency, error))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const status = result.storeState.getIn(['nahmiiHoc', 'claimFees', signerMock.address, currency, 'claiming', 'status']);
+            const err = result.storeState.getIn(['nahmiiHoc', 'claimFees', signerMock.address, currency, 'claiming', 'error']);
+            expect(status).toEqual('failed');
+            expect(err).toEqual(error);
+          }));
+      });
+    });
+    describe('#loadWithdrawableFees()', () => {
+      describe('when succeed loading', () => {
+        it('updates store', () => expectSaga(loadWithdrawableFees, { address: signerMock.address, currency })
+          .withReducer(withReducer, storeMock)
+          .provide({
+            call(effect, next) {
+              if (effect.fn.name.includes('withdrawable')) {
+                return claimableBN;
+              }
+              return next();
+            },
+          })
+          .put(actions.loadWithdrawableFeesSuccess(signerMock.address, currency, claimableBN))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const loading = result.storeState.getIn(['nahmiiHoc', 'claimFees', signerMock.address, currency, 'withdrawable', 'loading']);
+            const amount = result.storeState.getIn(['nahmiiHoc', 'claimFees', signerMock.address, currency, 'withdrawable', 'amount']);
+            expect(loading).toEqual(false);
+            expect(amount).toEqual(claimableBN);
+          }));
+      });
+      describe('when failed loading', () => {
+        const error = new Error('err');
+        it('updates store', () => expectSaga(loadWithdrawableFees, { address: signerMock.address, currency })
+          .withReducer(withReducer, storeMock)
+          .provide({
+            call(effect, next) {
+              if (effect.fn.name.includes('withdrawable')) {
+                throw error;
+              }
+              return next();
+            },
+          })
+          .put(actions.loadWithdrawableFeesError(signerMock.address, currency, error))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const loading = result.storeState.getIn(['nahmiiHoc', 'claimFees', signerMock.address, currency, 'withdrawable', 'loading']);
+            const err = result.storeState.getIn(['nahmiiHoc', 'claimFees', signerMock.address, currency, 'withdrawable', 'error']);
+            expect(loading).toEqual(false);
+            expect(err).toEqual(error);
+          }));
+      });
+    });
+    describe('#withdrawFees()', () => {
+      const fakeTxs = [{ hash: 'hash' }];
+      const txReceipts = [{ transactionHash: 'hash', status: 1 }];
+      describe('when succeed withdrawing', () => {
+        it('updates store', () => expectSaga(withdrawFees, { address: signerMock.address, currency })
+          .withReducer(withReducer, storeMock)
+          .provide({
+            call(effect, next) {
+              const { fn } = effect;
+              if (fn.name.includes('withdrawFees')) {
+                return {};
+              }
+              if (fn.name === 'waitForTransaction') {
+                return fakeTxs[0];
+              }
+              if (fn.name === 'getTransactionReceipt') {
+                return txReceipts[0];
+              }
+              if (fn === getSdkWalletSigner) {
+                return [
+                  signerMock,
+                  { type: 'ACTION1' },
+                  { type: 'ACTION2' },
+                ];
+              }
+              return next();
+            },
+          })
+          .put(actions.withdrawFeesSuccess(signerMock.address, txReceipts[0], currency, options))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const status = result.storeState.getIn(['nahmiiHoc', 'claimFees', signerMock.address, currency, 'withdrawing', 'status']);
+            expect(status).toEqual('success');
+          }));
+      });
+      describe('when failed withdrawing', () => {
+        const error = new Error('err');
+        it('updates store', () => expectSaga(withdrawFees, { address: signerMock.address, currency })
+          .withReducer(withReducer, storeMock)
+          .provide({
+            call(effect, next) {
+              if (effect.fn.name.includes('withdrawFees')) {
+                throw error;
+              }
+              if (effect.fn === getSdkWalletSigner) {
+                return [
+                  signerMock,
+                  { type: 'ACTION1' },
+                  { type: 'ACTION2' },
+                ];
+              }
+              return next();
+            },
+          })
+          .put(actions.withdrawFeesError(signerMock.address, currency, error))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const status = result.storeState.getIn(['nahmiiHoc', 'claimFees', signerMock.address, currency, 'withdrawing', 'status']);
+            const err = result.storeState.getIn(['nahmiiHoc', 'claimFees', signerMock.address, currency, 'withdrawing', 'error']);
+            expect(status).toEqual('failed');
+            expect(err).toEqual(error);
+          }));
+      });
     });
   });
 });

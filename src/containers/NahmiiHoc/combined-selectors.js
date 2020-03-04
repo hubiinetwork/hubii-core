@@ -218,7 +218,7 @@ const makeSelectWalletsWithInfo = () => createSelector(
           if (ignore.includes(balanceType)) return acc;
           // if any of the wallet's assets are loading or errored out, set combined to the appropriate state
           if (acc.get('loading') || acc.get('error')) return acc;
-          if (balance.get('loading')) return combined.set('loading', true);
+          if (balance.get('loading')) {console.log(balanceType); return combined.set('loading', true); };
           if (balance.get('error')) return combined.set('error', true).set('assets', fromJS([]));
           return acc
             .setIn(['total', 'eth'], acc.getIn(['total', 'eth']).plus(balance.getIn(['total', 'eth'])))

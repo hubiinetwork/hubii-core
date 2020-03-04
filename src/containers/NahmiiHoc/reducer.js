@@ -42,6 +42,18 @@ import {
   LOAD_SETTLEMENTS_ERROR,
   RELOAD_SETTLEMENT_STATES,
   NEW_RECEIPT_RECEIVED,
+  LOAD_CLAIMABLE_FEES,
+  LOAD_CLAIMABLE_FEES_SUCCESS,
+  LOAD_CLAIMABLE_FEES_ERROR,
+  LOAD_WITHDRAWABLE_FEES,
+  LOAD_WITHDRAWABLE_FEES_SUCCESS,
+  LOAD_WITHDRAWABLE_FEES_ERROR,
+  CLAIM_FEES_FOR_ACCRUALS,
+  CLAIM_FEES_FOR_ACCRUALS_SUCCESS,
+  CLAIM_FEES_FOR_ACCRUALS_ERROR,
+  WITHDRAW_FEES,
+  WITHDRAW_FEES_SUCCESS,
+  WITHDRAW_FEES_ERROR,
 } from './constants';
 
 export const initialState = fromJS({
@@ -53,6 +65,7 @@ export const initialState = fromJS({
   depositStatus: {},
   settlements: {},
   withdrawals: {},
+  claimFees: {},
 });
 
 function nahmiiHocReducer(state = initialState, action) {
@@ -166,6 +179,56 @@ function nahmiiHocReducer(state = initialState, action) {
       return state
         .setIn(['withdrawals', action.address, action.currency, 'status'], 'receipt')
         .setIn(['withdrawals', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt);
+    case LOAD_CLAIMABLE_FEES:
+      return state
+        .setIn(['claimFees', action.address, action.currency, 'claimable', 'loading'], true);
+    case LOAD_CLAIMABLE_FEES_SUCCESS:
+      return state
+        .setIn(['claimFees', action.address, action.currency, 'claimable', 'loading'], false)
+        .setIn(['claimFees', action.address, action.currency, 'claimable', 'error'], null)
+        .setIn(['claimFees', action.address, action.currency, 'claimable', 'amount'], action.amount)
+        .setIn(['claimFees', action.address, action.currency, 'claimable', 'startPeriod'], action.startPeriod)
+        .setIn(['claimFees', action.address, action.currency, 'claimable', 'endPeriod'], action.endPeriod);
+    case LOAD_CLAIMABLE_FEES_ERROR:
+      return state
+        .setIn(['claimFees', action.address, action.currency, 'claimable', 'loading'], false)
+        .setIn(['claimFees', action.address, action.currency, 'claimable', 'error'], action.error);
+    case CLAIM_FEES_FOR_ACCRUALS:
+      return state
+        .setIn(['claimFees', action.address, action.currency, 'claiming', 'status'], 'requesting')
+        .setIn(['claimFees', action.address, action.currency, 'claiming', 'startPeriod'], action.startPeriod)
+        .setIn(['claimFees', action.address, action.currency, 'claiming', 'endPeriod'], action.endPeriod);
+    case CLAIM_FEES_FOR_ACCRUALS_SUCCESS:
+      return state
+        .setIn(['claimFees', action.address, action.currency, 'claiming', 'status'], 'success')
+        .setIn(['claimFees', action.address, action.currency, 'claiming', 'error'], null);
+    case CLAIM_FEES_FOR_ACCRUALS_ERROR:
+      return state
+        .setIn(['claimFees', action.address, action.currency, 'claiming', 'status'], 'failed')
+        .setIn(['claimFees', action.address, action.currency, 'claiming', 'error'], action.error);
+    case LOAD_WITHDRAWABLE_FEES:
+      return state
+        .setIn(['claimFees', action.address, action.currency, 'withdrawable', 'loading'], true);
+    case LOAD_WITHDRAWABLE_FEES_SUCCESS:
+      return state
+        .setIn(['claimFees', action.address, action.currency, 'withdrawable', 'loading'], false)
+        .setIn(['claimFees', action.address, action.currency, 'withdrawable', 'error'], null)
+        .setIn(['claimFees', action.address, action.currency, 'withdrawable', 'amount'], action.amount);
+    case LOAD_WITHDRAWABLE_FEES_ERROR:
+      return state
+        .setIn(['claimFees', action.address, action.currency, 'withdrawable', 'loading'], false)
+        .setIn(['claimFees', action.address, action.currency, 'withdrawable', 'error'], action.error);
+    case WITHDRAW_FEES:
+      return state
+        .setIn(['claimFees', action.address, action.currency, 'withdrawing', 'status'], 'requesting');
+    case WITHDRAW_FEES_SUCCESS:
+      return state
+        .setIn(['claimFees', action.address, action.currency, 'withdrawing', 'status'], 'success')
+        .setIn(['claimFees', action.address, action.currency, 'withdrawing', 'error'], null);
+    case WITHDRAW_FEES_ERROR:
+      return state
+        .setIn(['claimFees', action.address, action.currency, 'withdrawing', 'status'], 'failed')
+        .setIn(['claimFees', action.address, action.currency, 'withdrawing', 'error'], action.error);
     case LOAD_NAHMII_RECEIPTS:
       return state
         .setIn(['receipts', action.address, 'available', 'loading'], true)
