@@ -51,9 +51,13 @@ import {
   CLAIM_FEES_FOR_ACCRUALS,
   CLAIM_FEES_FOR_ACCRUALS_SUCCESS,
   CLAIM_FEES_FOR_ACCRUALS_ERROR,
+  LOAD_CLAIMING_FEES_TX_REQUEST_SUCCESS,
+  LOAD_CLAIMING_FEES_TX_RECEIPT_SUCCESS,
   WITHDRAW_FEES,
   WITHDRAW_FEES_SUCCESS,
   WITHDRAW_FEES_ERROR,
+  LOAD_WITHDRAWING_FEES_TX_REQUEST_SUCCESS,
+  LOAD_WITHDRAWING_FEES_TX_RECEIPT_SUCCESS,
 } from './constants';
 
 export const initialState = fromJS({
@@ -198,6 +202,12 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['claimFees', action.address, action.currency, 'claiming', 'status'], 'requesting')
         .setIn(['claimFees', action.address, action.currency, 'claiming', 'startPeriod'], action.startPeriod)
         .setIn(['claimFees', action.address, action.currency, 'claiming', 'endPeriod'], action.endPeriod);
+    case LOAD_CLAIMING_FEES_TX_REQUEST_SUCCESS:
+      return state
+        .setIn(['claimFees', action.address, action.currency, 'claiming', 'status'], 'mining');
+    case LOAD_CLAIMING_FEES_TX_RECEIPT_SUCCESS:
+      return state
+        .setIn(['claimFees', action.address, action.currency, 'claiming', 'status'], 'receipt');
     case CLAIM_FEES_FOR_ACCRUALS_SUCCESS:
       return state
         .setIn(['claimFees', action.address, action.currency, 'claiming', 'status'], 'success')
@@ -221,6 +231,12 @@ function nahmiiHocReducer(state = initialState, action) {
     case WITHDRAW_FEES:
       return state
         .setIn(['claimFees', action.address, action.currency, 'withdrawing', 'status'], 'requesting');
+    case LOAD_WITHDRAWING_FEES_TX_REQUEST_SUCCESS:
+      return state
+        .setIn(['claimFees', action.address, action.currency, 'withdrawing', 'status'], 'mining');
+    case LOAD_WITHDRAWING_FEES_TX_RECEIPT_SUCCESS:
+      return state
+        .setIn(['claimFees', action.address, action.currency, 'withdrawing', 'status'], 'receipt');
     case WITHDRAW_FEES_SUCCESS:
       return state
         .setIn(['claimFees', action.address, action.currency, 'withdrawing', 'status'], 'success')

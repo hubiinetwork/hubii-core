@@ -789,7 +789,7 @@ export function* claimFeesForAccruals({ currency, startPeriod, endPeriod, option
       feesClaimant.claimFeesForAccruals.bind(feesClaimant),
       nahmiiWallet, { ct: currency, id: 0 }, startPeriod, endPeriod, options
     );
-    yield processTx('claimFees', nahmiiProvider, tx, signer.address, currency);
+    yield processTx('claimFees', nahmiiProvider, tx, walletDetails.address, currency);
     if (confOnDeviceDone) yield put(confOnDeviceDone);
   } catch (e) {
     const errorMessage = logErrorMsg(e);
@@ -839,7 +839,7 @@ export function* withdrawFees({ currency, options }) {
       feesClaimant.withdrawFees.bind(feesClaimant),
       nahmiiWallet, { ct: currency, id: 0 }, options
     );
-    yield processTx('withdrawFees', nahmiiProvider, tx, signer.address, currency);
+    yield processTx('withdrawFees', nahmiiProvider, tx, walletDetails.address, currency);
     if (confOnDeviceDone) yield put(confOnDeviceDone);
   } catch (e) {
     const errorMessage = logErrorMsg(e);
