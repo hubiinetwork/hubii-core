@@ -59,6 +59,7 @@ import {
   LOAD_CLAIMABLE_FEES,
   CLAIM_FEES_FOR_ACCRUALS,
   LOAD_WITHDRAWABLE_FEES,
+  WITHDRAW_FEES,
 } from './constants';
 
 function waitForTransaction(provider, ...args) { return provider.waitForTransaction(...args); }
@@ -817,7 +818,7 @@ export function* loadWithdrawableFees({ address, currency }) {
   }
 }
 
-export function* withdrawFees({ currency, options }) {
+export function* withdrawFees({ currency, amount, options }) {
   let confOnDeviceDone;
   let confOnDevice;
   let signer;
@@ -832,12 +833,16 @@ export function* withdrawFees({ currency, options }) {
     const { nahmiiProvider } = network;
     const { FeesClaimant } = nahmii;
     const feesClaimant = new FeesClaimant(nahmiiProvider);
+
     [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, walletDetails);
-    const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
     if (confOnDevice) yield put(confOnDevice);
+
+    const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
+    const monetaryAmount = nahmii.MonetaryAmount.from(amount.toFixed(), currency, 0);
+
     const tx = yield call(
       feesClaimant.withdrawFees.bind(feesClaimant),
-      nahmiiWallet, { ct: currency, id: 0 }, options
+      nahmiiWallet, monetaryAmount, options
     );
     yield processTx('withdrawFees', nahmiiProvider, tx, walletDetails.address, currency);
     if (confOnDeviceDone) yield put(confOnDeviceDone);
@@ -934,4 +939,5 @@ export default function* listen() {
   yield takeLatest(LOAD_CLAIMABLE_FEES, loadClaimableFees);
   yield takeLatest(LOAD_WITHDRAWABLE_FEES, loadWithdrawableFees);
   yield takeLatest(CLAIM_FEES_FOR_ACCRUALS, claimFeesForAccruals);
+  yield takeLatest(WITHDRAW_FEES, withdrawFees);
 }

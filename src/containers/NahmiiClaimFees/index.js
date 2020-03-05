@@ -304,7 +304,7 @@ export class NahmiiClaimFees extends React.Component { // eslint-disable-line re
                         <AgreementButton
                           className="withdraw-btn"
                           onClick={() => {
-                            withdrawFeesAction(currentWalletWithInfo.get('address'), assetToClaim.currency, options);
+                            withdrawFeesAction(currentWalletWithInfo.get('address'), assetToClaim.currency, withdrawableBN, options);
                           }}
                           disabled={disableWithdrawButton
                           }

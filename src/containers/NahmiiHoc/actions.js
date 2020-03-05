@@ -568,11 +568,12 @@ export function loadWithdrawableFeesError(address, currency, error) {
   };
 }
 
-export function withdrawFees(address, currency, options) {
+export function withdrawFees(address, currency, amount, options) {
   return {
     type: WITHDRAW_FEES,
     address,
     currency,
+    amount,
     options,
   };
 }

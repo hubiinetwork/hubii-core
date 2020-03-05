@@ -1270,13 +1270,14 @@ describe('nahmiiHocSaga', () => {
     describe('#withdrawFees()', () => {
       const fakeTxs = [{ hash: 'hash' }];
       const txReceipts = [{ transactionHash: 'hash', status: 1 }];
+      const amount = new BigNumber(1);
       describe('when succeed withdrawing', () => {
-        it('updates store', () => expectSaga(withdrawFees, { address: signerMock.address, currency })
+        it('updates store', () => expectSaga(withdrawFees, { address: signerMock.address, currency, amount })
           .withReducer(withReducer, storeMock)
           .provide({
             call(effect, next) {
-              const { fn } = effect;
-              if (fn.name.includes('withdrawFees')) {
+              const { fn, args } = effect;
+              if (fn.name.includes('withdrawFees') && args[1].amount.toNumber() === amount.toNumber()) {
                 return {};
               }
               if (fn.name === 'waitForTransaction') {
@@ -1304,7 +1305,7 @@ describe('nahmiiHocSaga', () => {
       });
       describe('when failed withdrawing', () => {
         const error = new Error('err');
-        it('updates store', () => expectSaga(withdrawFees, { address: signerMock.address, currency })
+        it('updates store', () => expectSaga(withdrawFees, { address: signerMock.address, currency, amount })
           .withReducer(withReducer, storeMock)
           .provide({
             call(effect, next) {
