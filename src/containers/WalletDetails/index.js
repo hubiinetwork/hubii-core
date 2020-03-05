@@ -176,7 +176,7 @@ export class WalletDetails extends React.PureComponent {
             address={currentWallet.get('address')}
             balance={
               currentWallet
-                .getIn(['balances', 'baseLayer', 'total', 'usd'])
+                .getIn(['balances', 'combined', 'total', 'usd'])
                 .toNumber()
             }
             onIconClick={this.onHomeClick}
