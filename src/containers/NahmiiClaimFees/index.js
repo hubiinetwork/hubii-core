@@ -102,7 +102,7 @@ export class NahmiiClaimFees extends React.Component { // eslint-disable-line re
     const { assetToClaim } = this.state;
     const { currentWalletWithInfo, loadClaimableFeesAction, loadWithdrawableFeesAction } = this.props;
 
-    for (const [path] of [
+    for (const path of [
       ['claiming', 'status'],
       ['withdrawing', 'status'],
     ]) {
