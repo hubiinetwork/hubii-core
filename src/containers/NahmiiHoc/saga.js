@@ -825,7 +825,7 @@ export function* withdrawFees({ currency, amount, options }) {
   const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
   try {
     if (walletDetails.encrypted && !walletDetails.decrypted) {
-      yield put(showDecryptWalletModal(actions.withdrawFees(currency, options)));
+      yield put(showDecryptWalletModal(actions.withdrawFees(currency, amount, options)));
       yield put(actions.withdrawFeesError(walletDetails.address, currency));
       return;
     }

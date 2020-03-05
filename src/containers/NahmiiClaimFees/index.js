@@ -71,21 +71,10 @@ export class NahmiiClaimFees extends React.Component { // eslint-disable-line re
   constructor(props) {
     super(props);
 
-    const nahmiiCombinedAssets = props.currentWalletWithInfo.getIn(['balances', 'nahmiiCombined', 'assets']).toJS();
-    const assetToClaim = nahmiiCombinedAssets[0] || { symbol: 'ETH', currency: '0x0000000000000000000000000000000000000000', balance: new BigNumber('0') };
-
-    // max decimals possible for current asset
-    let maxDecimals = 18;
-    if (props.supportedAssets.get('assets').size !== 0) {
-      maxDecimals = props.supportedAssets && props.supportedAssets
-        .get('assets')
-        .find((a) => a.get('currency') === assetToClaim.currency)
-        .get('decimals');
-    }
+    const assetToClaim = { symbol: 'ETH', currency: '0x0000000000000000000000000000000000000000', balance: new BigNumber('0'), decimals: 18 };
 
     this.state = {
       assetToClaim,
-      maxDecimals,
       gasPriceGweiInput: '10',
       gasPriceGwei: new BigNumber('10'),
       gasLimit: 3000000,
@@ -100,7 +89,7 @@ export class NahmiiClaimFees extends React.Component { // eslint-disable-line re
 
   componentDidUpdate(prevProps) {
     const { assetToClaim } = this.state;
-    const { currentWalletWithInfo, loadClaimableFeesAction, loadWithdrawableFeesAction } = this.props;
+    const { currentWalletWithInfo } = this.props;
 
     for (const path of [
       ['claiming', 'status'],
@@ -109,8 +98,7 @@ export class NahmiiClaimFees extends React.Component { // eslint-disable-line re
       const currentTxStatus = this.props.revenueFees.getIn(path);
       const prevTxStatus = prevProps.revenueFees.getIn(path);
       if (currentTxStatus === 'success' && prevTxStatus !== 'success') {
-        loadClaimableFeesAction(currentWalletWithInfo.get('address'), assetToClaim.currency);
-        loadWithdrawableFeesAction(currentWalletWithInfo.get('address'), assetToClaim.currency);
+        this.refreshData(currentWalletWithInfo.get('address'), assetToClaim.currency);
       }
     }
   }
@@ -135,7 +123,6 @@ export class NahmiiClaimFees extends React.Component { // eslint-disable-line re
       assetToClaim,
       gasPriceGwei,
       gasLimit,
-      maxDecimals,
     } = this.state;
     const {
       currentWalletWithInfo,
@@ -171,7 +158,7 @@ export class NahmiiClaimFees extends React.Component { // eslint-disable-line re
     const assetToClaimUsdValue = prices.toJS().assets
       .find((a) => a.currency === assetToClaim.currency).usd;
     const claimableBN = new BigNumber(revenueFees.getIn(['claimable', 'amount']) || 0);
-    const claimableAmount = claimableBN.div(new BigNumber(10).pow(maxDecimals));
+    const claimableAmount = claimableBN.div(new BigNumber(10).pow(assetToClaim.decimals));
     const claimable = {
       amount: claimableAmount,
       usdValue: claimableAmount.times(assetToClaimUsdValue),
@@ -181,7 +168,7 @@ export class NahmiiClaimFees extends React.Component { // eslint-disable-line re
     const endPeriod = revenueFees.getIn(['claimable', 'endPeriod']) || 0;
 
     const withdrawableBN = new BigNumber(revenueFees.getIn(['withdrawable', 'amount']) || 0);
-    const withdrawableAmount = withdrawableBN.div(new BigNumber(10).pow(maxDecimals));
+    const withdrawableAmount = withdrawableBN.div(new BigNumber(10).pow(assetToClaim.decimals));
     const withdrawable = {
       amount: withdrawableAmount,
       usdValue: withdrawableAmount.times(assetToClaimUsdValue),
@@ -223,7 +210,7 @@ export class NahmiiClaimFees extends React.Component { // eslint-disable-line re
         </Row>
         <Row>
           <TransferDescriptionItem
-            main={<SelectableText><NumericText maxDecimalPlaces={18} value={transactionFee.amount.toString()} /> {'ETH'}</SelectableText>}
+            main={<SelectableText><NumericText maxDecimalPlaces={assetToClaim.decimals} value={transactionFee.amount.toString()} /> {'ETH'}</SelectableText>}
             subtitle={<NumericText value={transactionFee.usdValue.toString()} type="fiat" />}
           />
         </Row>
@@ -233,7 +220,7 @@ export class NahmiiClaimFees extends React.Component { // eslint-disable-line re
         <Row>
           <TransferDescriptionItem
             className="base-layer-eth-balance-before"
-            main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
+            main={<SelectableText><NumericText maxDecimalPlaces={assetToClaim.decimals} value={baseLayerEthBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
             subtitle={<NumericText value={baseLayerEthBalanceBefore.usdValue.toString()} type="fiat" />}
           />
         </Row>
@@ -245,7 +232,7 @@ export class NahmiiClaimFees extends React.Component { // eslint-disable-line re
         <Row>
           <TransferDescriptionItem
             className="base-layer-eth-balance-after"
-            main={<SelectableText><NumericText maxDecimalPlaces={18} value={baseLayerEthBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
+            main={<SelectableText><NumericText maxDecimalPlaces={assetToClaim.decimals} value={baseLayerEthBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
             subtitle={<NumericText value={baseLayerEthBalanceAfter.usdValue.toString()} type="fiat" />}
           />
         </Row>
@@ -275,7 +262,7 @@ export class NahmiiClaimFees extends React.Component { // eslint-disable-line re
         <Row>
           <TransferDescriptionItem
             className="claimable-amount"
-            main={<SelectableText><NumericText maxDecimalPlaces={18} value={claimable.amount.toString()} /> {assetToClaim.symbol}</SelectableText>}
+            main={<SelectableText><NumericText maxDecimalPlaces={assetToClaim.decimals} value={claimable.amount.toString()} /> {assetToClaim.symbol}</SelectableText>}
             subtitle={<NumericText value={claimable.usdValue.toString()} type="fiat" />}
           />
         </Row>
@@ -285,7 +272,7 @@ export class NahmiiClaimFees extends React.Component { // eslint-disable-line re
         <Row>
           <TransferDescriptionItem
             className="withdrawable-amount"
-            main={<SelectableText><NumericText maxDecimalPlaces={18} value={withdrawable.amount.toString()} /> {assetToClaim.symbol}</SelectableText>}
+            main={<SelectableText><NumericText maxDecimalPlaces={assetToClaim.decimals} value={withdrawable.amount.toString()} /> {assetToClaim.symbol}</SelectableText>}
             subtitle={<NumericText value={withdrawable.usdValue.toString()} type="fiat" />}
           />
         </Row>
@@ -346,21 +333,12 @@ export class NahmiiClaimFees extends React.Component { // eslint-disable-line re
 
   handleAssetChange(newSymbol) {
     const { currentWalletWithInfo, supportedAssets } = this.props;
-    const nahmiiCombinedAssets = currentWalletWithInfo.getIn(['balances', 'nahmiiCombined', 'assets']).toJS();
-    const assetToClaim = nahmiiCombinedAssets.find((a) => a.symbol === newSymbol);
+    const assetToClaim = supportedAssets.get('assets').find((a) => a.get('symbol') === newSymbol).toJS();
 
-    // max decimals possible for current asset
-    const maxDecimals = supportedAssets
-      .get('assets')
-      .find((a) => a.get('currency') === assetToClaim.currency)
-      .get('decimals');
-
-    const currency = this.getCurrencyAddress(assetToClaim.currency);
-    this.refreshData(currentWalletWithInfo.get('address'), currency);
+    this.refreshData(currentWalletWithInfo.get('address'), assetToClaim.currency);
 
     this.setState({
       assetToClaim,
-      maxDecimals,
     });
   }
 
@@ -455,8 +433,6 @@ export class NahmiiClaimFees extends React.Component { // eslint-disable-line re
       );
     }
 
-    const nahmiiCombinedAssets = currentWalletWithInfo.getIn(['balances', 'nahmiiCombined', 'assets']).toJS();
-
     const loadingClaimable = revenueFees.getIn(['claimable', 'loading']);
     const loadingWithdrawable = revenueFees.getIn(['withdrawable', 'loading']);
     const loadingFeesAmounts = (loadingClaimable || loadingClaimable === undefined) || (loadingWithdrawable || loadingWithdrawable === undefined);
@@ -484,9 +460,9 @@ export class NahmiiClaimFees extends React.Component { // eslint-disable-line re
                     onSelect={this.handleAssetChange}
                     style={{ paddingLeft: '0.5rem' }}
                   >
-                    {nahmiiCombinedAssets.map((currency) => (
-                      <Option value={currency.symbol} key={currency.symbol}>
-                        {currency.symbol}
+                    {supportedAssets.get('assets').map((asset) => (
+                      <Option value={asset.get('symbol')} key={asset.get('symbol')}>
+                        {asset.get('symbol')}
                       </Option>
                     ))}
                   </Select>

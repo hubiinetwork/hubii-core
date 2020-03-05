@@ -55,8 +55,8 @@ describe('<NahmiiClaimFees />', () => {
     };
   });
   describe('claim actions', () => {
-    const erc20Asset = walletsWithInfoMock.get(0).getIn(['balances', 'baseLayer', 'assets']).get(1).toJS();
-    const ethAsset = { symbol: 'ETH', currency: '0x0000000000000000000000000000000000000000', balance: new BigNumber('1') };
+    const erc20Asset = { ...walletsWithInfoMock.get(0).getIn(['balances', 'baseLayer', 'assets']).get(1).toJS(), decimals: 10 };
+    const ethAsset = { symbol: 'ETH', currency: '0x0000000000000000000000000000000000000000', balance: new BigNumber('1'), decimals: 18 };
     [{
       type: 'ETH',
       asset: ethAsset,
@@ -160,7 +160,7 @@ describe('<NahmiiClaimFees />', () => {
                 wrapper.setState({ assetToClaim: t.asset });
               });
               it('should correctly calculate the claimable balance', () => {
-                expectTransferDescriptionMainProp(wrapper.find('.review-panel .claimable-amount').props().main, claimableBN.div(new BigNumber(10).pow(18)).toString(), t.asset.symbol);
+                expectTransferDescriptionMainProp(wrapper.find('.review-panel .claimable-amount').props().main, claimableBN.div(new BigNumber(10).pow(t.asset.decimals)).toString(), t.asset.symbol);
               });
               it('enables claim button', () => {
                 expect(wrapper.find('.review-panel .claim-btn').props().disabled).toEqual(false);
@@ -232,7 +232,7 @@ describe('<NahmiiClaimFees />', () => {
                 wrapper.setState({ assetToClaim: t.asset });
               });
               it('should correctly calculate the withdrawable balance', () => {
-                expectTransferDescriptionMainProp(wrapper.find('.review-panel .withdrawable-amount').props().main, withdrawableBN.div(new BigNumber(10).pow(18)).toString(), t.asset.symbol);
+                expectTransferDescriptionMainProp(wrapper.find('.review-panel .withdrawable-amount').props().main, withdrawableBN.div(new BigNumber(10).pow(t.asset.decimals)).toString(), t.asset.symbol);
               });
               it('enables withdraw button', () => {
                 expect(wrapper.find('.review-panel .withdraw-btn').props().disabled).toEqual(false);
@@ -247,7 +247,7 @@ describe('<NahmiiClaimFees />', () => {
                 const txFeeAmt = gweiToEther(gasPriceGwei).times(gasLimit);
                 let baseLayerBalanceAfter = baseLayerBalanceBefore.minus(txFeeAmt);
                 if (t.type === 'ETH') {
-                  baseLayerBalanceAfter = baseLayerBalanceAfter.plus(withdrawableBN.div(new BigNumber(10).pow(18)));
+                  baseLayerBalanceAfter = baseLayerBalanceAfter.plus(withdrawableBN.div(new BigNumber(10).pow(t.asset.decimals)));
                 }
                 expectTransferDescriptionMainProp(wrapper.find('.review-panel .base-layer-eth-balance-after').props().main, baseLayerBalanceAfter, 'ETH');
               });
