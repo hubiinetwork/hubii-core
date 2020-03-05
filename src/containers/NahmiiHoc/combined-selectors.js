@@ -238,7 +238,7 @@ const makeSelectWalletsWithInfo = () => createSelector(
 
       const nahmiiCombined = calcCombinedBalances('baseLayer');
       const nahmiiActive = calcCombinedBalances('baseLayer', 'nahmiiStaged');
-      const combined = calcCombinedBalances('nahmiiStaged');
+      const combined = calcCombinedBalances();
 
       walletWithInfo = walletWithInfo
         .setIn(['balances', 'nahmiiCombined'], nahmiiCombined)
