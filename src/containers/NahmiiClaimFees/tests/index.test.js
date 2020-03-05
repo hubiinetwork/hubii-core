@@ -247,7 +247,7 @@ describe('<NahmiiClaimFees />', () => {
                 const txFeeAmt = gweiToEther(gasPriceGwei).times(gasLimit);
                 let baseLayerBalanceAfter = baseLayerBalanceBefore.minus(txFeeAmt);
                 if (t.type === 'ETH') {
-                  baseLayerBalanceAfter = baseLayerBalanceAfter.plus(withdrawableBN);
+                  baseLayerBalanceAfter = baseLayerBalanceAfter.plus(withdrawableBN.div(new BigNumber(10).pow(18)));
                 }
                 expectTransferDescriptionMainProp(wrapper.find('.review-panel .base-layer-eth-balance-after').props().main, baseLayerBalanceAfter, 'ETH');
               });

@@ -181,15 +181,15 @@ export class NahmiiClaimFees extends React.Component { // eslint-disable-line re
     const endPeriod = revenueFees.getIn(['claimable', 'endPeriod']) || 0;
 
     const withdrawableBN = new BigNumber(revenueFees.getIn(['withdrawable', 'amount']) || 0);
-    const withdrawableAmount = withdrawableBN.div(maxDecimals);
+    const withdrawableAmount = withdrawableBN.div(new BigNumber(10).pow(maxDecimals));
     const withdrawable = {
-      amount: withdrawableBN.div(new BigNumber(10).pow(maxDecimals)),
+      amount: withdrawableAmount,
       usdValue: withdrawableAmount.times(assetToClaimUsdValue),
     };
 
     let baseLayerEthBalanceAfterAmount = baseLayerEthBalanceBefore.amount.minus(transactionFee.amount);
     if (assetToClaim.symbol === 'ETH') {
-      baseLayerEthBalanceAfterAmount = baseLayerEthBalanceAfterAmount.plus(withdrawableBN);
+      baseLayerEthBalanceAfterAmount = baseLayerEthBalanceAfterAmount.plus(withdrawableAmount);
     }
     const baseLayerEthBalanceAfter = {
       amount: baseLayerEthBalanceAfterAmount,
