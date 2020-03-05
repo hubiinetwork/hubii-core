@@ -303,5 +303,19 @@
     "i_agree": "I agree with the ",
     "terms": "Terms & Conditions",
     "confirm_nahmii_recipient": "Please make sure the recipient can use nahmii.",
-    "unable_settle": "Unable to start new settlement, please make sure the previous settlements are all completed."
+    "unable_settle": "Unable to start new settlement, please make sure the previous settlements are all completed.",
+    "nahmii_revenue": "revenue",
+    "claiming_fees": "Claiming revenue",
+    "withdrawing_fees": "Withdrawing revenue",
+    "claim_fees_error": "Error occurred during claiming revenue",
+    "withdraw_fees_error": "Error occurred during withdrawing revenue",
+    "claimable_start_period": "Accrual start period",
+    "claimable_end_period": "Accrual end period",
+    "fees_claimable_amount": "Claimable amount",
+    "fees_withdrawable_amount": "Withdrawable amount",
+    "withdraw_fees": "Withdraw Revenue",
+    "claim_fees": "Claim Revenue",
+    "waiting_for_claiming_fees_to_be": "Waiting for transaction to be",
+    "waiting_for_withdrawing_fees_to_be": "Waiting for transaction to be",
+    "select_asset_to_claim": "Select an asset to claim revenue"
 }

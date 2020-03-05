@@ -350,7 +350,7 @@ ShallowWrapper {
                                         />
                                         <Unknown />
                                          
-                                        claim_fees
+                                        nahmii_revenue
                               </span>
                     }
           />
@@ -514,7 +514,7 @@ ShallowWrapper {
                                           />
                                           <Unknown />
                                            
-                                          claim_fees
+                                          nahmii_revenue
                             </span>
               }
 />,
@@ -635,7 +635,7 @@ ShallowWrapper {
                 />
                 <Unknown />
                  
-                claim_fees
+                nahmii_revenue
 </span>,
             },
             "ref": null,
@@ -836,7 +836,7 @@ ShallowWrapper {
                                                 />
                                                 <Unknown />
                                                  
-                                                claim_fees
+                                                nahmii_revenue
                                     </span>
                         }
             />
@@ -1000,7 +1000,7 @@ ShallowWrapper {
                                                 />
                                                 <Unknown />
                                                  
-                                                claim_fees
+                                                nahmii_revenue
                                 </span>
                 }
 />,
@@ -1121,7 +1121,7 @@ ShallowWrapper {
                   />
                   <Unknown />
                    
-                  claim_fees
+                  nahmii_revenue
 </span>,
               },
               "ref": null,

@@ -54,7 +54,7 @@ export class WalletDetails extends React.PureComponent {
   getMenus(walletType) {
     const { match, intl } = this.props;
     const { formatMessage } = intl;
-    const menus = walletType === 'watch' ? ['details', 'buy_eth'] : ['details', 'transfer', 'deposit', 'withdraw', 'claim_fees', 'buy_eth'];
+    const menus = walletType === 'watch' ? ['details', 'buy_eth'] : ['details', 'transfer', 'deposit', 'withdraw', 'revenue', 'buy_eth'];
 
     return menus.map((feature) => {
       switch (feature) {
@@ -136,12 +136,12 @@ export class WalletDetails extends React.PureComponent {
             >
             </TabPane>
           );
-        case 'claim_fees':
+        case 'revenue':
           return (
             <TabPane
               tab={
                 <span>
-                  <Icon type="area-chart" /><NahmiiText /> {formatMessage({ id: 'claim_fees' }).toLowerCase()}
+                  <Icon type="area-chart" /><NahmiiText /> {formatMessage({ id: 'nahmii_revenue' }).toLowerCase()}
                 </span>
               }
               key={`${match.url}/claim-fees`}
