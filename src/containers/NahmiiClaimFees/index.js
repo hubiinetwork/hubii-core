@@ -141,7 +141,7 @@ export class NahmiiClaimFees extends React.Component { // eslint-disable-line re
 
     const baseLayerAssets = currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
     const baseLayerEthBalance = baseLayerAssets
-      .find((currency) => currency.symbol === 'ETH');
+      .find((currency) => currency.symbol === 'ETH') || { balance: new BigNumber(0) };
 
     const txFeeAmt = gweiToEther(gasPriceGwei).times(gasLimit);
     const txFeeUsdValue = txFeeAmt.times(ethUsdValue);
@@ -422,7 +422,7 @@ export class NahmiiClaimFees extends React.Component { // eslint-disable-line re
 
     if
     (
-      currentWalletWithInfo.getIn(['balances', 'nahmiiCombined', 'loading']) ||
+      currentWalletWithInfo.getIn(['balances', 'baseLayer', 'loading']) ||
       supportedAssets.get('loading') ||
       prices.get('loading')
     ) {
