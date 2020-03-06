@@ -141,7 +141,7 @@ export class WalletDetails extends React.PureComponent {
             <TabPane
               tab={
                 <span>
-                  <Icon type="area-chart" /><NahmiiText /> {formatMessage({ id: 'nahmii_revenue' }).toLowerCase()}
+                  <Icon type="area-chart" /><NahmiiText /> {formatMessage({ id: 'nahmii_fees' }).toLowerCase()}
                 </span>
               }
               key={`${match.url}/claim-fees`}
