@@ -1139,7 +1139,11 @@ describe('nahmiiHocSaga', () => {
       describe('when failed loading', () => {
         const error = new Error('err');
         it('updates store', () => expectSaga(loadClaimableFees, { address: signerMock.address, currency })
-          .withReducer(withReducer, storeMock)
+          .withReducer(
+            withReducer,
+            storeMock
+              .setIn(['nahmiiHoc', 'claimFees', signerMock.address, currency, 'claimable', 'amount'], claimableBN)
+          )
           .provide({
             call(effect, next) {
               if (effect.fn.name.includes('claimableAccruals')) {
@@ -1152,8 +1156,10 @@ describe('nahmiiHocSaga', () => {
           .run({ silenceTimeout: true })
           .then((result) => {
             const loading = result.storeState.getIn(['nahmiiHoc', 'claimFees', signerMock.address, currency, 'claimable', 'loading']);
+            const amountBN = result.storeState.getIn(['nahmiiHoc', 'claimFees', signerMock.address, currency, 'claimable', 'amount']);
             const err = result.storeState.getIn(['nahmiiHoc', 'claimFees', signerMock.address, currency, 'claimable', 'error']);
             expect(loading).toEqual(false);
+            expect(amountBN).toEqual(null);
             expect(err).toEqual(error);
           }));
       });

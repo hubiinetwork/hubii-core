@@ -196,6 +196,7 @@ function nahmiiHocReducer(state = initialState, action) {
     case LOAD_CLAIMABLE_FEES_ERROR:
       return state
         .setIn(['claimFees', action.address, action.currency, 'claimable', 'loading'], false)
+        .setIn(['claimFees', action.address, action.currency, 'claimable', 'amount'], null)
         .setIn(['claimFees', action.address, action.currency, 'claimable', 'error'], action.error);
     case CLAIM_FEES_FOR_ACCRUALS:
       return state
