@@ -790,8 +790,8 @@ export function* claimFeesForAccruals({ currency, startPeriod, endPeriod, option
       feesClaimant.claimFeesForAccruals.bind(feesClaimant),
       nahmiiWallet, { ct: currency, id: 0 }, startPeriod, endPeriod, options
     );
-    yield processTx('claimFees', nahmiiProvider, tx, walletDetails.address, currency);
     if (confOnDeviceDone) yield put(confOnDeviceDone);
+    yield processTx('claimFees', nahmiiProvider, tx, walletDetails.address, currency);
   } catch (e) {
     const errorMessage = logErrorMsg(e);
     yield put(notify('error', getIntl().formatMessage({ id: 'claim_fees_error' }, { message: errorMessage })));
@@ -844,8 +844,8 @@ export function* withdrawFees({ currency, amount, options }) {
       feesClaimant.withdrawFees.bind(feesClaimant),
       nahmiiWallet, monetaryAmount, options
     );
-    yield processTx('withdrawFees', nahmiiProvider, tx, walletDetails.address, currency);
     if (confOnDeviceDone) yield put(confOnDeviceDone);
+    yield processTx('withdrawFees', nahmiiProvider, tx, walletDetails.address, currency);
   } catch (e) {
     const errorMessage = logErrorMsg(e);
     yield put(notify('error', getIntl().formatMessage({ id: 'withdraw_fees_error' }, { message: errorMessage })));
