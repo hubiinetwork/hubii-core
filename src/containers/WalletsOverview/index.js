@@ -58,6 +58,7 @@ const SortableWallet = SortableElement((props) => {
   const connected = isConnected(props.wallet, props.ledgerNanoSInfo.toJS(), props.trezorInfo.toJS());
   const baseLayerBalance = props.wallet.balances.baseLayer;
   const nahmiiBalance = props.wallet.balances.nahmiiCombined;
+  const combinedBalance = props.wallet.balances.combined;
   return (
     <WalletCardsCol
       span={10}
@@ -69,7 +70,7 @@ const SortableWallet = SortableElement((props) => {
       <WalletItemCard
         name={props.wallet.name}
         folded={!!props.wallet.folded}
-        totalBalance={(baseLayerBalance.loading || baseLayerBalance.error) ? 0 : baseLayerBalance.total.usd.toNumber()}
+        totalBalance={(combinedBalance.loading || combinedBalance.error) ? 0 : combinedBalance.total.usd.toNumber()}
         baseLayerBalancesLoading={baseLayerBalance.loading}
         baseLayerBalancesError={!!baseLayerBalance.error}
         nahmiiBalancesLoading={nahmiiBalance.loading}

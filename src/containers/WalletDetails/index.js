@@ -17,6 +17,7 @@ import WalletTransactions from 'containers/WalletTransactions';
 import NahmiiDeposit from 'containers/NahmiiDeposit';
 import WalletTransfer from 'containers/WalletTransfer';
 import NahmiiWithdraw from 'containers/NahmiiWithdraw';
+import NahmiiClaimFees from 'containers/NahmiiClaimFees';
 import { makeSelectCurrentWalletWithInfo } from 'containers/NahmiiHoc/combined-selectors';
 import {
   makeSelectLedgerHoc,
@@ -53,7 +54,7 @@ export class WalletDetails extends React.PureComponent {
   getMenus(walletType) {
     const { match, intl } = this.props;
     const { formatMessage } = intl;
-    const menus = walletType === 'watch' ? ['details', 'buy_eth'] : ['details', 'transfer', 'deposit', 'withdraw', 'buy_eth'];
+    const menus = walletType === 'watch' ? ['details', 'buy_eth'] : ['details', 'transfer', 'deposit', 'withdraw', 'revenue', 'buy_eth'];
 
     return menus.map((feature) => {
       switch (feature) {
@@ -135,6 +136,18 @@ export class WalletDetails extends React.PureComponent {
             >
             </TabPane>
           );
+        case 'revenue':
+          return (
+            <TabPane
+              tab={
+                <span>
+                  <Icon type="area-chart" /><NahmiiText /> {formatMessage({ id: 'nahmii_fees' }).toLowerCase()}
+                </span>
+              }
+              key={`${match.url}/claim-fees`}
+            >
+            </TabPane>
+          );
         default:
           return null;
       }
@@ -163,7 +176,7 @@ export class WalletDetails extends React.PureComponent {
             address={currentWallet.get('address')}
             balance={
               currentWallet
-                .getIn(['balances', 'baseLayer', 'total', 'usd'])
+                .getIn(['balances', 'combined', 'total', 'usd'])
                 .toNumber()
             }
             onIconClick={this.onHomeClick}
@@ -187,6 +200,7 @@ export class WalletDetails extends React.PureComponent {
         <Route path={`${match.url}/buyeth`} component={SimplexPage} />
         <Route path={`${match.url}/nahmii-deposit`} component={NahmiiDeposit} />
         <Route path={`${match.url}/withdraw`} component={NahmiiWithdraw} />
+        <Route path={`${match.url}/claim-fees`} component={NahmiiClaimFees} />
         {history.location.pathname === match.url && (
           <Redirect from={match.url} to={`${match.url}/transfer`} push />
         )}

@@ -302,6 +302,11 @@ export const ongoingChallengesNone = fromJS({}).set('details', []);
 export const settleableChallengesNone = fromJS({}).set('details', []).set('invalidReasons', []);
 export const settlementsNone = fromJS({}).set('details', []).set('settling', fromJS({})).set('staging', fromJS({}));
 export const withdrawalsNone = fromJS({}).set('details', []);
+export const claimFeesNone = fromJS({})
+  .set('claimable', undefined)
+  .set('withdrawable', undefined)
+  .set('claiming', undefined)
+  .set('withdrawing', undefined);
 
 // selectNahmiiHocDomain
 export const nahmiiHocMock = fromJS({

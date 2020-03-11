@@ -56,6 +56,10 @@ import {
   WITHDRAW,
   WITHDRAW_SUCCESS,
   RELOAD_SETTLEMENT_STATES,
+  LOAD_CLAIMABLE_FEES,
+  CLAIM_FEES_FOR_ACCRUALS,
+  LOAD_WITHDRAWABLE_FEES,
+  WITHDRAW_FEES,
 } from './constants';
 
 function waitForTransaction(provider, ...args) { return provider.waitForTransaction(...args); }
@@ -622,6 +626,20 @@ export function* processTx(type, provider, tx, address, currency) {
     yield put(notify('info', getIntl().formatMessage({ id: 'withdrawing' })));
   }
 
+  if (type === 'claimFees') {
+    actionTargets.success = actions.claimFeesForAccrualsSuccess;
+    actionTargets.loadTxRequestSuccess = actions.loadTxRequestForClaimingFeesSuccess;
+    actionTargets.loadTxReceiptSuccess = actions.loadTxReceiptForClaimingFeesSuccess;
+    yield put(notify('info', getIntl().formatMessage({ id: 'claiming_fees' })));
+  }
+
+  if (type === 'withdrawFees') {
+    actionTargets.success = actions.withdrawFeesSuccess;
+    actionTargets.loadTxRequestSuccess = actions.loadTxRequestForWithdrawingFeesSuccess;
+    actionTargets.loadTxReceiptSuccess = actions.loadTxReceiptForWithdrawingFeesSuccess;
+    yield put(notify('info', getIntl().formatMessage({ id: 'withdrawing_fees' })));
+  }
+
   yield put(actionTargets.loadTxRequestSuccess(address, tx, currency, provider.name));
   const txRes = yield call(waitForTransaction, provider, tx.hash);
   const txReceipt = yield call(getTransactionReceipt, provider, txRes.transactionHash);
@@ -718,6 +736,125 @@ export function* loadAllWalletReceipts() {
   }
 }
 
+export function* loadClaimableFees({ address, currency, startPeriod, endPeriod }) {
+  const { nahmiiProvider } = yield select(makeSelectCurrentNetwork());
+  const { FeesClaimant } = nahmii;
+  const feesClaimant = new FeesClaimant(nahmiiProvider);
+
+  let _startPeriod = startPeriod;
+  let _endPeriod = endPeriod;
+  try {
+    if (!Number.isInteger(startPeriod) || !Number.isInteger(endPeriod)) {
+      const periods = yield call(
+        feesClaimant.claimableAccruals.bind(feesClaimant),
+        { address },
+        { ct: currency, id: 0 }
+      );
+
+      _startPeriod = periods[0];
+      _endPeriod = periods[periods.length - 1];
+    }
+
+    const claimableAmount = yield call(
+      feesClaimant.claimableFeesForAccruals.bind(feesClaimant),
+      { address },
+      { ct: currency, id: 0 },
+      _startPeriod,
+      _endPeriod
+    );
+    yield put(actions.loadClaimableFeesSuccess(address, currency, _startPeriod, _endPeriod, claimableAmount));
+  } catch (error) {
+    yield put(actions.loadClaimableFeesError(address, currency, _startPeriod, _endPeriod, error));
+  }
+}
+
+export function* claimFeesForAccruals({ currency, startPeriod, endPeriod, options }) {
+  let confOnDeviceDone;
+  let confOnDevice;
+  let signer;
+  const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
+  try {
+    if (walletDetails.encrypted && !walletDetails.decrypted) {
+      yield put(showDecryptWalletModal(actions.claimFeesForAccruals(walletDetails.address, currency, startPeriod, endPeriod, options)));
+      yield put(actions.claimFeesForAccrualsError(walletDetails.address, currency));
+      return;
+    }
+    const network = yield select(makeSelectCurrentNetwork());
+    const { nahmiiProvider } = network;
+    const { FeesClaimant } = nahmii;
+    const feesClaimant = new FeesClaimant(nahmiiProvider);
+    [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, walletDetails);
+    const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
+    if (confOnDevice) yield put(confOnDevice);
+    const tx = yield call(
+      feesClaimant.claimFeesForAccruals.bind(feesClaimant),
+      nahmiiWallet, { ct: currency, id: 0 }, startPeriod, endPeriod, options
+    );
+    if (confOnDeviceDone) yield put(confOnDeviceDone);
+    yield processTx('claimFees', nahmiiProvider, tx, walletDetails.address, currency);
+  } catch (e) {
+    const errorMessage = logErrorMsg(e);
+    yield put(notify('error', getIntl().formatMessage({ id: 'claim_fees_error' }, { message: errorMessage })));
+    yield put(actions.claimFeesForAccrualsError(walletDetails.address, currency, e));
+  } finally {
+    if (confOnDeviceDone) yield put(confOnDeviceDone);
+  }
+}
+
+export function* loadWithdrawableFees({ address, currency }) {
+  const { nahmiiProvider } = yield select(makeSelectCurrentNetwork());
+  const { FeesClaimant } = nahmii;
+  const feesClaimant = new FeesClaimant(nahmiiProvider);
+
+  try {
+    const withdrawableAmount = yield call(
+      feesClaimant.withdrawableFees.bind(feesClaimant),
+      { address },
+      { ct: currency, id: 0 }
+    );
+    yield put(actions.loadWithdrawableFeesSuccess(address, currency, withdrawableAmount));
+  } catch (error) {
+    yield put(actions.loadWithdrawableFeesError(address, currency, error));
+  }
+}
+
+export function* withdrawFees({ currency, amount, options }) {
+  let confOnDeviceDone;
+  let confOnDevice;
+  let signer;
+  const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
+  try {
+    if (walletDetails.encrypted && !walletDetails.decrypted) {
+      yield put(showDecryptWalletModal(actions.withdrawFees(currency, amount, options)));
+      yield put(actions.withdrawFeesError(walletDetails.address, currency));
+      return;
+    }
+    const network = yield select(makeSelectCurrentNetwork());
+    const { nahmiiProvider } = network;
+    const { FeesClaimant } = nahmii;
+    const feesClaimant = new FeesClaimant(nahmiiProvider);
+
+    [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, walletDetails);
+    if (confOnDevice) yield put(confOnDevice);
+
+    const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
+    const monetaryAmount = nahmii.MonetaryAmount.from(amount.toFixed(), currency, 0);
+
+    const tx = yield call(
+      feesClaimant.withdrawFees.bind(feesClaimant),
+      nahmiiWallet, monetaryAmount, options
+    );
+    if (confOnDeviceDone) yield put(confOnDeviceDone);
+    yield processTx('withdrawFees', nahmiiProvider, tx, walletDetails.address, currency);
+  } catch (e) {
+    const errorMessage = logErrorMsg(e);
+    yield put(notify('error', getIntl().formatMessage({ id: 'withdraw_fees_error' }, { message: errorMessage })));
+    yield put(actions.withdrawFeesError(walletDetails.address, currency, e));
+  } finally {
+    if (confOnDeviceDone) yield put(confOnDeviceDone);
+  }
+}
+
 // manages calling of complex ethOperations
 export function* challengeStatusOrcestrator() {
   try {
@@ -799,4 +936,8 @@ export default function* listen() {
   yield takeEvery(WITHDRAW_SUCCESS, reloadSettlementStatesHook);
   yield takeEvery(SET_SELECTED_WALLET_CURRENCY, changeNahmiiCurrency);
   yield takeEvery(RELOAD_SETTLEMENT_STATES, reloadSettlementStates);
+  yield takeLatest(LOAD_CLAIMABLE_FEES, loadClaimableFees);
+  yield takeLatest(LOAD_WITHDRAWABLE_FEES, loadWithdrawableFees);
+  yield takeLatest(CLAIM_FEES_FOR_ACCRUALS, claimFeesForAccruals);
+  yield takeLatest(WITHDRAW_FEES, withdrawFees);
 }

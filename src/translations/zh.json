@@ -303,5 +303,19 @@
     "i_agree": "我同意",
     "terms": "此条款",
     "confirm_nahmii_recipient": "请确认收款方可以使用 nahmii",
-    "unable_settle": "无法请求新的结算，请确定此前的结算是否已经完成。"
+    "unable_settle": "无法请求新的结算，请确定此前的结算是否已经完成。",
+    "nahmii_fees": "费率",
+    "claiming_fees": "获取费率",
+    "withdrawing_fees": "取出费率",
+    "claim_fees_error": "获取费率过程中发生错误",
+    "withdraw_fees_error": "取出费率过程中发生错误",
+    "claimable_start_period": "起始期",
+    "claimable_end_period": "截止期",
+    "fees_claimable_amount": "可获取的费率",
+    "fees_withdrawable_amount": "可取款的费率",
+    "withdraw_fees": "取出费率",
+    "claim_fees": "获取费率",
+    "waiting_for_claiming_fees_to_be": "等待获取费率",
+    "waiting_for_withdrawing_fees_to_be": "等待取出费率",
+    "select_asset_to_claim": "选择一个收益资产"
 }
