@@ -17,8 +17,13 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# electron
+# Electron
 dist
 .idea
 
+# Visual Studio Code
 .vscode
+
+# JetBrains (Intellij, WebStorm,...)
+# .idea
+*.iml
