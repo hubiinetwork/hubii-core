@@ -322,7 +322,7 @@
     "jsonwebtoken": "8.3.0",
     "lodash": "4.17.13",
     "lodash.debounce": "^4.0.8",
-    "minimist": "1.2.0",
+    "minimist": "1.2.6",
     "moment": "2.22.2",
     "nahmii-ethereum-address": "^2.0.1",
     "nahmii-sdk": "4.5.2",
