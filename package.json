@@ -323,7 +323,7 @@
     "lodash": "4.17.13",
     "lodash.debounce": "^4.0.8",
     "minimist": "1.2.0",
-    "moment": "2.22.2",
+    "moment": "2.29.2",
     "nahmii-ethereum-address": "^2.0.1",
     "nahmii-sdk": "4.5.2",
     "prop-types": "15.6.1",
